@@ -68,7 +68,7 @@ function renderList(){
   }
   for(const task of matching){
     const row=document.createElement('div');row.className='task-item';row.classList.toggle('is-done',!!task.done);row.style.setProperty('--priority-color',PRIORITY[task.priority].color);
-    const check=button(task.done?'✓','task-check',()=>{task.done=!task.done;if(!save())task.done=!task.done;render()});
+    const check=button(task.done?'✓':'','task-check',()=>{task.done=!task.done;if(!save())task.done=!task.done;render()});
     check.setAttribute('aria-label',task.done?'Tamamlandı, yapılacak olarak işaretle':'Görevi tamamla');check.setAttribute('aria-pressed',String(!!task.done));
     const content=document.createElement('div');content.className='task-text';
     const label=document.createElement('strong');label.textContent=task.title;
