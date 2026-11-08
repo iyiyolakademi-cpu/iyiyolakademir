@@ -41,6 +41,10 @@ Adres: `http://localhost:8000`
 
 ## Geliştirme planı
 
-Bloglar → Yapılacaklar listesi → Pomodoro → Kitap özetleri → diğer akademi özellikleri.
+Bloglar ✅ → Yapılacaklar listesi ✅ → Pratik hesaplama araçları ✅ → Pomodoro → Kitap özetleri → diğer akademi özellikleri.
 
 Bu ilk sürümde henüz hazır olmayan bölümler yalnızca "Yakında" olarak gösterilir ve çalışmayan butonlara bağlanmaz.
+
+## Görev verileri hakkında
+
+Şu anda görevler cihazın kendi `localStorage` alanında tutulur. Oturum açma/hesap bağlantısı henüz olmadığı için farklı cihazlar arasında eşitlenmez. Kişisel görevleri herkese açık Supabase tablolarında saklamayın; senkronizasyon için kullanıcı oturumu ve kullanıcıya ait RLS gereklidir.
