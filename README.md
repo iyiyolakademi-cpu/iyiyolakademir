@@ -39,9 +39,20 @@ python -m http.server 8000
 
 Adres: `http://localhost:8000`
 
+## Eklenen yeni web bölümleri
+
+- `tarifler.html`: Beyaz temalı, mobil ve PC uyumlu yemek tarifleri merkezi. 200 tarif ve 16 kategori.
+- `recipes-data.json`: Verdiğin HTML'den metinleri değiştirmeden alınan 200 tarif, malzemeler, pişirme adımları ve beslenme bilgileri.
+- `recipes.js`, `recipes.css`: Tarif arama, kategori filtresi, zorluk/süre filtresi, favoriler, rastgele tarif, porsiyon ayarlama ve pişirme modu.
+- `hesaplama.html`, `calculator-full.js`, `calculator-full.css`: Gönderilen Pratik Hesaplama Araçları HTML kaynağındaki 11 hesaplama aracı ve özgün görünümü.
+- `yapilacaklar.html`, `tasks.js`, `tasks.css`: Mobil ve masaüstü görev planlayıcı, renkli öncelikler, düzenleme, silme ve günlük/haftalık takip.
+- `brand-full.svg`: Verilen tam İyi Yol Akademi logosu; üst menü ve alt bilgiye kırpılmadan yerleştirilmiştir. Sekme simgesi ayrı `brand-mark.svg` dosyasını kullanır.
+
+**Görevler ve favori tarifler:** Bu sürümde kendi tarayıcının yerel depolamasında saklanır. Farklı cihazlar arasında otomatik eşitlenmez.
+
 ## Geliştirme planı
 
-Bloglar ✅ → Yapılacaklar listesi ✅ → Pratik hesaplama araçları ✅ → Pomodoro → Kitap özetleri → diğer akademi özellikleri.
+Bloglar ✅ → Yapılacaklar listesi ✅ → Pratik hesaplama araçları (11 araç) ✅ → Yemek tarifleri (200 tarif) ✅ → Pomodoro → Kitap özetleri → diğer akademi özellikleri.
 
 Bu ilk sürümde henüz hazır olmayan bölümler yalnızca "Yakında" olarak gösterilir ve çalışmayan butonlara bağlanmaz.
 
