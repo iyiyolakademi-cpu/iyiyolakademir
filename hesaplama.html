@@ -1,20 +1,389 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdfcf9"><meta name="description" content="Yüzde, indirim, KDV, not ortalaması, çalışma süresi ve iki tarih arasındaki gün sayısını kolayca hesapla."><title>Pratik Hesaplama Araçları | İyi Yol Akademi</title><link rel="icon" type="image/svg+xml" href="brand-mark.svg"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="calculator.css"><script src="site.js" defer></script><script src="calculator.js" defer></script></head>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdfcf9"><meta name="description" content="Yüzde, indirim, KDV, not ortalaması, çalışma süresi ve iki tarih arasındaki gün sayısını kolayca hesapla."><title>Pratik Hesaplama Araçları | İyi Yol Akademi</title><link rel="icon" type="image/svg+xml" href="brand-mark.svg"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="calculator-full.css"><script src="site.js" defer></script><script src="calculator-full.js" defer></script></head>
 <body data-page="calculator">
 <a class="skip-link" href="#main">Ana içeriğe geç</a>
 <header class="site-header"><div class="container header-content"><a class="brand" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><span class="brand-mark" aria-hidden="true"><img src="brand-mark.svg" alt=""></span><span class="brand-type">İYİ YOL <strong>AKADEMİ</strong><small>Daha iyiye, birlikte.</small></span></a><button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button><nav class="main-nav" id="mainNav" aria-label="Ana menü"><a href="index.html">Ana Sayfa</a><a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a class="active" href="hesaplama.html" aria-current="page">Hesaplama Araçları</a><a class="nav-cta" href="blog.html">Yazıları keşfet ↗</a></nav></div></header>
-<main id="main" class="container calc-main"><div class="section-kicker">GÜNLÜK HAYAT / PRATİK ARAÇLAR</div><div class="calc-hero"><h1>Küçük hesaplar,<br><em>kolay sonuçlar.</em></h1><p>İhtiyacın olan hesaplamayı seç, bilgileri gir ve sonucu anında öğren. Tamamen ücretsiz, kolay ve anlaşılır.</p></div>
-<div class="calc-layout">
-<aside class="calc-tool-menu" aria-label="Hesaplama aracını seç"><div class="calc-menu-label">HESAPLAMA ARAÇLARI <span>06 ARAÇ</span></div>
-<button type="button" class="calc-tool is-active" data-tool="percent" aria-pressed="true"><span class="calc-tool-icon">%</span><span><strong>Yüzde Hesaplama</strong><small>Bir sayının yüzdesini bul</small></span><span aria-hidden="true">↗</span></button>
-<button type="button" class="calc-tool" data-tool="discount" aria-pressed="false"><span class="calc-tool-icon">↘</span><span><strong>İndirim Hesaplama</strong><small>Yeni fiyatı öğren</small></span><span aria-hidden="true">↗</span></button>
-<button type="button" class="calc-tool" data-tool="vat" aria-pressed="false"><span class="calc-tool-icon">₺</span><span><strong>KDV Hesaplama</strong><small>Vergili ve vergisiz tutar</small></span><span aria-hidden="true">↗</span></button>
-<button type="button" class="calc-tool" data-tool="grade" aria-pressed="false"><span class="calc-tool-icon">A+</span><span><strong>Not Ortalaması</strong><small>Vize ve final ağırlığı</small></span><span aria-hidden="true">↗</span></button>
-<button type="button" class="calc-tool" data-tool="study" aria-pressed="false"><span class="calc-tool-icon">◷</span><span><strong>Çalışma Süresi</strong><small>Oturum ve mola planı</small></span><span aria-hidden="true">↗</span></button>
-<button type="button" class="calc-tool" data-tool="days" aria-pressed="false"><span class="calc-tool-icon">▦</span><span><strong>Gün Hesaplama</strong><small>İki tarih arasındaki süre</small></span><span aria-hidden="true">↗</span></button>
-</aside>
-<section class="calc-panel" aria-label="Hesap makinesi"><div class="calc-panel-head"><div><div class="calc-panel-kicker" id="calcCategory">MATEMATİK / SAYILAR</div><h2 id="calcTitle">Yüzde hesaplama</h2><p id="calcDescription">Bir sayının belirli bir yüzdesini kolayca hesapla.</p></div><div class="calc-large-icon" id="calcIcon" aria-hidden="true">%</div></div>
-<form id="calcForm" novalidate><div id="calcFields" class="calc-fields"></div><p id="calcError" class="calc-error" role="alert"></p><div class="calc-actions"><button type="submit" class="calc-submit">Hesapla <span aria-hidden="true">↗</span></button><button type="button" class="calc-clear" id="calcClear">Temizle</button></div></form>
-<div id="calcResult" class="calc-result" hidden aria-live="polite"><div class="calc-result-label">HESAPLAMA SONUCU</div><strong id="calcResultNumber">—</strong><p id="calcResultDescription"></p></div>
-<div class="calc-disclaimer">Sonuçlar verilen değerlere göre hesaplanır; yalnızca bilgilendirme amaçlıdır.</div>
-</section></div></main>
+<main id="main" class="container calc-full-main"><div class="section-kicker" style="padding-top:38px">İYİ YOL AKADEMİ / HESAPLAMA ARAÇLARI</div><div class="calc-full-intro"><h1>Pratik <em>hesaplamalar.</em></h1><p>İstediğin aracı seç, bilgilerini gir ve sonucu öğren. Gönderdiğin uygulamadaki tüm hesaplama özellikleri bu bölümde.</p></div><div id="pa-app"><!-- ========================================================
+     ANA MENÜ
+======================================================== -->
+<div class="pa-screen pa-active" id="pa-screen-menu">
+<div class="pa-menu">
+<div class="pa-search-wrap"><input type="text" id="pa-search" placeholder="🔍 Hesaplama aracı ara..." onkeyup="paSearchTools()"></div>
+<div id="pa-menu-list"><!-- YENİLER --> <button class="pa-menu-item" data-name="komisyon kesintisi" onclick="paOpen('komisyon')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #d9f5ea;">🧮</span> </span> <span class="pa-menu-text"> Komisyon Kesintisi Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="indirim yüzde fiyat" onclick="paOpen('indirim')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fdeccb;">🏷️</span> </span> <span class="pa-menu-text"> İndirim ve Yüzde Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="ideal uyku saati" onclick="paOpen('uyku')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #e5e0fb;">😴</span> </span> <span class="pa-menu-text"> İdeal Uyku Saati Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="maaş saatlik kazanç" onclick="paOpen('maas')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #d9f5ea;">💰</span> </span> <span class="pa-menu-text"> Maaşa Göre Saatlik Kazanç <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="tyt ayt net sınav" onclick="paOpen('tytayt')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde3e3;">📝</span> </span> <span class="pa-menu-text"> TYT–AYT Net Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <!-- DİĞERLERİ --> <button class="pa-menu-item" data-name="tarih arası gün hafta ay" onclick="paOpen('tarih')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde3e3;">📅</span> </span> <span class="pa-menu-text"> Tarih Arası Gün Hesapla </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="vücut kitle indeksi bmi vki" onclick="paOpen('bmi')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #e9edf1;">🩺</span> </span> <span class="pa-menu-text"> Vücut Kitle İndeksi (BMI) </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="günlük kalori bmr enerji" onclick="paOpen('kalori')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde9e9;">🍎</span> </span> <span class="pa-menu-text"> Günlük Kalori İhtiyacı </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="günlük su tüketimi" onclick="paOpen('su')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #dff1fb;">💧</span> </span> <span class="pa-menu-text"> Günlük Su Tüketimi </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="vücut yağ oranı" onclick="paOpen('yag')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #dfeaf9;">📉</span> </span> <span class="pa-menu-text"> Vücut Yağ Oranı </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="hisse kar zarar yatırım" onclick="paOpen('hisse')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #17294e;">📊</span> </span> <span class="pa-menu-text"> Hisse Kâr/Zarar Hesapla </span> <span class="pa-menu-arrow">›</span> </button></div>
+<div id="pa-empty">Aradığınız araç bulunamadı.</div>
+</div>
+</div>
+<!-- ========================================================
+     KOMİSYON
+======================================================== -->
+<div class="pa-screen" id="pa-screen-komisyon">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Komisyon Kesintisi</div>
+<div class="pa-card-desc">Satış tutarından kesilecek komisyonu ve elinize geçecek net tutarı hesaplayın.</div>
+<div class="pa-field"><label class="pa-label"> Satış Tutarı (₺) </label> <input class="pa-input" type="number" id="kom-tutar" placeholder="Örn: 1000"></div>
+<div class="pa-field"><label class="pa-label"> Komisyon Oranı (%) </label> <input class="pa-input" type="number" id="kom-oran" placeholder="Örn: 15"></div>
+<button class="pa-button" onclick="paKomisyon()"> Hesapla </button>
+<div class="pa-result" id="kom-result">
+<div class="pa-result-main" id="kom-net"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Kesilen Komisyon</div>
+<div class="pa-result-right" id="kom-kesinti"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Net Kazanç</div>
+<div class="pa-result-right" id="kom-elegecen"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     İNDİRİM
+======================================================== -->
+<div class="pa-screen" id="pa-screen-indirim">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">İndirim Hesaplama</div>
+<div class="pa-card-desc">İndirim sonrası ürün fiyatını ve toplam tasarruf miktarını hesaplayın.</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Ürün Fiyatı (₺) </label> <input class="pa-input" type="number" id="ind-price" placeholder="Örn: 500"></div>
+<div class="pa-field"><label class="pa-label"> İndirim Oranı (%) </label> <input class="pa-input" type="number" id="ind-rate" placeholder="Örn: 25"></div>
+</div>
+<button class="pa-button" onclick="paIndirim()"> Hesapla </button>
+<div class="pa-result" id="ind-result">
+<div class="pa-result-main" id="ind-final"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Tasarruf</div>
+<div class="pa-result-right" id="ind-saving"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     UYKU
+======================================================== -->
+<div class="pa-screen" id="pa-screen-uyku">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">İdeal Uyku Saati</div>
+<div class="pa-card-desc">Yaklaşık uyku döngülerine göre yatış veya kalkış saati önerileri oluşturun.</div>
+<div class="pa-field"><label class="pa-label"> Hesaplama Türü </label><select class="pa-select" id="sleep-type" onchange="paSleepLabel()">
+<option value="wake">Kalkacağım saate göre yatış</option>
+<option value="sleep">Yatacağım saate göre kalkış</option>
+</select></div>
+<div class="pa-field"><label class="pa-label" id="sleep-label"> Kalkış Saati </label> <input class="pa-input" type="time" id="sleep-time"></div>
+<button class="pa-button" onclick="paUyku()"> Hesapla </button>
+<div class="pa-result" id="sleep-result">
+<div class="pa-result-main" id="sleep-title"></div>
+<div class="pa-chip-list" id="sleep-chips"></div>
+</div>
+<div class="pa-info"><span class="pa-info-title"> Bilgilendirme </span> Uyku döngüsü kişiden kişiye değişebilir. Bu araç yaklaşık 90 dakikalık döngü ve 15 dakikalık uykuya dalma süresi üzerinden tahmini saatler verir.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     MAAŞ
+======================================================== -->
+<div class="pa-screen" id="pa-screen-maas">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Saatlik Kazanç</div>
+<div class="pa-card-desc">Aylık net maaşınızın yaklaşık saatlik, günlük ve haftalık karşılığını görün.</div>
+<div class="pa-field"><label class="pa-label"> Net Aylık Maaş (₺) </label> <input class="pa-input" type="number" id="salary" placeholder="Örn: 30000"></div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Haftalık Çalışma Günü </label> <input class="pa-input" type="number" id="work-days" value="5"></div>
+<div class="pa-field"><label class="pa-label"> Günlük Çalışma Saati </label> <input class="pa-input" type="number" id="work-hours" value="8"></div>
+</div>
+<button class="pa-button" onclick="paMaas()"> Hesapla </button>
+<div class="pa-result" id="salary-result">
+<div class="pa-result-main" id="salary-hourly"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Günlük Kazanç</div>
+<div class="pa-result-right" id="salary-daily"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Haftalık Kazanç</div>
+<div class="pa-result-right" id="salary-weekly"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Aylık Çalışma Saati</div>
+<div class="pa-result-right" id="salary-hours"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     TYT AYT
+======================================================== -->
+<div class="pa-screen" id="pa-screen-tytayt">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">TYT–AYT Net</div>
+<div class="pa-card-desc">Net hesabı: Doğru − (Yanlış ÷ 4)</div>
+<div class="pa-field"><label class="pa-label"> Sınav Türü </label><select class="pa-select" id="exam-type" onchange="paExamFields()">
+<option value="tyt">TYT</option>
+<option value="say">AYT - Sayısal</option>
+<option value="ea">AYT - Eşit Ağırlık</option>
+<option value="soz">AYT - Sözel</option>
+</select></div>
+<div id="exam-fields"></div>
+<button class="pa-button" onclick="paExamCalc()"> Hesapla </button>
+<div class="pa-result" id="exam-result">
+<div class="pa-result-main" id="exam-total"></div>
+<div id="exam-lines"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     TARİH
+======================================================== -->
+<div class="pa-screen" id="pa-screen-tarih">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Tarih Arası Gün</div>
+<div class="pa-card-desc">İki tarih arasındaki gün, hafta ve yaklaşık ay farkını hesaplayın.</div>
+<div class="pa-field"><label class="pa-label"> Başlangıç Tarihi </label> <input class="pa-input" type="date" id="date-start"></div>
+<div class="pa-field"><label class="pa-label"> Bitiş Tarihi </label> <input class="pa-input" type="date" id="date-end"></div>
+<button class="pa-button" onclick="paDateCalc()"> Hesapla </button>
+<div class="pa-result" id="date-result">
+<div class="pa-result-main" id="date-days"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Hafta</div>
+<div class="pa-result-right" id="date-weeks"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Ay (yaklaşık)</div>
+<div class="pa-result-right" id="date-months"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     BMI
+======================================================== -->
+<div class="pa-screen" id="pa-screen-bmi">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Vücut Kitle İndeksi</div>
+<div class="pa-card-desc">Boy ve kilo bilgilerinize göre yaklaşık yetişkin VKİ değerinizi hesaplayın.</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Kilo (kg) </label> <input class="pa-input" type="number" id="bmi-weight" placeholder="Örn: 70"></div>
+<div class="pa-field"><label class="pa-label"> Boy (cm) </label> <input class="pa-input" type="number" id="bmi-height" placeholder="Örn: 175"></div>
+</div>
+<button class="pa-button" onclick="paBMI()"> Hesapla </button>
+<div class="pa-result" id="bmi-result">
+<div class="pa-result-main" id="bmi-value"></div>
+<div class="pa-result-sub" id="bmi-category"></div>
+</div>
+<div class="pa-table-wrap">
+<table class="pa-table">
+<tbody>
+<tr>
+<th>VKİ Aralığı</th>
+<th>Kategori</th>
+</tr>
+<tr>
+<td>18,5 altı</td>
+<td><span class="pa-pill pa-blue"> Düşük </span></td>
+</tr>
+<tr>
+<td>18,5 – 24,9</td>
+<td><span class="pa-pill pa-green"> Normal </span></td>
+</tr>
+<tr>
+<td>25 – 29,9</td>
+<td><span class="pa-pill pa-orange"> Fazla Kilolu </span></td>
+</tr>
+<tr>
+<td>30 – 34,9</td>
+<td><span class="pa-pill pa-red"> Obezite I </span></td>
+</tr>
+<tr>
+<td>35 – 39,9</td>
+<td><span class="pa-pill pa-red"> Obezite II </span></td>
+</tr>
+<tr>
+<td>40 ve üzeri</td>
+<td><span class="pa-pill pa-darkred"> Obezite III </span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pa-info"><span class="pa-info-title"> Bilgilendirme </span> VKİ yetişkinler için genel bir tarama ölçüsüdür; kas kütlesi, yaş, vücut yapısı ve sağlık durumunu tek başına değerlendirmez.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     KALORİ
+======================================================== -->
+<div class="pa-screen" id="pa-screen-kalori">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Günlük Kalori İhtiyacı</div>
+<div class="pa-card-desc">Mifflin–St Jeor formülüyle yaklaşık günlük enerji ihtiyacınızı hesaplayın.</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Yaş </label> <input class="pa-input" type="number" id="cal-age" placeholder="Örn: 25"></div>
+<div class="pa-field"><label class="pa-label"> Cinsiyet </label><select class="pa-select" id="cal-gender">
+<option value="">Seçiniz</option>
+<option value="e">Erkek</option>
+<option value="k">Kadın</option>
+</select></div>
+</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Kilo (kg) </label> <input class="pa-input" type="number" id="cal-weight" placeholder="Örn: 70"></div>
+<div class="pa-field"><label class="pa-label"> Boy (cm) </label> <input class="pa-input" type="number" id="cal-height" placeholder="Örn: 175"></div>
+</div>
+<div class="pa-field"><label class="pa-label"> Aktivite Düzeyi </label><select class="pa-select" id="cal-activity">
+<option value="1.2">Hareketsiz</option>
+<option value="1.375">Az Aktif</option>
+<option value="1.55">Orta Aktif</option>
+<option value="1.725">Çok Aktif</option>
+<option value="1.9">Çok Yüksek Aktivite</option>
+</select></div>
+<button class="pa-button" onclick="paCalories()"> Hesapla </button>
+<div class="pa-result" id="cal-result">
+<div class="pa-result-main" id="cal-total"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Bazal Metabolizma</div>
+<div class="pa-result-right" id="cal-bmr"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Yaklaşık %10 daha düşük</div>
+<div class="pa-result-right" id="cal-low"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Yaklaşık %10 daha yüksek</div>
+<div class="pa-result-right" id="cal-high"></div>
+</div>
+</div>
+<div class="pa-info"><span class="pa-info-title"> Bilgilendirme </span> Bu sonuç yalnızca tahmini enerji ihtiyacıdır. Kilo verme veya alma hedeflerinde kişisel sağlık durumu ve beslenme gereksinimleri farklılık gösterebilir.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     SU
+======================================================== -->
+<div class="pa-screen" id="pa-screen-su">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Günlük Su Tüketimi</div>
+<div class="pa-card-desc">Kilonuz, aktivite süreniz ve ortam sıcaklığına göre yaklaşık günlük su miktarını görün.</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Kilo (kg) </label> <input class="pa-input" type="number" id="water-weight" placeholder="Örn: 70"></div>
+<div class="pa-field"><label class="pa-label"> Aktivite (dakika) </label> <input class="pa-input" type="number" id="water-activity" placeholder="Örn: 45"></div>
+</div>
+<div class="pa-field"><label class="pa-label"> Ortam </label><select class="pa-select" id="water-climate">
+<option value="1">Ilıman</option>
+<option value="1.10">Sıcak</option>
+<option value="1.20">Çok Sıcak</option>
+</select></div>
+<button class="pa-button" onclick="paWater()"> Hesapla </button>
+<div class="pa-result" id="water-result">
+<div class="pa-result-main" id="water-liters"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Yaklaşık 200 ml bardak</div>
+<div class="pa-result-right" id="water-glasses"></div>
+</div>
+</div>
+<div class="pa-info"><span class="pa-info-title"> Bilgilendirme </span> Bu araç yaklaşık bir tahmin sunar. Sıcak hava, yoğun egzersiz, hamilelik, emzirme ve bazı sağlık durumlarında ihtiyaç farklı olabilir.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     YAĞ ORANI
+======================================================== -->
+<div class="pa-screen" id="pa-screen-yag">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Vücut Yağ Oranı</div>
+<div class="pa-card-desc">US Navy çevre ölçüm yöntemine göre yaklaşık vücut yağ oranınızı hesaplayın.</div>
+<div class="pa-field"><label class="pa-label"> Cinsiyet </label><select class="pa-select" id="fat-gender" onchange="paFatGender()">
+<option value="">Seçiniz</option>
+<option value="e">Erkek</option>
+<option value="k">Kadın</option>
+</select></div>
+<div class="pa-field"><label class="pa-label"> Boy (cm) </label> <input class="pa-input" type="number" id="fat-height" placeholder="Örn: 175"></div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Boyun Çevresi (cm) </label> <input class="pa-input" type="number" id="fat-neck" placeholder="Örn: 38"></div>
+<div class="pa-field"><label class="pa-label"> Bel Çevresi (cm) </label> <input class="pa-input" type="number" id="fat-waist" placeholder="Örn: 85"></div>
+</div>
+<div class="pa-field" id="fat-hip-field" style="display: none;"><label class="pa-label"> Kalça Çevresi (cm) </label> <input class="pa-input" type="number" id="fat-hip" placeholder="Örn: 95"></div>
+<button class="pa-button" onclick="paBodyFat()"> Hesapla </button>
+<div class="pa-result" id="fat-result">
+<div class="pa-result-main" id="fat-value"></div>
+<div class="pa-result-sub">Yaklaşık ölçüm sonucu</div>
+</div>
+<div class="pa-info"><span class="pa-info-title"> Bilgilendirme </span> Çevre ölçüm yöntemleri yaklaşık sonuç verir. Ölçüm noktaları ve kişisel vücut yapısı sonucu etkileyebilir.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================
+     HİSSE
+======================================================== -->
+<div class="pa-screen" id="pa-screen-hisse">
+<div class="pa-page">
+<div class="pa-inner">
+<div class="pa-back-row"><button class="pa-back" onclick="paHome()">‹ Hesaplama Araçları</button></div>
+<div class="pa-card">
+<div class="pa-card-title">Hisse Kâr/Zarar</div>
+<div class="pa-card-desc">Alış, satış, adet ve komisyon değerlerine göre işlem sonucunu hesaplayın.</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Alış Fiyatı (₺) </label> <input class="pa-input" type="number" id="stock-buy" placeholder="Örn: 10,50"></div>
+<div class="pa-field"><label class="pa-label"> Satış Fiyatı (₺) </label> <input class="pa-input" type="number" id="stock-sell" placeholder="Örn: 12,30"></div>
+</div>
+<div class="pa-row">
+<div class="pa-field"><label class="pa-label"> Lot / Adet </label> <input class="pa-input" type="number" id="stock-count" placeholder="Örn: 100"></div>
+<div class="pa-field"><label class="pa-label"> Komisyon (%) </label> <input class="pa-input" type="number" id="stock-rate" placeholder="Örn: 0,4"></div>
+</div>
+<button class="pa-button" onclick="paStock()"> Hesapla </button>
+<div class="pa-result" id="stock-result">
+<div class="pa-result-main" id="stock-net"></div>
+<div class="pa-result-line">
+<div class="pa-result-left">Getiri Oranı</div>
+<div class="pa-result-right" id="stock-percent"></div>
+</div>
+<div class="pa-result-line">
+<div class="pa-result-left">Toplam Komisyon</div>
+<div class="pa-result-right" id="stock-commission"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main>
 <footer class="footer"><div class="container footer-inner"><a href="index.html" class="footer-brand"><img class="footer-logo" src="brand-mark.svg" alt="">İYİ YOL <b>AKADEMİ</b><span>.</span></a><div class="footer-links"><a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a></div><small>© <span data-year></span> İyi Yol Akademi.</small></div></footer></body></html>
