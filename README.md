@@ -7,7 +7,7 @@
 - `index.html`: Ana sayfa, kategoriler ve son 3 blog yazısı.
 - `blog.html`: Kategori filtreleme ve başlık/açıklama araması.
 - `post.html?slug=<slug>`: Yazarın metnini bozmadan makale okuma ekranı; metin boyutu ve okuma teması.
-- `assets/site.js`: Supabase API'ye **yalnızca okuma** erişimi; HTML güvenli biçimlendirme süzgeci.
+- `site.js`: Supabase API'ye **yalnızca okuma** erişimi; HTML güvenli biçimlendirme süzgeci.
 
 ## Supabase
 
@@ -21,11 +21,11 @@ Proje: `iyi-yol-akademi-web` (OynaBak'tan bağımsız)
 
 ## Yayınlama — GitHub Pages
 
-1. GitHub'da `iyi-yol-akademi-web` isimli **yeni bir public repo** oluşturun.
-2. Bu paketin içindeki **tüm dosyaları ve `assets` klasörünü** repo köküne ekleyin.
+1. GitHub'da `iyiyolakademir` isimli **yeni bir public repo** oluşturun.
+2. Bu paketin içindeki **tüm dosyaları ve `site.css`, `site.js` ve `favicon.svg` dosyalarını** repo köküne ekleyin.
 3. Repo **Settings → Pages → Build and deployment → Deploy from a branch → main / (root)** seçin.
 4. Yayın işlemi tamamlandıktan sonra sitenin adresi:
-   `https://iyiyolakademi-cpu.github.io/iyi-yol-akademi-web/`
+   `https://iyiyolakademi-cpu.github.io/iyiyolakademir/`
 
 Not: Yukarıdaki URL ancak depo oluşturulup Pages etkinleştirildikten sonra çalışır. Projenin ayrı bir alan adına bağlanması için GitHub Pages CNAME ve DNS ayarları gerekir.
 
