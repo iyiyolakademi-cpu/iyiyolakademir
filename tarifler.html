@@ -8,22 +8,21 @@
 <script src="site.js" defer></script><script src="recipes.js" defer></script>
 </head><body data-page="recipes">
 <a class="skip-link" href="#main">Ana içeriğe geç</a>
-<header class="site-header">
-    <div class="container header-content">
-      <a class="brand" href="index.html" aria-label="İyi Yol Akademi ana sayfa">
-        <span class="brand-mark" aria-hidden="true"><img src="brand-mark.svg" alt=""></span>
-        <span class="brand-type">İYİ YOL <strong>AKADEMİ</strong><small>Daha iyiye, birlikte.</small></span>
-      </a>
-      <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="mainNav" aria-label="Ana menü">
-        <a class="active" href="index.html" aria-current="page">Ana Sayfa</a>
-        <a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a>
-        <a href="#kesfet">Keşfet</a>
-        <a href="#hakkimizda">Hakkımızda</a>
-        <a class="nav-cta" href="blog.html">Yazıları keşfet <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header"><div class="container header-content">
+<a class="brand brand-full" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><img class="brand-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
+<nav class="main-nav" id="mainNav" aria-label="Ana menü">
+<a href="index.html" data-nav="home">Ana Sayfa</a>
+<a href="blog.html" data-nav="blog">Bloglar</a>
+<a href="tarifler.html" class="active" aria-current="page" data-nav="recipes">Yemek Tarifleri</a>
+<details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
+<a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
+<a href="hesaplama.html">▦ Pratik hesaplamalar</a>
+<a href="tarifler.html">🍲 Yemek tarifleri</a>
+</div></details>
+<a href="index.html#hakkimizda">Hakkımızda</a>
+<a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
+</nav></div></header>
 <main id="main">
 <section class="recipes-hero"><div class="container recipes-hero-layout">
 <div><div class="section-kicker">İYİ YOL AKADEMİ / MUTFAK</div>
@@ -49,5 +48,9 @@
 </section>
 </main>
 <div id="cookOverlay" class="cook-overlay" hidden><div class="cook-modal" role="dialog" aria-modal="true" aria-labelledby="cookTitle"><div class="cook-modal-top"><div><span>ADIM ADIM PİŞİR</span><h2 id="cookTitle">Pişirme modu</h2></div><button id="closeCook" type="button" aria-label="Kapat">×</button></div><div class="cook-progress"><div id="cookProgressFill"></div></div><p id="cookStepCounter"></p><div id="cookStepText" class="cook-step-text"></div><div class="cook-controls"><button type="button" id="cookPrev">← Önceki</button><button type="button" id="cookNext">Sonraki →</button></div></div></div>
-<footer class="footer"><div class="container footer-inner"><a href="index.html" class="footer-brand"><img class="footer-logo" src="brand-mark.svg" alt="">İYİ YOL <b>AKADEMİ</b><span>.</span></a><div class="footer-links"><a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div><small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small></div></footer>
+<footer class="footer"><div class="container footer-inner">
+<a href="index.html" class="footer-brand footer-brand-full"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<div class="footer-links"><a href="blog.html">Bloglar</a><a href="tarifler.html">Yemek Tarifleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div>
+<small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small>
+</div></footer>
 </body></html>
