@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="İyi Yol Akademi'nin 200 tariflik yemek kitabı: kategoriye göre ara, malzemeleri ve adım adım hazırlamayı keşfet.">
+<title>Yemek Tarifleri | İyi Yol Akademi</title>
+<link rel="icon" href="brand-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="recipes.css">
+<script src="site.js" defer></script><script src="recipes.js" defer></script>
+</head><body data-page="recipes">
+<a class="skip-link" href="#main">Ana içeriğe geç</a>
+<header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="index.html" aria-label="İyi Yol Akademi ana sayfa">
+        <span class="brand-mark" aria-hidden="true"><img src="brand-mark.svg" alt=""></span>
+        <span class="brand-type">İYİ YOL <strong>AKADEMİ</strong><small>Daha iyiye, birlikte.</small></span>
+      </a>
+      <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav" aria-label="Ana menü">
+        <a class="active" href="index.html" aria-current="page">Ana Sayfa</a>
+        <a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a>
+        <a href="#kesfet">Keşfet</a>
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a class="nav-cta" href="blog.html">Yazıları keşfet <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+<main id="main">
+<section class="recipes-hero"><div class="container recipes-hero-layout">
+<div><div class="section-kicker">İYİ YOL AKADEMİ / MUTFAK</div>
+<h1>Bugün ne <em>pişirsek?</em></h1>
+<p>Günlük sofradan dünya mutfağına, 200 tariflik lezzet arşivi. Aradığın yemeği kolayca bul; malzemelerini hazırla, adım adım pişir.</p>
+<div class="recipes-hero-tags"><span>200 tarif</span><span>16 kategori</span><span>Adım adım anlatım</span></div>
+</div><div class="recipes-hero-art" aria-hidden="true"><div class="recipes-plate">🍲</div><span>YENİ BİR LEZZET KEŞFET</span></div>
+</div></section>
+<section class="recipes-content container">
+<div class="recipes-toolbar">
+<div class="recipes-search-wrap"><label for="recipeSearch">Tarif veya malzeme ara</label><div class="recipes-input-wrap"><span aria-hidden="true">⌕</span><input id="recipeSearch" type="search" placeholder="Örn: mercimek, tavuk, salata..." autocomplete="off"></div></div>
+<div class="recipes-toolbar-actions"><button class="recipe-random" id="recipeRandom" type="button">🎲 Rastgele tarif</button><button type="button" class="recipe-fav-toggle" id="recipeFavFilter" aria-pressed="false">♡ Favoriler</button></div>
+</div>
+<div class="recipe-categories" id="recipeCategories" aria-label="Yemek kategorileri"></div>
+<div class="recipes-filter-row"><div class="recipes-summary"><strong id="recipeResultsTitle">Bütün tarifler</strong><span id="recipeCount">Yemekler yükleniyor…</span></div><div class="recipes-sort-controls"><label>Hazırlama <select id="recipeTimeFilter"><option value="any">Tüm süreler</option><option value="30">30 dk ve altı</option><option value="60">60 dk ve altı</option></select></label><label>Zorluk <select id="recipeDifficultyFilter"><option value="any">Tümü</option><option value="Kolay">Kolay</option><option value="Orta">Orta</option><option value="Zor">Zor</option></select></label></div></div>
+<div id="recipeListView"><div class="recipe-grid" id="recipeGrid"><div class="loading-state">200 tarif hazırlanıyor…</div></div><button id="recipeLoadMore" type="button" class="recipe-more" hidden>Daha fazla tarif göster</button></div>
+<div id="recipeDetailView" hidden><button type="button" id="recipeBack" class="recipe-back">← Tariflere dön</button>
+<div class="recipe-detail-layout"><article class="recipe-detail-card"><div class="recipe-detail-hero"><span class="recipe-category-chip" id="detailCategory"></span><div class="recipe-detail-hero-icon" id="detailIcon"></div><div><h2 id="detailTitle"></h2><p id="detailDesc"></p></div></div>
+<div class="recipe-detail-meta" id="detailMeta"></div>
+<div class="recipe-servings-row"><div><strong>Malzemeleri hazırla</strong><small id="detailServingsLabel">Tarife uygun porsiyon</small></div><div class="recipe-serving-buttons"><button id="servingDown" type="button" aria-label="Porsiyon azalt">−</button><span id="servingsCount">4 kişi</span><button id="servingUp" type="button" aria-label="Porsiyon artır">+</button></div></div>
+<ul class="recipe-ingredients" id="detailIngredients"></ul><div class="recipe-steps-head"><h3>Adım adım hazırlanışı</h3><button type="button" id="startCookMode">Pişirme modunu aç ↗</button></div><ol class="recipe-steps" id="detailSteps"></ol><section class="recipe-extras" id="detailExtras"></section></article>
+<aside class="recipe-detail-aside"><div class="recipe-aside-card"><h3>Tarifini kaydet</h3><p>Sevdiğin tarifleri daha sonra kolayca bulabilirsin.</p><button id="detailFavorite" class="recipe-save" type="button">♡ Favorilere ekle</button><button id="detailRandom" class="recipe-random" type="button">🎲 Başka tarif keşfet</button></div><div class="recipe-aside-note">İyi Yol Akademi mutfağı · Tariflerdeki besin değerleri yaklaşık bilgilerdir.</div></aside></div></div>
+</section>
+</main>
+<div id="cookOverlay" class="cook-overlay" hidden><div class="cook-modal" role="dialog" aria-modal="true" aria-labelledby="cookTitle"><div class="cook-modal-top"><div><span>ADIM ADIM PİŞİR</span><h2 id="cookTitle">Pişirme modu</h2></div><button id="closeCook" type="button" aria-label="Kapat">×</button></div><div class="cook-progress"><div id="cookProgressFill"></div></div><p id="cookStepCounter"></p><div id="cookStepText" class="cook-step-text"></div><div class="cook-controls"><button type="button" id="cookPrev">← Önceki</button><button type="button" id="cookNext">Sonraki →</button></div></div></div>
+<footer class="footer"><div class="container footer-inner"><a href="index.html" class="footer-brand"><img class="footer-logo" src="brand-mark.svg" alt="">İYİ YOL <b>AKADEMİ</b><span>.</span></a><div class="footer-links"><a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div><small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small></div></footer>
+</body></html>
