@@ -2,7 +2,21 @@
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdfcf9"><meta name="description" content="İyi Yol Akademi ile günlük görevlerini planla, önceliklerini belirle, ilerlemeni takip et."><title>Yapılacaklar Listesi | İyi Yol Akademi</title><link rel="icon" type="image/svg+xml" href="brand-mark.svg"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="tasks.css"><script src="site.js" defer></script><script src="tasks.js" defer></script></head>
 <body data-page="tasks">
 <a class="skip-link" href="#main">Ana içeriğe geç</a>
-<header class="site-header"><div class="container header-content"><a class="brand" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><span class="brand-mark" aria-hidden="true"><img src="brand-mark.svg" alt=""></span><span class="brand-type">İYİ YOL <strong>AKADEMİ</strong><small>Daha iyiye, birlikte.</small></span></a><button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button><nav class="main-nav" id="mainNav" aria-label="Ana menü"><a href="index.html">Ana Sayfa</a><a href="blog.html">Bloglar</a><a class="active" href="yapilacaklar.html" aria-current="page">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a><a class="nav-cta" href="blog.html">Yazıları keşfet ↗</a></nav></div></header>
+<header class="site-header"><div class="container header-content">
+<a class="brand brand-full" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><img class="brand-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
+<nav class="main-nav" id="mainNav" aria-label="Ana menü">
+<a href="index.html" data-nav="home">Ana Sayfa</a>
+<a href="blog.html" data-nav="blog">Bloglar</a>
+<a href="tarifler.html" data-nav="recipes">Yemek Tarifleri</a>
+<details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
+<a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
+<a href="hesaplama.html">▦ Pratik hesaplamalar</a>
+<a href="tarifler.html">🍲 Yemek tarifleri</a>
+</div></details>
+<a href="index.html#hakkimizda">Hakkımızda</a>
+<a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
+</nav></div></header>
 <main id="main">
 <section class="task-intro container"><div class="section-kicker">GÜNLÜK PLANLAYICI / İYİ YOL AKADEMİ</div><div class="task-intro-row"><div><h1>Gününü planla,<br><em>aklını rahatlat.</em></h1><p>Yapacaklarını küçük adımlara böl, önce önemli olana odaklan. Her tamamlanan görev yeni bir ilerleme.</p></div><button class="btn btn-primary task-add-main" type="button" id="addTaskBtn"><span aria-hidden="true">＋</span> Yeni görev</button></div></section>
 <section class="task-workspace container">
@@ -13,6 +27,10 @@
 </div>
 <section class="task-panel task-list-panel" aria-label="Günlük görev listesi"><div class="task-list-top"><div><div class="task-small" id="selectedDateLabel"></div><h2 id="selectedDayTitle">Bugünün görevleri</h2><p class="task-list-desc" id="taskCountLabel">Planın hazır.</p></div><button class="task-icon-add" type="button" id="addTaskSecondary" aria-label="Görev ekle">＋</button></div><div class="task-filters" role="group" aria-label="Görev durumu"><button type="button" class="is-active" data-filter="all" aria-pressed="true">Tümü</button><button type="button" data-filter="open" aria-pressed="false">Yapılacak</button><button type="button" data-filter="done" aria-pressed="false">Tamamlanan</button></div><div class="task-items" id="taskList" aria-live="polite"></div><button class="task-inline-add" id="addTaskBottom" type="button"><span>＋</span> Yeni görev ekle</button></section>
 </section></main>
-<footer class="footer"><div class="container footer-inner"><a href="index.html" class="footer-brand"><img class="footer-logo" src="brand-mark.svg" alt="">İYİ YOL <b>AKADEMİ</b><span>.</span></a><div class="footer-links"><a href="blog.html">Bloglar</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a></div><small>© <span data-year></span> İyi Yol Akademi.</small></div></footer>
+<footer class="footer"><div class="container footer-inner">
+<a href="index.html" class="footer-brand footer-brand-full"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<div class="footer-links"><a href="blog.html">Bloglar</a><a href="tarifler.html">Yemek Tarifleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div>
+<small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small>
+</div></footer>
 <div class="task-dialog-backdrop" id="taskDialog" hidden><div class="task-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-top"><span class="dialog-icon" aria-hidden="true">✦</span><button class="dialog-close" id="closeDialog" type="button" aria-label="Pencereyi kapat">×</button></div><h2 id="dialogTitle">Yeni görev</h2><p>Yapmak istediğin işi yaz, ne kadar önemli olduğunu belirle.</p><form id="taskForm"><label for="taskTitle">GÖREV ADI</label><input type="text" id="taskTitle" maxlength="160" minlength="1" placeholder="Örneğin: 20 sayfa kitap oku" required autocomplete="off"><label for="taskDate">HANGİ GÜN?</label><input type="date" id="taskDate" required><fieldset><legend>ÖNCELİK SEVİYESİ</legend><div class="task-radio-row"><label class="task-priority-option"><input type="radio" name="priority" value="high"><span class="priority-box high"><i></i><strong>Yüksek</strong><small>Önce bunu yap</small></span></label><label class="task-priority-option"><input type="radio" name="priority" value="medium" checked><span class="priority-box medium"><i></i><strong>Orta</strong><small>Planına ekle</small></span></label><label class="task-priority-option"><input type="radio" name="priority" value="low"><span class="priority-box low"><i></i><strong>Düşük</strong><small>Zamanın kalırsa</small></span></label></div></fieldset><p class="dialog-error" id="dialogError" role="alert"></p><div class="dialog-actions"><button class="dialog-cancel" id="cancelDialog" type="button">Vazgeç</button><button class="dialog-save" type="submit" id="saveTaskBtn">Görevi ekle <span aria-hidden="true">↗</span></button></div></form></div></div>
 </body></html>
