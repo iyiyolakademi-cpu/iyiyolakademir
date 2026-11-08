@@ -28,3 +28,8 @@
   .main-nav.open{display:flex}.main-nav>a{padding:15px 4px;font-size:14px}.main-nav .nav-cta{margin-top:7px;text-align:center;padding:14px 18px}
 }
 @media(max-width:560px){.coming-link{margin-inline:-4px;padding-inline:4px}.coming-item{grid-template-columns:23px minmax(0,1fr) auto;gap:5px 8px}.coming-tag{font-size:9px;padding:7px 8px}.coming-item strong{font-size:12px}}
+
+
+.footer-brand{display:inline-flex;align-items:center;gap:7px}.footer-logo{width:35px;height:35px;object-fit:cover;border-radius:10px;margin-right:4px}
+.art-center{width:210px;height:210px;border-radius:28px;border:3px solid rgba(231,213,167,.95);transform:rotate(-4deg)}
+@media(max-width:560px){.art-center{width:150px;height:150px;border-radius:21px}.footer-logo{width:32px;height:32px}}
