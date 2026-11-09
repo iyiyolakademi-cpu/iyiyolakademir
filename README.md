@@ -68,3 +68,33 @@ Bu ilk sürümde henüz hazır olmayan bölümler yalnızca "Yakında" olarak g�
 - `brand-full.svg`: Önceden verilen altın-beyaz logonun aynısı kullanılır. Harici siyah-beyaz tema dönüşümü, döndürme veya renk filtresi uygulanmaz. Tüm sayfaların üst/alt logosu ve sekme simgesi aynı dosyaya bağlıdır.
 
 Testler yalnızca farkındalık ve eğlence amaçlıdır, klinik değerlendirme değildir.
+
+
+## Profesyonel web sitesi güncellemesi — 10 Kasım 2026
+
+Bu depo İyi Yol Akademi'nin tüm statik web sitesi kodlarını içerir. GitHub Pages için main dalı ve kök dizin kullanılır.
+
+### Yeni özellikler
+- arama.html: Blog yazıları, 200 yemek tarifi ve 100 kişilik testinde tek yerden arama
+- kaydedilenler.html: Kaydedilmiş bloglar, favori tarifler, son okunan yazılar
+- post.html: Kaydetme, bağlantı paylaşma, okuma ilerlemesi, içindekiler, ilgili bloglar
+- site-features.js / site-features.css: Sade mobil hızlı menü, arama ve okuma araçlarının ortak kodları
+- testler-index.json: Kullanıcının sağladığı 100 özgün teste ait arama dizini
+- testler-uygulama.html: Test numarası ile doğrudan açılış desteği; sorular ve puanlama korunur
+- gizlilik.html / yayin-ilkeleri.html: Şeffaf bilgi ve yayın ilkeleri
+- robots.txt / sitemap.xml / 404.html: Statik SEO ve kayıp sayfa yönlendirmesi
+
+### Veri depolama
+Kaydedilmiş bloglar, son okunanlar, favori tarifler ve yapılacaklar listesi bu sürümde yalnızca kullanıcının tarayıcısındaki yerel depolamada tutulur. Kullanıcı hesabı veya farklı cihazlar arasında otomatik senkronizasyon henüz yoktur. Supabase yalnızca yayımlanmış blog içeriğini herkese açık okuma erişimiyle sunar.
+
+### SEO sınırları
+Bu sürümün site haritası statik sayfalara yöneliktir. Blogların post.html?slug= ve tariflerin tarifler.html?id= adresleri için ayrı statik SEO sayfaları üretmek ileride faydalı olabilir. Arama ve kişisel kaydedilenler ekranları noindex olarak işaretlenmiştir.
+
+### Kontrol listesi
+1. GitHub Pages ayarı: main / (root).
+2. Mobil 320–430 px ve masaüstünde sayfalar, menüler ve dokunma alanlarını aç.
+3. Blog kaydetme ve paylaşma, tarif favorileri, arama filtreleri ve test bağlantılarını dene.
+4. Site dosyaları v=20261110-pro sürüm etiketini kullanır; gerekirse sayfayı yenile.
+5. Orijinal İyi Yol Akademi logosu, 100 kişilik testi ve 200 yemek tarifi korunmuştur.
+
+Tüm kaynak: https://github.com/iyiyolakademi-cpu/iyiyolakademir
