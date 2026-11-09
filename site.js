@@ -55,31 +55,50 @@
     return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  function makePostCard(post, index) {
-    const card = document.createElement('article'); card.className = 'post-card';
-    const visual = document.createElement('div'); visual.className = 'post-visual';
-    const glyph = document.createElement('span'); glyph.className = 'visual-glyph';
-    glyph.setAttribute('aria-hidden', 'true'); glyph.textContent = ['✳', '◌', '✶'][index % 3];
-    visual.appendChild(glyph);
+  function makePostCard(post) {
+    const card = document.createElement('article');
+    card.className = 'post-card';
+    const href = 'post.html?slug=' + encodeURIComponent(post.slug);
     if (post.cover_url && /^https:\/\//i.test(post.cover_url)) {
-      const img = document.createElement('img');
-      img.src = post.cover_url; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-      img.style.cssText = 'width:100%;height:100%;position:absolute;inset:0;object-fit:cover;';
-      visual.appendChild(img);
+      const visual = document.createElement('div');
+      visual.className = 'post-visual post-visual-photo';
+      const image = document.createElement('img');
+      image.src = post.cover_url;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      visual.appendChild(image);
+      card.appendChild(visual);
     }
-    const visualTag = document.createElement('span'); visualTag.className = 'visual-tag';
-    visualTag.textContent = post.blog_categories?.name || 'Blog'; visual.appendChild(visualTag);
-    const content = document.createElement('div'); content.className = 'post-content';
+    const content = document.createElement('div');
+    content.className = 'post-content';
+    const labels = document.createElement('div');
+    labels.className = 'post-type-row';
+    const kind = document.createElement('span');
+    kind.className = 'post-type-label';
+    kind.textContent = 'BLOG YAZISI';
+    const category = document.createElement('span');
+    category.className = 'post-category-label';
+    category.textContent = post.blog_categories?.name || 'Genel';
+    labels.append(kind, category);
     const heading = document.createElement('h3');
-    const link = document.createElement('a'); link.href = `post.html?slug=${encodeURIComponent(post.slug)}`;
-    link.textContent = post.title; heading.appendChild(link);
-    const excerpt = document.createElement('p'); excerpt.textContent = post.excerpt || '';
-    const meta = document.createElement('div'); meta.className = 'post-meta';
-    const date = document.createElement('span');
-    date.textContent = [displayDate(post.published_at), post.read_minutes ? `${post.read_minutes} dk okuma` : ''].filter(Boolean).join(' · ');
-    const arrow = document.createElement('span'); arrow.className = 'arrow'; arrow.textContent = '↗'; arrow.setAttribute('aria-hidden','true');
-    meta.append(date, arrow); content.append(heading, excerpt, meta);
-    card.append(visual, content);
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = post.title;
+    heading.appendChild(link);
+    const description = document.createElement('p');
+    description.textContent = post.excerpt || '';
+    const meta = document.createElement('div');
+    meta.className = 'post-meta';
+    const details = document.createElement('span');
+    details.textContent = [displayDate(post.published_at), post.read_minutes ? post.read_minutes + ' dk okuma' : ''].filter(Boolean).join(' · ');
+    const readLink = document.createElement('a');
+    readLink.className = 'post-read-link';
+    readLink.href = href;
+    readLink.textContent = 'Yazıyı oku →';
+    meta.append(details, readLink);
+    content.append(labels, heading, description, meta);
+    card.appendChild(content);
     return card;
   }
 
@@ -228,7 +247,7 @@
       meta.textContent = 'Bağlantı hatası';
     }
     const THEMES = ['light', 'sepia', 'dark'];
-    let theme = 'light'; let size = 16;
+    let theme = 'light'; let size = 17;
     $('#decreaseFont')?.addEventListener('click', () => { size = Math.max(14, size - 1); reader.style.setProperty('--read-size', `${size}px`); });
     $('#increaseFont')?.addEventListener('click', () => { size = Math.min(23, size + 1); reader.style.setProperty('--read-size', `${size}px`); });
     $('#switchTheme')?.addEventListener('click', () => {
