@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "category": "karakter",
+    "title": "Diplomatik Bir İnsan mısın?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 2,
+    "category": "karakter",
+    "title": "Liderlik Potansiyelin Ne Kadar Yüksek?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 3,
+    "category": "karakter",
+    "title": "Ne Kadar Sabırlısın?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 4,
+    "category": "karakter",
+    "title": "Mükemmeliyetçi Misin?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 5,
+    "category": "karakter",
+    "title": "Ne Kadar Bağımsız Bir Ruhun Var?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 6,
+    "category": "karakter",
+    "title": "İçe mi Dışa mı Dönüksün?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 7,
+    "category": "karakter",
+    "title": "Ne Kadar Cesursun?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 8,
+    "category": "karakter",
+    "title": "Empati Seviyen Nedir?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 9,
+    "category": "karakter",
+    "title": "Ne Kadar Disiplinlisin?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 10,
+    "category": "karakter",
+    "title": "Yaratıcılık Seviyen Nedir?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 11,
+    "category": "karakter",
+    "title": "Özgüven Seviyen Ne Kadar?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 12,
+    "category": "karakter",
+    "title": "Değişime Ne Kadar Açıksın?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 13,
+    "category": "karakter",
+    "title": "Sorumluluk Bilincin Ne Kadar Güçlü?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 14,
+    "category": "karakter",
+    "title": "Öz Farkındalığın Ne Kadar Yüksek?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 15,
+    "category": "karakter",
+    "title": "Ne Kadar Kararlısın?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 16,
+    "category": "karakter",
+    "title": "Ne Kadar Alçakgönüllüsün?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 17,
+    "category": "karakter",
+    "title": "Ne Kadar Esneksin?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 18,
+    "category": "karakter",
+    "title": "Rekabetçi Misin?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 19,
+    "category": "karakter",
+    "title": "İyimserlik Seviyen Nedir?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 20,
+    "category": "karakter",
+    "title": "Öz Kontrolün Ne Kadar Güçlü?",
+    "categoryName": "Karakter"
+  },
+  {
+    "id": 21,
+    "category": "iliski",
+    "title": "Bağlanma Stilin Nedir?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 22,
+    "category": "iliski",
+    "title": "Kıskançlık Seviyen Nedir?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 23,
+    "category": "iliski",
+    "title": "İyi Bir Dinleyici Misin?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 24,
+    "category": "iliski",
+    "title": "Sevgini Nasıl İfade Edersin?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 25,
+    "category": "iliski",
+    "title": "İlişkide Ne Kadar Bağımsızsın?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 26,
+    "category": "iliski",
+    "title": "Güven Sorunun Var mı?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 27,
+    "category": "iliski",
+    "title": "Ne Kadar Romantiksin?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 28,
+    "category": "iliski",
+    "title": "Çatışma Çözme Becerin Nasıl?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 29,
+    "category": "iliski",
+    "title": "İlişkiye Hazır mısın?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 30,
+    "category": "iliski",
+    "title": "Ne Kadar Fedakarsın?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 31,
+    "category": "iliski",
+    "title": "Sınır Koyma Becerin Nasıl?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 32,
+    "category": "iliski",
+    "title": "Duygusal İletişimin Ne Kadar Güçlü?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 33,
+    "category": "iliski",
+    "title": "Affetme Eğilimin Nasıl?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 34,
+    "category": "iliski",
+    "title": "İlişkide Güven İnşa Edebilir misin?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 35,
+    "category": "iliski",
+    "title": "İlişkide Beklentilerin Ne Kadar Gerçekçi?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 36,
+    "category": "iliski",
+    "title": "İlişkide Destekleyici Misin?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 37,
+    "category": "iliski",
+    "title": "İlişkide Ne Kadar Açık Sözlüsün?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 38,
+    "category": "iliski",
+    "title": "İlişkide Sabır Seviyen Nedir?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 39,
+    "category": "iliski",
+    "title": "Geçmişi Geride Bırakabiliyor musun?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 40,
+    "category": "iliski",
+    "title": "İlişkide Karşılıklılık Senin İçin Ne Kadar Önemli?",
+    "categoryName": "İlişki"
+  },
+  {
+    "id": 41,
+    "category": "sosyal",
+    "title": "Sosyal Zekan Ne Kadar Yüksek?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 42,
+    "category": "sosyal",
+    "title": "Ne Kadar Dışa Dönüksün?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 43,
+    "category": "sosyal",
+    "title": "Grup İçinde Nasıl Bir Rol Üstlenirsin?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 44,
+    "category": "sosyal",
+    "title": "Sosyal Medyanın Hayatındaki Etkisi Ne Kadar?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 45,
+    "category": "sosyal",
+    "title": "İkna Kabiliyetin Ne Kadar Güçlü?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 46,
+    "category": "sosyal",
+    "title": "Yeni İnsanlarla Tanışmakta Ne Kadar Rahatsın?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 47,
+    "category": "sosyal",
+    "title": "Ne Kadar Popülersin?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 48,
+    "category": "sosyal",
+    "title": "Takım Oyuncusu musun?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 49,
+    "category": "sosyal",
+    "title": "Sosyal Kaygı Seviyen Nedir?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 50,
+    "category": "sosyal",
+    "title": "Sosyal Ortamda Empati Seviyen Nedir?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 51,
+    "category": "sosyal",
+    "title": "İlk İzlenim Becerin Nasıl?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 52,
+    "category": "sosyal",
+    "title": "Sohbet Başlatma Becerin Nasıl?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 53,
+    "category": "sosyal",
+    "title": "Kalabalıkta Kendin Olabiliyor musun?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 54,
+    "category": "sosyal",
+    "title": "Network Kurma Becerin Nasıl?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 55,
+    "category": "sosyal",
+    "title": "Mizah Anlayışın Ne Kadar Güçlü?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 56,
+    "category": "sosyal",
+    "title": "Sosyal Enerjini Yönetebiliyor musun?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 57,
+    "category": "sosyal",
+    "title": "Farklı İnsanlara Uyum Sağlayabilir misin?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 58,
+    "category": "sosyal",
+    "title": "Topluluk Önünde Konuşma Becerin Nasıl?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 59,
+    "category": "sosyal",
+    "title": "Sosyal Sezgilerin Güçlü mü?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 60,
+    "category": "sosyal",
+    "title": "Arkadaşlıklarını Sürdürebiliyor musun?",
+    "categoryName": "Sosyal Yaşam"
+  },
+  {
+    "id": 61,
+    "category": "kariyer",
+    "title": "Girişimci Ruhun Var mı?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 62,
+    "category": "kariyer",
+    "title": "İş Yerinde Ne Kadar Üretkensin?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 63,
+    "category": "kariyer",
+    "title": "Liderlik Tarzın Nedir?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 64,
+    "category": "kariyer",
+    "title": "Stres Yönetimin Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 65,
+    "category": "kariyer",
+    "title": "Kariyerinde Ne Kadar Hırslısın?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 66,
+    "category": "kariyer",
+    "title": "Takım mı Bireysel mi Çalışmayı Seversin?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 67,
+    "category": "kariyer",
+    "title": "İş-Yaşam Dengen Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 68,
+    "category": "kariyer",
+    "title": "Yaratıcı Düşünme Becerin Nedir?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 69,
+    "category": "kariyer",
+    "title": "Zaman Yönetimi Becerin Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 70,
+    "category": "kariyer",
+    "title": "Hangi Kariyer Profiline Yakınsın?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 71,
+    "category": "kariyer",
+    "title": "Karar Verme Becerin Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 72,
+    "category": "kariyer",
+    "title": "Profesyonel İletişimin Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 73,
+    "category": "kariyer",
+    "title": "Kariyer Risklerine Ne Kadar Açıksın?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 74,
+    "category": "kariyer",
+    "title": "Öğrenme Çevikliğin Ne Kadar?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 75,
+    "category": "kariyer",
+    "title": "Geri Bildirime Ne Kadar Açıksın?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 76,
+    "category": "kariyer",
+    "title": "Planlama Becerin Ne Kadar Güçlü?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 77,
+    "category": "kariyer",
+    "title": "İnisiyatif Alma Seviyen Nedir?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 78,
+    "category": "kariyer",
+    "title": "Müzakere Becerin Nasıl?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 79,
+    "category": "kariyer",
+    "title": "İş Yerinde Güvenilir Misin?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 80,
+    "category": "kariyer",
+    "title": "Kariyer Vizyonun Ne Kadar Net?",
+    "categoryName": "Kariyer"
+  },
+  {
+    "id": 81,
+    "category": "beyin",
+    "title": "Mantıksal Düşünme Eğilimin Ne Kadar Güçlü?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 82,
+    "category": "beyin",
+    "title": "Hafıza Gücün Nedir?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 83,
+    "category": "beyin",
+    "title": "Problem Çözme Becerin Nasıl?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 84,
+    "category": "beyin",
+    "title": "Analitik mi Sezgisel mi Düşünürsün?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 85,
+    "category": "beyin",
+    "title": "Duygusal Farkındalığın Ne Kadar Güçlü?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 86,
+    "category": "beyin",
+    "title": "Ne Kadar Analitik Düşünürsün?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 87,
+    "category": "beyin",
+    "title": "Odaklanma Seviyen Nedir?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 88,
+    "category": "beyin",
+    "title": "Sezgisel Misin Mantıksal Mı?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 89,
+    "category": "beyin",
+    "title": "Öğrenme Hızın Nasıl?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 90,
+    "category": "beyin",
+    "title": "Ne Kadar Meraklısın?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 91,
+    "category": "beyin",
+    "title": "Eleştirel Düşünme Becerin Nasıl?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 92,
+    "category": "beyin",
+    "title": "Kararlarında Bilişsel Önyargıları Fark Eder misin?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 93,
+    "category": "beyin",
+    "title": "Görsel Hafızan Ne Kadar Güçlü?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 94,
+    "category": "beyin",
+    "title": "Sözel Zekan Ne Kadar Güçlü?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 95,
+    "category": "beyin",
+    "title": "Çalışma Hafızan Ne Kadar Güçlü?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 96,
+    "category": "beyin",
+    "title": "Zihinsel Esnekliğin Ne Kadar?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 97,
+    "category": "beyin",
+    "title": "Detaycılık Seviyen Nedir?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 98,
+    "category": "beyin",
+    "title": "Hızlı Düşünme Becerin Nasıl?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 99,
+    "category": "beyin",
+    "title": "Derin Düşünme Eğilimin Ne Kadar?",
+    "categoryName": "Zihin"
+  },
+  {
+    "id": 100,
+    "category": "beyin",
+    "title": "Bilgi İşleme Tarzın Ne Kadar Sistematik?",
+    "categoryName": "Zihin"
+  }
+]
