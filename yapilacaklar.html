@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdfcf9"><meta name="description" content="İyi Yol Akademi ile günlük görevlerini planla, önceliklerini belirle, ilerlemeni takip et."><title>Yapılacaklar Listesi | İyi Yol Akademi</title><link rel="icon" type="image/svg+xml" href="brand-full.svg"><link rel="stylesheet" href="site.css?v=20261110-pro"><link rel="stylesheet" href="tasks.css?v=20261110-pro"><script src="site.js?v=20261110-pro" defer></script><script src="tasks.js?v=20261110-pro" defer></script><meta property="og:site_name" content="İyi Yol Akademi">
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdfcf9"><meta name="description" content="İyi Yol Akademi ile günlük görevlerini planla, önceliklerini belirle, ilerlemeni takip et."><title>Yapılacaklar Listesi | İyi Yol Akademi</title><link rel="icon" type="image/svg+xml" href="brand-full.svg"><link rel="stylesheet" href="site.css?v=20261110-nav2"><link rel="stylesheet" href="tasks.css?v=20261110-nav2"><script src="site.js?v=20261110-nav2" defer></script><script src="tasks.js?v=20261110-nav2" defer></script><meta property="og:site_name" content="İyi Yol Akademi">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yapılacaklar Listesi | İyi Yol Akademi">
 <meta property="og:description" content="Görevlerini gün gün planla, önceliklendir ve tamamladıklarını takip et.">
 <meta property="og:url" content="https://iyiyolakademi-cpu.github.io/iyiyolakademir/yapilacaklar.html">
 <link rel="canonical" href="https://iyiyolakademi-cpu.github.io/iyiyolakademir/yapilacaklar.html">
-<link rel="stylesheet" href="site-features.css?v=20261110-pro">
-<script src="site-features.js?v=20261110-pro" defer></script>
+<link rel="stylesheet" href="site-features.css?v=20261110-nav2">
+<script src="site-features.js?v=20261110-nav2" defer></script>
+<link rel="stylesheet" href="refine.css?v=20261110-nav2">
 </head>
 <body data-page="tasks">
 <a class="skip-link" href="#main">Ana içeriğe geç</a>
@@ -21,17 +22,17 @@
 <details class="nav-dropdown nav-dropdown-current" id="featuresMenu"><summary>Diğer Bölümler <span aria-hidden="true">⌄</span></summary>
 <div class="nav-dropdown-items">
 <a href="yapilacaklar.html" aria-current="page">Yapılacaklar Listesi</a>
-<a href="hesaplama.html">Hesaplama Araçları</a>
+<a href="pomodoro.html">Pomodoro</a><a href="hesaplama.html">Hesaplama Araçları</a>
 <a href="gunun-sozu.html">Günün Sözü ve Tavsiyesi</a>
 </div></details>
 </nav></div></header>
 <main id="main">
-<section class="task-intro container"><div class="section-kicker">GÜNLÜK PLANLAYICI / İYİ YOL AKADEMİ</div><div class="task-intro-row"><div><h1>Gününü planla,<br><em>aklını rahatlat.</em></h1><p>Yapacaklarını küçük adımlara böl, önce önemli olana odaklan. Her tamamlanan görev yeni bir ilerleme.</p></div><button class="btn btn-primary task-add-main" type="button" id="addTaskBtn"><span aria-hidden="true">＋</span> Yeni görev</button></div></section>
+<section class="task-intro container"><div class="section-kicker">GÜNLÜK PLANLAYICI / İYİ YOL AKADEMİ</div><div class="task-intro-row"><div><h1>Yapılacaklar Listesi</h1><p>Gününü seç, görevini ekle ve tamamladıkça işaretle.</p></div><button class="btn btn-primary task-add-main" type="button" id="addTaskBtn"><span aria-hidden="true">＋</span> Yeni görev</button></div></section>
 <section class="task-workspace container">
 <div class="task-sidebar">
-  <section class="task-panel task-week-panel" aria-label="Haftalık takvim"><div class="task-panel-top"><div><div class="task-small">TAKVİM</div><h2>Bu haftanın planı</h2></div><button class="mini-today" type="button" id="todayBtn">Bugün</button></div><div class="task-month-row"><strong id="weekTitle"></strong><div class="task-arrows"><button type="button" id="prevWeek" aria-label="Önceki hafta">‹</button><button type="button" id="nextWeek" aria-label="Sonraki hafta">›</button></div></div><div class="task-week-grid" id="weekDays" role="group" aria-label="Haftanın günleri"></div><div class="task-priority-legend"><span><i class="priority-mark red"></i>Yüksek</span><span><i class="priority-mark yellow"></i>Orta</span><span><i class="priority-mark green"></i>Düşük</span></div></section>
-  <section class="task-panel task-progress-panel"><div class="task-small">GÜNLÜK İLERLEME</div><div class="progress-heading"><strong id="progressPercent">0%</strong><span id="progressFraction">0 / 0 tamamlandı</span></div><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><p id="progressMessage">Bir görev ekleyerek başla.</p></section>
-  <div class="task-storage-note"><span aria-hidden="true">✳</span><p>Görevlerin bu tarayıcıda saklanır. Aynı cihazda geri geldiğinde planın korunur.</p></div>
+  <section class="task-panel task-week-panel" aria-label="Haftalık takvim"><div class="task-panel-top"><div><div class="task-small">TAKVİM</div><h2>Haftalık Takvim</h2></div><button class="mini-today" type="button" id="todayBtn">Bugün</button></div><div class="task-month-row"><strong id="weekTitle"></strong><div class="task-arrows"><button type="button" id="prevWeek" aria-label="Önceki hafta">‹</button><button type="button" id="nextWeek" aria-label="Sonraki hafta">›</button></div></div><div class="task-week-grid" id="weekDays" role="group" aria-label="Haftanın günleri"></div><div class="task-priority-legend"><span><i class="priority-mark red"></i>Yüksek</span><span><i class="priority-mark yellow"></i>Orta</span><span><i class="priority-mark green"></i>Düşük</span></div></section>
+  <section class="task-panel task-progress-panel"><div class="task-small">TAMAMLANANLAR</div><div class="progress-heading"><strong id="progressPercent">0%</strong><span id="progressFraction">0 / 0 tamamlandı</span></div><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><p id="progressMessage">Bir görev ekleyerek başla.</p></section>
+  <div class="task-storage-note"><p>Görevlerin bu tarayıcıda saklanır.</p></div>
 </div>
 <section class="task-panel task-list-panel" aria-label="Günlük görev listesi"><div class="task-list-top"><div><div class="task-small" id="selectedDateLabel"></div><h2 id="selectedDayTitle">Bugünün görevleri</h2><p class="task-list-desc" id="taskCountLabel">Planın hazır.</p></div><button class="task-icon-add" type="button" id="addTaskSecondary" aria-label="Görev ekle">＋</button></div><div class="task-filters" role="group" aria-label="Görev durumu"><button type="button" class="is-active" data-filter="all" aria-pressed="true">Tümü</button><button type="button" data-filter="open" aria-pressed="false">Yapılacak</button><button type="button" data-filter="done" aria-pressed="false">Tamamlanan</button></div><div class="task-items" id="taskList" aria-live="polite"></div><button class="task-inline-add" id="addTaskBottom" type="button"><span>＋</span> Yeni görev ekle</button></section>
 </section></main>
