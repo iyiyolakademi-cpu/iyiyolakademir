@@ -97,3 +97,12 @@ body{overflow-x:hidden}
  .iy-results-header h2{font-size:20px}
 }
 @media(prefers-reduced-motion:reduce){.iya-toast,.iya-progress{transition:none}}
+
+
+/* Kurumsal bilgilendirme sayfaları */
+.iy-text-page{max-width:850px}
+.iy-text-page h2{font-size:clamp(20px,2.6vw,27px);letter-spacing:-.03em;margin:28px 0 10px}
+.iy-text-page h2:first-child{margin-top:0}
+.iy-text-page p{font-size:15px;line-height:1.85;color:#4d6153;margin:0 0 13px}
+.iy-text-page a{color:#275f42;overflow-wrap:anywhere;font-weight:700}
+.iy-text-page .iy-help-text{font-size:12px;color:#819083}
