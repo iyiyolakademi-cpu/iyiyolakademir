@@ -6,25 +6,22 @@
 <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
 <nav class="main-nav" id="mainNav" aria-label="Ana menü">
 <a href="index.html" data-nav="home">Ana Sayfa</a>
-<a href="blog.html" data-nav="blog">Bloglar</a>
+<a href="blog.html" data-nav="blog">Blog Yazıları</a>
 <a href="tarifler.html" data-nav="recipes">Yemek Tarifleri</a>
 <a href="testler.html" data-nav="tests">Kişilik Testleri</a>
-<details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
-<a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
-<a href="hesaplama.html">▦ Pratik hesaplamalar</a>
-<a href="tarifler.html">🍲 Yemek tarifleri</a>
-<a href="gunun-sozu.html">✦ Günün sözü ve tavsiyesi</a>
-<a href="testler.html">◈ Kişilik testleri</a>
+<details class="nav-dropdown nav-dropdown-current" id="featuresMenu"><summary>Diğer Bölümler <span aria-hidden="true">⌄</span></summary>
+<div class="nav-dropdown-items">
+<a href="yapilacaklar.html">Yapılacaklar Listesi</a>
+<a href="hesaplama.html" aria-current="page">Hesaplama Araçları</a>
+<a href="gunun-sozu.html">Günün Sözü ve Tavsiyesi</a>
 </div></details>
-<a href="index.html#hakkimizda">Hakkımızda</a>
-<a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
 </nav></div></header>
-<main id="main" class="container calc-full-main"><div class="section-kicker" style="padding-top:38px">İYİ YOL AKADEMİ / HESAPLAMA ARAÇLARI</div><div class="calc-full-intro"><h1>Pratik <em>hesaplamalar.</em></h1><p>İstediğin aracı seç, bilgilerini gir ve sonucu öğren. Gönderdiğin uygulamadaki tüm hesaplama özellikleri bu bölümde.</p></div><div id="pa-app"><!-- ========================================================
+<main id="main" class="container calc-full-main"><div class="section-kicker" style="padding-top:38px">İYİ YOL AKADEMİ / HESAPLAMA ARAÇLARI</div><div class="calc-full-intro"><h1>Pratik <em>hesaplamalar.</em></h1><p>İstediğin aracı seç, bilgilerini gir ve sonucu öğren. Araç seç, bilgilerini gir ve sonucu gör.</p></div><div id="pa-app"><!-- ========================================================
      ANA MENÜ
 ======================================================== -->
 <div class="pa-screen pa-active" id="pa-screen-menu">
 <div class="pa-menu">
-<div class="pa-search-wrap"><input type="text" id="pa-search" placeholder="🔍 Hesaplama aracı ara..." onkeyup="paSearchTools()"></div>
+<div class="pa-search-wrap"><input type="text" id="pa-search" placeholder="Hesaplama aracı ara..." onkeyup="paSearchTools()"></div>
 <div id="pa-menu-list"><!-- YENİLER --> <button class="pa-menu-item" data-name="komisyon kesintisi" onclick="paOpen('komisyon')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #d9f5ea;">🧮</span> </span> <span class="pa-menu-text"> Komisyon Kesintisi Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="indirim yüzde fiyat" onclick="paOpen('indirim')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fdeccb;">🏷️</span> </span> <span class="pa-menu-text"> İndirim ve Yüzde Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="ideal uyku saati" onclick="paOpen('uyku')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #e5e0fb;">😴</span> </span> <span class="pa-menu-text"> İdeal Uyku Saati Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="maaş saatlik kazanç" onclick="paOpen('maas')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #d9f5ea;">💰</span> </span> <span class="pa-menu-text"> Maaşa Göre Saatlik Kazanç <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="tyt ayt net sınav" onclick="paOpen('tytayt')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde3e3;">📝</span> </span> <span class="pa-menu-text"> TYT–AYT Net Hesapla <span class="pa-new">Yeni ⭐</span> </span> <span class="pa-menu-arrow">›</span> </button> <!-- DİĞERLERİ --> <button class="pa-menu-item" data-name="tarih arası gün hafta ay" onclick="paOpen('tarih')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde3e3;">📅</span> </span> <span class="pa-menu-text"> Tarih Arası Gün Hesapla </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="vücut kitle indeksi bmi vki" onclick="paOpen('bmi')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #e9edf1;">🩺</span> </span> <span class="pa-menu-text"> Vücut Kitle İndeksi (BMI) </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="günlük kalori bmr enerji" onclick="paOpen('kalori')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #fde9e9;">🍎</span> </span> <span class="pa-menu-text"> Günlük Kalori İhtiyacı </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="günlük su tüketimi" onclick="paOpen('su')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #dff1fb;">💧</span> </span> <span class="pa-menu-text"> Günlük Su Tüketimi </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="vücut yağ oranı" onclick="paOpen('yag')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #dfeaf9;">📉</span> </span> <span class="pa-menu-text"> Vücut Yağ Oranı </span> <span class="pa-menu-arrow">›</span> </button> <button class="pa-menu-item" data-name="hisse kar zarar yatırım" onclick="paOpen('hisse')"> <span class="pa-icon-area"> <span class="pa-icon" style="background: #17294e;">📊</span> </span> <span class="pa-menu-text"> Hisse Kâr/Zarar Hesapla </span> <span class="pa-menu-arrow">›</span> </button></div>
 <div id="pa-empty">Aradığınız araç bulunamadı.</div>
 </div>
@@ -404,7 +401,8 @@
 </div>
 </div></main>
 <footer class="footer"><div class="container footer-inner">
-<a href="index.html" class="footer-brand footer-brand-full"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
-<div class="footer-links"><a href="blog.html">Bloglar</a><a href="tarifler.html">Yemek Tarifleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div>
-<small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small>
+<a href="index.html" class="footer-brand footer-brand-full" aria-label="İyi Yol Akademi ana sayfa"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<nav class="footer-links" aria-label="Alt menü">
+<a href="blog.html">Blog Yazıları</a><a href="tarifler.html">Yemek Tarifleri</a><a href="testler.html">Kişilik Testleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a><a href="gunun-sozu.html">Günün Sözü</a>
+</nav><small>© <span data-year></span> İyi Yol Akademi.</small>
 </div></footer></body></html>
