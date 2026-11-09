@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#fdfcf9">
   <meta name="description" content="İyi Yol Akademi'de kişisel gelişim, psikoloji ve daha bilinçli bir yaşam için hazırlanmış nitelikli blog yazılarını keşfet.">
   <title>İyi Yol Akademi | Kendine İyi Gelen Bir Yol</title>
-  <link rel="icon" type="image/svg+xml" href="brand-mark.svg">
+  <link rel="icon" type="image/svg+xml" href="brand-full.svg">
   <link rel="stylesheet" href="site.css">
-  <script src="site.js" defer></script>
+  <script src="site.js" defer></script><script src="daily.js" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Ana içeriğe geç</a>
@@ -19,10 +19,13 @@
 <a href="index.html" class="active" aria-current="page" data-nav="home">Ana Sayfa</a>
 <a href="blog.html" data-nav="blog">Bloglar</a>
 <a href="tarifler.html" data-nav="recipes">Yemek Tarifleri</a>
+<a href="testler.html" data-nav="tests">Kişilik Testleri</a>
 <details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
 <a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
 <a href="hesaplama.html">▦ Pratik hesaplamalar</a>
 <a href="tarifler.html">🍲 Yemek tarifleri</a>
+<a href="gunun-sozu.html">✦ Günün sözü ve tavsiyesi</a>
+<a href="testler.html">◈ Kişilik testleri</a>
 </div></details>
 <a href="index.html#hakkimizda">Hakkımızda</a>
 <a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
@@ -48,9 +51,17 @@
     <div class="marquee" aria-hidden="true"><div class="container marquee-inner"><span>KENDİNİ KEŞFET</span><span>✦</span><span>ÖĞREN</span><span>✦</span><span>GELİŞ</span><span>✦</span><span>KENDİ YOLUNU ÇİZ</span></div></div>
     <section class="section container" id="kesfet">
       <div class="section-heading"><div><div class="section-kicker">KEŞFETMEYE BAŞLA</div><h2>İlgi alanını seç, <em>yoluna çık.</em></h2><p>Farklı konular, yeni bakış açıları ve seni düşündürecek yazılar.</p></div></div>
-      <div class="category-grid" id="categoryGrid"><a class="category-card" href="blog.html?category=kisisel-gelisim"><span class="category-number">01</span><span class="category-symbol" aria-hidden="true">✳</span><h3>Kişisel Gelişim</h3><p>Alışkanlıklar, öz değer ve kendinle kurduğun ilişki.</p><span class="category-arrow">Yazıları gör ↗</span></a><a class="category-card" href="blog.html?category=psikoloji"><span class="category-number">02</span><span class="category-symbol" aria-hidden="true">◌</span><h3>Psikoloji</h3><p>Zihnin, duyguların ve davranışların üzerine.</p><span class="category-arrow">Yazıları gör ↗</span></a><a class="category-card" href="tarifler.html"><span class="category-number">03</span><span class="category-symbol" aria-hidden="true">♨</span><h3>Yemek Tarifleri</h3><p>200 tarif, 16 kategori, adım adım hazırlanışlar.</p><span class="category-arrow">Tariflere göz at ↗</span></a></div>
+      <div class="category-grid" id="categoryGrid"><a class="category-card" href="blog.html?category=kisisel-gelisim"><span class="category-number">01</span><span class="category-symbol" aria-hidden="true">✳</span><h3>Kişisel Gelişim</h3><p>Alışkanlıklar, öz değer ve kendinle kurduğun ilişki.</p><span class="category-arrow">Yazıları gör ↗</span></a><a class="category-card" href="blog.html?category=psikoloji"><span class="category-number">02</span><span class="category-symbol" aria-hidden="true">◌</span><h3>Psikoloji</h3><p>Zihnin, duyguların ve davranışların üzerine.</p><span class="category-arrow">Yazıları gör ↗</span></a><a class="category-card" href="tarifler.html"><span class="category-number">03</span><span class="category-symbol" aria-hidden="true">♨</span><h3>Yemek Tarifleri</h3><p>200 tarif, 16 kategori, adım adım hazırlanışlar.</p><span class="category-arrow">Tariflere göz at ↗</span></a><a class="category-card" href="testler.html"><span class="category-number">04</span><span class="category-symbol" aria-hidden="true">◈</span><h3>Kişilik Testleri</h3><p>5 kategoride 100 testle kendini daha yakından tanı.</p><span class="category-arrow">Testleri keşfet ↗</span></a>
+<a class="category-card" href="gunun-sozu.html"><span class="category-number">05</span><span class="category-symbol" aria-hidden="true">✦</span><h3>Günün Sözü</h3><p>Her güne yeni bir düşünce ve uygulanabilir küçük bir tavsiye.</p><span class="category-arrow">Bugünü keşfet ↗</span></a>
+<a class="category-card" href="yapilacaklar.html"><span class="category-number">06</span><span class="category-symbol" aria-hidden="true">✓</span><h3>Günlük Planlayıcı</h3><p>Önceliklerini belirle, haftanı planla, ilerlemeni gör.</p><span class="category-arrow">Planlayıcıya git ↗</span></a></div>
     </section>
-    <section class="section section-soft"><div class="container"><div class="section-heading inline-heading"><div><div class="section-kicker">AKADEMİ GÜNLÜĞÜ</div><h2>Yeni <em>yazılar.</em></h2><p>Bir kahve molasında bile yeni bir şeyler fark edebilirsin.</p></div><a href="blog.html" class="view-all">Tüm bloglar <span aria-hidden="true">↗</span></a></div><div id="latestPosts" class="posts-grid"><div class="loading-state">Yazılar yükleniyor…</div></div></div></section>
+    <section class="section home-daily-section container" id="gunun-sozu">
+<div class="section-heading inline-heading"><div><div class="section-kicker">HER GÜN KÜÇÜK BİR ADIM</div><h2>Bugüne iyi gelen <em>bir söz.</em></h2><p>Günün sözü ve günlük tavsiyesi her gün otomatik yenilenir.</p></div><a class="view-all" href="gunun-sozu.html">Günün sayfasına git <span aria-hidden="true">↗</span></a></div>
+<div class="daily-card-grid">
+<article class="daily-card daily-card-quote"><div class="daily-card-top"><span class="daily-card-kicker">01 / GÜNÜN SÖZÜ</span><span aria-hidden="true">✦</span></div><div class="quote-mark" aria-hidden="true">“</div><h3 data-daily-quote>Bugünün sözü yükleniyor…</h3><div class="daily-card-bottom">İyi Yol Akademi</div></article>
+<article class="daily-card daily-card-advice"><div class="daily-card-top"><span class="daily-card-kicker">02 / GÜNÜN TAVSİYESİ</span><span aria-hidden="true">✳</span></div><div class="daily-advice-icon" aria-hidden="true">↗</div><p data-daily-advice>Bugünün tavsiyesi yükleniyor…</p><div class="daily-card-bottom" data-daily-date>Bugün</div></article>
+</div></section>
+<section class="section section-soft"><div class="container"><div class="section-heading inline-heading"><div><div class="section-kicker">AKADEMİ GÜNLÜĞÜ</div><h2>Yeni <em>yazılar.</em></h2><p>Bir kahve molasında bile yeni bir şeyler fark edebilirsin.</p></div><a href="blog.html" class="view-all">Tüm bloglar <span aria-hidden="true">↗</span></a></div><div id="latestPosts" class="posts-grid"><div class="loading-state">Yazılar yükleniyor…</div></div></div></section>
     <section class="section container journey-section" id="yolculuk"><div><div class="section-kicker">GÜNLÜK HAYATTA İYİ YOL</div><h2>Öğren, planla, <em>uygula.</em></h2><p>Gününü planla, önceliklerini belirle ve günlük hesaplarını tek yerde kolayca yap. İyi Yol Akademi gelişimin her adımında yanında.</p></div><div class="coming-grid"><a class="coming-item coming-link" href="yapilacaklar.html"><span>01</span><strong>Yapılacaklar listesi ↗</strong><small>Haftalık görevlerini düzenle, önceliklerini seç, ilerlemeni takip et</small><span class="coming-tag available-tag">Kullanıma hazır</span></a><a class="coming-item coming-link" href="hesaplama.html"><span>02</span><strong>Pratik hesaplama araçları ↗</strong><small>Komisyon, indirim, TYT–AYT, sağlık ve finans hesaplamaları</small><span class="coming-tag available-tag">Kullanıma hazır</span></a><a class="coming-item coming-link" href="tarifler.html"><span>03</span><strong>Yemek Tarifleri ↗</strong><small>200 tarife, malzemelere ve pişirme adımlarına ulaş</small><span class="coming-tag available-tag">Kullanıma hazır</span></a><div class="coming-item"><span>04</span><strong>Pomodoro</strong><small>Odaklanma ve mola aracı</small><span class="coming-tag">Yakında</span></div><div class="coming-item"><span>05</span><strong>Kitap özetleri</strong><small>Bilgiyi yanında taşı</small><span class="coming-tag">Yakında</span></div></div></section>
     <section class="closing-section" id="hakkimizda"><div class="container closing-content"><div class="section-kicker">İYİ YOL AKADEMİ</div><h2>Gelişim, kendine verdiğin <em>küçük bir sözle</em> başlar.</h2><p>İyi Yol Akademi, öğrenme ve kişisel gelişimi herkes için erişilebilir kılmayı hedefleyen bir gelişim platformudur. Her yazı yeni bir başlangıç olabilir.</p><a href="blog.html" class="btn btn-light">Okumaya başla <span aria-hidden="true">↗</span></a></div></section>
   </main>
