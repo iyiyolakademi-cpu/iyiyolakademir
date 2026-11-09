@@ -44,7 +44,7 @@
 (function(){
  const frame=document.getElementById('personalityFrame');
  if(!frame)return;
- let mutationObserver,resizeObserver,queued=false;
+ let mutationObserver,resizeObserver,queued=false,lastScreenId=null;
  const sizeFrame=()=>{
   if(queued)return;
   queued=true;
@@ -54,6 +54,9 @@
     const doc=frame.contentDocument;if(!doc)return;
     const active=doc.querySelector('#kisilik-arsivi-app .screen.active');
     const wrap=doc.querySelector('#kisilik-arsivi-app .wrap');
+    const screenId=active&&active.id;
+    if(lastScreenId&&screenId&&lastScreenId!==screenId){frame.scrollIntoView({behavior:'smooth',block:'start'});}
+    if(screenId)lastScreenId=screenId;
     const style=wrap&&frame.contentWindow.getComputedStyle(wrap);
     const padding=style?parseFloat(style.paddingTop)+parseFloat(style.paddingBottom):60;
     const height=Math.ceil(Math.max(620,window.innerHeight*.65,(active?active.getBoundingClientRect().height:600)+padding+24));
