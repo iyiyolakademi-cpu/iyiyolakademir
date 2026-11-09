@@ -59,3 +59,12 @@ Bu ilk sürümde henüz hazır olmayan bölümler yalnızca "Yakında" olarak g�
 ## Görev verileri hakkında
 
 Şu anda görevler cihazın kendi `localStorage` alanında tutulur. Oturum açma/hesap bağlantısı henüz olmadığı için farklı cihazlar arasında eşitlenmez. Kişisel görevleri herkese açık Supabase tablolarında saklamayın; senkronizasyon için kullanıcı oturumu ve kullanıcıya ait RLS gereklidir.
+
+## Günün sözü / tavsiyesi ve kişilik testleri
+
+- `gunun-sozu.html`, `daily.js`: Her gün Türkiye saat dilimine göre otomatik değişen özgün söz ve uygulanabilir tavsiye. Ana sayfada da gösterilir. Günlük içerik kümesi şu an 31 söz + 31 tavsiyeden oluşur; sunucu gerektirmez.
+- `testler.html`: Site menüsü ve mobil/masaüstü uyumlu test sunumu.
+- `testler-uygulama.html`: Kullanıcının gönderdiği siyah tema, 5 kategori, 100 test, 10 soru/test, sonuç hesaplama ve kayıt kodu eksiksiz korunur. Ana sitenin beyaz CSS'inden etkilenmemesi için aynı alan adında, izole bir iframe'de çalışır. Puanlar tarayıcının yerel depolamasındadır.
+- `brand-full.svg`: Önceden verilen altın-beyaz logonun aynısı kullanılır. Harici siyah-beyaz tema dönüşümü, döndürme veya renk filtresi uygulanmaz. Tüm sayfaların üst/alt logosu ve sekme simgesi aynı dosyaya bağlıdır.
+
+Testler yalnızca farkındalık ve eğlence amaçlıdır, klinik değerlendirme değildir.
