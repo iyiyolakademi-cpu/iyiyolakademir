@@ -48,19 +48,19 @@ function applyFilters(){
 }
 function recipeCard(recipe){
  const card=el('button','recipe-card');card.type='button';
- card.setAttribute('aria-label',recipe.name+' tarifini aç');
- const visual=el('div','recipe-card-visual');
- const cat=el('span','recipe-card-cat',recipe.category);
- const emoji=el('span','recipe-card-emoji',icon(recipe));
- visual.append(cat,emoji);
+ card.setAttribute('aria-label',recipe.name+' yemek tarifini aç');
  const body=el('div','recipe-card-body');
+ const typeRow=el('div','recipe-card-type');
+ appendText(typeRow,'span','recipe-type-label','YEMEK TARİFİ');
+ appendText(typeRow,'span','recipe-category-name',recipe.category||'Genel');
+ body.appendChild(typeRow);
  appendText(body,'h3','',recipe.name);
  appendText(body,'p','',recipe.desc||'');
  const foot=el('div','recipe-card-footer');
  const duration=recipe.totalTime||(Number.isFinite(getDuration(recipe))?getDuration(recipe)+' dk':recipe.prep||'Hazırlanış');
  appendText(foot,'span','',duration);
- appendText(foot,'span','',favorites.has(Number(recipe.id))?'♥ Kaydedildi':'Tarifi incele ↗');
- body.appendChild(foot);card.append(visual,body);
+ appendText(foot,'span','recipe-card-link',favorites.has(Number(recipe.id))?'Favorilere kaydedildi':'Tarifi aç →');
+ body.appendChild(foot);card.appendChild(body);
  card.addEventListener('click',()=>openRecipe(recipe.id));
  return card;
 }
