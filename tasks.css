@@ -40,3 +40,53 @@
 .task-priority-option input:checked+.priority-box.low{border-color:#45ac76;background:#eefbf3}
 .task-empty{margin:10px 0;padding:48px 20px;border-radius:20px;background:linear-gradient(130deg,#f9fbf8,#f1f6ef)}
 @media(max-width:620px){.task-intro{padding-top:42px}.task-intro::before{inset:10px -8px 7px}.task-intro-row{padding:0 12px 10px}.task-list-panel{padding:20px;border-radius:23px}.task-item{padding:14px 10px;gap:11px}.task-filters{width:100%;justify-content:space-between}.task-filters button{flex:1;padding-inline:7px}.task-dialog{border-radius:25px 25px 0 0}}
+
+
+/* Görev planlayıcı – telefonda rahat seçilebilen gün ve öncelikler */
+.task-intro{padding-top:45px;padding-bottom:27px}
+.task-intro::before{background:#f6f8f4}
+.task-intro h1{font-size:clamp(35px,4.8vw,57px);letter-spacing:-.045em}
+.task-intro p{font-size:15px}
+.task-workspace{gap:16px}
+.task-week-panel,.task-progress-panel,.task-list-panel{box-shadow:none;border-color:#e4eae2}
+.task-day{min-height:66px}
+.task-filters button{min-height:44px}
+.task-check{width:33px;height:33px;min-width:33px}
+.task-actions button{min-height:44px;min-width:42px}
+.task-dialog input[type=text],.task-dialog input[type=date]{font-size:16px;min-height:48px;background:#fff}
+.dialog-cancel,.dialog-save{min-height:46px}
+.task-inline-add{font-size:14px}
+@media(max-width:700px){
+ .task-intro{padding:35px 0 22px}
+ .task-intro::before{inset:8px -8px 7px;border-radius:18px}
+ .task-intro-row{padding:0 9px 9px}
+ .task-intro h1{font-size:37px;line-height:1.14}
+ .task-intro p{font-size:14px;line-height:1.65}
+ .task-add-main{margin-top:16px;min-height:48px}
+ .task-workspace{padding-bottom:55px;grid-template-columns:1fr}
+ .task-sidebar{display:grid;grid-template-columns:1fr;gap:11px}
+ .task-week-panel,.task-progress-panel,.task-list-panel{padding:17px;border-radius:17px}
+ .task-month-row{margin:19px 0 12px}
+ .task-week-grid{gap:4px}
+ .task-day{min-height:65px;border-radius:10px;padding:8px 1px}
+ .task-day span{font-size:9px}
+ .task-day strong{font-size:15px}
+ .task-priority-legend{gap:9px 16px;padding-top:14px;margin-top:17px}
+ .task-list-top h2{font-size:26px}
+ .task-list-desc{line-height:1.55}
+ .task-icon-add{width:45px;height:45px;min-width:45px}
+ .task-filters{display:flex;gap:3px;margin:20px 0 13px;padding:4px;width:100%}
+ .task-filters button{flex:1;padding:8px 4px;font-size:12px}
+ .task-item{padding:13px 9px;gap:9px;border-radius:13px}
+ .task-text{min-width:0;overflow-wrap:anywhere}
+ .task-text strong{font-size:14px;line-height:1.4}
+ .task-text small{font-size:11px}
+ .task-actions{gap:3px}
+ .task-actions button{min-width:36px;width:36px;min-height:40px;height:40px}
+ .task-check{width:30px;height:30px;min-width:30px}
+ .task-dialog-backdrop{align-items:flex-end;padding:0}
+ .task-dialog{width:100%;max-height:calc(100dvh - 12px);border-radius:20px 20px 0 0;padding:22px 18px max(20px,env(safe-area-inset-bottom));overscroll-behavior:contain}
+ .task-radio-row{gap:7px}
+ .priority-box{padding:12px 4px;min-height:90px}
+ .dialog-actions button{flex:1}
+}
