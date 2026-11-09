@@ -11,35 +11,33 @@
 <a class="brand brand-full" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><img class="brand-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
 <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
 <nav class="main-nav" id="mainNav" aria-label="Ana menü">
-<a href="index.html" class="active" aria-current="page" data-nav="home">Ana Sayfa</a>
-<a href="blog.html" data-nav="blog">Bloglar</a>
+<a href="index.html" data-nav="home">Ana Sayfa</a>
+<a href="blog.html" data-nav="blog">Blog Yazıları</a>
 <a href="tarifler.html" data-nav="recipes">Yemek Tarifleri</a>
 <a href="testler.html" data-nav="tests">Kişilik Testleri</a>
-<details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
-<a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
-<a href="hesaplama.html">▦ Pratik hesaplamalar</a>
-<a href="tarifler.html">🍲 Yemek tarifleri</a>
-<a href="gunun-sozu.html">✦ Günün sözü ve tavsiyesi</a>
-<a href="testler.html">◈ Kişilik testleri</a>
+<details class="nav-dropdown nav-dropdown-current" id="featuresMenu"><summary>Diğer Bölümler <span aria-hidden="true">⌄</span></summary>
+<div class="nav-dropdown-items">
+<a href="yapilacaklar.html">Yapılacaklar Listesi</a>
+<a href="hesaplama.html">Hesaplama Araçları</a>
+<a href="gunun-sozu.html" aria-current="page">Günün Sözü ve Tavsiyesi</a>
 </div></details>
-<a href="index.html#hakkimizda">Hakkımızda</a>
-<a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
 </nav></div></header>
 <main id="main">
 <section class="daily-hero container"><div class="section-kicker">GÜNE KÜÇÜK BİR FARKINDALIKLA BAŞLA</div><h1>Bugün kendine bir <em>iyilik yap.</em></h1><p>Her gün yeni bir söz, uygulanabilir küçük bir tavsiye. Gelişim bazen birkaç dakikayla başlar.</p></section>
 <section class="daily-content container" aria-labelledby="dailyTitle">
-<div class="daily-meta-bar"><span data-daily-date>Bugünün tarihi</span><span>İYİ YOL AKADEMİ / GÜNLÜK İLHAM</span></div>
+<div class="daily-meta-bar"><span data-daily-date>Bugünün tarihi</span><span>GÜNLÜK İÇERİK</span></div>
 <div class="daily-card-grid">
-<article class="daily-card daily-card-quote"><div class="daily-card-top"><span class="daily-card-kicker">01 / GÜNÜN SÖZÜ</span><span aria-hidden="true">✦</span></div><div class="quote-mark" aria-hidden="true">“</div><h2 id="dailyTitle" data-daily-quote>Bugünün sözü yükleniyor…</h2><div class="daily-card-bottom">İyi Yol Akademi</div></article>
-<article class="daily-card daily-card-advice"><div class="daily-card-top"><span class="daily-card-kicker">02 / GÜNÜN TAVSİYESİ</span><span aria-hidden="true">✳</span></div><div class="daily-advice-icon" aria-hidden="true">↗</div><p data-daily-advice>Bugünün tavsiyesi yükleniyor…</p><div class="daily-card-bottom">Küçük adım, büyük fark.</div></article>
+<article class="daily-card daily-card-quote"><div class="daily-card-top"><span class="daily-card-kicker">01 / GÜNÜN SÖZÜ</span></div><h2 id="dailyTitle" data-daily-quote>Bugünün sözü yükleniyor…</h2><div class="daily-card-bottom">İyi Yol Akademi</div></article>
+<article class="daily-card daily-card-advice"><div class="daily-card-top"><span class="daily-card-kicker">02 / GÜNÜN TAVSİYESİ</span></div><p data-daily-advice>Bugünün tavsiyesi yükleniyor…</p><div class="daily-card-bottom">Küçük adım, büyük fark.</div></article>
 </div>
 <div class="daily-actions"><p data-daily-count>Yeni bir gün, yeni bir söz.</p><button class="btn btn-primary" type="button" data-copy-daily>Sözü ve tavsiyeyi kopyala</button></div>
 </section>
 <section class="daily-next container"><div class="section-kicker">BİR ADIM DAHA</div><h2>Fark etmekle kalma, <em>uygula.</em></h2><p>Bugünün tavsiyesini yapılacaklar listene ekle veya zihnine iyi gelecek bir yazı oku.</p><div class="daily-next-actions"><a class="btn btn-primary" href="yapilacaklar.html">Bugününü planla ↗</a><a class="btn btn-outline" href="blog.html">Blogları keşfet ↗</a></div></section>
 </main>
 <footer class="footer"><div class="container footer-inner">
-<a href="index.html" class="footer-brand footer-brand-full"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
-<div class="footer-links"><a href="blog.html">Bloglar</a><a href="tarifler.html">Yemek Tarifleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div>
-<small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small>
+<a href="index.html" class="footer-brand footer-brand-full" aria-label="İyi Yol Akademi ana sayfa"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<nav class="footer-links" aria-label="Alt menü">
+<a href="blog.html">Blog Yazıları</a><a href="tarifler.html">Yemek Tarifleri</a><a href="testler.html">Kişilik Testleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a><a href="gunun-sozu.html">Günün Sözü</a>
+</nav><small>© <span data-year></span> İyi Yol Akademi.</small>
 </div></footer>
 </body></html>
