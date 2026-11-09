@@ -1,0 +1,64 @@
+/* Pomodoro · İyi Yol Akademi — sade, erişilebilir mobil deneyim */
+.pom-page{padding-top:38px;padding-bottom:70px;max-width:1120px}
+.pom-intro{margin-bottom:27px}
+.pom-intro h1{font-size:clamp(32px,4.2vw,47px);font-weight:750;letter-spacing:-.04em;line-height:1.2;margin:10px 0 9px;color:#253d2d}
+.pom-intro p{margin:0;line-height:1.7;color:#6c7a6d;max-width:620px;font-size:14px}
+.pom-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:18px;align-items:start}
+.pom-card,.pom-panel{background:#fff;border:1px solid #e3eae2;border-radius:19px;box-shadow:none}
+.pom-card{padding:29px 30px 27px;text-align:center;min-width:0}
+.pom-modes{display:flex;align-items:center;gap:6px;background:#f4f7f3;border-radius:13px;padding:5px}
+.pom-modes button{appearance:none;border:0;background:transparent;color:#748275;border-radius:10px;min-height:46px;padding:10px 12px;flex:1;font:700 13px system-ui;cursor:pointer}
+.pom-modes button.active{background:#fff;color:#2b613e;box-shadow:0 1px 5px #233e2a12}
+.pom-dial{--pom-percent:0%;margin:32px auto 18px;width:min(305px,80vw);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#437653 var(--pom-percent),#e8eee7 0);padding:13px}
+.pom-dial-inner{height:100%;width:100%;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}
+.pom-dial-inner>span{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#66816a;font-weight:750}
+.pom-clock{font-variant-numeric:tabular-nums;font-size:clamp(45px,7vw,64px);line-height:1.1;letter-spacing:-.055em;font-weight:750;color:#253e2f}
+.pom-dial-inner small{font-size:12px;color:#9ba79b}
+.pom-message{font-size:14px;line-height:1.6;color:#657567;margin:14px auto 20px;max-width:420px}
+.pom-actions{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+.pom-actions button{border-radius:12px;min-height:48px;min-width:105px;padding:12px 19px;cursor:pointer;font-size:14px;font-weight:750}
+.pom-primary{background:#295b3b;color:#fff;border:1px solid #295b3b}
+.pom-primary:hover{background:#214f31}
+.pom-secondary{border:1px solid #dde7dc;background:#fff;color:#48634e}
+.pom-secondary:hover{background:#f2f6f0}
+.pom-feedback{min-height:21px;font-size:12px;color:#4b7755;margin-top:16px;line-height:1.6}
+.pom-aside{display:grid;gap:13px}
+.pom-panel{padding:22px}
+.pom-panel h2{font-size:18px;letter-spacing:-.025em;margin:0 0 7px}
+.pom-panel p{font-size:13px;line-height:1.6;color:#718075;margin:0 0 17px}
+.pom-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.pom-presets button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid #dee7dd;border-radius:11px;background:#fff;padding:11px 5px;min-width:0;min-height:66px;cursor:pointer;color:#495d4b}
+.pom-presets button.active{background:#edf5ed;border-color:#9db9a3;color:#275e3b}
+.pom-presets button strong{font-size:14px}
+.pom-presets button small{font-size:10px;color:#748877}
+.pom-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pom-stats>div{padding:15px;background:#f5f8f3;border-radius:12px;display:grid;gap:9px}
+.pom-stats strong{font-size:26px;letter-spacing:-.03em;color:#2c4e37}
+.pom-stats span{font-size:11px;color:#79887a;line-height:1.4}
+.pom-round{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#6f7d6f;border-top:1px solid #eef2ed;padding-top:15px;margin-top:15px}
+.pom-round strong{color:#2b6240;font-variant-numeric:tabular-nums}
+.pom-note{margin:0;padding:4px 5px;color:#849287;font-size:12px;line-height:1.7}
+.pom-page button:focus-visible{outline:3px solid #b38f53;outline-offset:2px}
+@media(max-width:860px){.pom-layout{grid-template-columns:1fr}.pom-aside{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pom-note{grid-column:1/-1}}
+@media(max-width:650px){
+ .pom-page{padding-top:27px;padding-bottom:50px}
+ .pom-intro{margin-bottom:20px}
+ .pom-intro h1{font-size:32px}
+ .pom-intro p{font-size:13px}
+ .pom-layout{gap:12px}
+ .pom-card,.pom-panel{border-radius:15px}
+ .pom-card{padding:17px 14px 16px}
+ .pom-modes{padding:3px;gap:3px}
+ .pom-modes button{font-size:12px;min-height:45px;padding:9px 5px}
+ .pom-dial{width:min(265px,76vw);margin:24px auto 12px;padding:11px}
+ .pom-clock{font-size:53px}
+ .pom-message{font-size:13px;margin-bottom:17px}
+ .pom-actions{gap:7px}
+ .pom-actions button{min-width:0;flex:1;min-height:46px;font-size:13px;padding:9px 8px}
+ .pom-aside{display:grid;grid-template-columns:1fr;gap:10px}
+ .pom-panel{padding:18px}
+ .pom-stats strong{font-size:24px}
+ .pom-note{font-size:11px;padding:0 4px}
+}
+@media(max-width:350px){.pom-clock{font-size:43px}.pom-dial{width:min(234px,75vw)}.pom-modes button{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.pom-dial{transition:none}}
