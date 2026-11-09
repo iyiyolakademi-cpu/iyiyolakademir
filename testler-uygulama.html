@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Kişilik Testleri - İyi Yol Akademi</title>
+<meta name="robots" content="noindex">
+</head><body>
+<!-- KİŞİLİK TESTLERİ · MOBIROLLER · TAM SİYAH TELEFON UYUMLU -->
+<style>
+html,body{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  background:#000!important;
+  overflow-x:hidden!important;
+}
+body>div,body>section,body>main{
+  background:#000!important;
+}
+#kisilik-arsivi-app{
+  --bg:#000;--surface:#090909;--surface-2:#111;--surface-3:#171717;
+  --ink:#f5f5f5;--ink-soft:#9b9b9b;--line:#242424;
+  --amber:#d58b4a;--amber-d:#9b5c28;--rose:#d65c7d;--rose-d:#913a53;
+  --teal:#3aa399;--teal-d:#236e67;--indigo:#617ed0;--indigo-d:#3d5596;
+  --violet:#946bc0;--violet-d:#67458e;
+  --radius:20px;
+  position:relative!important;
+  isolation:isolate;
+  width:100vw!important;
+  max-width:none!important;
+  min-height:100vh!important;
+  min-height:100dvh!important;
+  margin:0!important;
+  padding:0 0 max(28px,env(safe-area-inset-bottom))!important;
+  background:#000!important;
+  color:var(--ink);
+  overflow-x:hidden!important;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+#kisilik-arsivi-app,#kisilik-arsivi-app *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+#kisilik-arsivi-app button,#kisilik-arsivi-app input,#kisilik-arsivi-app .cat-card,#kisilik-arsivi-app .test-card,#kisilik-arsivi-app .answers label{touch-action:manipulation}
+#kisilik-arsivi-app button,#kisilik-arsivi-app input{font:inherit}
+#kisilik-arsivi-app .wrap{
+  width:100%!important;
+  max-width:760px!important;
+  min-height:100vh;
+  min-height:100dvh;
+  margin:0 auto!important;
+  padding:calc(22px + env(safe-area-inset-top)) 16px 44px!important;
+  background:#000!important;
+}
+#kisilik-arsivi-app .brand{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 28px;padding:0 0 20px;border-bottom:1px solid #1d1d1d}
+#kisilik-arsivi-app .brand-title{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(1.9rem,8vw,2.65rem);letter-spacing:-.035em;line-height:1;color:#fff}
+#kisilik-arsivi-app .brand-title span{color:var(--amber)!important}
+#kisilik-arsivi-app .brand-sub{font-family:"Courier New",monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#aaa;border:1px solid #292929;padding:7px 10px;border-radius:999px;background:#0b0b0b}
+#kisilik-arsivi-app .screen{display:none}
+#kisilik-arsivi-app .screen.active{display:block;animation:kaFade .28s ease both}
+@keyframes kaFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+#kisilik-arsivi-app .intro{max-width:60ch;margin:0 0 22px;color:#a8a8a8;font-size:.96rem;line-height:1.65}
+#kisilik-arsivi-app .archive-actions{display:flex;gap:9px;margin-bottom:17px}
+#kisilik-arsivi-app .archive-search-wrap{position:relative;flex:1;min-width:0}
+#kisilik-arsivi-app .archive-search{width:100%;height:52px;padding:0 44px 0 15px;border:1px solid #242424;border-radius:15px;outline:none;background:#0b0b0b!important;color:#fff;transition:border-color .18s,box-shadow .18s}
+#kisilik-arsivi-app .archive-search::placeholder{color:#696969}
+#kisilik-arsivi-app .archive-search:focus{border-color:#555;box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+#kisilik-arsivi-app .archive-search-icon{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#777;pointer-events:none}
+#kisilik-arsivi-app .random-test-btn{height:52px;padding:0 16px;border:1px solid #2c2c2c;border-radius:15px;cursor:pointer;font-weight:750;color:#fff;background:#151515!important;white-space:nowrap}
+#kisilik-arsivi-app .search-results{display:none;flex-direction:column;gap:8px;margin:0 0 19px}
+#kisilik-arsivi-app .search-results.active{display:flex}
+#kisilik-arsivi-app .search-result{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #242424;border-radius:15px;background:#0b0b0b!important;cursor:pointer}
+#kisilik-arsivi-app .search-result-cat{width:5px;height:36px;flex:0 0 5px;border-radius:999px}
+#kisilik-arsivi-app .search-result-info{min-width:0;flex:1}
+#kisilik-arsivi-app .search-result-title{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1rem;line-height:1.3;color:#f4f4f4}
+#kisilik-arsivi-app .search-result-meta{margin-top:4px;color:#888;font-family:"Courier New",monospace;font-size:.65rem}
+#kisilik-arsivi-app .empty-search{padding:17px;border:1px dashed #333;border-radius:15px;background:#080808!important;color:#888;text-align:center;font-size:.86rem}
+#kisilik-arsivi-app .cat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+#kisilik-arsivi-app .cat-card{position:relative;min-height:158px;padding:20px 17px 18px;border:1px solid #222!important;border-radius:18px;overflow:hidden;background:#0b0b0b!important;cursor:pointer;text-align:left;color:#fff}
+#kisilik-arsivi-app .cat-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cat-color,var(--amber))}
+#kisilik-arsivi-app .cat-card:after{content:"";position:absolute;width:100px;height:100px;right:-48px;bottom:-48px;border-radius:50%;background:var(--cat-color,var(--amber));opacity:.09}
+#kisilik-arsivi-app .cat-label{margin-bottom:12px;font-family:"Courier New",monospace;font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cat-color,var(--amber))}
+#kisilik-arsivi-app .cat-name{margin-bottom:8px;font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;font-weight:700;line-height:1.1;color:#fff}
+#kisilik-arsivi-app .cat-desc{max-width:24ch;color:#929292;font-size:.84rem;line-height:1.45}
+#kisilik-arsivi-app .cat-count{position:absolute;right:14px;top:14px;padding:4px 7px;border:1px solid #292929;border-radius:999px;background:#101010!important;color:#888;font-family:"Courier New",monospace;font-size:.61rem}
+#kisilik-arsivi-app .backbar{display:flex;align-items:center;margin-bottom:19px}
+#kisilik-arsivi-app .backbtn{padding:9px 13px;border:1px solid #292929;border-radius:12px;background:#0d0d0d!important;color:#d7d7d7;cursor:pointer;font-family:"Courier New",monospace;font-size:.69rem}
+#kisilik-arsivi-app .list-header{margin-bottom:7px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.7rem,7vw,2.2rem);font-weight:700;letter-spacing:-.025em}
+#kisilik-arsivi-app .test-list{display:flex;flex-direction:column;gap:8px;margin-top:17px}
+#kisilik-arsivi-app .test-card{display:flex;align-items:center;gap:12px;padding:15px 14px;border:1px solid #222!important;border-radius:15px;background:#0a0a0a!important;cursor:pointer;color:#f5f5f5}
+#kisilik-arsivi-app .test-card:before{content:"";width:4px;height:34px;border-radius:999px;background:var(--cat-color,var(--amber));flex:0 0 4px}
+#kisilik-arsivi-app .test-no{min-width:27px;color:var(--cat-color,var(--amber));font-family:"Courier New",monospace;font-size:.74rem;font-weight:700}
+#kisilik-arsivi-app .test-title{flex:1;font-family:Georgia,"Times New Roman",serif;font-size:1rem;font-weight:700;line-height:1.3}
+#kisilik-arsivi-app .test-arrow{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#151515!important;color:#777;font-size:.95rem}
+#kisilik-arsivi-app .quiz-card{position:relative;padding:28px 20px 22px;border:1px solid #242424!important;border-radius:20px;overflow:hidden;background:#080808!important;color:#fff}
+#kisilik-arsivi-app .quiz-card:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--cat-color,var(--amber))}
+#kisilik-arsivi-app .quiz-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 15px;color:#858585;font-family:"Courier New",monospace;font-size:.62rem;letter-spacing:.04em}
+#kisilik-arsivi-app .progress-track{height:5px;margin-bottom:24px;border-radius:999px;overflow:hidden;background:#1d1d1d!important}
+#kisilik-arsivi-app .progress-fill{height:100%;width:0;border-radius:999px;background:var(--cat-color,var(--amber));transition:width .28s ease}
+#kisilik-arsivi-app .quiz-title{margin-bottom:8px;color:var(--cat-color,var(--amber));font-family:"Courier New",monospace;font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+#kisilik-arsivi-app .question{min-height:82px;margin-bottom:11px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.28rem,6vw,1.65rem);font-weight:700;line-height:1.35;color:#fff}
+#kisilik-arsivi-app .quiz-helper{margin-bottom:18px;color:#777;font-size:.72rem;line-height:1.45}
+#kisilik-arsivi-app .answers{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:23px}
+#kisilik-arsivi-app .answers input{display:none}
+#kisilik-arsivi-app .answers label{display:flex;align-items:center;min-height:52px;padding:11px 13px;border:1px solid #252525;border-radius:14px;background:#111!important;color:#ddd;font-size:.89rem;font-weight:650;cursor:pointer;user-select:none}
+#kisilik-arsivi-app .answers input:checked+label{border-color:var(--cat-color,var(--amber));background:var(--cat-color,var(--amber))!important;color:#fff}
+#kisilik-arsivi-app .answer-number{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;margin-right:10px;border:1px solid currentColor;border-radius:50%;font-family:"Courier New",monospace;font-size:.64rem;flex:0 0 27px;opacity:.8}
+#kisilik-arsivi-app .nav-row{display:flex;justify-content:space-between;gap:9px}
+#kisilik-arsivi-app .nav-row button{min-width:104px;padding:12px 18px;border:1px solid #2d2d2d;border-radius:13px;background:#f1f1f1!important;color:#080808;cursor:pointer;font-size:.87rem;font-weight:750}
+#kisilik-arsivi-app .nav-row button:disabled{opacity:.25;cursor:not-allowed}
+#kisilik-arsivi-app .nav-row button.ghost{background:#101010!important;color:#bbb;border-color:#292929}
+#kisilik-arsivi-app .result-card{position:relative;padding:34px 20px 26px;border:1px solid #242424;border-radius:20px;overflow:hidden;background:#080808!important;text-align:center;color:#fff}
+#kisilik-arsivi-app .result-card:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--cat-color,var(--amber))}
+#kisilik-arsivi-app .result-kicker{margin-bottom:17px;color:#777;font-family:"Courier New",monospace;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
+#kisilik-arsivi-app .seal{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:112px;height:112px;margin-bottom:20px;border:2px solid var(--cat-color,var(--amber));border-radius:50%;color:var(--cat-color,var(--amber));background:#0d0d0d!important}
+#kisilik-arsivi-app .seal-tier{font-family:"Courier New",monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+#kisilik-arsivi-app .seal-score{margin-top:3px;font-family:Georgia,"Times New Roman",serif;font-size:1.75rem;font-weight:700}
+#kisilik-arsivi-app .result-title{margin:0 auto 12px;max-width:560px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.45rem,6vw,1.9rem);font-weight:700;line-height:1.25;color:#fff}
+#kisilik-arsivi-app .result-text{max-width:620px;margin:0 auto 22px;color:#b4b4b4;font-size:.94rem;line-height:1.7;text-align:left}
+#kisilik-arsivi-app .result-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+#kisilik-arsivi-app .result-actions button{padding:11px 16px;border:1px solid #2b2b2b;border-radius:13px;background:#101010!important;color:#ccc;cursor:pointer;font-size:.84rem;font-weight:700}
+#kisilik-arsivi-app .result-actions button.primary{background:#f1f1f1!important;color:#080808;border-color:#f1f1f1}
+@media(max-width:560px){
+  #kisilik-arsivi-app .wrap{padding-left:12px!important;padding-right:12px!important}
+  #kisilik-arsivi-app .brand{align-items:flex-start;margin-bottom:24px}
+  #kisilik-arsivi-app .brand-title{width:100%}
+  #kisilik-arsivi-app .archive-actions{flex-direction:column}
+  #kisilik-arsivi-app .random-test-btn{width:100%}
+  #kisilik-arsivi-app .cat-grid{grid-template-columns:1fr}
+  #kisilik-arsivi-app .cat-card{min-height:138px}
+  #kisilik-arsivi-app .quiz-card,#kisilik-arsivi-app .result-card{border-radius:17px}
+  #kisilik-arsivi-app .nav-row button{flex:1;min-width:0}
+}
+@media(max-width:360px){
+  #kisilik-arsivi-app .wrap{padding-left:9px!important;padding-right:9px!important}
+  #kisilik-arsivi-app .brand-title{font-size:1.75rem}
+  #kisilik-arsivi-app .quiz-card{padding-left:15px;padding-right:15px}
+  #kisilik-arsivi-app .question{font-size:1.2rem}
+}
+</style>
+<div id="kisilik-arsivi-app">
+<div class="wrap">
+<div class="brand">
+<div class="brand-title"><span aria-hidden="true" style="display: inline-block; margin-right: 8px;">◈</span>Kişilik Testleri</div>
+<div class="brand-sub" id="brand-sub"></div>
+</div>
+<div class="screen active" id="screen-home">
+<p class="intro">Beş bölüme ayrılmış yüz kapsamlı testle karakterini, ilişkilerini, sosyal yönünü, kariyer profilini ve zihninin çalışma biçimini keşfet. Bir bölüm seç, kartlardan birini aç ve başla.</p>
+<div class="archive-actions">
+<div class="archive-search-wrap"><input type="search" class="archive-search" id="archive-search" placeholder="Test ara..." autocomplete="off" aria-label="Test ara"><span class="archive-search-icon" aria-hidden="true">⌕</span></div>
+<button type="button" class="random-test-btn" id="random-test-btn">🎲 Rastgele Test</button></div>
+<div class="search-results" id="search-results"></div>
+<div class="cat-grid" id="cat-grid"></div>
+</div>
+<div class="screen" id="screen-list">
+<div class="backbar"><button class="backbtn" id="home-back-btn">← Arşive dön</button></div>
+<div class="list-header" id="list-header"></div>
+<div class="test-list" id="test-list"></div>
+</div>
+<div class="screen" id="screen-quiz">
+<div class="backbar"><button class="backbtn" id="list-back-btn">← Listeye dön</button></div>
+<div class="quiz-card">
+<div class="quiz-meta"><span id="quiz-catno"></span><span id="quiz-qno"></span></div>
+<div class="progress-track">
+<div class="progress-fill" id="progress-fill"></div>
+</div>
+<div class="quiz-title" id="quiz-title"></div>
+<div class="question" id="question"></div>
+<div class="quiz-helper">Sana en yakın seçeneği işaretle.</div>
+<div class="answers" id="answers"></div>
+<div class="nav-row"><button class="ghost" id="prev-btn">Geri</button><button id="next-btn" disabled="disabled">İleri</button></div>
+</div>
+</div>
+<div class="screen" id="screen-result">
+<div class="result-card" id="result-card">
+<div class="seal" id="seal">
+<div class="seal-tier" id="seal-tier">Skor</div>
+<div class="seal-score" id="seal-score"></div>
+</div>
+<div class="result-title" id="result-title"></div>
+<div class="result-level" id="result-level"></div>
+<div class="result-text" id="result-text"></div>
+<div class="result-details" id="result-details"></div>
+<div class="result-actions"><button class="secondary" id="repeat-test-btn">Testi Tekrarla</button><button id="other-tests-btn">Diğer Testler</button><button class="primary" id="archive-home-btn">Arşive Dön</button></div>
+</div>
+</div>
+</div>
+</div>
+<style>
+/* FINAL DÜZENLEMELER · KİŞİLİK TESTLERİ */
+#kisilik-arsivi-app .result-disclaimer{display:none!important;}
+html,body{
+  background:#000!important;
+  color:#fff!important;
+}
+#kisilik-arsivi-app{
+  background:#000!important;
+}
+#kisilik-arsivi-app .wrap{
+  background:#000!important;
+}
+#kisilik-arsivi-app .intro{
+  display:none!important;
+}
+#kisilik-arsivi-app .brand{
+  margin-bottom:18px!important;
+}
+#kisilik-arsivi-app .cat-grid{
+  margin-top:0!important;
+  margin-bottom:18px!important;
+}
+#kisilik-arsivi-app .archive-tools{
+  margin-top:18px!important;
+}
+#kisilik-arsivi-app .cat-card,
+#kisilik-arsivi-app .test-card,
+#kisilik-arsivi-app .quiz-card,
+#kisilik-arsivi-app .result-card,
+#kisilik-arsivi-app .search-result,
+#kisilik-arsivi-app .empty-search{
+  background:#080808!important;
+  border-color:#2a2a2a!important;
+}
+#kisilik-arsivi-app .cat-name,
+#kisilik-arsivi-app .test-title,
+#kisilik-arsivi-app .question,
+#kisilik-arsivi-app .result-title,
+#kisilik-arsivi-app .search-result-title{
+  color:#fff!important;
+}
+#kisilik-arsivi-app .cat-desc,
+#kisilik-arsivi-app .quiz-meta,
+#kisilik-arsivi-app .result-text,
+#kisilik-arsivi-app .quiz-helper,
+#kisilik-arsivi-app .search-result-meta{
+  color:#bdbdbd!important;
+}
+#kisilik-arsivi-app .answers label{
+  background:#121212!important;
+  color:#f1f1f1!important;
+  border-color:#303030!important;
+}
+#kisilik-arsivi-app .answers input:checked + label{
+  color:#fff!important;
+  border-color:var(--cat-color,var(--amber))!important;
+  box-shadow:0 0 0 1px var(--cat-color,var(--amber)) inset;
+}
+#kisilik-arsivi-app .result-level{
+  background:#111!important;
+  color:#fff!important;
+  border-color:var(--cat-color,var(--amber))!important;
+}
+#kisilik-arsivi-app .result-detail{
+  background:#101010!important;
+  border:1px solid #2a2a2a!important;
+  border-left:4px solid var(--cat-color,var(--amber))!important;
+  color:#f0f0f0!important;
+}
+#kisilik-arsivi-app .result-detail-label{
+  color:var(--cat-color,var(--amber))!important;
+}
+#kisilik-arsivi-app .result-detail-text{
+  color:#d7d7d7!important;
+}
+#kisilik-arsivi-app .result-actions button{
+  background:#121212!important;
+  color:#f3f3f3!important;
+  border-color:#333!important;
+}
+#kisilik-arsivi-app .result-actions button.primary{
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+#kisilik-arsivi-app .backbtn{
+  background:#111!important;
+  color:#eee!important;
+}
+#kisilik-arsivi-app .archive-search{
+  background:#101010!important;
+  color:#fff!important;
+}
+#kisilik-arsivi-app .random-test-btn{
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+#kisilik-arsivi-app .brand-sub{
+  background:#0b0b0b!important;
+  color:#cfcfcf!important;
+}
+#kisilik-arsivi-app .seal{
+  background:#0b0b0b!important;
+}
+@media(max-width:560px){
+  #kisilik-arsivi-app .wrap{
+    padding-top:calc(16px + env(safe-area-inset-top))!important;
+  }
+  #kisilik-arsivi-app .brand{
+    margin-bottom:14px!important;
+    padding-bottom:14px!important;
+  }
+}
+</style>
+<style>
+/* REFERANS GÖRSEL TASARIMI */
+html,body{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  min-height:100%!important;
+  background:#000!important;
+}
+#kisilik-arsivi-app{
+  width:100vw!important;
+  min-height:100vh!important;
+  min-height:100dvh!important;
+  background:#000!important;
+  color:#fff!important;
+}
+#kisilik-arsivi-app .wrap{
+  width:100%!important;
+  max-width:860px!important;
+  min-height:100vh!important;
+  min-height:100dvh!important;
+  margin:0 auto!important;
+  padding:calc(10px + env(safe-area-inset-top)) 12px calc(44px + env(safe-area-inset-bottom))!important;
+  background:#000!important;
+}
+
+/* Ana başlığı gizle: referansta direkt buton + kategoriler */
+#kisilik-arsivi-app .brand{
+  display:none!important;
+}
+#kisilik-arsivi-app .intro,
+#kisilik-arsivi-app .archive-search-wrap,
+#kisilik-arsivi-app .search-results{
+  display:none!important;
+}
+
+/* Rastgele test en üstte */
+#kisilik-arsivi-app .archive-tools{
+  margin:0 0 18px!important;
+}
+#kisilik-arsivi-app .archive-actions{
+  display:block!important;
+  margin:0!important;
+}
+#kisilik-arsivi-app .random-test-btn{
+  width:100%!important;
+  height:58px!important;
+  border-radius:24px!important;
+  border:1px solid #343434!important;
+  background:#171717!important;
+  color:#fff!important;
+  font-size:1.08rem!important;
+  font-weight:800!important;
+  letter-spacing:-.01em!important;
+  box-shadow:none!important;
+}
+
+/* kategoriler */
+#kisilik-arsivi-app .cat-grid{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+  margin:0!important;
+}
+#kisilik-arsivi-app .cat-card{
+  position:relative!important;
+  min-height:146px!important;
+  padding:24px 22px 22px 30px!important;
+  border-radius:22px!important;
+  border:1px solid #292929!important;
+  background:#080808!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+#kisilik-arsivi-app .cat-card:before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  top:10px!important;
+  bottom:10px!important;
+  width:5px!important;
+  border-radius:0 6px 6px 0!important;
+  background:var(--cat-color,var(--amber))!important;
+}
+#kisilik-arsivi-app .cat-card:after{
+  content:""!important;
+  position:absolute!important;
+  width:118px!important;
+  height:118px!important;
+  right:-52px!important;
+  bottom:-56px!important;
+  border-radius:50%!important;
+  background:var(--cat-color,var(--amber))!important;
+  opacity:.10!important;
+}
+#kisilik-arsivi-app .cat-label{
+  margin:0 0 12px!important;
+  color:var(--cat-color,var(--amber))!important;
+  font-family:"Courier New",monospace!important;
+  font-size:.67rem!important;
+  font-weight:700!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+}
+#kisilik-arsivi-app .cat-name{
+  margin:0 0 11px!important;
+  color:#fff!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:2rem!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+}
+#kisilik-arsivi-app .cat-desc{
+  margin:0!important;
+  color:#9b9b9b!important;
+  font-size:.93rem!important;
+  line-height:1.45!important;
+}
+#kisilik-arsivi-app .cat-count{
+  display:none!important;
+}
+
+/* kategori iç ekran */
+#kisilik-arsivi-app .backbar{
+  margin:0 0 28px!important;
+}
+#kisilik-arsivi-app .backbtn{
+  min-height:48px!important;
+  padding:0 18px!important;
+  border-radius:18px!important;
+  border:1px solid #303030!important;
+  background:#151515!important;
+  color:#c8c8c8!important;
+  font-family:"Courier New",monospace!important;
+  font-size:.82rem!important;
+  box-shadow:none!important;
+}
+#kisilik-arsivi-app .list-header{
+  margin:0 0 28px!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:2.35rem!important;
+  line-height:1.05!important;
+  font-weight:700!important;
+  letter-spacing:-.035em!important;
+}
+#kisilik-arsivi-app .test-list{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  margin:0!important;
+}
+#kisilik-arsivi-app .test-card{
+  min-height:78px!important;
+  padding:15px 15px 15px 18px!important;
+  border-radius:19px!important;
+  border:1px solid #292929!important;
+  background:#080808!important;
+  gap:13px!important;
+  box-shadow:none!important;
+}
+#kisilik-arsivi-app .test-card:before{
+  content:""!important;
+  width:5px!important;
+  height:38px!important;
+  border-radius:999px!important;
+  background:var(--cat-color,var(--amber))!important;
+  flex:0 0 5px!important;
+}
+#kisilik-arsivi-app .test-no{
+  min-width:34px!important;
+  color:var(--cat-color,var(--amber))!important;
+  font-family:"Courier New",monospace!important;
+  font-size:.78rem!important;
+  font-weight:700!important;
+}
+#kisilik-arsivi-app .test-title{
+  flex:1!important;
+  color:#fff!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:1.14rem!important;
+  line-height:1.18!important;
+  font-weight:700!important;
+}
+#kisilik-arsivi-app .test-arrow{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px!important;
+  border-radius:50%!important;
+  background:#141414!important;
+  color:#8a8a8a!important;
+  font-size:1.25rem!important;
+}
+
+/* quiz ekranı da aynı çizgide */
+#kisilik-arsivi-app .quiz-card{
+  border-radius:22px!important;
+  border:1px solid #292929!important;
+  background:#080808!important;
+  padding:26px 18px 20px!important;
+}
+#kisilik-arsivi-app .question{
+  color:#fff!important;
+  font-size:1.45rem!important;
+}
+#kisilik-arsivi-app .answers label{
+  min-height:58px!important;
+  border-radius:16px!important;
+  border:1px solid #303030!important;
+  background:#121212!important;
+  color:#f2f2f2!important;
+}
+#kisilik-arsivi-app .nav-row button{
+  border-radius:16px!important;
+}
+
+/* sonuç ekranı netlik */
+#kisilik-arsivi-app .result-card{
+  border-radius:22px!important;
+  border:1px solid #2b2b2b!important;
+  background:#080808!important;
+  padding:30px 18px 24px!important;
+}
+#kisilik-arsivi-app .result-title{
+  color:#fff!important;
+}
+#kisilik-arsivi-app .result-text,
+#kisilik-arsivi-app .result-detail-text{
+  color:#d0d0d0!important;
+}
+#kisilik-arsivi-app .result-detail{
+  background:#101010!important;
+  border-color:#2b2b2b!important;
+}
+
+/* telefon ölçekleri */
+@media(max-width:560px){
+  #kisilik-arsivi-app .wrap{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+  #kisilik-arsivi-app .random-test-btn{
+    height:56px!important;
+    border-radius:21px!important;
+    font-size:1rem!important;
+  }
+  #kisilik-arsivi-app .cat-card{
+    min-height:138px!important;
+    padding:22px 18px 20px 28px!important;
+  }
+  #kisilik-arsivi-app .cat-name{
+    font-size:1.85rem!important;
+  }
+  #kisilik-arsivi-app .list-header{
+    font-size:2.1rem!important;
+  }
+  #kisilik-arsivi-app .test-card{
+    min-height:74px!important;
+    padding:14px 12px 14px 16px!important;
+  }
+  #kisilik-arsivi-app .test-title{
+    font-size:1.07rem!important;
+  }
+}
+@media(max-width:360px){
+  #kisilik-arsivi-app .cat-name{font-size:1.7rem!important}
+  #kisilik-arsivi-app .list-header{font-size:1.9rem!important}
+  #kisilik-arsivi-app .test-title{font-size:1rem!important}
+}
+</style>
+<p>
+<script>
+const CATS=[
+{id:'karakter',name:'Karakter',color:'#c1793d',dcolor:'#7c4a20',desc:'Kişiliğinin izini sür.'},
+{id:'iliski',name:'İlişki',color:'#b34567',dcolor:'#732b41',desc:'Bağlarının haritasını çıkar.'},
+{id:'sosyal',name:'Sosyal',color:'#297f77',dcolor:'#1a534d',desc:'Çevrendeki yerini keşfet.'},
+{id:'kariyer',name:'Kariyer',color:'#3a5aa0',dcolor:'#233a6b',desc:'İş hayatındaki profilini gör.'},
+{id:'beyin',name:'Beyin',color:'#6d4a97',dcolor:'#452f63',desc:'Zihninin çalışma biçimini öğren.'}
+];
+const ANSWERS=[{text:'Kesinlikle Evet',score:4},{text:'Çoğunlukla Evet',score:3},{text:'Bazen',score:2},{text:'Çoğunlukla Hayır',score:1},{text:'Kesinlikle Hayır',score:0}];
+function Q(cat,title,q,r,reverse=[]){return{cat,title,q,r,reverse}}
+const QUIZZES=[
+Q('karakter','Diplomatik Bir İnsan mısın?',[
+'Tartışmalar sırasında sakin kalabilir misin?','Farklı görüşlere saygı gösterir misin?','Sözlerini seçerken dikkatli misin?','Anlaşmazlıkları yapıcı şekilde çözebilir misin?','Orta yolu bulmaya çalışır mısın?','Gerilim yükseldiğinde ses tonunu kontrollü tutabilir misin?','İki tarafın da haklı olabileceği noktaları görebilir misin?','Eleştirini kırmadan ifade etmeye çalışır mısın?','Bir anlaşmazlıkta önce ortak noktaları arar mısın?','İnsanların yüzünü kurtarmasına alan tanır mısın?'],
+['Oldukça diplomatik birisin. Çatışmadan çok çözümden yanasın; bu yönün hem iş hem özel hayatında sana avantaj sağlıyor.','Orta düzeyde diplomatiksin. Bazen sakin kalabiliyor, bazen tepkilerin kontrolden çıkabiliyor. Biraz empati pratiği sana iyi gelir.','Diplomasi konusunda gelişime açıksın. Doğrudan olmak güçlü yanın olabilir ama biraz yumuşaklık ilişkilerini kolaylaştırır.']),
+Q('karakter','Liderlik Potansiyelin Ne Kadar Yüksek?',[
+'Zor kararları alma konusunda kendine güvenir misin?','Bir grubu yönlendirmekten keyif alır mısın?','Sorumluluk almaktan çekinmez misin?','Başkalarını motive edebilir misin?','Hatalarının sonuçlarını üstlenir misin?','Belirsizlikte ekibe yön gösterebilir misin?','Zor bir durumda ilk sorumluluğu üstlenir misin?','İnsanların güçlü yanlarını fark edip görevlendirebilir misin?','Kararlarının gerekçesini açıkça anlatabilir misin?','Başarıyı ekiple paylaşırken hatada sorumluluk alabilir misin?'],
+['Doğal bir liderlik potansiyeline sahipsin. İnsanları yönlendirme ve sorumluluk alma konusunda kendinden eminsin.','Liderlik özelliklerin gelişmeye devam ediyor. Doğru fırsatlarla bu yönünü güçlendirebilirsin.','Şu an liderlikten çok destek rolünü tercih ediyorsun; bu tamamen normal, gücünü fark etmen zaman alabilir.']),
+Q('karakter','Ne Kadar Sabırlısın?',[
+'Bekleme durumlarında rahat kalabilir misin?','Sonuç almak için uzun süre çalışabilir misin?','Kolay kolay sinirlenmez misin?','Başkalarının hatalarına tahammül edebilir misin?','Aceleci kararlar almaktan kaçınır mısın?','Yavaş ilerleyen bir süreçte motivasyonunu koruyabilir misin?','Birinin düşünmesini beklerken sözünü kesmeden durabilir misin?','Gecikmelerde hemen öfkelenmekten kaçınabilir misin?','Uzun vadeli hedeflerde küçük ilerlemeleri kabul edebilir misin?','Bir sorun çözülmediğinde tekrar denemeye devam eder misin?'],
+['Sabrın güçlü bir yönün. Zorluklar karşısında telaşlanmadan ilerlemeyi biliyorsun.','Sabrın durumdan duruma değişiyor. Bazı konularda daha toleranslı olman ilişkilerini rahatlatır.','Sabırsız bir yapın var. Bu seni hızlı yapar ama bazen aceleci kararlara da sürükleyebilir.']),
+Q('karakter','Mükemmeliyetçi Misin?',[
+'Yaptığın işlerde küçük hatalara bile takılır mısın?','Bir işi bitirmeden önce tekrar tekrar kontrol eder misin?','Başkalarından da yüksek standart bekler misin?','"Yeterince iyi" fikrini kabul etmekte zorlanır mısın?','Eleştiriyi kişisel algılar mısın?','Bir işi teslim etmek için kusursuz olmasını bekler misin?','Küçük bir hata tüm çalışmanı değersiz hissettirir mi?','Standartların yüzünden işleri geciktirdiğin olur mu?','Başkalarının hatalarını düzeltme ihtiyacı hisseder misin?','Başarılı olsan bile daha iyisini yapmalıydım diye düşünür müsün?'],
+['Yüksek düzeyde mükemmeliyetçisin. Kaliteye önem veriyorsun ama kendine biraz tolerans tanımak seni rahatlatır.','Dengeli bir mükemmeliyetçiliğin var. Standartların yüksek ama gerektiğinde esnek olabiliyorsun.','Mükemmeliyetçi değilsin, işleri olduğu gibi kabul ediyorsun. Bu seni rahat tutar ama bazen özen eksik kalabilir.']),
+Q('karakter','Ne Kadar Bağımsız Bir Ruhun Var?',[
+'Kararlarını başkalarına danışmadan alabilir misin?','Yalnız vakit geçirmekten keyif alır mısın?','Başkalarının onayına ihtiyaç duymaz mısın?','Kendi yolunu çizmeyi tercih eder misin?','Grup baskısına direnebilir misin?','Tek başına yeni bir yere gitmekte rahat mısın?','Çevren katılmasa da doğru bulduğun kararı sürdürebilir misin?','Kendi problemlerini önce kendin çözmeyi dener misin?','Seçimlerinde sosyal baskıyı geri planda tutabilir misin?','Yalnız kalmak sana rahatsızlık yerine alan kazandırır mı?'],
+['Güçlü bir bağımsız ruhun var. Kendi kararlarını kendin alıyor, başkalarının onayına ihtiyaç duymuyorsun.','Kısmen bağımsızsın ama zaman zaman başkalarının fikrine ihtiyaç duyuyorsun.','Kararlarında başkalarına çok güveniyorsun. Kendi sesini daha fazla dinlemeyi deneyebilirsin.']),
+Q('karakter','İçe mi Dışa mı Dönüksün?',[
+'Kalabalık ortamlarda enerjini mi topluyorsun?','Yeni insanlarla tanışmak seni heyecanlandırır mı?','Uzun sohbetlerden keyif alır mısın?','Sessizlik seni rahatsız etmez mi?','Grup etkinliklerine katılmayı tercih eder misin?','Yeni bir gruba girdiğinde konuşmayı başlatanlardan olur musun?','Uzun süre insanlarla birlikte olmak sana enerji verir mi?','Düşüncelerini konuşarak netleştirmeyi sever misin?','Hafta sonunu sosyal planlarla doldurmak seni mutlu eder mi?','Bir etkinlikte birçok kişiyle tanışmak sana doğal gelir mi?'],
+['Dışa dönük bir yapın var. Sosyal ortamlar seni besliyor ve enerjini artırıyor.','Duruma göre değişen bir yapın var; hem yalnızlıktan hem sosyal ortamlardan keyif alabiliyorsun.','İçe dönük bir yapın var. Yalnız kalarak enerji topluyor, derin ve az sayıda ilişkiyi tercih ediyorsun.'],[3]),
+Q('karakter','Ne Kadar Cesursun?',[
+'Bilinmeyene adım atmaktan çekinmez misin?','Riskli kararlar alabilir misin?','Fikrini açıkça söyleyebilir misin?','Başarısızlık korkusu seni durdurmaz mı?','Konfor alanından çıkmayı sever misin?','Korktuğun halde gerekli adımı atabilir misin?','Belirsiz bir fırsatı değerlendirmeye açık mısın?','Haksızlık gördüğünde fikrini söyleyebilir misin?','Yeni bir başlangıç için alıştığın düzeni bırakabilir misin?','Olumsuz sonuç ihtimali olsa da değer verdiğin şeyi savunur musun?'],
+['Cesur bir yapın var. Riskten kaçmıyor, bilinmeyene adım atmaktan çekinmiyorsun.','Orta düzeyde cesursun. Bazı konularda atılgan, bazılarında temkinlisin.','Temkinli bir yapın var. Güvenlik senin için önemli; bu da seni daha planlı yapıyor.']),
+Q('karakter','Empati Seviyen Nedir?',[
+'Başkalarının duygularını kolayca anlar mısın?','Birinin üzüldüğünü hemen fark eder misin?','Karşındakinin bakış açısını düşünür müsün?','Başkalarının acısını hissedebilir misin?','Yargılamadan dinleyebilir misin?','Birinin söylemediği duyguyu davranışlarından fark edebilir misin?','Tartışmada kendi haklılığından önce karşı tarafı anlamaya çalışır mısın?','Birinin sevincini kendi sevincin gibi paylaşabilir misin?','Farklı yaşam deneyimlerine sahip kişileri yargılamadan dinleyebilir misin?','Yardım etmeden önce karşındakinin neye ihtiyacı olduğunu sorar mısın?'],
+['Yüksek empati düzeyine sahipsin. İnsanların duygularını anlamakta ve onlara destek olmakta çok başarılısın.','Orta düzeyde empatiksin. Bazı durumlarda kendini karşındakinin yerine koymakta zorlanabiliyorsun.','Empati kurmakta zorlanabiliyorsun. Duygulardan çok mantığa odaklanman ilişkilerinde bazen yanlış anlaşılmalara yol açabilir.']),
+Q('karakter','Ne Kadar Disiplinlisin?',[
+'Planlarına sadık kalabilir misin?','Ertelemeden işe başlayabilir misin?','Rutinlerini sürdürebilir misin?','Hedeflerine odaklanabilir misin?','Kısa vadeli zevkleri erteleyebilir misin?','Canın istemese de planladığın işi yapabilir misin?','Bir alışkanlığı haftalar boyunca sürdürebilir misin?','Dikkat dağıtıcıları çalışırken uzaklaştırabilir misin?','Kendine koyduğun kuralları kimse görmese de uygular mısın?','Bir gün aksattığında ertesi gün yeniden düzene dönebilir misin?'],
+['Yüksek disipline sahipsin. Hedeflerine odaklanıyor ve planlarını istikrarla sürdürüyorsun.','Disiplinin duruma göre değişiyor. Bazen motivasyonun düşüyor ama genelde toparlanabiliyorsun.','Disiplin konusunda zorlanıyorsun. Anlık kararlar ve esneklik senin için daha doğal.']),
+Q('karakter','Yaratıcılık Seviyen Nedir?',[
+'Sıra dışı fikirler üretir misin?','Sorunlara alışılmadık çözümler bulur musun?','Hayal gücünü sık kullanır mısın?','Kuralların dışına çıkmaktan çekinmez misin?','Yeni şeyler denemekten keyif alır mısın?','Aynı soruna birden fazla çözüm üretebilir misin?','Farklı alanlardan fikirleri birleştirmeyi sever misin?','Boş bir sayfadan yeni bir şey üretmek seni heyecanlandırır mı?','Alışılmış bir yöntemi değiştirmeyi sık düşünür müsün?','Fikirlerin ilk anda garip görünse de geliştirmeye devam eder misin?'],
+['Yüksek yaratıcılığa sahipsin. Fikirlerin özgün, çözümlerin sıra dışı.','Yaratıcılığın belirli alanlarda ortaya çıkıyor. Daha fazla deneme alanı yaratman iyi gelir.','Daha pratik ve yapılandırılmış bir zihne sahipsin. Yaratıcılık önceliğin değil ama gerektiğinde ortaya çıkabiliyor.']),
+Q('karakter','Özgüven Seviyen Ne Kadar?',[
+'Yeni bir ortama girdiğinde kendinden emin davranır mısın?','Fikirlerini başkalarının onayına ihtiyaç duymadan savunabilir misin?','Eleştiri aldığında değerini sorgulamadan dinleyebilir misin?','Başarısız olduğunda yeniden denemeye devam eder misin?','Güçlü yönlerini rahatça söyleyebilir misin?','Karar verirken kendine güvenebilir misin?','Başkalarıyla kıyaslanmak seni kolayca sarsmaz mı?','Hata yaptığında kendine karşı yapıcı olabilir misin?','Yeni sorumluluklar almaya gönüllü olur musun?','Kendini olduğun kişi olarak kabul edebiliyor musun?'],
+['Özgüvenin güçlü görünüyor. Kendine inanıyor ve dış onaya fazla bağlı kalmadan ilerleyebiliyorsun.','Özgüvenin duruma göre değişiyor. Güçlü olduğun alanları daha görünür kılmak sana iyi gelebilir.','Özgüven konusunda gelişim alanın var. Küçük başarıları fark etmek ve kendine verdiğin sözleri tutmak iyi bir başlangıç olabilir.']),
+Q('karakter','Değişime Ne Kadar Açıksın?',[
+'Planların değiştiğinde kolayca uyum sağlayabilir misin?','Yeni fikirleri eski alışkanlıklarına tercih edebilir misin?','Bilmediğin bir yöntemi denemekten çekinmez misin?','Fikrinin yanlış olduğunu fark ettiğinde değiştirebilir misin?','Yeni ortamlara adapte olmak seni heyecanlandırır mı?','Rutinlerini gerektiğinde değiştirebilir misin?','Beklenmedik durumlarda çözüm üretmeye odaklanır mısın?','Farklı yaşam tarzlarına merak duyar mısın?','Geçmişte işe yarayan bir yöntemi bırakman gerekirse bırakabilir misin?','Belirsizlik karşısında tamamen kapanmak yerine keşfetmeyi seçer misin?'],
+['Değişime oldukça açıksın. Yenilikleri tehditten çok fırsat olarak görüyorsun.','Değişime kısmen açıksın; kontrol sende olduğunda daha rahat adapte oluyorsun.','Değişim seni zorlayabiliyor. Küçük ve kontrollü yeniliklerle esnekliğini artırabilirsin.']),
+Q('karakter','Sorumluluk Bilincin Ne Kadar Güçlü?',[
+'Verdiğin sözleri yerine getirmeye önem verir misin?','Bir hata yaptığında sorumluluğunu üstlenir misin?','Kimse kontrol etmese de görevini tamamlar mısın?','Başladığın işleri yarım bırakmamaya çalışır mısın?','Sonuçlarını düşünerek karar verir misin?','Başkalarını etkileyen görevlerde daha dikkatli olur musun?','Geciktiğinde bunu açıkça söyler misin?','Bahane üretmek yerine çözüm arar mısın?','Sana emanet edilen şeylere özen gösterir misin?','Uzun vadeli yükümlülüklerini takip eder misin?'],
+['Sorumluluk bilincin oldukça güçlü. Güvenilir ve hesap verebilir bir profil çiziyorsun.','Genelde sorumluluk sahibisin ama yoğunluk arttığında bazı şeyleri erteleyebiliyorsun.','Sorumluluklarını düzenli takip etmekte zorlanabiliyorsun. Daha küçük ve net taahhütler işini kolaylaştırabilir.']),
+Q('karakter','Öz Farkındalığın Ne Kadar Yüksek?',[
+'Duygularının nedenini çoğu zaman anlayabilir misin?','Güçlü ve zayıf yönlerini gerçekçi değerlendirebilir misin?','Bir davranışının başkalarını nasıl etkilediğini fark eder misin?','Tetiklendiğin durumları tanıyor musun?','Yanlış yaptığında bunu kendine itiraf edebilir misin?','Hangi ortamlarda daha iyi performans verdiğini biliyor musun?','Enerjini düşüren alışkanlıkları fark eder misin?','Kendine dışarıdan bakmaya çalışır mısın?','Kararlarının arkasındaki gerçek motivasyonu sorgular mısın?','Zaman içinde nasıl değiştiğini gözlemliyor musun?'],
+['Öz farkındalığın yüksek. Kendini gözlemleyebilmen gelişimini hızlandıran önemli bir güç.','Kendini birçok konuda tanıyorsun ancak bazı tepkilerinin nedenini sonradan fark ediyorsun.','Kendini gözlemlemeye daha fazla alan açman faydalı olabilir. Günlük tutmak veya düzenli değerlendirme yapmak yardımcı olur.']),
+Q('karakter','Ne Kadar Kararlısın?',[
+'Bir hedef koyduğunda uzun süre devam edebilir misin?','Zorluk çıktığında hemen vazgeçmez misin?','Karar verdikten sonra gereksiz tereddütleri azaltabilir misin?','Motivasyonun düşse de çalışmaya devam eder misin?','Sonuç geç geldiğinde sabrını korur musun?','Engeller karşısında alternatif yol bulur musun?','Başkalarının şüphesi seni kolayca durdurmaz mı?','Başladığın projeyi bitirmeye önem verir misin?','Kısa vadeli rahatlık yerine uzun vadeli hedefi seçebilir misin?','Başarısız bir denemeden sonra yeniden başlayabilir misin?'],
+['Kararlılığın oldukça yüksek. Hedeflerine bağlı kalma gücün seni uzun vadede öne çıkarabilir.','Kararlısın fakat motivasyon değişimleri hızını etkileyebiliyor. Sistem kurmak devamlılığını güçlendirebilir.','Hedeflere bağlı kalmakta zorlanabiliyorsun. Daha küçük adımlar ve net takip sistemi sana yardımcı olabilir.']),
+Q('karakter','Ne Kadar Alçakgönüllüsün?',[
+'Başarılarını anlatırken abartıdan kaçınır mısın?','Başkasının senden daha iyi olduğunu kabul edebilir misin?','Bilmediğin bir konuda rahatça bilmiyorum diyebilir misin?','Eleştiriden öğrenmeye açık mısın?','Takım başarısında başkalarının katkısını belirtir misin?','Hata yaptığında özür dilemekte zorlanmaz mısın?','Övgü aldığında bunu doğal karşılayabilir misin?','Kendini herkesten üstün görmemeye dikkat eder misin?','Deneyimsiz birinden de bir şey öğrenebileceğini düşünür müsün?','Başarı kadar şansa ve koşullara da pay verir misin?'],
+['Alçakgönüllü bir yapın var. Güçlü yönlerini bilirken başkalarına da alan tanıyorsun.','Genelde dengelisin; bazı başarılarında görünür olma isteğin artabiliyor.','Kendini kanıtlama ihtiyacın bazen öne çıkıyor olabilir. Başkalarının katkısını daha fazla fark etmek denge sağlayabilir.']),
+Q('karakter','Ne Kadar Esneksin?',[
+'Planın bozulduğunda hızlıca yeni plan yapabilir misin?','İnsanların farklı çalışma tarzlarına uyum sağlayabilir misin?','Bir fikre gereğinden fazla bağlanmaktan kaçınır mısın?','Beklenmedik değişikliklerde sakin kalabilir misin?','Aynı hedefe farklı yollarla ulaşmayı kabul eder misin?','Kurallar gerektiğinde yeniden değerlendirilebilir mi sence?','Yeni bilgiler geldiğinde kararını güncelleyebilir misin?','Farklı görüşlerden işe yarayan parçaları alabilir misin?','Kontrol edemediğin şeyleri kabullenebilir misin?','Bir sorun için birden fazla çözüm düşünebilir misin?'],
+['Oldukça esneksin. Değişen koşullara uyum sağlama becerin güçlü.','Esnekliğin duruma göre değişiyor; bazı konularda kolay uyum sağlarken bazılarında direnç gösterebiliyorsun.','Belirsizlik ve değişim seni zorlayabiliyor. Alternatif planlar hazırlamak kendini daha güvende hissettirebilir.']),
+Q('karakter','Rekabetçi Misin?',[
+'Bir yarış ortamı performansını artırır mı?','Başkalarının başarısı seni daha çok çalışmaya motive eder mi?','Kazanmak senin için önemli midir?','Kendi rekorunu aşmaya çalışır mısın?','Hedefleri karşılaştırmalı görmek seni harekete geçirir mi?','Kaybettiğinde yeniden denemek ister misin?','Rekabet sırasında kurallara bağlı kalır mısın?','Bir rakibin güçlü yönlerinden öğrenebilir misin?','Başarı sıralamaları ilgini çeker mi?','Rekabeti kişisel düşmanlığa dönüştürmeden sürdürebilir misin?'],
+['Rekabet seni güçlü biçimde motive ediyor. Doğru yönetildiğinde bu enerji performansını artırabilir.','Dengeli bir rekabet anlayışın var; gerektiğinde yarışıyor, gerektiğinde kendi tempona dönüyorsun.','Rekabet senin temel motivasyonun değil. Daha çok kendi standartların ve içsel hedeflerinle ilerliyorsun.']),
+Q('karakter','İyimserlik Seviyen Nedir?',[
+'Zor bir durumda çözüm ihtimalini görebilir misin?','Gelecek konusunda genel olarak umutlu musun?','Bir hata sonrası iyi tarafları da fark eder misin?','Kötü bir günün kalıcı olmadığını hatırlayabilir misin?','İnsanların iyi niyetli olabileceğini düşünür müsün?','Yeni başlangıçlara olumlu yaklaşır mısın?','Başarısızlığı öğrenme fırsatı olarak görebilir misin?','Olumsuz haberlerin tüm bakış açını belirlemesine izin vermez misin?','Küçük güzel şeyleri fark eder misin?','Zor dönemlerde bile ileride düzelme ihtimaline inanır mısın?'],
+['İyimserliğin yüksek. Zorluklarda bile ihtimalleri görebilmen psikolojik dayanıklılığına katkı sağlıyor.','Gerçekçi bir iyimserliğin var; hem riskleri hem fırsatları görebiliyorsun.','Olumsuz ihtimallere daha fazla odaklanıyor olabilirsin. Küçük olumlu gelişmeleri bilinçli olarak fark etmek denge sağlayabilir.']),
+Q('karakter','Öz Kontrolün Ne Kadar Güçlü?',[
+'Öfkelendiğinde hemen tepki vermek yerine bekleyebilir misin?','Harcamalarını kontrol edebilir misin?','Dikkatini dağıtan şeylere hayır diyebilir misin?','Sağlıklı bir alışkanlığı uzun süre sürdürebilir misin?','Anlık isteklere rağmen planına bağlı kalabilir misin?','Tartışmada söyleyeceğin sözü seçebilir misin?','Telefon kullanımına sınır koyabilir misin?','Yorgun olduğunda bile önemli işlerini tamamlayabilir misin?','Kötü bir alışkanlığı fark ettiğinde durdurmaya çalışır mısın?','Duyguların yoğunken büyük kararları erteleyebilir misin?'],
+['Öz kontrolün oldukça güçlü. Dürtülerini yönetip uzun vadeli hedeflerini koruyabiliyorsun.','Öz kontrolün çoğu zaman iyi ancak stres ve yorgunluk dönemlerinde zorlanabiliyorsun.','Anlık dürtüler planlarını sık sık değiştirebiliyor. Çevresel tetikleyicileri azaltmak ve küçük kurallar koymak yardımcı olabilir.']),
+Q('iliski','Bağlanma Stilin Nedir?',[
+'Partnerine kolayca güvenebilir misin?','Yalnız kalma fikri seni endişelendirmez mi?','Duygularını açıkça paylaşabilir misin?','İlişkide kendini güvende hisseder misin?','Terk edilme korkusu yaşamaz mısın?','Yakınlık arttığında kendini rahat hisseder misin?','Partnerinin senden ayrı zaman geçirmesini doğal karşılar mısın?','İhtiyaç duyduğunda destek istemekte rahat mısın?','Bir sorun olduğunda uzaklaşmak yerine konuşabilir misin?','Sevildiğine dair sürekli kanıt aramadan ilişkide kalabilir misin?'],
+['Güvenli bir bağlanma stiline sahipsin. Yakınlık kurmak ve güvenmek senin için doğal.','Bağlanma stilin durumsal değişebiliyor. Güven inşa etmek biraz zaman alabiliyor.','Bağlanmakta zorlanıyor olabilirsin. Geçmiş deneyimler güven kurmanı zorlaştırıyor olabilir; kendine zaman tanı.']),
+Q('iliski','Kıskançlık Seviyen Nedir?',[
+'Partnerinin başkalarıyla vakit geçirmesi seni rahatsız eder mi?','Telefonunu kontrol etme isteği duyar mısın?','Kendini başkalarıyla kıyaslar mısın?','Güvensizlik hissi sık yaşar mısın?','Partnerinin geçmişi seni rahatsız eder mi?','Partnerinin yeni biriyle yakın konuşması seni huzursuz eder mi?','Mesajlara geç cevap vermesi sende şüphe yaratır mı?','Sosyal medyadaki etkileşimlerini takip etme isteği duyar mısın?','İlişkide üçüncü kişilerle kendini sık kıyaslar mısın?','Kıskandığında bunu kontrol etmekte zorlanır mısın?'],
+['Kıskançlık seviyen oldukça yüksek. Güven konusunda kendinle çalışman ilişkine iyi gelebilir.','Zaman zaman kıskanıyorsun ama genelde kontrol edebiliyorsun.','Kıskançlık senin için büyük bir sorun değil. Güvenin sağlam; bu da ilişkine huzur katıyor.']),
+Q('iliski','İyi Bir Dinleyici Misin?',[
+'Karşındaki konuşurken sözünü kesmez misin?','Söylenenleri gerçekten anlamaya çalışır mısın?','Beden diliyle ilgi gösterir misin?','Cevap vermeden önce dinler misin?','Konuşulan detayları hatırlar mısın?','Karşındaki konuşurken telefonunu bir kenara bırakır mısın?','Duyduğunu kendi cümlelerinle özetleyebilir misin?','Konuşmanın arasındaki duyguyu fark etmeye çalışır mısın?','Hemen çözüm vermek yerine neye ihtiyacı olduğunu sorar mısın?','Bir konuşmada karşı tarafa yeterli alan bırakır mısın?'],
+['Çok iyi bir dinleyicisin. Karşındaki kendini anlaşılmış hissediyor.','Dinleme becerin fena değil ama bazen dikkatin dağılabiliyor.','Dinlemekten çok konuşmayı tercih ediyorsun. Aktif dinleme pratiği ilişkilerine katkı sağlar.']),
+Q('iliski','Sevgini Nasıl İfade Edersin?',[
+'Sevgini sözlerle ifade etmeyi sever misin?','Fiziksel yakınlık senin için önemli mi?','Küçük jestlerle ilgi göstermeyi sever misin?','Zaman ayırmak senin için sevginin göstergesi mi?','Hediyelerle sevgini gösterir misin?','Sevdiğin kişiye bunu günlük davranışlarınla gösterir misin?','Onun için anlamlı olan sevgi biçimini öğrenmeye çalışır mısın?','Yoğun olduğunda bile küçük bir ilgi göstermeyi önemser misin?','Takdir ettiğin şeyleri açıkça söyler misin?','Birlikte kaliteli zaman yaratmayı bilinçli olarak planlar mısın?'],
+['Sevgini yoğun ve çok yönlü şekilde ifade ediyorsun; partnerin kendini oldukça değerli hissediyor olmalı.','Sevgini dengeli bir şekilde gösteriyorsun, duruma göre farklı yollar tercih ediyorsun.','Sevgini göstermekte daha çekingensin. Küçük adımlarla başlamak fark yaratabilir.']),
+Q('iliski','İlişkide Ne Kadar Bağımsızsın?',[
+'Kendi zamanına ihtiyaç duyar mısın?','Partnerinden bağımsız hobilerin var mı?','Kararlarını tek başına alabilir misin?','Kendi arkadaş çevren var mı?','İlişki dışında kimliğini koruyabiliyor musun?','Partnerin olmadan da keyif aldığın planlar yapabilir misin?','Kendi hedeflerini ilişki içinde sürdürebilir misin?','Her kararı birlikte almak zorunda hissetmez misin?','Kendi düşüncelerini partnerinden farklı olsa da koruyabilir misin?','İlişkide kişisel alanın iki taraf için de gerekli olduğunu düşünür müsün?'],
+['İlişkide sağlıklı bir bağımsızlığın var. Kendi kimliğini koruyarak ilişkine değer katıyorsun.','Bağımsızlığın kısmi. Bazen kendini partnerine fazla bağlı hissedebiliyorsun.','İlişkide fazlasıyla iç içe geçmiş olabilirsin. Kendine ayıracağın zaman ilişkini güçlendirir.']),
+Q('iliski','Güven Sorunun Var mı?',[
+'Partnerine kolayca inanır mısın?','Geçmiş hayal kırıklıkları seni etkilemiyor mu?','Kanıt aramadan güvenebilir misin?','Şüphe seni nadiren ziyaret eder mi?','Kontrol etme ihtiyacı duymaz mısın?','Partnerinin söylediğini tekrar tekrar doğrulama ihtiyacı hisseder misin?','Belirsizlik olduğunda en kötü ihtimali düşünür müsün?','Geç cevap aldığında şüpheye kapılır mısın?','Partnerinin özel alanı seni huzursuz eder mi?','Geçmişte yaşadıklarını yeni ilişkiye taşıdığını hisseder misin?'],
+['Güven sorunların olabilir. Bu geçmişten geliyor olabilir, üzerinde çalışmak ilişkilerine iyi gelir.','Güven konusunda zaman zaman tereddüt yaşıyorsun; bu tamamen insani.','Güven konusunda sağlıklı bir yerdesin. Şüpheden çok inanmayı tercih ediyorsun.'],[0,1,2,3,4]),
+Q('iliski','Ne Kadar Romantiksin?',[
+'Sürpriz yapmayı sever misin?','Küçük anları özel kılmaya çalışır mısın?','Aşk filmleri veya şarkıları seni duygulandırır mı?','Yıldönümü gibi tarihleri önemser misin?','Sözlü sevgi ifadeleri kullanır mısın?','Sıradan bir günü küçük bir jestle özel hale getirir misin?','Sevdiğin kişinin hoşlandığı ayrıntıları hatırlar mısın?','Birlikte anı biriktirmeye önem verir misin?','Duygularını yaratıcı yollarla göstermeyi sever misin?','Özel gün dışında da sürpriz yapar mısın?'],
+['Oldukça romantiksin. İlişkine dokunuşlar katmayı seviyorsun ve bu partnerini mutlu ediyor.','Ölçülü bir romantizmin var. Bazen jestlerle bazen sözlerle sevgini gösteriyorsun.','Pratik bir sevgi anlayışın var; romantizm önceliğin değil ama sevgini başka yollarla gösteriyorsun.']),
+Q('iliski','Çatışma Çözme Becerin Nasıl?',[
+'Tartışmadan sonra barışmayı kolayca başarır mısın?','Suçlamak yerine çözüm arar mısın?','Öfkeni kontrol edebilir misin?','Karşındakinin haklı olabileceğini kabul edebilir misin?','Konuyu büyütmeden çözer misin?','Tartışmada asıl konudan sapmamaya çalışır mısın?','Sakinleşmek gerektiğinde kısa bir mola verebilir misin?','Ben dili kullanarak derdini anlatabilir misin?','Çözümden sonra aynı konuyu silah olarak kullanmaktan kaçınır mısın?','İki tarafın da kabul edebileceği bir çözüm arar mısın?'],
+['Çatışma çözme becerin gayet gelişmiş. Anlaşmazlıkları büyütmeden, çözüme odaklanarak yönetiyorsun.','Bazen çözüme odaklanıyor, bazen duygularına yeniliyorsun. Sakin kalmayı hedefleyebilirsin.','Çatışmalar seni zorluyor. Anda kalmak yerine geri adım atmayı öğrenmek sana iyi gelebilir.']),
+Q('iliski','İlişkiye Hazır mısın?',[
+'Kendi hayatından memnun musun?','Bir başkasıyla sorumluluk paylaşmaya hazır mısın?','Geçmiş ilişkileri geride bıraktın mı?','Duygusal olarak istikrarlı hissediyor musun?','Zaman ve enerji ayırmaya hazır mısın?','Bir ilişki olmadan da hayatını sürdürebildiğini hissediyor musun?','Beklentilerini açıkça konuşmaya hazır mısın?','Sınır koyup karşı tarafın sınırlarına saygı gösterebilir misin?','Yeni bir kişiyi geçmiş ilişkilerinle kıyaslamadan tanıyabilir misin?','İlişkinin emek istediğini kabul ediyor musun?'],
+['İlişkiye oldukça hazırsın. Duygusal olarak dengeli ve açık görünüyorsun.','Kısmen hazırsın. Bazı konularda kendine biraz daha zaman tanıman faydalı olabilir.','Şu an kendine odaklanman daha faydalı olabilir. Önce kendinle bir ilişki kurman iyi gelir.']),
+Q('iliski','Ne Kadar Fedakarsın?',[
+'Partnerinin ihtiyaçlarını kendi ihtiyaçlarının önüne koyar mısın?','Onun mutluluğu için fedakarlık yapar mısın?','Kendi isteklerinden vazgeçebilir misin?','Zor zamanlarında yanında olur musun?','Karşılık beklemeden verebilir misin?','Sevdiğin biri için zamanından vazgeçebilir misin?','Zor durumda kendi rahatını ikinci plana atabilir misin?','Karşılık beklemeden destek sunabilir misin?','Fedakarlık yaparken kendi sınırlarını da koruyabilir misin?','Birinin ihtiyacı gerçekten daha önemliyse önceliği ona verebilir misin?'],
+['Oldukça fedakarsın. Kendi ihtiyaçlarını da unutmamak dengeyi korumana yardımcı olur.','Dengeli bir fedakarlığın var; hem kendini hem partnerini gözetiyorsun.','Kendi ihtiyaçların senin için öncelikli. Bu sağlıklı bir sınır olabilir ama paylaşımı artırmak ilişkini güçlendirebilir.']),
+Q('iliski','Sınır Koyma Becerin Nasıl?',[
+'Rahatsız olduğun bir davranışa hayır diyebilir misin?','Kendi özel alanına ihtiyaç duyduğunu söyleyebilir misin?','Suçluluk duymadan istemediğin bir şeyi reddedebilir misin?','Karşındakinin sınırlarına da saygı gösterir misin?','Sınırın aşıldığında bunu açıkça ifade eder misin?','İlişkide her şeyi paylaşmak zorunda olmadığını kabul eder misin?','Kendi zamanını koruyabilir misin?','Baskı gördüğünde kararını savunabilir misin?','Sevgi ile sınırsız fedakarlığı ayırabilir misin?','Sınır koyarken saygılı kalabilir misin?'],
+['Sınır koyma becerin güçlü. Yakınlık kurarken kendi alanını da koruyabiliyorsun.','Bazı konularda sınırlarını net ifade ediyorsun, bazı konularda zorlanabiliyorsun.','Sınırlarını korumakta zorlanıyor olabilirsin. Küçük ve net hayırlarla başlamak faydalı olabilir.']),
+Q('iliski','Duygusal İletişimin Ne Kadar Güçlü?',[
+'Hislerini açık ve anlaşılır anlatabilir misin?','Kırıldığında bunu içine atmak yerine konuşur musun?','Karşındakinin duygusunu dinlerken savunmaya geçmez misin?','Ne istediğini doğrudan söyleyebilir misin?','Zor konuşmaları ertelememeye çalışır mısın?','Duygularını suçlama dili kullanmadan aktarabilir misin?','Yanlış anlaşıldığında sakin biçimde açıklama yapar mısın?','Duygusal konuşmalarda göz teması kurabilir misin?','Partnerinin hislerini küçümsemekten kaçınır mısın?','Konuşmanın sonunda ortak bir anlayış arar mısın?'],
+['Duygusal iletişimin oldukça güçlü. Açıklık ve dinleme becerin ilişkilerine derinlik katıyor.','Genelde iyi iletişim kuruyorsun ancak yoğun duygularda zorlanabiliyorsun.','Duygularını ifade etmekte zorlanıyor olabilirsin. Kısa ve net cümlelerle başlamak iletişimini kolaylaştırabilir.']),
+Q('iliski','Affetme Eğilimin Nasıl?',[
+'Bir özür samimiyse ikinci şans verebilir misin?','Eski tartışmaları sürekli gündeme getirmekten kaçınır mısın?','Hata ile kötü niyeti ayırabilir misin?','Kırgınlığın azaldığında bunu fark eder misin?','Affetmenin unutmak anlamına gelmediğini kabul eder misin?','Öfkeyi uzun süre taşımak yerine bırakmayı tercih eder misin?','Kendi hataların için de kendini affedebilir misin?','Birinin değiştiğini davranışlarından görebilir misin?','Güven yeniden kurulabiliyorsa buna zaman tanır mısın?','Affetmeden önce kendi sınırlarını korur musun?'],
+['Affetme konusunda dengeli ve olgunsun. Hem sınırlarını koruyor hem de değişime alan tanıyabiliyorsun.','Bazı durumlarda kolay affediyor, bazı kırgınlıkları ise uzun süre taşıyabiliyorsun.','Kırgınlıkları bırakmak senin için zor olabilir. Affetmenin karşı tarafı haklı çıkarmak değil, yükü azaltmak olduğunu hatırlamak yardımcı olabilir.']),
+Q('iliski','İlişkide Güven İnşa Edebilir misin?',[
+'Söz verdiğinde yerine getirmeye çalışır mısın?','Partnerine karşı tutarlı davranır mısın?','Gizli oyunlar yerine açık iletişimi tercih eder misin?','Hata yaptığında gerçeği söyleyebilir misin?','Karşındakinin özel bilgilerini korur musun?','Şüphe duyduğunda doğrudan sormayı tercih eder misin?','Partnerinin bağımsız alanına saygı gösterebilir misin?','Davranışlarınla sözlerin uyumlu mudur?','Zaman içinde güveni sabırla inşa edebilir misin?','Güveni bozan bir durumda sorumluluk alabilir misin?'],
+['Güven inşa etme becerin güçlü. Tutarlılık ve açıklık ilişkilerinde sağlam bir temel oluşturuyor.','Güven konusunda genelde iyisin ancak bazı durumlarda şüphe veya tutarsızlık yaşayabiliyorsun.','Güven oluşturmakta zorlanıyor olabilirsin. Küçük sözleri tutmak ve açık iletişim kurmak iyi bir başlangıçtır.']),
+Q('iliski','İlişkide Beklentilerin Ne Kadar Gerçekçi?',[
+'Partnerinin her ihtiyacını karşılayamayacağını kabul eder misin?','Tartışmasız bir ilişki beklemez misin?','Karşındaki kişinin kusurları olabileceğini kabul eder misin?','Her zaman aynı yoğunlukta ilgi beklememeye çalışır mısın?','Kendi mutluluğunun tamamını ilişkiye yüklemez misin?','Partnerinin ayrı hedefleri olmasını destekler misin?','Zaman zaman yalnız kalma ihtiyacını normal görür müsün?','İlişkinin emek ve iletişim gerektirdiğini düşünür müsün?','Sorunları tek bir kişi çözmek zorunda değildir diye düşünür müsün?','Sevginin her konuda aynı düşünmek anlamına gelmediğini kabul eder misin?'],
+['Beklentilerin oldukça gerçekçi. İlişkiyi idealize etmeden değer vermeyi biliyorsun.','Beklentilerin çoğunlukla dengeli ancak bazı konularda yüksek standartların olabilir.','İlişkiden çok fazla şey bekliyor olabilirsin. Karşılıklılık ve gerçekçilik üzerine düşünmek ilişkilerini rahatlatabilir.']),
+Q('iliski','İlişkide Destekleyici Misin?',[
+'Partnerinin hedeflerini dinler misin?','Başarılarını içtenlikle kutlar mısın?','Zor günlerinde yanında olmaya çalışır mısın?','Onun adına karar vermek yerine seçeneklerini destekler misin?','Gelişimini kıskanmak yerine teşvik eder misin?','İhtiyacı olduğunda yardım teklif eder misin?','Sadece çözüm değil, bazen dinleme de sunabilir misin?','Kendi sınırların içinde destek vermeyi başarabilir misin?','Partnerinin güçlü yönlerini hatırlatır mısın?','Başarısız olduğunda yargılamak yerine cesaretlendirir misin?'],
+['Oldukça destekleyici bir partnersin. Karşındaki kişinin gelişimine alan açıyorsun.','Genelde destekleyicisin ama bazen kendi ihtiyaçların veya stresin bunu zorlaştırabiliyor.','Destek vermekte mesafeli kalabiliyor olabilirsin. Daha fazla dinlemek ve küçük teşvikler göstermek fark yaratabilir.']),
+Q('iliski','İlişkide Ne Kadar Açık Sözlüsün?',[
+'Rahatsız olduğun şeyi doğrudan söyleyebilir misin?','İma etmek yerine net konuşmayı tercih eder misin?','Duygularını saklamadan ama saygılı biçimde ifade eder misin?','Ne istediğini açıkça anlatabilir misin?','Yanlış anlaşılmaları hızlıca düzeltir misin?','Gelecekle ilgili beklentilerini paylaşır mısın?','Bir konuda fikrin değiştiğinde bunu söyleyebilir misin?','Hayır demen gerektiğinde açık olabilir misin?','Zor gerçekleri uygun bir dille söyleyebilir misin?','Açık sözlülük ile kırıcı olmayı ayırabilir misin?'],
+['Açık ve net iletişim kurabiliyorsun. Bu özellik belirsizlikleri azaltıyor.','Genelde açıksın ancak hassas konularda dolaylı davranabiliyorsun.','Düşüncelerini açıkça söylemekte zorlanıyor olabilirsin. Daha küçük konularda netlik pratiği yapabilirsin.']),
+Q('iliski','İlişkide Sabır Seviyen Nedir?',[
+'Partnerinin zor bir gününde anlayış gösterebilir misin?','Bir sorunun çözülmesi zaman aldığında bekleyebilir misin?','Karşındaki hemen cevap vermediğinde sakin kalabilir misin?','Küçük alışkanlık farklılıklarına tolerans gösterebilir misin?','Tartışmada hemen sonuç almak istemez misin?','Partnerinin gelişim sürecine zaman tanır mısın?','Aynı konuyu birkaç kez konuşmak gerekirse sürdürebilir misin?','Yoğun dönemde azalan ilgiye anlayış gösterebilir misin?','Öfkelendiğinde konuşmayı kısa süre erteleyebilir misin?','İlişkinin zaman içinde olgunlaştığını kabul eder misin?'],
+['İlişkide oldukça sabırlısın. Duygusal süreçlere zaman tanıyabiliyorsun.','Sabrın çoğu zaman iyi ama bazı konular seni hızlı tetikleyebiliyor.','İlişkide aceleci davranabiliyor olabilirsin. Tepki vermeden önce kısa bir bekleme alanı yaratmak yardımcı olabilir.']),
+Q('iliski','Geçmişi Geride Bırakabiliyor musun?',[
+'Eski ilişkileri sürekli yeni ilişkinle kıyaslamaz mısın?','Geçmişteki hataları tekrar tekrar düşünmekten kaçınabilir misin?','Eski kırgınlıkların bugünkü davranışlarını yönetmesine izin vermez misin?','Yeni bir kişiye geçmişteki birinin hatalarını yüklememeye çalışır mısın?','Eski fotoğraf ve mesajlara takılı kalmadan ilerleyebilir misin?','Yaşadığın deneyimlerden ders çıkarıp yoluna devam edebilir misin?','Bir kapanış olmadığında kendi içinde kapanış yaratabilir misin?','Geçmişteki güzel anıları kabul edip bugünde kalabilir misin?','Eski bir ilişkinin bitişini kişisel değerinle eşitlemez misin?','Yeni başlangıçlara duygusal alan açabilir misin?'],
+['Geçmişi büyük ölçüde geride bırakabiliyorsun. Deneyimlerinden öğrenip bugüne dönebiliyorsun.','Bazı anıları bıraktın ama bazıları hâlâ bugünkü kararlarını etkileyebiliyor.','Geçmiş deneyimler bugünkü ilişkilerini yoğun biçimde etkiliyor olabilir. Kendine zaman tanımak ve duyguları işlemeye alan açmak faydalıdır.']),
+Q('iliski','İlişkide Karşılıklılık Senin İçin Ne Kadar Önemli?',[
+'Emek vermenin iki taraflı olması gerektiğini düşünür müsün?','Sadece sen çaba gösterdiğinde bunu fark eder misin?','İlginin karşılıklı olmasını önemser misin?','Sorunları iki tarafın da çözmeye çalışması gerektiğini düşünür müsün?','Fedakarlığın tek taraflı olmamasına dikkat eder misin?','Karşındaki emek verdiğinde bunu takdir eder misin?','İhtiyaçların kadar partnerinin ihtiyaçlarına da yer verir misin?','Kararları mümkün olduğunca ortak almaya çalışır mısın?','Duygusal desteğin çift yönlü olmasını bekler misin?','İlişkide denge bozulduğunda bunu konuşabilir misin?'],
+['Karşılıklılık konusunda dengeli bir bakışın var. Hem veriyor hem de karşı tarafın katkısına alan açıyorsun.','Genelde denge arıyorsun ancak bazı dönemlerde bir taraf daha çok yük alabiliyor.','İlişkide dengeyi takip etmekte zorlanıyor olabilirsin. Emek, ilgi ve sorumlulukları daha açık konuşmak yardımcı olabilir.']),
+Q('sosyal','Sosyal Zekan Ne Kadar Yüksek?',[
+'İnsanların duygu durumunu hızlıca fark eder misin?','Farklı kişiliklere uyum sağlayabilir misin?','Sosyal ortamda ne söyleyeceğini bilir misin?','İnsanları rahatlatabilir misin?','Beden dilini okuyabilir misin?','Ortamın resmiyetine göre iletişim tarzını değiştirebilir misin?','Birinin rahatsız olduğunu söylenmeden fark edebilir misin?','Yanlış anlaşılmayı büyümeden düzeltebilir misin?','Farklı karakterlerle ortak iletişim yolu bulabilir misin?','Ne zaman konuşup ne zaman susmanın daha uygun olduğunu anlayabilir misin?'],
+['Sosyal zekan oldukça yüksek. İnsanları okumakta ve doğru iletişim kurmakta çok başarılısın.','Sosyal zekan gelişmeye devam ediyor. Bazı ortamlarda daha rahatsın, bazılarında değil.','Sosyal ortamlar sana biraz zorlayıcı gelebiliyor. Gözlem yaparak bu beceriyi geliştirebilirsin.']),
+Q('sosyal','Ne Kadar Dışa Dönüksün?',[
+'Kalabalık partileri sever misin?','Tanımadığın insanlarla kolayca sohbet başlatır mısın?','Sosyal davetleri kaçırmak seni üzer mi?','Grupta konuşmayı tercih eder misin?','Enerjini insanlardan mı alırsın?','Boş zamanında insanlarla buluşmayı yalnız kalmaya tercih eder misin?','Yeni bir ortamda kısa sürede sosyalleşir misin?','Uzun bir sosyal günün sonunda hâlâ enerjik hisseder misin?','Kalabalık etkinliklere isteyerek katılır mısın?','Konuşmak için insanların sana gelmesini beklemez misin?'],
+['Belirgin şekilde dışa dönüksün. Sosyal ortamlar seni yormak yerine güçlendiriyor.','Duruma göre değişen bir sosyalliğin var.','Daha içe dönük ve seçici bir sosyal yapın var; az ama derin ilişkileri tercih ediyorsun.']),
+Q('sosyal','Grup İçinde Nasıl Bir Rol Üstlenirsin?',[
+'Grup çalışmalarında sözü sen mi alırsın?','Fikir üretmekten keyif alır mısın?','Çatışma çıktığında arabulucu mu olursun?','Görevleri dağıtmayı sever misin?','Öne çıkmayı tercih eder misin?','Grubun yönünü belirleyen öneriler sunar mısın?','İşler karıştığında düzen kurmaya çalışır mısın?','İnsanları ortak hedefte toplamak sana doğal gelir mi?','Sessiz kalan kişileri konuşmaya dahil eder misin?','Sorumlulukların kimde olduğunu netleştirmeyi sever misin?'],
+['Grup içinde doğal bir yönlendirici rolü üstleniyorsun.','Duruma göre farklı roller üstlenebiliyorsun; esnek bir grup üyesisin.','Grup içinde daha destekleyici, sessiz bir rol tercih ediyorsun ve bu da değerli bir katkı.']),
+Q('sosyal','Sosyal Medyanın Hayatındaki Etkisi Ne Kadar?',[
+'Günün büyük bölümünü sosyal medyada mı geçiriyorsun?','Paylaşımlara gelen tepkiler ruh halini etkiliyor mu?','Başkalarının hayatıyla kendini kıyaslıyor musun?','Telefonsuz kalmak seni huzursuz eder mi?','Bildirimleri sürekli kontrol eder misin?','Bir paylaşımın az beğeni alması moralini bozar mı?','Sabah uyanınca ilk iş sosyal medyaya bakar mısın?','Başkasının paylaşımı kendi hayatını yetersiz hissettirir mi?','Planlamadığın halde uzun süre kaydırdığın olur mu?','Sosyal medyaya erişemediğinde eksiklik hisseder misin?'],
+['Sosyal medya hayatında büyük yer kaplıyor. Biraz dijital detoks sana iyi gelebilir.','Sosyal medyayı dengeli kullanıyorsun ama zaman zaman fazla kaptırabiliyorsun.','Sosyal medyadan bağımsız bir hayatın var; bu da zihinsel açıdan senin lehine.']),
+Q('sosyal','İkna Kabiliyetin Ne Kadar Güçlü?',[
+'Fikirlerini savunurken güçlü argümanlar kurar mısın?','Karşındakinin bakış açısını değiştirebiliyor musun?','Beden dilini etkili kullanır mısın?','Karşı fikirlere hazırlıklı mısın?','İnsanlar seni dinlemeye eğilimli mi?','Karşındakinin önceliğine göre anlatımını değiştirebilir misin?','Bir fikri örneklerle destekleyebilir misin?','İtirazları dinleyip cevaplayabilir misin?','Konuşurken güven veren bir ton kullanabilir misin?','İnsanların neden karşı çıktığını anlayıp yaklaşımını uyarlayabilir misin?'],
+['İkna kabiliyetin yüksek. Karşındakini kolayca etkileyebiliyorsun.','Bazı konularda ikna edici olabiliyorsun ama her zaman değil.','İkna etmekten çok kendi fikrini paylaşmayı tercih ediyorsun; bu daha samimi bir tarz.']),
+Q('sosyal','Yeni İnsanlarla Tanışmakta Ne Kadar Rahatsın?',[
+'Tanımadığın biriyle sohbet başlatmak seni zorlamaz mı?','Yeni ortamlara girerken kaygı hissetmez misin?','İlk izlenim bırakma konusunda kendine güvenir misin?','Sosyal etkinliklere tek başına gitmekten çekinmez misin?','Yabancılarla göz teması kurmakta rahat mısın?','Tanımadığın birine ilk selamı verebilir misin?','Bir etkinliğe yalnız gidip insanlarla kaynaşabilir misin?','Yeni biriyle ortak konu bulmak sana kolay gelir mi?','İlk dakikalardaki sessizlik seni fazla germez mi?','Tanışma sonrası iletişimi sürdürmek için adım atar mısın?'],
+['Yeni insanlarla tanışmak senin için oldukça kolay ve keyifli.','Biraz zaman alsa da yeni ortamlara uyum sağlayabiliyorsun.','Yeni insanlarla tanışmak seni geriyor olabilir; bu tamamen normal, küçük adımlar yardımcı olur.']),
+Q('sosyal','Ne Kadar Popülersin?',[
+'Çevrende sık aranan biri misin?','Etkinliklere davet edilir misin?','Fikirlerin çevrende değer görür mü?','Sosyal çevren geniş mi?','İnsanlar seninle vakit geçirmeyi ister mi?','Çevrendeki insanlar plan yaparken seni sık dahil eder mi?','Yeni bir gruba girdiğinde kısa sürede tanınır mısın?','İnsanlar senden sık fikir veya tavsiye ister mi?','Sosyal çevrende farklı gruplarla bağlantın var mı?','Uzun süre görünmediğinde seni merak edip arayanlar olur mu?'],
+['Çevrende oldukça sevilen ve aranan birisin.','Belirli bir çevrede popülersin; geniş ama seçici bir sosyal ağın var.','Popülerlik senin önceliğin değil; az ama kaliteli ilişkileri tercih ediyorsun.']),
+Q('sosyal','Takım Oyuncusu musun?',[
+'Ortak hedefler için bireysel çıkarlarından vazgeçebilir misin?','Başkalarının fikirlerine açık mısın?','Görev paylaşımına saygı gösterir misin?','Takım başarısını kendi başarın gibi hisseder misin?','İşbirliğinden keyif alır mısın?','Kendi fikrin seçilmese de takım kararını destekleyebilir misin?','Bir arkadaşının yükü arttığında yardım eder misin?','Bilgiyi takım içinde paylaşır mısın?','Başarıda başkalarının katkısını görünür kılar mısın?','Anlaşmazlıkta takım hedefini kişisel egonun önünde tutabilir misin?'],
+['Güçlü bir takım oyuncususun. İşbirliği senin doğal yeteneklerinden biri.','Takım çalışmasında iyisin ama bazen bireysel çalışmayı tercih ediyorsun.','Bireysel çalışmayı tercih ediyorsun; bağımsızlığın seni daha verimli kılıyor olabilir.']),
+Q('sosyal','Sosyal Kaygı Seviyen Nedir?',[
+'Kalabalık önünde konuşmak seni endişelendirir mi?','İnsanların seni yargıladığını düşünür müsün?','Sosyal ortamdan sonra kendini yorgun hisseder misin?','Konuşmadan önce ne söyleyeceğini çok düşünür müsün?','Sosyal davetleri reddetme eğiliminde misin?','Yeni bir ortama girmeden önce uzun süre endişelenir misin?','Konuşurken yanlış bir şey söylemekten yoğun biçimde korkar mısın?','Sosyal bir olaydan sonra söylediklerini tekrar tekrar düşünür müsün?','Tanımadığın kişilerle yemek yemek seni gerer mi?','Dikkatlerin üzerinde olduğunu düşündüğünde fiziksel gerginlik yaşar mısın?'],
+['Sosyal kaygı düzeyin oldukça yüksek olabilir. Küçük adımlarla kendine güvenini artırabilirsin.','Zaman zaman sosyal kaygı yaşıyorsun ama bu seni durdurmuyor.','Sosyal ortamlarda oldukça rahatsın; kaygı seni fazla etkilemiyor.']),
+Q('sosyal','Sosyal Ortamda Empati Seviyen Nedir?',[
+'Bir grupta dışlanan biri olursa fark eder misin?','Başkalarını rahat ettirmeye çalışır mısın?','Konuşurken karşındakinin tepkisini gözlemler misin?','Herkesin söz almasına dikkat eder misin?','Farklı görüşleri anlamaya açık mısın?','Birinin konuşmaya dahil olamadığını fark edip ona alan açar mısın?','Şaka birini rahatsız ettiğinde bunu fark eder misin?','Bir grup kararında herkesin ihtiyacını düşünmeye çalışır mısın?','Yeni gelen kişinin rahat hissetmesine yardımcı olur musun?','Birinin sessizliğini hemen ilgisizlik olarak yorumlamaktan kaçınır mısın?'],
+['Sosyal ortamlarda oldukça empatiksin; herkesin kendini iyi hissetmesini sağlıyorsun.','Empatin var ama bazen fark etmeyebiliyorsun.','Sosyal ortamlarda daha kendi odaklısın; çevrene biraz daha dikkat etmek faydalı olabilir.']),
+Q('sosyal','İlk İzlenim Becerin Nasıl?',[
+'Yeni biriyle tanışırken göz teması kurabilir misin?','Kendini kısa ve doğal biçimde tanıtabilir misin?','Karşındakinin adını hatırlamaya çalışır mısın?','Beden dilini açık ve rahat tutabilir misin?','İlk konuşmada uygun sorular sorabilir misin?','Gergin olsan bile sıcak bir ton kullanabilir misin?','Karşındakini konuşmaya dahil eder misin?','Kendin hakkında aşırı bilgi vermekten kaçınır mısın?','İlk karşılaşmada ortamın tonuna uyum sağlayabilir misin?','Vedalaşırken olumlu bir izlenim bırakabilir misin?'],
+['İlk izlenim oluşturma becerin güçlü. İnsanlara rahat ve güven veren bir enerji yansıtıyorsun.','Genelde iyi bir ilk izlenim bırakıyorsun ancak bazı ortamlarda gerginliğin öne çıkabiliyor.','İlk karşılaşmalar seni zorlayabiliyor. Basit bir selam, göz teması ve soru ile başlamak yeterli olabilir.']),
+Q('sosyal','Sohbet Başlatma Becerin Nasıl?',[
+'Yeni biriyle konuşacak konu bulabilir misin?','Ortamla ilgili doğal bir soru sorabilir misin?','Sessizlik olduğunda paniğe kapılmaz mısın?','Karşındakinin verdiği cevaptan yeni soru çıkarabilir misin?','Kısa sohbetleri uzatmadan keyifli tutabilir misin?','Ortak ilgi alanı arar mısın?','Kendini tanıtmakta rahat mısın?','Karşındakinin konuşma isteğini beden dilinden anlayabilir misin?','Sohbeti tek taraflı hale getirmeden ilerletebilir misin?','Konuşmayı uygun bir anda nazikçe bitirebilir misin?'],
+['Sohbet başlatma konusunda rahatsın. İnsanlarla doğal bir iletişim kurabiliyorsun.','Bazı ortamlarda kolay konuşuyor, bazı ortamlarda konu bulmakta zorlanıyorsun.','Sohbet başlatmak seni geriyor olabilir. Açık uçlu ve basit sorularla pratik yapabilirsin.']),
+Q('sosyal','Kalabalıkta Kendin Olabiliyor musun?',[
+'Kalabalıkta fikirlerini saklamadan söyleyebilir misin?','Başkalarının onayını almak için kişiliğini değiştirmez misin?','Giyimin ve davranışların konusunda rahat mısın?','Popüler fikre katılmadığında bunu söyleyebilir misin?','Dışlanma korkusu kararlarını çok etkilemez mi?','Grubun enerjisine uyarken sınırlarını koruyabilir misin?','Şaka yapılırken rahatsızsan bunu belli edebilir misin?','Kendini kanıtlamak için abartı yapmaktan kaçınır mısın?','Sessiz kalmak istediğinde bunu doğal karşılar mısın?','Kalabalıktan çıktıktan sonra davranışlarından pişmanlık duymaz mısın?'],
+['Kalabalıkta bile kimliğini koruyabiliyorsun. Sosyal uyum ile özgünlük arasında iyi denge kuruyorsun.','Çoğu zaman kendinsin fakat bazı gruplarda uyum baskısı hissedebiliyorsun.','Kalabalıklarda kendini fazla değiştirebiliyor olabilirsin. Küçük tercihlerde kendi sesini öne çıkarmak iyi bir pratik olabilir.']),
+Q('sosyal','Network Kurma Becerin Nasıl?',[
+'Yeni profesyonel bağlantılar kurmaktan çekinmez misin?','Tanıştığın kişilerin ne yaptığını merak eder misin?','İletişim bilgisi istemekte rahat mısın?','Tanıştıktan sonra kısa bir takip mesajı gönderir misin?','İnsanlara sadece ihtiyacın olduğunda ulaşmamaya dikkat eder misin?','Bağlantılarına fayda sağlamaya çalışır mısın?','Farklı sektörlerden insanlarla tanışmak ilgini çeker mi?','Bir etkinlikte yeni kişilerle konuşmaya zaman ayırır mısın?','İnsanları birbirleriyle tanıştırmaktan keyif alır mısın?','Uzun vadeli profesyonel ilişkileri sürdürür müsün?'],
+['Network kurma becerin oldukça güçlü. İlişkileri sadece sayı değil, karşılıklı değer olarak görüyorsun.','Bağlantı kurabiliyorsun fakat takip ve süreklilik kısmında bazen zorlanıyorsun.','Network kurmak sana doğal gelmeyebilir. Az sayıda ama düzenli temasla başlamak daha rahat olabilir.']),
+Q('sosyal','Mizah Anlayışın Ne Kadar Güçlü?',[
+'Gergin bir ortamı uygun bir espriyle yumuşatabilir misin?','Kendinle nazikçe dalga geçebilir misin?','Karşındakinin mizah sınırını fark eder misin?','Şaka yaparken kırıcı olmamaya dikkat eder misin?','Kelime oyunlarından veya ince esprilerden keyif alır mısın?','Komik bir anı iyi anlatabilir misin?','Ortamın ciddiyetine göre mizahını ayarlayabilir misin?','Bir şakan anlaşılmadığında ısrar etmez misin?','Başkalarının mizah tarzına uyum sağlayabilir misin?','Mizahı insanları dahil etmek için kullanır mısın?'],
+['Mizah duygun güçlü ve sosyal ortamları rahatlatabiliyor.','Mizahı seviyorsun ancak her ortamda aynı rahatlıkta kullanmıyorsun.','Mizah senin temel iletişim aracın değil. Bu bir eksik değil; sıcaklık ve ilgi de güçlü bağ kurar.']),
+Q('sosyal','Sosyal Enerjini Yönetebiliyor musun?',[
+'Yoğun sosyal günlerden sonra dinlenmeye zaman ayırır mısın?','Her davete evet demek zorunda olmadığını bilir misin?','Enerjin düştüğünde ortamdan ayrılabilir misin?','Yalnız kalma ihtiyacını çevrene anlatabilir misin?','Sosyal planlarını arka arkaya doldurmamaya dikkat eder misin?','Hangi insanlarla daha enerjik hissettiğini fark eder misin?','Zorunlu sosyallik ile keyif aldığın sosyalliği ayırabilir misin?','Kalabalık sonrası kendine sakin zaman yaratır mısın?','Sosyal yorgunluğu kişisel başarısızlık gibi görmez misin?','Enerjine göre plan değiştirebilir misin?'],
+['Sosyal enerjini iyi yönetiyorsun. Ne zaman sosyalleşmen, ne zaman dinlenmen gerektiğini fark ediyorsun.','Genelde dengelisin ancak yoğun dönemlerde kendini fazla zorlayabiliyorsun.','Sosyal enerjini tüketene kadar devam ediyor olabilirsin. Programına bilinçli boşluklar koymak iyi gelebilir.']),
+Q('sosyal','Farklı İnsanlara Uyum Sağlayabilir misin?',[
+'Yaşça senden farklı kişilerle rahat konuşabilir misin?','Farklı görüşte biriyle saygılı iletişim kurabilir misin?','İletişim tarzını karşındakine göre ayarlayabilir misin?','Yeni kültürlere merakla yaklaşır mısın?','Birini hızlıca etiketlemekten kaçınır mısın?','Sessiz biriyle de konuşkan biriyle de iletişim kurabilir misin?','Bilmediğin bir sosyal kuralı öğrenmeye açık mısın?','Farklı mizah anlayışlarına uyum gösterebilir misin?','Yanlış anladığında soru sormayı tercih eder misin?','Ortak nokta bulmak için çaba gösterir misin?'],
+['Farklı insanlarla uyum kurma becerin yüksek. Esnek ve meraklı bir iletişim tarzın var.','Birçok kişiyle anlaşabiliyorsun ancak çok farklı karakterlerde biraz zamana ihtiyaç duyuyorsun.','Sana benzemeyen insanlarla iletişim zorlayıcı gelebiliyor. Merak ederek soru sormak bu alanı geliştirebilir.']),
+Q('sosyal','Topluluk Önünde Konuşma Becerin Nasıl?',[
+'Bir grubun önünde konuşmaya başlayabilir misin?','Konuşmadan önce ana fikirlerini düzenler misin?','Ses tonunu duyulur şekilde kullanabilir misin?','Göz temasını farklı kişilere dağıtabilir misin?','Hata yaptığında konuşmaya devam edebilir misin?','Heyecanını yönetmek için nefesini kontrol eder misin?','Dinleyicinin tepkisine göre hızını ayarlayabilir misin?','Konuyu gereksiz ayrıntıya boğmadan anlatabilir misin?','Soru geldiğinde sakin kalabilir misin?','Konuşmanın sonunda ana mesajı toparlayabilir misin?'],
+['Topluluk önünde konuşma becerin güçlü. Yapı, ses ve özgüven konusunda iyi bir temelin var.','Konuşabiliyorsun ancak heyecan performansını zaman zaman etkiliyor.','Topluluk önünde konuşmak seni oldukça zorlayabilir. Küçük gruplarda kısa sunumlarla pratik yapmak yardımcı olur.']),
+Q('sosyal','Sosyal Sezgilerin Güçlü mü?',[
+'Birinin konuşmak istemediğini kolayca anlayabilir misin?','Ortamdaki gerginliği fark eder misin?','Bir şakanın yanlış anlaşılacağını önceden hissedebilir misin?','Kimin kendini dışlanmış hissettiğini fark eder misin?','Bir konuşmada ne zaman konu değiştirmen gerektiğini anlayabilir misin?','Karşındakinin gerçek duygusunu ses tonundan sezebilir misin?','İnsanların sınırlarını hızlıca fark eder misin?','Bir ortamın resmiyet düzeyine uyum sağlayabilir misin?','Söylenmeyen mesajları beden dilinden okuyabilir misin?','Bir iletişim hatasını büyümeden fark edebilir misin?'],
+['Sosyal sezgilerin oldukça güçlü. Ortamın görünmeyen sinyallerini iyi okuyabiliyorsun.','Birçok sosyal sinyali yakalıyorsun ancak bazı ince mesajları kaçırabiliyorsun.','Sosyal sinyalleri okumak sana zor gelebilir. Beden dili ve ses tonuna bilinçli dikkat etmek yardımcı olur.']),
+Q('sosyal','Arkadaşlıklarını Sürdürebiliyor musun?',[
+'Uzun süredir görüşmediğin arkadaşına yazabilir misin?','Önemli günleri hatırlamaya çalışır mısın?','Arkadaşının zor zamanında yanında olur musun?','Sadece senden haber beklemek yerine sen de iletişim başlatır mısın?','Küçük kırgınlıkları konuşarak çözebilir misin?','Arkadaşının başarısını kıskanmadan kutlayabilir misin?','Farklı hayat dönemlerinde ilişkiyi yeniden şekillendirebilir misin?','Gerektiğinde özür dileyebilir misin?','Arkadaşlıkta karşılıklılığı önemser misin?','Uzaklık olsa da bağlantıyı korumaya çalışır mısın?'],
+['Arkadaşlıklarını sürdürme konusunda oldukça iyisin. Emek ve karşılıklılık dengesini koruyorsun.','İyi arkadaşlıklar kuruyorsun ancak yoğun dönemlerde iletişim kopabiliyor.','Arkadaşlıkları sürdürmekte zorlanıyor olabilirsin. Küçük ama düzenli temaslar ilişkileri canlı tutabilir.']),
+Q('kariyer','Girişimci Ruhun Var mı?',[
+'Risk almaktan çekinmez misin?','Kendi fikirlerini hayata geçirmek ister misin?','Belirsizlikle rahat çalışabilir misin?','Başarısızlıktan ders çıkarabilir misin?','Bağımsız çalışmayı tercih eder misin?','Bir probleme ürün veya hizmet fikriyle bakar mısın?','Fırsat gördüğünde küçük bir deneme yapar mısın?','Kaynakların sınırlıyken çözüm üretmek seni motive eder mi?','Bir fikri insanlara anlatıp destek arayabilir misin?','Belirsiz gelir ihtimaline rağmen güçlü bir fırsatı araştırır mısın?'],
+['Güçlü bir girişimci ruhun var. Risk almak ve yeni fikirler denemek senin doğan.','Girişimcilik özelliklerin var ama güvenli seçenekleri de değerli buluyorsun.','İstikrar senin için önemli. Girişimcilikten çok güvenli bir kariyer yolunu tercih ediyorsun.']),
+Q('kariyer','İş Yerinde Ne Kadar Üretkensin?',[
+'Görevlerini zamanında bitirir misin?','Dikkatini uzun süre koruyabilir misin?','Erteleme eğilimin düşük mü?','Önceliklerini net belirler misin?','Kesintilerden sonra hızla odaklanabilir misin?','Günün en önemli işini önceden belirler misin?','Bir görevi gereksiz mükemmelleştirmeden tamamlayabilir misin?','Toplantı ve mesajların odağını bölmesini sınırlar mısın?','Benzer işleri gruplayarak yapar mısın?','Gün sonunda ne tamamladığını kontrol eder misin?'],
+['Yüksek düzeyde üretkensin. İşlerini planlı ve verimli şekilde tamamlıyorsun.','Üretkenliğin duruma göre değişiyor; motivasyon bulduğunda çok verimli oluyorsun.','Üretkenlik konusunda zorlanıyor olabilirsin. Küçük hedeflere bölmek işine yarayabilir.']),
+Q('kariyer','Liderlik Tarzın Nedir?',[
+'Ekibini yönlendirirken net talimatlar mı verirsin?','Kararları ekiple mi alırsın?','Geri bildirim vermekten çekinmez misin?','İnsanları geliştirmeye önem verir misin?','Sonuç odaklı mısın?','Ekibine hedefi anlatırken nedenini de açıklar mısın?','İnsanlara işi nasıl yapacakları konusunda uygun özgürlük verir misin?','Zor geri bildirimi geciktirmeden verebilir misin?','Ekibin başarısında görünürlüğü paylaşır mısın?','Kriz anında sakin ve net bir yönlendirme yapabilir misin?'],
+['Güçlü ve katılımcı bir liderlik tarzın var; ekibini hem yönlendiriyor hem geliştiriyorsun.','Duruma göre değişen esnek bir liderlik tarzın var.','Liderlikten çok uzmanlaşmayı tercih ediyorsun; bu da değerli bir kariyer yolu.']),
+Q('kariyer','Stres Yönetimin Nasıl?',[
+'Yoğun iş yükünde sakin kalabilir misin?','Deadline\'lar seni fazla germiyor mu?','Stresli anlarda net düşünebilir misin?','Dinlenme zamanı ayırabilir misin?','Baskı altında performansın düşmüyor mu?','Yoğunluk arttığında önceliklerini yeniden sıralayabilir misin?','Stres belirtilerini erken fark eder misin?','Kısa molalarla zihnini toparlayabilir misin?','Kontrol edemediğin şeyleri bırakabilir misin?','İş sonrası zihinsel olarak işi kapatabildiğin olur mu?'],
+['Stres yönetimin oldukça iyi. Baskı altında bile net düşünebiliyorsun.','Stresle bazen başa çıkabiliyor bazen zorlanıyorsun.','Stres seni fazlasıyla etkiliyor olabilir. Nefes ve mola teknikleri sana yardımcı olabilir.']),
+Q('kariyer','Kariyerinde Ne Kadar Hırslısın?',[
+'Yüksek hedefler koyar mısın?','Terfi veya gelişim için ekstra çaba gösterir misin?','Başarıyı sürekli büyütmek ister misin?','Rekabetten motive olur musun?','Konfor alanında kalmaktan rahatsız olur musun?','Mevcut seviyen iyi olsa da daha yükseğini hedefler misin?','Kendini geliştirmek için ekstra sorumluluk alır mısın?','Başarı ölçütlerini düzenli olarak yükseltir misin?','Uzun vadeli büyük hedefler seni heyecanlandırır mı?','Rakiplerinden daha iyi olmak için bilinçli çalışır mısın?'],
+['Kariyer hırsın oldukça yüksek. Sürekli büyümek ve ilerlemek seni motive ediyor.','Dengeli bir hırsın var; hem başarıyı hem de yaşam dengesini önemsiyorsun.','Kariyer senin için tek öncelik değil, denge ve huzur daha önemli.']),
+Q('kariyer','Takım mı Bireysel mi Çalışmayı Seversin?',[
+'Fikir üretirken başkalarıyla çalışmayı tercih eder misin?','Sorumluluğu paylaşmak seni rahatlatır mı?','Ekip toplantılarında fikir alışverişinden enerji alır mısın?','Kararları birlikte almayı tek başına almaya tercih eder misin?','Ortak hedef için düzenli iletişim kurmayı sever misin?','Bir ekipte görev paylaşımı seni motive eder mi?','Başkasının fikrini geliştirerek ilerlemek hoşuna gider mi?','Takım arkadaşlarının katkısı performansını artırır mı?','Başarıyı ekiple paylaşmak sana daha anlamlı gelir mi?','Tek başına çalışmak yerine işbirliğine açık olmayı tercih eder misin?'],
+['Takım çalışmasından belirgin biçimde güç alıyorsun. İşbirliği, fikir alışverişi ve ortak başarı seni motive ediyor.','Hem takımda hem bireysel çalışabiliyorsun. Göreve ve ekibe göre çalışma biçimini değiştirebiliyorsun.','Bireysel çalışmada daha rahat olabilirsin. Kendi temponu ve karar alanını koruduğun işlerde verimin artabilir.']),
+Q('kariyer','İş-Yaşam Dengen Nasıl?',[
+'Mesai dışında işi düşünmemeyi başarabiliyor musun?','Kendine ve sevdiklerine yeterli zaman ayırabiliyor musun?','Tatilde gerçekten dinlenebiliyor musun?','İşin özel hayatına taştığını hissetmiyor musun?','Sınır koymakta rahat mısın?','Çalışma saatlerin bittiğinde işi bırakabilir misin?','Hafta içinde kişisel hayatına düzenli zaman ayırır mısın?','İş mesajlarına her an cevap vermek zorunda hissetmez misin?','Uyku ve dinlenmeyi iş için sürekli feda etmez misin?','Yoğun dönem sonrası kendine toparlanma zamanı verir misin?'],
+['İş-yaşam dengen oldukça sağlıklı. Sınırlarını iyi koruyorsun.','Dengeyi kurmaya çalışıyorsun ama bazen iş ağır basıyor.','İş hayatın özel hayatına fazla taşıyor olabilir. Sınır koymak sana iyi gelebilir.']),
+Q('kariyer','Yaratıcı Düşünme Becerin Nedir?',[
+'Sorunlara alışılmadık çözümler önerir misin?','Beyin fırtınalarında bol fikir üretir misin?','Riskli ama yenilikçi fikirleri savunabilir misin?','Farklı disiplinlerden ilham alır mısın?','Statükoyu sorgular mısın?','Bir iş sorununa birkaç alternatif çözüm üretebilir misin?','Mevcut süreci daha iyi hale getirecek fikirler düşünür müsün?','Farklı sektörlerdeki uygulamalardan ilham alır mısın?','İlk fikir işe yaramadığında yeni yaklaşım bulabilir misin?','Deneysel küçük projeler yapmaya açık mısın?'],
+['İş hayatında yaratıcılığın öne çıkıyor; yenilikçi fikirlerle fark yaratıyorsun.','Yaratıcılığın belirli projelerde ortaya çıkıyor.','Daha yapılandırılmış ve kanıtlanmış yöntemleri tercih ediyorsun; bu da güvenilirlik sağlıyor.']),
+Q('kariyer','Zaman Yönetimi Becerin Nasıl?',[
+'Günlük plan yapar mısın?','Önceliklerini doğru sıralayabilir misin?','Son dakikaya bırakmadan işleri bitirir misin?','Zaman kaybettiren alışkanlıkların az mı?','Programını genelde takip edebilir misin?','İşlerine gerçekçi süre ayırabilir misin?','Takviminde odaklanma zamanı ayırır mısın?','Önemli ama acil olmayan işleri ertelememeye çalışır mısın?','Gün içindeki boşlukları bilinçli kullanır mısın?','Planın bozulduğunda kalan zamanı yeniden düzenleyebilir misin?'],
+['Zaman yönetimin oldukça güçlü. Planlı ve düzenli çalışıyorsun.','Zaman zaman planların bozuluyor ama genelde toparlayabiliyorsun.','Zaman yönetimi seni zorluyor olabilir. Basit bir planlama sistemi büyük fark yaratabilir.']),
+Q('kariyer','Hangi Kariyer Profiline Yakınsın?',[
+'Yeni fikirleri hayata geçirmek seni heyecanlandırır mı?','Belirsiz problemlerde çözüm üretmekten keyif alır mısın?','Kendi yöntemini geliştirebildiğin işlerde daha mı rahatsın?','Yeni proje veya girişim başlatma fikri sana çekici gelir mi?','İnsanları bir fikir etrafında toplamayı sever misin?','Yaratıcılık gerektiren görevler seni motive eder mi?','Hızlı değişen iş ortamlarına kolay uyum sağlar mısın?','Fırsat gördüğünde inisiyatif almaya eğilimli misin?','Sonucu önceden tamamen belli olmayan işlere açık mısın?','Karar özgürlüğü olan rolleri tercih eder misin?'],
+['Yaratıcı ve girişimci yönü güçlü bir kariyer profiline yakınsın. Özgürlük, yenilik ve inisiyatif seni motive ediyor.','Dengeli bir kariyer profilin var. Hem yapı hem özgürlük içeren rollerde rahat edebilirsin.','Daha yapılandırılmış ve öngörülebilir iş ortamları sana uygun olabilir. Net süreçler ve belirgin sorumluluklar rahatlık sağlayabilir.']),
+Q('kariyer','Karar Verme Becerin Nasıl?',[
+'Bir karar için gerekli bilgiyi hızlıca toplayabilir misin?','Seçenekleri artı ve eksileriyle karşılaştırır mısın?','Karar süresini gereksiz yere uzatmamaya çalışır mısın?','Belirsizlik varken de makul bir karar verebilir misin?','Yanlış karar ihtimalini kabul edebilir misin?','Önemli kararlarda başkalarının görüşünü dinler misin?','Veriye rağmen duygusal önyargını fark edebilir misin?','Karar verdikten sonra uygulamaya geçer misin?','Yeni bilgi geldiğinde kararını güncelleyebilir misin?','Sonuçlardan ders çıkarır mısın?'],
+['Karar verme becerin güçlü. Bilgi, hız ve esneklik arasında iyi bir denge kuruyorsun.','Kararların genelde iyi ancak bazı konularda fazla düşünme veya acele etme eğilimin olabilir.','Karar vermek seni zorlayabiliyor. Seçenekleri sınırlamak ve net kriterler belirlemek yardımcı olabilir.']),
+Q('kariyer','Profesyonel İletişimin Nasıl?',[
+'E-postalarını kısa ve anlaşılır yazabilir misin?','Toplantılarda fikrini net ifade eder misin?','Eleştiriyi kişiselleştirmeden dinleyebilir misin?','Beklentileri baştan netleştirir misin?','Bir sorun çıktığında ilgili kişiye zamanında haber verir misin?','Profesyonel ortamda tonunu uygun ayarlayabilir misin?','Yanlış anlaşılmayı yazılı veya sözlü olarak düzeltebilir misin?','Geri bildirim verirken somut örnek kullanır mısın?','Dinlerken not alır mısın?','Konuşmanın sonunda sonraki adımları netleştirir misin?'],
+['Profesyonel iletişimin oldukça güçlü. Netlik ve saygı konusunda iyi bir denge kuruyorsun.','Genelde etkili iletişim kuruyorsun ancak yoğunlukta bazı mesajlar belirsiz kalabiliyor.','Profesyonel iletişimde netlik sorunu yaşayabiliyor olabilirsin. Kısa, somut ve eylem odaklı mesajlar faydalı olur.']),
+Q('kariyer','Kariyer Risklerine Ne Kadar Açıksın?',[
+'Yeni bir fırsat için konfor alanından çıkabilir misin?','Makul risk ile gereksiz riski ayırabilir misin?','Yeni bir sektöre geçmeyi gerektiğinde düşünebilir misin?','Başarısızlık ihtimali olan projelere yine de katılabilir misin?','Risk almadan önce olası kaybı hesaplar mısın?','Gelir belirsizliğini kısa süre tolere edebilir misin?','Yeni bir rol için öğrenme sürecini göze alır mısın?','Güvenli ama gelişimsiz bir işi bırakmayı düşünebilir misin?','Riskli kararlarda yedek plan hazırlar mısın?','Sonucu garanti olmayan fırsatları objektif değerlendirebilir misin?'],
+['Kariyer risklerini bilinçli biçimde alabiliyorsun. Cesaret ile hesap arasında iyi denge kuruyorsun.','Bazı risklere açıksın ancak güvenlik ihtiyacın kararlarını etkiliyor.','Kariyer riskleri seni fazla tedirgin edebilir. Küçük ve geri dönüşü kolay denemelerle başlayabilirsin.']),
+Q('kariyer','Öğrenme Çevikliğin Ne Kadar?',[
+'Yeni bir programı kısa sürede öğrenebilir misin?','Bilmediğin bir görev geldiğinde araştırmaya başlar mısın?','Hata yaptıktan sonra yöntemini hızlıca değiştirir misin?','Farklı alanlardan bilgi toplamayı sever misin?','Geri bildirimi uygulamaya dönüştürebilir misin?','Eski bilgilerin geçersiz kaldığını kabul edebilir misin?','Yeni bir beceri için düzenli pratik yapar mısın?','Karmaşık bir konuda doğru kaynakları bulabilir misin?','Öğrendiklerini başka problemlere uyarlayabilir misin?','Kendi öğrenme yöntemini geliştirmeye çalışır mısın?'],
+['Öğrenme çevikliğin yüksek. Yeni bilgiye hızlı uyum sağlayıp onu uygulamaya dönüştürebiliyorsun.','Öğrenme hızın iyi ancak bazı konularda daha fazla tekrar veya yapı gerekiyor.','Yeni becerilere adapte olmak sana zor gelebilir. Küçük öğrenme hedefleri ve düzenli tekrar faydalı olur.']),
+Q('kariyer','Geri Bildirime Ne Kadar Açıksın?',[
+'Eleştiri duyduğunda hemen savunmaya geçmez misin?','Geri bildirimin içindeki faydalı kısmı ayırabilir misin?','Yöneticinden düzenli geri bildirim ister misin?','Bir hatan söylendiğinde teşekkür edebilir misin?','Aynı hatayı tekrar etmemek için not alır mısın?','Geri bildirimi davranış değişikliğine çevirebilir misin?','Kötü ifade edilmiş eleştiriden bile işe yarar nokta çıkarabilir misin?','Olumlu geri bildirimi de kabul edebilir misin?','Kendin hakkında kör noktaların olabileceğini düşünür müsün?','Değişimin sonuçlarını sonradan takip eder misin?'],
+['Geri bildirime oldukça açıksın. Bu yaklaşım gelişimini hızlandırır.','Genelde geri bildirimi kabul ediyorsun ancak sert ifade edildiğinde savunmaya geçebiliyorsun.','Eleştiri seni kolayca kapatabiliyor olabilir. İçeriği tondan ayırmayı denemek gelişimine yardımcı olur.']),
+Q('kariyer','Planlama Becerin Ne Kadar Güçlü?',[
+'Bir projeyi adımlara bölebilir misin?','Başlamadan önce gerekli kaynakları belirler misin?','Gerçekçi süre tahmini yapmaya çalışır mısın?','Öncelikleri netleştirir misin?','Olası riskler için yedek plan düşünür müsün?','Takvimine önemli işleri önceden yerleştirir misin?','İlerlemeyi düzenli kontrol eder misin?','Plan değiştiğinde güncelleme yapar mısın?','Büyük hedefleri haftalık görevlere çevirebilir misin?','Bitişten sonra planın ne kadar işe yaradığını değerlendirir misin?'],
+['Planlama becerin oldukça güçlü. Büyük işleri yönetilebilir adımlara çevirebiliyorsun.','Plan yapıyorsun ancak uygulama sırasında sık sık değişiklik gerekebiliyor.','Plansız başlamaya eğilimli olabilirsin. Basit bir görev listesi ve takvim bile büyük fark yaratabilir.']),
+Q('kariyer','İnisiyatif Alma Seviyen Nedir?',[
+'Görev verilmeden yapılması gereken işi fark eder misin?','Bir sorun gördüğünde çözüm önerir misin?','Yeni bir proje fikrini yöneticinle paylaşır mısın?','Sorumluluk alanının biraz dışına çıkmaktan çekinmez misin?','İşi hızlandıracak bir yöntem bulduğunda uygular mısın?','Belirsiz görevlerde ilk adımı atabilir misin?','Takımın ihtiyacını fark ettiğinde gönüllü olur musun?','Bir fırsatı başkasının söylemesini beklemeden değerlendirebilir misin?','Hata ihtimaline rağmen kontrollü şekilde hareket edebilir misin?','Yaptığın iyileştirmenin sonucunu takip eder misin?'],
+['İnisiyatif alma eğilimin yüksek. Beklemek yerine değer üretmeye odaklanıyorsun.','Gerektiğinde inisiyatif alıyorsun ancak yetki belirsiz olduğunda daha temkinli davranıyorsun.','Genelde net talimat beklemeyi tercih ediyorsun. Küçük, düşük riskli konularda ilk adımı atmayı deneyebilirsin.']),
+Q('kariyer','Müzakere Becerin Nasıl?',[
+'Bir görüşmede ne istediğini net söyleyebilir misin?','Karşı tarafın ihtiyaçlarını anlamaya çalışır mısın?','İlk teklifi hemen kabul etmek yerine değerlendirir misin?','Alternatiflerini önceden düşünür müsün?','Duygusal baskı altında sakin kalabilir misin?','Ortak kazanç yaratacak seçenekler üretebilir misin?','Sınırlarını saygılı biçimde ifade eder misin?','Gerekirse görüşmeye ara vermeyi teklif edebilir misin?','Anlaşmanın ayrıntılarını yazılı netleştirir misin?','İlişkiyi bozmadan hayır diyebilir misin?'],
+['Müzakere becerin güçlü. Kendi çıkarını korurken ortak fayda yaratabiliyorsun.','Temel müzakere becerilerin iyi ancak baskı altında taviz verebiliyorsun.','Müzakere seni zorlayabiliyor. Önceden hedef, alt sınır ve alternatif belirlemek işini kolaylaştırır.']),
+Q('kariyer','İş Yerinde Güvenilir Misin?',[
+'Verdiğin teslim tarihine uymaya çalışır mısın?','Gecikme olacağını önceden haber verir misin?','Sana verilen bilgilerin gizliliğini korur musun?','Bir hatayı saklamak yerine bildirir misin?','Takım arkadaşların sana görev emanet etmekte rahat mıdır?','İş kaliteni kimse kontrol etmese de korur musun?','Toplantılara zamanında katılır mısın?','Söz verdiğin takibi yapar mısın?','Başkasının emeğini sahiplenmekten kaçınır mısın?','Zor durumda bile dürüst kalmaya çalışır mısın?'],
+['İş yerinde oldukça güvenilir bir profilsin. Tutarlılık ve sorumluluk seni güçlü kılıyor.','Genelde güvenilirsin ancak yoğun dönemlerde bazı sözler gecikebiliyor.','Güvenilirlik konusunda daha tutarlı sistemlere ihtiyacın olabilir. Söz verdiğin işleri görünür bir listede takip etmek yardımcı olur.']),
+Q('kariyer','Kariyer Vizyonun Ne Kadar Net?',[
+'Önümüzdeki birkaç yıl için hedeflerin var mı?','Hangi becerileri geliştirmen gerektiğini biliyor musun?','İdeal çalışma ortamını tanımlayabilir misin?','Kariyerinde neyi istemediğini biliyor musun?','Gelir hedeflerini düşünür müsün?','Hedeflediğin role giden adımları araştırdın mı?','Kariyer kararlarını değerlerinle karşılaştırır mısın?','Kendine belirli aralıklarla yön kontrolü yapar mısın?','Alternatif kariyer yollarını da değerlendirir misin?','Bugünkü işlerinin uzun vadeli hedefe hizmet edip etmediğini sorgular mısın?'],
+['Kariyer vizyonun oldukça net. Nereye gitmek istediğini ve hangi adımlara ihtiyaç duyduğunu biliyorsun.','Genel yönün belli ancak bazı hedeflerin hâlâ şekilleniyor.','Kariyer yönün belirsiz olabilir. Önce güçlü yönlerini, değerlerini ve istemediğin çalışma biçimlerini yazmak yardımcı olur.']),
+Q('beyin','Mantıksal Düşünme Eğilimin Ne Kadar Güçlü?',[
+'Problemleri adım adım çözmeyi sever misin?','Sayısal bulmacalarla vakit geçirir misin?','Neden-sonuç ilişkilerini hızlı kurar mısın?','Karar verirken önce mantığını mı dinlersin?','Karmaşık sistemleri anlamaktan keyif alır mısın?','Bir iddianın tutarsızlığını kolay fark eder misin?','Kurallı problemleri çözmek sana keyif verir mi?','Bir sonucun hangi adımlardan çıktığını açıklayabilir misin?','Farklı seçenekleri mantıksal ölçütlerle karşılaştırır mısın?','Karmaşık bir problemi küçük parçalara ayırabilir misin?'],
+['Mantıksal düşünme eğilimin oldukça güçlü. Problemleri sistematik şekilde çözüyorsun.','Mantıksal düşünme becerin gelişmiş ama sezgilerine de güveniyorsun.','Mantıktan çok sezgilerinle hareket ediyorsun; bu da farklı bir güç.']),
+Q('beyin','Hafıza Gücün Nedir?',[
+'İsimleri kolayca hatırlar mısın?','Geçmiş konuşmaların detaylarını hatırlar mısın?','Listeleri ezberlemekte iyi misin?','Yerleri veya yönleri kolay hatırlar mısın?','Eski anıları net hatırlar mısın?','Yeni öğrendiğin bilgiyi birkaç gün sonra hatırlar mısın?','Yapman gereken işleri not olmadan sık hatırlar mısın?','Bir hikâyenin ayrıntılarını uzun süre aklında tutabilir misin?','Tanıştığın insanların yüzlerini kolay hatırlar mısın?','Öğrendiğin bir bilgiyi doğru zamanda zihninden çağırabilir misin?'],
+['Hafızan oldukça güçlü. Detayları ve isimleri kolayca aklında tutabiliyorsun.','Hafızan ortalama düzeyde; bazı şeyleri unutsan da genel hatları hatırlıyorsun.','Hafızan konusunda zorlanıyor olabilirsin. Not almak ve tekrar yapmak yardımcı olur.']),
+Q('beyin','Problem Çözme Becerin Nasıl?',[
+'Zor bir sorunla karşılaştığında paniklemez misin?','Farklı çözüm yolları düşünür müsün?','Hatalardan hızlı ders çıkarır mısın?','Karmaşık durumları basitleştirebilir misin?','Çözüm bulana kadar pes etmez misin?','Sorunun gerçek nedenini bulmaya çalışır mısın?','İlk çözüm işe yaramazsa ikinci bir yol üretir misin?','Çözümü uygulamadan önce olası sonuçlarını düşünür müsün?','Gerektiğinde başkasından bilgi veya yardım ister misin?','Sorun çözüldükten sonra tekrarını önleyecek adım atar mısın?'],
+['Problem çözme becerin çok güçlü. Zor durumlarda bile net ve yaratıcı çözümler buluyorsun.','Problem çözme becerin fena değil ama bazen zorlanabiliyorsun.','Karmaşık problemler seni yıpratabiliyor. Adım adım ilerlemek işini kolaylaştırabilir.']),
+Q('beyin','Analitik mi Sezgisel mi Düşünürsün?',[
+'Sayılar ve mantıkla mı daha rahatsın?','Planlı mı hareket edersin?','Detaycı mısın?','Kararlarını analiz ederek mi verirsin?','Yazılı kurallar seni rahatlatır mı?','İşlerini belirli bir sıraya koymak seni rahatlatır mı?','Kesin bilgi ve ölçülebilir sonuçları tercih eder misin?','Bir işi yapmadan önce plan oluşturur musun?','Detayları kontrol etmek sana doğal gelir mi?','Karar verirken duygudan önce veriye bakar mısın?'],
+['Analitik düşünme eğilimin daha belirgin görünüyor. Düzen, veri, planlama ve sistematik yaklaşım sana doğal geliyor.','Analitik ve sezgisel düşünme arasında dengeli bir yapın var. Duruma göre iki yaklaşımı da kullanabiliyorsun.','Sezgisel ve yaratıcı düşünme eğilimin daha belirgin. Büyük resmi, çağrışımları ve içgüdülerini kullanmaya yatkınsın.']),
+Q('beyin','Duygusal Farkındalığın Ne Kadar Güçlü?',[
+'Kendi duygularını tanımlayabilir misin?','Duygularını kontrol edebilir misin?','Başkalarının duygularını anlayabilir misin?','Stresli anlarda duygusal tepkini yönetebilir misin?','Empati kurmak senin için kolay mı?','Bir duygunun davranışını etkilediğini fark edebilir misin?','Öfkelendiğinde tepki vermeden önce durabilir misin?','Karşındaki kişinin tonundaki değişimi fark eder misin?','Duygularını doğru kelimelerle ifade edebilir misin?','Bir tartışmada hem kendi hem karşı tarafın duygusunu hesaba katabilir misin?'],
+['Duygusal farkındalığın oldukça yüksek. Hem kendi hem başkalarının duygularını iyi okuyup yönetebiliyorsun.','Duygusal farkındalığın gelişmeye devam ediyor; bazı anlarda zorlanabiliyorsun.','Duygularını anlamak ve yönetmek konusunda gelişim alanın var; bu farkındalıkla büyür.']),
+Q('beyin','Ne Kadar Analitik Düşünürsün?',[
+'Karar verirken veri toplar mısın?','Duygusal tepkiden çok gerçeklere mi bakarsın?','Bir konuyu parçalara ayırarak mı incelersin?','Varsayımları sorgular mısın?','Sonuç çıkarmadan önce çok yönlü düşünür müsün?','Bir karar öncesi varsayımlarını kontrol eder misin?','Bilgiyi sınıflandırarak incelemeyi sever misin?','Bir sonucun nedenlerini tek tek ayırabilir misin?','İstatistik veya oranları yorumlamak sana doğal gelir mi?','Bir görüşü kabul etmeden önce kanıtını sorgular mısın?'],
+['Oldukça analitik bir zihnin var. Kararlarını verilere ve mantığa dayandırıyorsun.','Analitik düşünme becerin var ama sezgilerine de yer açıyorsun.','Analizden çok sezgiyle hareket ediyorsun; bu da hızlı karar almanı sağlıyor.']),
+Q('beyin','Odaklanma Seviyen Nedir?',[
+'Uzun süre tek bir işe odaklanabilir misin?','Dikkatin kolay dağılmaz mı?','Çoklu görevlerde performansın düşmez mi?','Gürültülü ortamlarda bile konsantre olabilir misin?','Bir işe başladığında bitirene kadar sürdürebilir misin?','Bildirimler açıkken bile önemli işine dönebilir misin?','Bir çalışma bloğunu bölmeden tamamlayabilir misin?','Okurken birkaç sayfa boyunca dikkatini koruyabilir misin?','Sıkıcı ama gerekli bir görevi bitirebilir misin?','Dikkatin dağıldığını fark edip yeniden odaklanabilir misin?'],
+['Odaklanma gücün oldukça yüksek. Dikkatini uzun süre koruyabiliyorsun.','Odaklanman duruma göre değişiyor; bazen kolay dağılabiliyorsun.','Dikkatini toplamakta zorlanıyor olabilirsin. Kısa çalışma blokları sana yardımcı olabilir.']),
+Q('beyin','Sezgisel Misin Mantıksal Mı?',[
+'Kararlarını içgüdülerine göre mi alırsın?','İlk izlenimlere güvenir misin?','Bir şeyi hissederek mi anlarsın?','Kanıt olmadan bir şeye inanabilir misin?','Mantıkla sezgi çatıştığında sezgine mi güvenirsin?','Bir ortam hakkında ilk hissine önem verir misin?','Karar verirken içinden gelen sesi dikkate alır mısın?','Bir insanla ilgili ilk izlenimin sık doğru çıkar mı?','Açıklayamadığın halde bir seçeneğin doğru olduğunu hisseder misin?','Hızlı kararlarda sezgilerine güvenmek sana doğal gelir mi?'],
+['Oldukça sezgisel bir zihnin var. İçgüdülerin sana çoğu zaman doğru yolu gösteriyor.','Sezgi ve mantığı dengeli kullanıyorsun.','Mantık senin için önce geliyor; kararlarını kanıta dayandırmayı tercih ediyorsun.']),
+Q('beyin','Öğrenme Hızın Nasıl?',[
+'Yeni bir konuyu hızlı kavrar mısın?','Uygulayarak öğrenmeyi mi tercih edersin?','Görsellerle daha mı iyi öğrenirsin?','Öğrendiklerini başkalarına anlatabilir misin?','Merak ettiğin konuları kendi başına araştırır mısın?','Yeni bir uygulamanın mantığını kısa sürede çözebilir misin?','Bir örnek gördükten sonra benzerini kendin yapabilir misin?','Yeni kavramları eski bilgilerle hızlı bağlayabilir misin?','Az tekrar ile bilgiyi kullanmaya başlayabilir misin?','Bir hatadan sonra doğru yöntemi hızlı kavrar mısın?'],
+['Hızlı ve etkili bir öğrenme yapın var; yeni bilgileri kolayca özümsüyorsun.','Öğrenme hızın konudan konuya değişiyor.','Öğrenme sürecin biraz zaman alıyor olabilir ama tekrar ve pratikle bu güçleniyor.']),
+Q('beyin','Ne Kadar Meraklısın?',[
+'Yeni konuları araştırmayı sever misin?','"Neden" sorusunu sık sorar mısın?','Bilmediğin şeyleri öğrenmek seni heyecanlandırır mı?','Farklı alanlarla ilgilenir misin?','Sıradan şeylerde bile ilginç detaylar arar mısın?','Bilmediğin bir kelimeyi hemen araştırır mısın?','Bir konudan başka bir konuya merakla geçer misin?','Nasıl çalıştığını bilmediğin şeyleri kurcalamak ister misin?','Yeni bir alanda başlangıç seviyesinde olmayı göze alır mısın?','Günlük hayatta sık sık yeni sorular üretir misin?'],
+['Meraklı bir zihnin var. Öğrenmeye açık olman seni sürekli geliştiriyor.','Bazı konularda meraklısın ama her şeye aynı ilgiyi göstermiyorsun.','Merakın sınırlı alanlarda yoğunlaşıyor; bilindik ve güvenli konuları tercih ediyorsun.']),
+Q('beyin','Eleştirel Düşünme Becerin Nasıl?',[
+'Bir iddiayı kabul etmeden önce kanıt arar mısın?','Kaynağın güvenilirliğini sorgular mısın?','Kendi fikrine ters bilgileri de okur musun?','Nedensellik ile tesadüfü ayırmaya çalışır mısın?','Bir argümandaki varsayımları fark eder misin?','Duygusal bir başlığın seni hemen ikna etmesine izin vermez misin?','Bir konuda bilmiyorum diyebilir misin?','Çelişkili bilgileri karşılaştırır mısın?','Kendi önyargılarını sorgular mısın?','Yeni kanıt geldiğinde fikrini değiştirebilir misin?'],
+['Eleştirel düşünme becerin güçlü. Bilgiyi sorguluyor, kanıt ve kaynak kalitesine dikkat ediyorsun.','Genelde sorgulayıcısın ancak bazı konularda ilk izlenimin etkisinde kalabiliyorsun.','Bilgiyi hızlı kabul etmeye eğilimli olabilirsin. Kaynak, kanıt ve alternatif açıklama kontrolü iyi bir başlangıçtır.']),
+Q('beyin','Kararlarında Bilişsel Önyargıları Fark Eder misin?',[
+'İlk duyduğun bilginin kararını fazla etkileyebileceğini bilir misin?','Sadece kendi fikrini destekleyen bilgiyi aramamaya çalışır mısın?','Son yaşadığın olayın tüm ihtimalleri temsil etmediğini düşünür müsün?','Bir kişiyi tek özelliğine göre değerlendirmekten kaçınır mısın?','Kaybetme korkusunun kararını etkileyebileceğini fark eder misin?','Kalabalığın fikrini otomatik olarak doğru kabul etmez misin?','Geçmişte harcadığın emek yüzünden kötü bir karara devam etmez misin?','İlk fiyatın sonraki değerlendirmeyi etkileyebileceğini bilir misin?','Duygu durumunun risk algını değiştirdiğini fark eder misin?','Karar öncesi kendine hangi varsayımı yapıyorum diye sorar mısın?'],
+['Bilişsel önyargıların farkındalığın yüksek. Kararlarını daha bilinçli kontrol edebiliyorsun.','Bazı önyargıları fark ediyorsun ancak hızlı karar anlarında etkilenebiliyorsun.','Önyargılar kararlarını fark etmeden yönlendirebilir. Karar öncesi kısa bir kontrol listesi kullanmak yardımcı olur.']),
+Q('beyin','Görsel Hafızan Ne Kadar Güçlü?',[
+'Gördüğün bir yüzü uzun süre hatırlayabilir misin?','Bir odanın düzenini zihninde canlandırabilir misin?','Haritada gördüğün yolu hatırlamakta iyi misin?','Renk ve şekil detaylarını kolay hatırlar mısın?','Bir sayfanın düzeni aklında kalır mı?','Görsel notlar düz yazıdan daha çok işine yarar mı?','Bir nesnenin yerini gördükten sonra hatırlar mısın?','Grafikleri metinden daha hızlı anlayabilir misin?','Bir filmi sahneleriyle hatırlama eğiliminde misin?','Zihninde görüntü canlandırmak senin için kolay mı?'],
+['Görsel hafızan oldukça güçlü. Şekil, yer ve sahne bilgilerini iyi tutuyorsun.','Görsel hafızan orta düzeyde; ilgi çekici detaylar daha çok aklında kalıyor.','Görsel bilgileri hatırlamakta zorlanabiliyor olabilirsin. Görsel çağrışımlar ve basit çizimler yardımcı olur.']),
+Q('beyin','Sözel Zekan Ne Kadar Güçlü?',[
+'Düşüncelerini kelimelerle rahat ifade edebilir misin?','Yeni kelimeleri kolay öğrenir misin?','Okuduğun metnin ana fikrini hızlı bulabilir misin?','Hikaye anlatmaktan keyif alır mısın?','Benzer anlamlı kelimeler arasında doğru seçimi yapabilir misin?','Yazarken cümlelerini kolayca düzenler misin?','Bir konuyu başkasına açıklamakta iyi misin?','Kelime oyunlarından hoşlanır mısın?','Uzun konuşmaları takip edebilir misin?','Bir fikri farklı kelimelerle yeniden anlatabilir misin?'],
+['Sözel becerilerin güçlü. Dil kullanımı, anlatım ve kavrama becerilerin öne çıkıyor.','Sözel becerilerin dengeli; bazı alanlarda güçlü, bazı alanlarda pratik ihtiyacı var.','Sözel görevler seni zorlayabilir. Düzenli okuma, özet çıkarma ve anlatma pratiği faydalı olur.']),
+Q('beyin','Çalışma Hafızan Ne Kadar Güçlü?',[
+'Kısa bir telefon numarasını birkaç saniye aklında tutabilir misin?','Bir talimatın birkaç adımını sırayla hatırlayabilir misin?','Zihinden işlem yaparken ara sonuçları koruyabilir misin?','Bir cümleyi okurken başını unutmadan sonuna gelebilir misin?','Bir görevi yaparken ilgili ayrıntıları aklında tutabilir misin?','Konuşma sırasında önceki noktaya geri dönebilir misin?','Bir listeyi not almadan kısa süreliğine hatırlayabilir misin?','Dikkatin dağıldığında kaldığın yeri hızlı bulabilir misin?','Aynı anda iki küçük bilgi parçasını karşılaştırabilir misin?','Bir problemi çözerken birkaç olasılığı zihninde tutabilir misin?'],
+['Çalışma hafızan güçlü. Kısa süreli bilgileri işleyip kullanmakta başarılısın.','Çalışma hafızan genel olarak iyi ancak yoğun veya dikkat dağıtıcı ortamlarda zorlanabiliyorsun.','Kısa süreli bilgiyi zihinde tutmak zorlayıcı olabilir. Not almak, görevleri bölmek ve tek işe odaklanmak yardımcı olur.']),
+Q('beyin','Zihinsel Esnekliğin Ne Kadar?',[
+'Bir çözüm işe yaramadığında yöntem değiştirebilir misin?','Aynı probleme farklı açıdan bakabilir misin?','Bir kurala istisna gerektiğini fark edebilir misin?','Yeni bilgi geldiğinde eski düşünceni güncelleyebilir misin?','Bir görevden diğerine geçerken hızlı adapte olabilir misin?','Bir tartışmada karşı tarafın mantığını anlayabilir misin?','Beklenmedik değişiklikte yeni plan oluşturabilir misin?','Bir kelimenin veya olayın birden fazla anlamını düşünebilir misin?','Yanlış varsayımı bırakmakta zorlanmaz mısın?','Alışılmış yöntemin dışında çözüm denemeye açık mısın?'],
+['Zihinsel esnekliğin yüksek. Değişen bilgi ve koşullara hızlı uyum sağlayabiliyorsun.','Esnekliğin iyi ancak bazı alışkanlık ve fikirleri bırakmak zaman alabiliyor.','Tek bir yönteme bağlı kalma eğilimin olabilir. Alternatif çözüm üretme egzersizleri faydalı olur.']),
+Q('beyin','Detaycılık Seviyen Nedir?',[
+'Küçük yazım hatalarını çabuk fark eder misin?','Bir işte eksik kalan parçayı hemen görür müsün?','Talimatları dikkatle okur musun?','Sayı ve tarihleri kontrol eder misin?','Bir odadaki küçük değişiklikleri fark eder misin?','Teslim etmeden önce çalışmanı gözden geçirir misin?','Benzer görünen iki şey arasındaki farkı bulabilir misin?','Plan yaparken küçük ayrıntıları da hesaba katar mısın?','Detaylar yüzünden büyük resmi kaybetmemeye dikkat eder misin?','Tekrarlayan hataları fark edip düzeltir misin?'],
+['Detaylara oldukça dikkat ediyorsun. Bu özellik doğruluk gerektiren işlerde büyük avantaj sağlar.','Detaycılığın dengeli; önemli ayrıntıları yakalıyor ancak gerektiğinde büyük resme dönebiliyorsun.','Detayları kaçırma eğilimin olabilir. Kontrol listeleri ve son gözden geçirme rutini işine yarayabilir.']),
+Q('beyin','Hızlı Düşünme Becerin Nasıl?',[
+'Beklenmedik bir soruya kısa sürede cevap verebilir misin?','Yeni bir durumda hızlı seçenek üretebilir misin?','Zaman baskısı altında temel bilgiyi ayıklayabilir misin?','Konuşma sırasında hızlı bağlantılar kurabilir misin?','Basit hesapları zihinden çabuk yapabilir misin?','Bir sorun çıktığında ilk uygulanabilir adımı hızla görebilir misin?','Hızlı karar verirken temel riskleri de kontrol eder misin?','Bir tartışmada söylenen noktayı hızlı anlayabilir misin?','Yeni bir oyunun mantığını kısa sürede kavrayabilir misin?','Hız ile doğruluk arasında denge kurabilir misin?'],
+['Hızlı düşünme becerin güçlü. Bilgiyi çabuk işleyip uygulanabilir tepki üretebiliyorsun.','Hızın iyi ancak karmaşık konularda düşünmek için daha fazla süreye ihtiyaç duyuyorsun.','Hızlı düşünme gerektiren durumlar seni zorlayabilir. Düzenli pratik ve basit karar çerçeveleri hızını artırabilir.']),
+Q('beyin','Derin Düşünme Eğilimin Ne Kadar?',[
+'Bir konunun yüzeyinde kalmak yerine nedenlerini araştırır mısın?','Bir fikrin uzun vadeli sonuçlarını düşünür müsün?','Tek başına düşünmek için zaman ayırır mısın?','Bir sorunun arkasındaki asıl sorunu arar mısın?','Okuduğun bir şey üzerine sonradan düşünmeye devam eder misin?','Farklı bakış açılarını zihninde karşılaştırır mısın?','Bir kararın değerlerinle uyumunu sorgular mısın?','Karmaşık sorular seni meraklandırır mı?','Kendi düşünce süreçlerini gözlemlemeye çalışır mısın?','Hızlı cevap yerine doğru soruyu bulmaya önem verir misin?'],
+['Derin düşünme eğilimin yüksek. Konuların nedenlerini ve uzun vadeli etkilerini incelemeyi seviyorsun.','Bazı konularda derine iniyor, bazı konularda pratik ve hızlı ilerlemeyi tercih ediyorsun.','Daha çok hızlı ve yüzeysel işlemeyi tercih ediyor olabilirsin. Belirli konularda düşünme zamanı ayırmak yeni bağlantılar kurmanı sağlayabilir.']),
+Q('beyin','Bilgi İşleme Tarzın Ne Kadar Sistematik?',[
+'Yeni bir konuyu başlıklara ayırarak öğrenir misin?','Notlarını düzenli kategoriler halinde tutar mısın?','Bir problemi sırayla çözmeyi tercih eder misin?','Bilgiyi tablo veya listeye dönüştürmek işine yarar mı?','Önce genel çerçeveyi sonra ayrıntıları inceler misin?','Benzer bilgileri gruplayabilir misin?','Bir iş akışı oluşturduğunda onu takip eder misin?','Karmaşık bilgide öncelik sırası belirler misin?','Öğrendiklerini belirli aralıklarla tekrar eder misin?','Bir konuyu bitirdikten sonra kısa özet çıkarır mısın?'],
+['Bilgi işleme tarzın oldukça sistematik. Düzen ve yapı öğrenmeni kolaylaştırıyor.','Genelde düzenli ilerliyorsun ancak ilgi çekici konularda daha serbest davranabiliyorsun.','Bilgiyi plansız ve dağınık işleme eğilimin olabilir. Basit başlıklar, listeler ve özetler öğrenmeni kolaylaştırabilir.'])
+];
+QUIZZES.forEach((q,i)=>q.no=i+1);
+const STORAGE_KEY='kisilikArsiviResultsV3';
+let currentCatId=null,activeQuiz=null,currentQuestion=0,selected=[];
+const $=id=>document.getElementById(id);
+function catOf(id){return CATS.find(c=>c.id===id)}
+function quizzesOf(id){return QUIZZES.filter(q=>q.cat===id)}
+function localQuizNo(q){return quizzesOf(q.cat).indexOf(q)+1}
+function store(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch(e){return{}}}
+function saveStore(data){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch(e){}}
+function isDone(q){return !!store()[q.no]}
+function completedCount(){return Object.keys(store()).length}
+function switchScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');try{$('kisilik-arsivi-app').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){window.scrollTo(0,0)}}
+function goHome(){currentCatId=null;renderHome();switchScreen('screen-home')}
+function goList(){if(currentCatId)openCategory(currentCatId);else goHome()}
+function renderHome(){
+ $('brand-sub').textContent=`${QUIZZES.length} test · ${CATS.length} bölüm`;
+ const grid=$('cat-grid');grid.innerHTML='';CATS.forEach(c=>{const list=quizzesOf(c.id),d=list.filter(isDone).length;const card=document.createElement('div');card.className='cat-card';card.tabIndex=0;card.style.setProperty('--cat-color',c.color);card.innerHTML=`<div class="cat-label">Bölüm</div><div class="cat-name">${c.name}</div><div class="cat-desc">${c.desc}</div>`;const open=()=>openCategory(c.id);card.onclick=open;card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};grid.appendChild(card)});
+}
+function openCategory(catId){currentCatId=catId;const c=catOf(catId);$('list-header').textContent=c.name+' Testleri';$('list-header').style.color=c.color;const list=$('test-list');list.innerHTML='';quizzesOf(catId).forEach((q,i)=>{const row=document.createElement('div');row.className='test-card';row.style.setProperty('--cat-color',c.color);row.style.borderLeft='6px solid '+c.color;row.innerHTML=`<span class="test-no">${String(i+1).padStart(2,'0')}</span><span class="test-title">${q.title}</span><span class="test-arrow">→</span>`;row.onclick=()=>startQuiz(q);list.appendChild(row)});switchScreen('screen-list')}
+function startQuiz(q){activeQuiz=q;currentCatId=q.cat;currentQuestion=0;selected=Array(q.q.length).fill(null);const c=catOf(q.cat),card=document.querySelector('#screen-quiz .quiz-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('progress-fill').style.background=c.color;$('quiz-title').textContent=q.title;$('quiz-title').style.color=c.color;$('quiz-catno').textContent=`${c.name.toUpperCase()} · TEST ${String(localQuizNo(q)).padStart(2,'0')} / ${quizzesOf(q.cat).length}`;loadQuestion();switchScreen('screen-quiz')}
+function loadQuestion(){const q=activeQuiz,total=q.q.length;$('quiz-qno').textContent=`Soru ${currentQuestion+1} / ${total}`;$('progress-fill').style.width=((currentQuestion+1)/total*100)+'%';$('question').textContent=q.q[currentQuestion];const box=$('answers');box.innerHTML='';const next=$('next-btn');next.disabled=true;ANSWERS.forEach((ans,i)=>{const input=document.createElement('input');input.type='radio';input.name='answer';input.id=`answer-${currentQuestion}-${i}`;input.value=ans.score;if(selected[currentQuestion]===ans.score){input.checked=true;next.disabled=false}input.onchange=()=>{selected[currentQuestion]=ans.score;next.disabled=false};const label=document.createElement('label');label.htmlFor=input.id;label.innerHTML=`<span class="answer-number">${i+1}</span>${ans.text}`;box.append(input,label)});$('prev-btn').disabled=currentQuestion===0;next.textContent=currentQuestion===total-1?'Sonucu Gör':'İleri'}
+function scoredAnswer(q,index,raw){return q.reverse&&q.reverse.includes(index)?4-raw:raw}
+function resultExtras(q,p){
+ const name=q.title.replace(/\?$/,'');
+ let strength,watch,suggestion,portrait;
+ if(p>=80){
+  portrait=`${name} konusunda sonucun çok yüksek. Verdiğin cevaplar bu özelliğin sende güçlü, sık tekrarlanan ve davranışlarını belirgin biçimde etkileyen bir eğilim olduğunu gösteriyor. Bu özellik olumlu bir beceriyi ölçüyorsa güçlü yanlarından biri sayılabilir; kıskançlık, kaygı, aşırı sosyal medya kullanımı gibi zorlayıcı bir eğilimi ölçüyorsa yüksek skor avantaj değil, dikkat edilmesi gereken bir işarettir.`;
+  strength='Bu sonuç tesadüfi birkaç cevaptan oluşmuyor; cevaplarının genel yönü oldukça belirgin. Dolayısıyla bu özelliğin kararlarında, ilişkilerinde veya günlük davranışlarında görünür olması muhtemel. Sonucun iyi mi kötü mü olduğu testin ölçtüğü özelliğe bağlıdır; yüksek puanı otomatik olarak olumlu kabul etme.';
+  watch='Çok yüksek sonuçlarda aşırılık riski vardır. Olumlu bir özellik bile gereğinden fazla kullanıldığında katılık veya dengesizlik yaratabilir. Test olumsuz bir eğilimi ölçüyorsa sonucu küçümsemek yerine bunun hayatında gerçekten sorun çıkarıp çıkarmadığına dürüstçe bak.';
+  suggestion='Son bir ayı düşün ve bu özelliğin davranışlarına yansıdığı üç somut olayı hatırla. Sana fayda sağladıysa nasıl kullandığını koru; zarar verdiyse hangi davranışı değiştirmen gerektiğini net biçimde belirle.';
+ }else if(p>=60){
+  portrait=`${name} konusunda sonucun yüksek. Bu özellik sende belirgin biçimde bulunuyor fakat her durumda aynı güçte ortaya çıkmıyor. Yine de cevapların, bunun kişiliğinde veya davranışlarında göz ardı edilemeyecek kadar güçlü bir yer tuttuğunu gösteriyor.`;
+  strength='Bu özelliğin sende belirgin olduğu söylenebilir. Olumlu bir özellikse bunu gerçek bir güçlü yön olarak kullanabilirsin. Olumsuz veya zorlayıcı bir eğilimse “bende biraz var” diye geçiştirmek yerine hangi durumlarda arttığını fark etmen daha doğru olur.';
+  watch='Yüksek skor, özelliğin hayatındaki etkisini kontrol etmeye değer olduğu anlamına gelir. Özellikle stres, ilişki çatışması, rekabet veya baskı altında bu eğilimin daha da yükselip yükselmediğine dikkat et.';
+  suggestion='Bu özelliğin en çok ortaya çıktığı iki ortamı belirle. Sonra sonuçlarını değerlendir: sana avantaj mı sağlıyor, yoksa sorun mu çıkarıyor? Değiştirmen gereken nokta varsa genel bir niyet yerine tek bir davranış seç.';
+ }else if(p>=40){
+  portrait=`${name} konusunda sonucun orta düzeyde. Bu özellik sende ne belirgin biçimde güçlü ne de belirgin biçimde zayıf. Duruma göre farklı davranabiliyorsun ve cevapların net bir uca işaret etmiyor.`;
+  strength='Orta sonuç, bu konuda esnek davranabildiğini gösterebilir; ancak tek başına güçlü olduğun anlamına gelmez. Bazı durumlarda iyi yönetiyor, bazı durumlarda zorlanıyor olabilirsin.';
+  watch='Bu seviyede en büyük hata sonucu olduğundan daha iyi yorumlamaktır. “Dengeli” olmak her zaman ideal olmak değildir. Özellikle senin için önemli olan durumlarda davranışının hangi tarafa kaydığını gözlemlemek daha anlamlıdır.';
+  suggestion='Sonucun ortada kaldığı için genel izlenim yerine gerçek davranışlarına bak. Bu konuyla ilgili yakın zamanda yaşadığın üç olayı değerlendir ve hangilerinde iyi, hangilerinde zayıf kaldığını açıkça yaz.';
+ }else if(p>=20){
+  portrait=`${name} konusunda sonucun düşük. Bu özellik sende güçlü değil ve verdiğin cevaplara göre günlük davranışlarında düzenli biçimde ortaya çıkmıyor. Eğer test yararlı bir beceriyi ölçüyorsa burası açık bir gelişim alanıdır. Test olumsuz bir eğilimi ölçüyorsa düşük skor ise senin lehine bir sonuçtur.`;
+  strength='Sonucun düşük olması gerçeğini yumuşatmaya gerek yok. Ölçülen özellik olumluysa bu konuda şu anda güçlü değilsin. Ölçülen özellik olumsuzsa tam tersine, bu eğilimin sende baskın olmaması avantajdır.';
+  watch='Eğer bu test disiplin, iletişim, empati, odaklanma veya benzeri yararlı bir beceriyi ölçüyorsa düşük skorun günlük hayatında bedeli olabilir. Kıskançlık, kaygı veya aşırı kullanım gibi olumsuz bir eğilimi ölçüyorsa düşük sonucu yükseltmeye çalışman gerekmez.';
+  suggestion='Testin ölçtüğü özellik hayatında işine yarayacak bir beceriyse geliştirmek istediğin tek bir davranış seç ve bir hafta uygula. Olumsuz bir eğilimse mevcut düşük seviyeyi korumana yardımcı olan alışkanlıklarını fark et.';
+ }else{
+  portrait=`${name} konusunda sonucun çok düşük. Cevapların bu özelliğin sende ya çok az bulunduğunu ya da çoğu durumda davranışlarına yansımadığını gösteriyor. Yararlı bir beceriyi ölçen testlerde bu net bir zayıf alan; olumsuz bir eğilimi ölçen testlerde ise oldukça olumlu bir sonuçtur.`;
+  strength='Bu sonucu “her şey yolunda” diye otomatik biçimde yorumlamak doğru olmaz. Önce neyin ölçüldüğüne bak: yararlı bir özellikse seviyen belirgin biçimde düşük; zararlı bir eğilimse düşük olması güçlü bir avantajdır.';
+  watch='Yararlı bir beceride çok düşük skor aldıysan bunun ilişkilerine, işine veya hedeflerine nerede zarar verdiğini dürüstçe incele. Olumsuz bir özellikte çok düşük skor aldıysan da test sonucunu kesin bir kişilik gerçeği gibi görme; gerçek davranışların her zaman daha önemlidir.';
+  suggestion='Yararlı bir özellikte düşük çıktıysan büyük değişim hedeflemek yerine en temel davranıştan başla. Olumsuz bir özellikte düşük çıktıysan ekstra bir şey yapman gerekmeyebilir; sadece mevcut sağlıklı davranışlarını sürdür.';
+ }
+ return{portrait,strength,watch,suggestion};
+}
+function showResult(){const q=activeQuiz,c=catOf(q.cat);let total=0;selected.forEach((s,i)=>total+=scoredAnswer(q,i,s));const max=q.q.length*4,percent=Math.round(total/max*100);let level,index;if(percent>=80){level='Çok Yüksek';index=0}else if(percent>=60){level='Yüksek';index=0}else if(percent>=40){level='Dengeli';index=1}else if(percent>=20){level='Düşük';index=2}else{level='Çok Düşük';index=2}const card=$('result-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('seal-score').textContent='%'+percent;$('result-title').textContent=q.title.replace(/\?$/,'')+' — Sonuç';$('result-level').textContent=level;const x=resultExtras(q,percent);$('result-text').textContent=q.r[index]+' '+x.portrait;$('result-details').innerHTML=`<div class="result-detail"><div class="result-detail-label">Sende nasıl görünüyor?</div><div class="result-detail-text">${x.strength}</div></div><div class="result-detail"><div class="result-detail-label">Denge noktası</div><div class="result-detail-text">${x.watch}</div></div><div class="result-detail"><div class="result-detail-label">Bunu hayatında nasıl kullanabilirsin?</div><div class="result-detail-text">${x.suggestion}</div></div>`;const data=store();data[q.no]={quizNo:q.no,title:q.title,cat:q.cat,percent,raw:total,max,level,date:Date.now()};saveStore(data);switchScreen('screen-result')}
+$('prev-btn').onclick=()=>{if(currentQuestion>0){currentQuestion--;loadQuestion()}};$('next-btn').onclick=()=>{if(selected[currentQuestion]===null)return;if(currentQuestion<activeQuiz.q.length-1){currentQuestion++;loadQuestion()}else showResult()};$('home-back-btn').onclick=goHome;$('list-back-btn').onclick=goList;$('archive-home-btn').onclick=goHome;$('other-tests-btn').onclick=goList;$('repeat-test-btn').onclick=()=>activeQuiz&&startQuiz(activeQuiz);
+$('archive-search').addEventListener('input',e=>{const term=e.target.value.toLocaleLowerCase('tr-TR').trim(),box=$('search-results');if(term.length<2){box.classList.remove('active');box.innerHTML='';return}const m=QUIZZES.filter(q=>(q.title+' '+catOf(q.cat).name).toLocaleLowerCase('tr-TR').includes(term)).slice(0,15);box.classList.add('active');box.innerHTML='';if(!m.length){box.innerHTML='<div class="empty-search">Bu aramayla eşleşen test bulunamadı.</div>';return}m.forEach(q=>{const c=catOf(q.cat),row=document.createElement('div');row.className='search-result';row.innerHTML=`<div class="search-result-cat" style="background:${c.color}"></div><div class="search-result-info"><div class="search-result-title">${q.title}</div><div class="search-result-meta">${c.name} · Test ${String(localQuizNo(q)).padStart(2,'0')}</div></div><div>→</div>`;row.onclick=()=>{e.target.value='';box.classList.remove('active');startQuiz(q)};box.appendChild(row)})});
+$('random-test-btn').onclick=()=>{startQuiz(QUIZZES[Math.floor(Math.random()*QUIZZES.length)])};
+document.addEventListener('keydown',e=>{if(!$('screen-quiz').classList.contains('active'))return;const n=Number(e.key);if(n>=1&&n<=5){const input=document.querySelectorAll('#answers input')[n-1];if(input){input.checked=true;input.dispatchEvent(new Event('change',{bubbles:true}))}}});
+renderHome();
+</script>
+</p>
+</body></html>
