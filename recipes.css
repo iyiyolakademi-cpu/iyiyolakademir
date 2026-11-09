@@ -17,3 +17,79 @@
 .cook-overlay{position:fixed;inset:0;background:#101912db;display:grid;place-items:center;padding:16px;z-index:250}.cook-modal{width:min(640px,100%);max-height:calc(100dvh - 32px);overflow-y:auto;padding:30px;border-radius:28px;background:#fff}.cook-modal-top{display:flex;justify-content:space-between;align-items:start;gap:20px}.cook-modal-top span{color:#997744;font-size:11px;letter-spacing:.15em;font-weight:800}.cook-modal-top h2{font-size:24px;line-height:1.3;margin:10px 0 12px}.cook-modal-top button{width:38px;height:38px;border:1px solid #dfe5dc;border-radius:12px;background:#fff;font-size:28px;cursor:pointer}.cook-progress{height:6px;border-radius:999px;background:#e6eae2;overflow:hidden;margin:14px 0}.cook-progress div{height:100%;background:var(--forest);width:0;transition:width .15s}#cookStepCounter{font-size:12px;font-weight:750;color:#76867a}.cook-step-text{border-radius:18px;background:#f8f9f5;padding:26px;font-size:18px;line-height:1.85;min-height:160px}.cook-controls{display:flex;justify-content:space-between;gap:12px;margin-top:18px}.cook-controls button{background:var(--forest);border:0;border-radius:14px;padding:12px 20px;color:#fff;font-weight:750;cursor:pointer}.cook-controls button:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:970px){.recipe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.recipe-detail-layout{grid-template-columns:1fr}.recipe-detail-aside{position:static;display:none}}
 @media(max-width:650px){.recipes-hero{padding:44px 0}.recipes-hero-layout{grid-template-columns:1fr}.recipes-hero-art{min-height:150px}.recipes-plate{font-size:70px}.recipes-hero-art>span{bottom:10px}.recipes-hero h1{font-size:46px}.recipes-content{padding-top:25px}.recipes-toolbar{align-items:stretch}.recipes-toolbar-actions{width:100%}.recipes-toolbar-actions>*{flex:1}.recipes-sort-controls label{flex:1;justify-content:space-between}.recipes-sort-controls{width:100%}.recipe-grid{grid-template-columns:1fr;gap:14px}.recipe-card{flex-direction:row;min-height:150px}.recipe-card-visual{min-width:128px;width:128px;min-height:150px}.recipe-card-emoji{font-size:54px}.recipe-card-cat{top:auto;bottom:11px;left:8px;font-size:8px}.recipe-card-body{padding:16px;gap:8px}.recipe-card-body h3{font-size:16px}.recipe-detail-hero{padding:55px 22px 20px;gap:12px}.recipe-detail-hero-icon{font-size:54px}.recipe-detail-hero h2{font-size:25px}.recipe-detail-meta{padding:16px 20px}.recipe-servings-row{margin:24px 20px 16px}.recipe-ingredients{grid-template-columns:1fr;margin:0 20px 24px}.recipe-steps-head{padding:0 20px}.recipe-steps{margin:12px 20px 26px}.recipe-extras{padding:0 20px 25px}.recipe-extras .recipe-nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cook-modal{padding:22px}.cook-step-text{font-size:16px}}
+
+
+/* Tarifler: gereksiz ikonlar yerine tarif türü, kategori ve açıklama */
+.recipes-hero{background:#f7f8f4;padding:50px 0 42px}
+.recipes-hero-layout{grid-template-columns:minmax(0,1fr)}
+.recipes-hero-art{display:none}
+.recipes-hero h1{font-size:clamp(35px,4.6vw,55px);margin:14px 0}
+.recipes-hero p{font-size:15px;line-height:1.75}
+.recipes-hero-tags span{font-size:12px}
+.recipes-content{padding-top:30px}
+.recipes-toolbar{gap:14px}
+.recipes-input-wrap{box-shadow:none;border-radius:13px}
+.recipes-input-wrap input{font-size:16px;min-height:49px}
+.recipes-toolbar-actions .recipe-random,.recipes-toolbar-actions .recipe-fav-toggle{font-size:13px;min-height:45px}
+.recipe-categories{gap:8px;padding:20px 0 16px}
+.recipe-category-button{min-height:44px;border-radius:12px;padding:11px 15px}
+.recipes-filter-row{padding:10px 0 18px}
+.recipes-summary strong{font-family:inherit;font-size:23px;font-weight:750;letter-spacing:-.03em}
+.recipes-sort-controls select{font-size:13px;min-height:44px}
+.recipe-grid{gap:14px}
+.recipe-card{display:block!important;min-height:0!important;border-radius:17px;box-shadow:none;padding:0;text-align:left}
+.recipe-card:hover{transform:none;box-shadow:0 7px 20px #263d3410}
+.recipe-card-body{padding:21px;gap:0;min-height:205px}
+.recipe-card-type{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:13px}
+.recipe-type-label{display:inline-flex;font-size:10px;font-weight:800;letter-spacing:.05em;color:#2d6445;background:#edf5ee;border-radius:7px;padding:7px 9px}
+.recipe-category-name{font-size:12px;font-weight:650;color:#627269}
+.recipe-card-body h3{font-size:19px;line-height:1.4;margin:0 0 10px;font-weight:750;letter-spacing:-.02em}
+.recipe-card-body p{font-size:14px;line-height:1.6;margin:0 0 15px}
+.recipe-card-footer{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:12px}
+.recipe-card-footer .recipe-card-link{color:#25613e;font-size:12px;font-weight:800}
+.recipe-detail-hero{background:#f5f7f2;padding:34px 30px;gap:16px}
+.recipe-detail-hero-icon{font-size:65px}
+.recipe-detail-hero h2{letter-spacing:-.02em}
+.recipe-detail-meta{gap:8px}
+.recipe-detail-meta span{font-size:12px}
+.recipe-serving-buttons button{width:44px;height:44px}
+.recipe-ingredients li{min-height:46px;font-size:14px}
+.recipe-ingredients li:has(input:checked) span{text-decoration:line-through;opacity:.65}
+.recipe-steps li{font-size:15px}
+.recipe-steps-head button,.recipe-save{min-height:44px}
+.cook-modal-top button,.cook-controls button{min-height:44px}
+@media(max-width:700px){
+ .recipes-hero{padding:35px 0 31px}
+ .recipes-hero h1{font-size:38px}
+ .recipes-hero p{font-size:14px}
+ .recipes-hero-tags{gap:6px;margin-top:16px}
+ .recipes-hero-tags span{padding:8px 10px}
+ .recipes-content{padding-top:22px;padding-bottom:65px}
+ .recipes-search-wrap{width:100%}
+ .recipes-toolbar-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .recipes-toolbar-actions>*{min-width:0;white-space:normal}
+ .recipe-categories{margin-right:-16px;padding-right:16px}
+ .recipes-filter-row{align-items:stretch}
+ .recipes-sort-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .recipes-sort-controls label{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+ .recipes-sort-controls select{width:100%;min-width:0}
+ .recipe-grid{grid-template-columns:1fr;gap:10px}
+ .recipe-card-body{padding:18px;min-height:0}
+ .recipe-card-body h3{font-size:18px}
+ .recipe-card-body p{font-size:14px}
+ .recipe-detail-card{border-radius:16px}
+ .recipe-detail-hero{padding:50px 20px 21px}
+ .recipe-detail-hero-icon{font-size:45px}
+ .recipe-detail-hero h2{font-size:23px}
+ .recipe-detail-meta{padding:13px 18px}
+ .recipe-servings-row{margin:21px 18px 15px}
+ .recipe-ingredients{margin:0 18px 22px;gap:7px}
+ .recipe-steps-head{padding:0 18px}
+ .recipe-steps{margin:12px 18px 22px}
+ .recipe-extras{padding:0 18px 25px}
+ .recipe-steps li{line-height:1.65;font-size:14px}
+ .cook-overlay{padding:8px}
+ .cook-modal{width:100%;max-height:calc(100dvh - 16px);border-radius:17px;padding:18px}
+ .cook-step-text{font-size:16px;line-height:1.7;padding:18px}
+}
+@media(max-width:360px){.recipes-sort-controls{grid-template-columns:1fr}}
