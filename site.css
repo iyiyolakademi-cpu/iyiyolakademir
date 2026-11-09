@@ -150,3 +150,187 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 #personalityFrame{scroll-margin-top:120px}
 .personality-stage{overflow:visible}
 @media(max-width:560px){#personalityFrame{scroll-margin-top:93px}}
+
+
+/* 2026-11 – Sade ve anlaşılır mobil öncelikli tasarım.
+   Var olan marka, yazı içerikleri ve araçların işleyişi değiştirilmez. */
+html{scroll-padding-top:96px}
+body{overflow-x:hidden}
+.container{max-width:1100px}
+.site-header{background:rgba(255,255,255,.97);backdrop-filter:saturate(135%) blur(12px);box-shadow:none}
+.site-header .header-content{min-height:84px!important}
+.brand-logo-full{width:104px!important;height:78px!important;object-fit:contain!important}
+.main-nav{gap:22px}
+.main-nav>a,.main-nav>details summary{font-size:13px;font-weight:700;color:#43584a}
+.main-nav>details summary{min-height:44px;display:flex;align-items:center}
+.nav-dropdown-current>summary,.nav-dropdown-items a[aria-current="page"]{color:#20583a!important;font-weight:800!important}
+.nav-dropdown-items{top:calc(100% + 8px);min-width:235px;box-shadow:0 15px 32px #152e1f18}
+.nav-dropdown-items a{min-height:44px;display:flex;align-items:center}
+.footer-inner{gap:22px;padding-block:30px}
+.footer-links{display:flex;flex-wrap:wrap;gap:12px 22px}
+.footer-links a{font-size:13px;line-height:1.5;min-height:32px;display:inline-flex;align-items:center}
+.footer-logo-full{width:94px;height:82px}
+.hero.hero-simple{display:block;min-height:0;padding-block:86px 76px;background:transparent}
+.hero-simple .hero-content{max-width:840px}
+.hero-simple .hero-label{margin:0;color:#826c4f;letter-spacing:.15em;font-size:11px;font-weight:800}
+.hero-simple .hero-content h1{max-width:820px;font-size:clamp(41px,5.4vw,68px);line-height:1.14;letter-spacing:-.05em;margin:20px 0}
+.hero-simple .hero-content>p{max-width:620px;line-height:1.75;font-size:17px;color:#607165}
+.hero-simple .hero-actions{gap:12px;margin-top:28px;display:flex;flex-wrap:wrap}
+.btn{gap:9px}
+.btn-outline{border:1px solid #c7d2c8;background:#fff;color:#263d34}
+.section{padding-block:68px}
+.section-heading{margin-bottom:24px}
+.section-heading h2,.section h2{letter-spacing:-.04em}
+.home-categories .section-heading p{max-width:630px}
+.home-categories .category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.home-categories .category-card{display:flex;flex-direction:column;align-items:flex-start;min-height:236px;padding:25px 24px;border:1px solid #e4eae2;border-radius:20px;box-shadow:none;background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
+.home-categories .category-card:hover{transform:none;box-shadow:0 6px 18px #1f312b0c;border-color:#94ae9a}
+.content-kind{display:inline-flex;font-size:10px;font-weight:800;letter-spacing:.09em;padding:7px 10px;border-radius:8px;color:#3e614a;background:#edf4ee}
+.home-categories .category-card h3{font-family:inherit;font-size:20px;line-height:1.3;font-weight:750;letter-spacing:-.035em;margin:16px 0 9px}
+.home-categories .category-card p{font-size:14px;line-height:1.6;max-width:none;margin:0 0 18px;color:#66766b}
+.home-categories .category-card .category-arrow{font-size:13px;line-height:1.5;margin-top:auto;color:#2e6745;font-weight:750;letter-spacing:0}
+.home-posts{background:#f7f8f5}
+.home-posts .posts-grid,.blog-area .posts-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.posts-grid .post-card{border-radius:19px;border:1px solid #e4eae2;box-shadow:none;min-height:0;background:#fff}
+.posts-grid .post-card:hover{transform:none;border-color:#adc4b1;box-shadow:0 8px 25px #263d3410}
+.posts-grid .post-content{padding:23px;display:flex;flex-direction:column;gap:0;min-height:245px}
+.post-type-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:15px}
+.post-type-label{font-size:10px;font-weight:800;letter-spacing:.07em;color:#2b6243;background:#edf5ee;border-radius:7px;padding:7px 9px}
+.post-category-label{color:#617269;font-size:12px;font-weight:650}
+.posts-grid .post-content h3{font-size:20px;line-height:1.38;font-weight:750;letter-spacing:-.025em;margin:0 0 12px}
+.posts-grid .post-content p{font-size:14px;line-height:1.65;color:#6a786e;margin-bottom:20px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.post-visual.post-visual-photo{height:175px;min-height:0;display:block;overflow:hidden;border-radius:0}
+.post-visual.post-visual-photo::before,.post-visual.post-visual-photo::after{display:none}
+.post-visual.post-visual-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.posts-grid .post-meta{margin-top:auto;gap:12px;padding-top:14px;color:#738277;font-size:12px;border-top:1px solid #eef1ea;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.post-read-link{font-size:12px;color:#25613e;font-weight:800;white-space:nowrap;text-decoration:none}
+.post-read-link:hover{text-decoration:underline}
+.home-daily-section{padding-block:60px}
+.daily-card-grid{gap:16px}
+.daily-card{min-height:235px;padding:24px;border-radius:18px;justify-content:flex-start}
+.daily-card-quote{background:#2b4437}
+.daily-card-quote:after{display:none}
+.daily-card-advice{background:#f7f5ef}
+.daily-card-top{margin-bottom:18px}
+.daily-card-kicker{font-size:11px;letter-spacing:.09em}
+.daily-card-quote h2,.daily-card-quote h3{font:normal 23px/1.5 Georgia,serif;color:#fff;margin:0 0 18px;max-width:100%}
+.daily-card-advice p{font-size:18px;line-height:1.65;letter-spacing:-.015em;margin:0 0 18px;font-weight:550}
+.daily-card-bottom{margin-top:auto;letter-spacing:0}
+.home-about{background:#f1f5f0;padding:38px 0 45px;border-top:1px solid #e0e8df}
+.home-about h2{font-size:23px;letter-spacing:-.04em;margin:0 0 10px}
+.home-about p{font-size:14px;line-height:1.7;color:#64746b;margin:0;max-width:650px}
+.page-hero{background:#f4f6f1;padding-block:62px 52px}
+.page-hero h1{font-size:clamp(36px,4.7vw,55px);margin:15px 0}
+.page-hero p{font-size:15px;line-height:1.7}
+.blog-area{padding-top:36px}
+.blog-controls{margin-bottom:30px;gap:14px}
+.category-tabs{gap:8px}
+.filter-btn{font-size:13px;min-height:44px;padding:11px 15px}
+.search-box{max-width:100%}
+.search-box input{font-size:16px!important}
+.post-main{padding-top:30px}
+.post-topline{margin-bottom:24px}
+.reader{max-width:840px;box-shadow:none;border-radius:18px;--read-size:17px}
+.reader-toolbar{padding:13px 18px;gap:10px}
+.reader-meta{line-height:1.5}
+.reader-settings{gap:5px;flex:none}
+.reader-settings button{min-width:43px;min-height:42px;font-size:13px;padding:8px 10px}
+.article-body{padding:34px 40px 48px;line-height:1.85;overflow-wrap:break-word;word-break:normal}
+.article-body > p:first-child{padding-bottom:24px;margin-bottom:29px}
+.article-body blockquote{margin:29px 0;padding:20px 14px;line-height:1.7}
+.article-body img,.article-body pre,.article-body table{max-width:100%;height:auto}
+.article-body pre{overflow-x:auto}
+.article-body a{overflow-wrap:anywhere}
+.personality-intro{padding-block:42px 25px}
+.personality-intro h1{font-size:clamp(34px,4.5vw,56px);margin:12px 0}
+.personality-intro p{line-height:1.7}
+.personality-benefits span{font-size:12px}
+.personality-frame-shell{border-radius:14px;box-shadow:none}
+.daily-hero{padding-top:52px;padding-bottom:22px}
+.daily-hero h1{font-size:clamp(36px,5vw,57px);margin:14px 0}
+.daily-content{padding-bottom:50px}
+.daily-next{padding-bottom:65px}
+@media(max-width:1080px){
+ .mobile-menu-toggle{flex:0 0 auto;width:44px;height:44px}
+ .main-nav{position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 82px);overflow-y:auto;overscroll-behavior:contain;padding:12px max(18px,calc((100% - 720px)/2)) 22px;background:#fff;border-bottom:1px solid #e1e7df;box-shadow:0 16px 30px #101e1714}
+ .main-nav>a{display:flex;align-items:center;min-height:50px;padding:12px 7px;font-size:15px;border-bottom:1px solid #edf1ec}
+ .main-nav>details{padding:0;border-bottom:0}
+ .main-nav>details summary{min-height:52px;padding:10px 7px;font-size:15px;justify-content:space-between;border-bottom:1px solid #edf1ec}
+ .nav-dropdown-items{position:static;min-width:0;box-shadow:none;padding:6px 4px 7px;margin-top:0;border-radius:0;border:0;background:#f8faf7}
+ .nav-dropdown-items a{min-height:46px;font-size:14px;padding:12px}
+ .main-nav .nav-cta{display:none}
+ .site-header .header-content{min-height:78px!important}
+ .brand-logo-full{width:102px!important;height:72px!important}
+ .home-categories .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .container{width:calc(100% - 32px)}
+ .hero.hero-simple{padding-block:46px 48px}
+ .hero-simple .hero-content h1{font-size:clamp(35px,8.7vw,48px);margin:16px 0}
+ .hero-simple .hero-content>p{font-size:15px;line-height:1.7}
+ .hero-simple .hero-actions{gap:10px}
+ .hero-simple .hero-actions .btn{min-height:46px;padding:12px 17px}
+ .section{padding-block:48px}
+ .section-heading{margin-bottom:20px}
+ .section-heading h2,.section h2{font-size:clamp(26px,7vw,34px)}
+ .home-categories .category-grid{grid-template-columns:1fr;gap:10px}
+ .home-categories .category-card{min-height:0;padding:18px 18px 16px;border-radius:16px}
+ .home-categories .category-card h3{font-size:19px;margin:12px 0 7px}
+ .home-categories .category-card p{font-size:14px;line-height:1.55;margin-bottom:14px}
+ .home-categories .category-card .category-arrow{font-size:13px}
+ .inline-heading{align-items:flex-start;flex-direction:column;gap:5px}
+ .view-all{align-self:flex-start;white-space:normal;font-size:13px;padding:7px 0}
+ .home-posts .posts-grid,.blog-area .posts-grid{grid-template-columns:1fr;gap:12px}
+ .posts-grid .post-content{padding:19px;min-height:0}
+ .posts-grid .post-content h3{font-size:19px}
+ .posts-grid .post-content p{font-size:14px;margin-bottom:18px}
+ .post-meta{gap:8px}
+ .daily-card-grid{grid-template-columns:1fr;gap:10px}
+ .daily-card{min-height:0;padding:22px;border-radius:16px}
+ .daily-card-top{margin-bottom:14px}
+ .daily-card-quote h2,.daily-card-quote h3{font-size:22px;line-height:1.45;margin-bottom:20px}
+ .daily-card-advice p{font-size:17px;line-height:1.6}
+ .page-hero{padding-block:38px 32px}
+ .page-hero h1{font-size:38px;margin:12px 0}
+ .blog-area{padding-top:25px}
+ .blog-controls{align-items:stretch;gap:13px;margin-bottom:24px}
+ .category-tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none;padding-bottom:5px}
+ .category-tabs::-webkit-scrollbar{display:none}
+ .filter-btn{white-space:nowrap;flex:none;font-size:13px}
+ .search-box{width:100%}
+ .result-row{gap:12px}
+ .result-row h2{font-size:22px}
+ .post-main{width:calc(100% - 14px);padding-top:20px}
+ .post-topline{margin:0 9px 17px}
+ .reader{border-radius:12px;--read-size:17px}
+ .reader-toolbar{padding:10px 13px;gap:8px;flex-wrap:wrap}
+ .reader-meta{font-size:11px;flex:1;min-width:130px}
+ .reader-settings{margin-left:auto}
+ .reader-settings button{min-width:42px;min-height:42px}
+ .article-body{padding:25px 20px 34px;font-size:var(--read-size);line-height:1.8;overflow-wrap:break-word}
+ .article-body > p:first-child{margin-bottom:24px;padding-bottom:20px}
+ .article-body > p:first-child strong{font-size:clamp(23px,6.5vw,30px);line-height:1.37}
+ .article-body h3{font-size:1.15em;line-height:1.45}
+ .article-body blockquote{margin:22px 0;padding:16px 12px}
+ .personality-intro{padding-block:34px 18px}
+ .personality-intro h1{font-size:36px}
+ .personality-intro p{font-size:14px}
+ .personality-frame-shell{border:0;margin:0 -8px;border-radius:12px}
+ #personalityFrame{width:100%;max-width:100%;min-height:620px}
+ .daily-hero{padding-top:36px}
+ .daily-hero h1{font-size:38px}
+ .daily-next h2{font-size:30px}
+ .footer-inner{flex-direction:column;align-items:flex-start;gap:15px}
+ .footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;width:100%}
+ .footer-links a{font-size:13px;padding:7px 0;min-height:40px}
+ .footer-logo-full{width:88px;height:76px}
+}
+@media(max-width:360px){
+ .container{width:calc(100% - 24px)}
+ .hero-simple .hero-actions .btn{width:100%}
+ .reader-toolbar{flex-direction:column;align-items:stretch}
+ .reader-settings{align-self:flex-end}
+ .article-body{padding-inline:17px}
+ .post-meta{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){.posts-grid .post-card,.home-categories .category-card{transition:none}}
