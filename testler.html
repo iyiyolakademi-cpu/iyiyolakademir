@@ -1,0 +1,76 @@
+<!doctype html><html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>100 Kişilik Testi | İyi Yol Akademi</title>
+<meta name="description" content="Karakter, ilişki, sosyal yaşam, kariyer ve zihin üzerine 100 kişilik testini keşfet.">
+<link rel="icon" type="image/svg+xml" href="brand-mark.svg">
+<link rel="stylesheet" href="site.css">
+<script src="site.js" defer></script>
+</head><body data-page="personality"><a class="skip-link" href="#main">İçeriğe geç</a>
+<header class="site-header"><div class="container header-content">
+<a class="brand brand-full" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><img class="brand-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<button class="mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
+<nav class="main-nav" id="mainNav" aria-label="Ana menü">
+<a href="index.html" class="active" aria-current="page" data-nav="home">Ana Sayfa</a>
+<a href="blog.html" data-nav="blog">Bloglar</a>
+<a href="tarifler.html" data-nav="recipes">Yemek Tarifleri</a>
+<details class="nav-dropdown" id="featuresMenu"><summary>Özellikler <span aria-hidden="true">⌄</span></summary><div class="nav-dropdown-items">
+<a href="yapilacaklar.html">✓ Yapılacaklar listesi</a>
+<a href="hesaplama.html">▦ Pratik hesaplamalar</a>
+<a href="tarifler.html">🍲 Yemek tarifleri</a>
+</div></details>
+<a href="index.html#hakkimizda">Hakkımızda</a>
+<a class="nav-cta" href="yapilacaklar.html">Planını oluştur <span aria-hidden="true">↗</span></a>
+</nav></div></header>
+<main id="main" class="personality-page">
+<section class="personality-intro container"><div class="section-kicker">İYİ YOL AKADEMİ / KENDİNİ KEŞFET</div>
+<h1>Kişilik <em>testleri.</em></h1>
+<p>Karakter, ilişki, sosyal yaşam, kariyer ve zihnin hakkında keşfedebileceğin 100 test. Gönderdiğin orijinal siyah test ekranını aynen koruduk.</p>
+<div class="personality-benefits"><span>100 test</span><span>5 kategori</span><span>Ücretsiz</span></div>
+</section>
+<section class="personality-stage container" aria-label="Kişilik testleri uygulaması">
+<div class="personality-frame-shell"><iframe id="personalityFrame" title="İyi Yol Akademi kişilik testleri" src="testler-uygulama.html" loading="eager" scrolling="no"></iframe></div>
+<p class="personality-disclaimer">Bu testler kişisel farkındalık ve eğlence amaçlıdır; klinik tanı veya profesyonel psikolojik değerlendirme yerine geçmez.</p>
+</section>
+</main>
+<footer class="footer"><div class="container footer-inner">
+<a href="index.html" class="footer-brand footer-brand-full"><img class="footer-logo-full" src="brand-full.svg" alt="İyi Yol Akademi"></a>
+<div class="footer-links"><a href="blog.html">Bloglar</a><a href="tarifler.html">Yemek Tarifleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="mailto:iyiyolakademi@gmail.com">İletişim</a></div>
+<small>© <span data-year></span> İyi Yol Akademi. Her hakkı saklıdır.</small>
+</div></footer>
+<script>
+(function(){
+ const frame=document.getElementById('personalityFrame');
+ if(!frame)return;
+ let mutationObserver,resizeObserver,queued=false;
+ const sizeFrame=()=>{
+  if(queued)return;
+  queued=true;
+  requestAnimationFrame(()=>{
+   queued=false;
+   try {
+    const doc=frame.contentDocument;if(!doc)return;
+    const active=doc.querySelector('#kisilik-arsivi-app .screen.active');
+    const wrap=doc.querySelector('#kisilik-arsivi-app .wrap');
+    const style=wrap&&frame.contentWindow.getComputedStyle(wrap);
+    const padding=style?parseFloat(style.paddingTop)+parseFloat(style.paddingBottom):60;
+    const height=Math.ceil(Math.max(620,window.innerHeight*.65,(active?active.getBoundingClientRect().height:600)+padding+24));
+    if(Math.abs(frame.offsetHeight-height)>3)frame.style.height=height+'px';
+   } catch(e) { frame.style.height='950px'; }
+  });
+ };
+ const onLoad=()=>{
+  try {
+   const doc=frame.contentDocument,app=doc.getElementById('kisilik-arsivi-app');
+   if(!app)return;
+   mutationObserver=new MutationObserver(sizeFrame);
+   mutationObserver.observe(app,{attributes:true,subtree:true,childList:true,attributeFilter:['class','style']});
+   resizeObserver=new ResizeObserver(sizeFrame);
+   resizeObserver.observe(app);
+   sizeFrame();
+  } catch(e){frame.style.height='950px';}
+ };
+ frame.addEventListener('load',onLoad);
+ window.addEventListener('resize',sizeFrame);
+})();
+</script>
+</body></html>
