@@ -144,3 +144,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 @media(max-width:760px){.daily-card-grid{grid-template-columns:1fr;gap:14px}.daily-card{min-height:255px;padding:27px}.daily-card-quote h2,.daily-card-quote h3{font-size:24px}.daily-card-advice p{font-size:21px}.personality-intro{padding-top:50px}.personality-stage{padding-bottom:65px}}
 @media(max-width:560px){.brand-logo-full{width:92px!important;height:75px!important}.site-header .header-content{min-height:82px}.footer-logo-full{width:105px;height:96px}.home-daily-section{padding-block:60px}.daily-hero{padding-top:54px}.daily-hero h1{font-size:42px}.daily-content{padding-top:19px;padding-bottom:50px}.daily-card{min-height:238px;padding:24px;border-radius:23px}.daily-card-quote h2,.daily-card-quote h3{font-size:23px;margin-bottom:26px}.daily-card-advice p{font-size:19px}.daily-next{padding-bottom:75px}.personality-intro h1{font-size:40px}.personality-frame-shell{margin-inline:-9px;border-radius:14px}.personality-benefits span{padding:9px 11px}#personalityFrame{min-height:620px}}
 @media(prefers-reduced-motion:reduce){.daily-card,.category-card{transition:none}}
+
+
+/* Kişilik testi ekranlarına geçişte sabit menü altında kalan içeriği önle */
+#personalityFrame{scroll-margin-top:120px}
+.personality-stage{overflow:visible}
+@media(max-width:560px){#personalityFrame{scroll-margin-top:93px}}
