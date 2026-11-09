@@ -17,18 +17,93 @@ function notify(message){
  toast.textContent=message;toast.classList.add("visible");clearTimeout(notify.timer);notify.timer=setTimeout(()=>toast.classList.remove("visible"),2800);
 }
 function nav(){
- const navigation=$("#mainNav");
- if(navigation&&!navigation.querySelector('a[href="arama.html"]')){
-   const search=node("a","","Ara");search.href="arama.html";search.className="iya-top-action";
-   const saved=node("a","","Kaydedilenler");saved.href="kaydedilenler.html";saved.className="iya-top-action";
-   navigation.insertBefore(search,navigation.querySelector("details")||null);
-   navigation.insertBefore(saved,navigation.querySelector("details")||null);
+ const header=$(".site-header .header-content");
+ if(!header)return;
+ const oldMenu=$("#menuToggle");
+ const current=(location.pathname.split("/").pop()||"index.html").toLowerCase();
+ const sections=[
+  {label:"ANA SAYFA",items:[["index.html","Ana Sayfa"],["arama.html","İçerik Ara"]]},
+  {label:"İÇERİKLER",items:[["blog.html","Blog Yazıları"],["tarifler.html","Yemek Tarifleri"],["testler.html","Kişilik Testleri"],["gunun-sozu.html","Günün Sözü ve Tavsiyesi"]]},
+  {label:"ARAÇLAR",items:[["yapilacaklar.html","Yapılacaklar Listesi"],["pomodoro.html","Pomodoro / Odaklanma"],["hesaplama.html","Pratik Hesaplamalar"]]},
+  {label:"KİŞİSEL ALAN",items:[["kaydedilenler.html","Kaydedilenler"]]},
+  {label:"BİLGİ",items:[["yayin-ilkeleri.html","Hakkımızda ve Yayın İlkeleri"],["gizlilik.html","Gizlilik"]]}
+ ];
+ const trigger=node("button","iya-drawer-trigger");
+ trigger.type="button";trigger.id="iyaDrawerTrigger";trigger.setAttribute("aria-label","Sol menüyü aç");
+ trigger.setAttribute("aria-expanded","false");trigger.setAttribute("aria-controls","iyaDrawer");
+ const bars=node("span","iya-bars");bars.setAttribute("aria-hidden","true");
+ for(let i=0;i<3;i++)bars.appendChild(node("i"));
+ trigger.append(bars,node("span","iya-trigger-text","Menü"));
+ header.insertBefore(trigger,header.firstChild);
+ const headerSearch=node("a","iya-header-search","Ara");
+ headerSearch.href="arama.html";headerSearch.setAttribute("aria-label","Site içeriğinde ara");
+ header.appendChild(headerSearch);
+ const overlay=node("div","iya-drawer-backdrop");overlay.id="iyaDrawerBackdrop";overlay.hidden=true;
+ const drawer=node("aside","iya-drawer");drawer.id="iyaDrawer";drawer.setAttribute("aria-label","İyi Yol Akademi bölümleri");
+ drawer.setAttribute("aria-hidden","true");drawer.setAttribute("inert","");
+ const drawerHead=node("div","iya-drawer-header");
+ const brand=node("div","iya-drawer-brand");
+ const logo=node("img");logo.src="brand-full.svg";logo.alt="İyi Yol Akademi";
+ const brandWords=node("div","iya-drawer-brand-words");
+ brandWords.append(node("strong","","İYİ YOL AKADEMİ"),node("small","","Öğren, keşfet, geliş"));
+ brand.append(logo,brandWords);
+ const close=node("button","iya-drawer-close","×");
+ close.type="button";close.setAttribute("aria-label","Menüyü kapat");
+ drawerHead.append(brand,close);drawer.appendChild(drawerHead);
+ const navContent=node("nav","iya-drawer-links");
+ navContent.setAttribute("aria-label","Tüm özellikler");
+ for(const section of sections){
+  const group=node("section","iya-drawer-section");
+  group.appendChild(node("h2","",section.label));
+  for(const [href,label] of section.items){
+   const link=node("a","iya-drawer-link",label);link.href=href;
+   if(current===href||(current==="post.html"&&href==="blog.html")){
+     link.classList.add("current");link.setAttribute("aria-current","page");
+   }
+   group.appendChild(link);
+  }
+  navContent.appendChild(group);
  }
- const pathname=location.pathname.split("/").pop()||"index.html";
- const navs=[["index.html","Ana Sayfa"],["blog.html","Bloglar"],["arama.html","Ara"],["kaydedilenler.html","Kaydedilenler"]];
- const bar=node("nav","iya-mobile-nav");bar.setAttribute("aria-label","Hızlı gezinme");
- for(const [href,label] of navs){const a=node("a","iya-mobile-link",label);a.href=href;if(pathname===href||pathname==="post.html"&&href==="blog.html"){a.classList.add("current");a.setAttribute("aria-current","page");}bar.appendChild(a);}
- document.body.appendChild(bar);
+ drawer.appendChild(navContent);
+ const drawerFoot=node("div","iya-drawer-foot","İyi Yol Akademi · Her gün daha iyiye");
+ drawer.appendChild(drawerFoot);
+ document.body.append(overlay,drawer);
+ const isOpen=()=>drawer.classList.contains("is-open");
+ let previousFocus=null;
+ function closeDrawer(restore=true){
+  if(!isOpen())return;
+  drawer.classList.remove("is-open");overlay.classList.remove("is-visible");
+  drawer.setAttribute("aria-hidden","true");drawer.setAttribute("inert","");
+  overlay.hidden=true;trigger.setAttribute("aria-expanded","false");trigger.setAttribute("aria-label","Sol menüyü aç");
+  document.body.classList.remove("iya-no-scroll");
+  if(restore)(previousFocus?.isConnected?previousFocus:trigger).focus();
+ }
+ function openDrawer(){
+  if(isOpen())return;
+  previousFocus=document.activeElement;
+  overlay.hidden=false;overlay.classList.add("is-visible");
+  drawer.removeAttribute("inert");drawer.setAttribute("aria-hidden","false");
+  drawer.classList.add("is-open");
+  trigger.setAttribute("aria-expanded","true");trigger.setAttribute("aria-label","Sol menüyü kapat");
+  document.body.classList.add("iya-no-scroll");
+  close.focus();
+ }
+ trigger.addEventListener("click",()=>isOpen()?closeDrawer():openDrawer());
+ close.addEventListener("click",()=>closeDrawer());
+ overlay.addEventListener("click",()=>closeDrawer());
+ drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>closeDrawer(false)));
+ document.addEventListener("keydown",event=>{
+  if(!isOpen())return;
+  if(event.key==="Escape"){event.preventDefault();closeDrawer();return;}
+  if(event.key!=="Tab")return;
+  const focusables=Array.from(drawer.querySelectorAll('button:not([disabled]),a[href]'));
+  if(!focusables.length)return;
+  const first=focusables[0],last=focusables[focusables.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+ });
+ if(oldMenu)oldMenu.setAttribute("aria-hidden","true");
+ document.documentElement.classList.add("iya-drawer-ready");
 }
 async function fetchJson(url,options={}){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
