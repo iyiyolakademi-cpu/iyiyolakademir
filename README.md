@@ -98,3 +98,12 @@ Bu sürümün site haritası statik sayfalara yöneliktir. Blogların post.html?
 5. Orijinal İyi Yol Akademi logosu, 100 kişilik testi ve 200 yemek tarifi korunmuştur.
 
 Tüm kaynak: https://github.com/iyiyolakademi-cpu/iyiyolakademir
+
+## 10 Kasım 2026 — Sade sol menü ve Pomodoro
+
+- Tüm HTML sayfalarında `refine.css` ve yeni `site-features.js` üzerinden soldan açılan tek menü vardır. Masaüstü ve telefon menüsünde bütün içerik ve araç sayfaları listelenir. Menü tıklanınca kendi sayfasını açar; ESC ile kapanır ve klavye odağı menü içinde tutulur.
+- Ana sayfadaki bölüm seçimi altı sade doğrudan bağlantıya dönüştürüldü. Logo görseli değiştirilmeden yatay sunumda kullanılır.
+- `pomodoro.html`, `pomodoro.js`, `pomodoro.css`: 15/25/50 dakikalık odaklanma, kısa/uzun mola, duraklatma, sıfırlama ve günlük tur takibi. Odaklanma verileri tarayıcıda `iya_pomodoro_v1` anahtarı altında tutulur.
+- Hesaplama araçları açık renkli liste ve tek sütun mobil görünüm ile tasarlandı. Orijinal hesaplama fonksiyonları korunur.
+- Günün sözü ve tavsiyesi ayrı sade beyaz içerik alanlarında gösterilir. Görev planlayıcının ekranı ve bilgi metinleri sadeleştirildi; görev verileri korunur.
+- Güncel önbellek sürümü `v=20261110-nav2` şeklindedir. GitHub Pages: `main` / `(root)`.
