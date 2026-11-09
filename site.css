@@ -77,3 +77,70 @@
  .calc-full-intro h1{font-size:37px}
  .nav-dropdown-items a{white-space:normal}
 }
+
+/* İyi Yol Akademi | 2026 tasarım iyileştirmeleri – orijinal marka ve test temaları korunur */
+:root{--surface-elevated:#fff;--accent-gold:#ba9556}
+body{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+h1,h2,h3{overflow-wrap:break-word}
+.btn,.category-card,.post-card,.coming-item{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b89157;outline-offset:3px}
+.site-header{box-shadow:0 4px 30px rgba(23,38,30,.025)}
+.brand.brand-full{background:transparent!important;box-shadow:none!important;transform:none!important;filter:none!important;border:0!important;overflow:visible!important}
+.brand-logo-full{width:130px!important;height:102px!important;max-width:none!important;object-fit:contain!important;object-position:center!important;filter:none!important;transform:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;background:transparent!important}
+.site-header .header-content{min-height:108px}
+.footer-brand-full,.footer-logo-full{border:0!important;background:transparent!important;box-shadow:none!important;filter:none!important;transform:none!important;overflow:visible!important}
+.footer-logo-full{width:126px;height:116px;object-fit:contain}
+.art-center,.hero-logo-badge{transform:none!important;filter:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
+.art-center img{transform:none!important;filter:none!important;object-fit:contain!important;width:100%;height:100%;border:0!important;border-radius:0!important}
+.hero{gap:45px}.hero-art{box-shadow:inset 0 0 0 1px #ffffffb8;filter:none}
+.category-card{border-radius:25px;box-shadow:0 14px 40px rgba(28,47,36,.035);background:#fff}
+.category-card:hover,.category-card:focus-within{transform:translateY(-4px);box-shadow:0 24px 50px rgba(28,47,36,.10);border-color:#bfcfc1}
+.post-card{border-radius:23px;box-shadow:0 12px 30px rgba(28,47,36,.04)}
+.section h2{letter-spacing:-.047em}
+.view-all{border-bottom-color:#bac5b7}
+.coming-grid{gap:2px}.coming-item{border-radius:14px}.coming-item:hover{background:#f8f9f5}
+.nav-dropdown-items{border-radius:18px}
+.nav-dropdown-items a{transition:background .12s ease}
+.home-daily-section{padding-top:48px;padding-bottom:92px}
+.daily-hero{padding-top:78px;padding-bottom:28px}
+.daily-hero h1{font-size:clamp(40px,5vw,70px);line-height:1.12;letter-spacing:-.055em;font-weight:660;margin:22px 0 20px;max-width:800px}
+.daily-hero h1 em,.daily-next h2 em{font:normal italic 1em Georgia,serif;color:#a88a5a}
+.daily-hero p{font-size:16px;line-height:1.9;max-width:670px;color:#68766e;margin:0}
+.daily-content{padding-top:32px;padding-bottom:70px}
+.daily-meta-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#849087;text-transform:uppercase;letter-spacing:.09em;font-size:11px;font-weight:750;margin-bottom:18px}
+.daily-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.daily-card{min-height:310px;border-radius:28px;display:flex;flex-direction:column;justify-content:space-between;padding:32px;position:relative;overflow:hidden}
+.daily-card-quote{background:#243c32;color:#fff}
+.daily-card-quote:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.15);width:300px;height:300px;border-radius:50%;right:-110px;bottom:-175px;pointer-events:none}
+.daily-card-advice{background:#f3f0e6;color:#293d33;border:1px solid #e7e3d6}
+.daily-card-top{display:flex;justify-content:space-between;align-items:center;gap:14px;position:relative;z-index:1}
+.daily-card-top>span:last-child{font-size:23px;opacity:.8}
+.daily-card-kicker{font-weight:800;letter-spacing:.17em;font-size:10px}
+.quote-mark{font:86px/1 Georgia,serif;color:#dec287;opacity:.85;height:62px;margin:10px 0 -8px}
+.daily-card-quote h2,.daily-card-quote h3{font:normal 27px/1.42 Georgia,serif;color:#fff;margin:6px 0 36px;letter-spacing:-.025em;max-width:560px;position:relative;z-index:1}
+.daily-card-advice p{font-size:22px;line-height:1.53;font-weight:550;margin:24px 0 38px;letter-spacing:-.025em;max-width:540px}
+.daily-advice-icon{font-size:65px;font-weight:300;line-height:1;color:#a58f64;margin:11px 0 -7px}
+.daily-card-bottom{font-size:12px;opacity:.7;font-weight:750;letter-spacing:.04em}
+.daily-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:25px}
+.daily-actions>p{margin:0;font-size:13px;color:#728076}
+.daily-next{padding-bottom:110px;padding-top:10px}
+.daily-next h2{font-size:clamp(30px,4vw,49px);letter-spacing:-.045em;margin:15px 0}
+.daily-next p{max-width:590px;line-height:1.85;color:#6f7c72}
+.daily-next-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.btn-outline{border:1px solid #ccd7cb;background:#fff;color:#284b38}
+.personality-page{background:#fdfcf9}
+.personality-intro{padding-top:68px;padding-bottom:35px}
+.personality-intro h1{font-size:clamp(40px,5vw,68px);letter-spacing:-.055em;font-weight:650;margin:17px 0 14px}
+.personality-intro h1 em{font:normal italic 1em Georgia,serif;color:#a88a5a}
+.personality-intro p{max-width:710px;line-height:1.8;color:#69766d;font-size:15px;margin:0}
+.personality-benefits{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.personality-benefits span{background:#fff;border:1px solid #e7e8e0;color:#546a57;border-radius:100px;font-weight:700;padding:10px 15px;font-size:12px}
+.personality-stage{padding-bottom:90px}
+.personality-frame-shell{overflow:hidden;border-radius:26px;border:1px solid #232323;background:#000;box-shadow:0 25px 60px rgba(13,18,14,.13)}
+#personalityFrame{display:block;width:100%;height:900px;border:0;background:#000}
+.personality-disclaimer{font-size:12px;line-height:1.7;color:#818d81;margin:15px 4px 0}
+@media(min-width:1081px) and (max-width:1260px){.main-nav{gap:11px}.main-nav>a,.main-nav>details summary{font-size:11px}.brand-logo-full{width:110px!important;height:94px!important}}
+@media(max-width:1080px){.site-header .header-content{min-height:92px}.brand-logo-full{width:118px!important;height:88px!important}.nav-dropdown-items{position:static}}
+@media(max-width:760px){.daily-card-grid{grid-template-columns:1fr;gap:14px}.daily-card{min-height:255px;padding:27px}.daily-card-quote h2,.daily-card-quote h3{font-size:24px}.daily-card-advice p{font-size:21px}.personality-intro{padding-top:50px}.personality-stage{padding-bottom:65px}}
+@media(max-width:560px){.brand-logo-full{width:92px!important;height:75px!important}.site-header .header-content{min-height:82px}.footer-logo-full{width:105px;height:96px}.home-daily-section{padding-block:60px}.daily-hero{padding-top:54px}.daily-hero h1{font-size:42px}.daily-content{padding-top:19px;padding-bottom:50px}.daily-card{min-height:238px;padding:24px;border-radius:23px}.daily-card-quote h2,.daily-card-quote h3{font-size:23px;margin-bottom:26px}.daily-card-advice p{font-size:19px}.daily-next{padding-bottom:75px}.personality-intro h1{font-size:40px}.personality-frame-shell{margin-inline:-9px;border-radius:14px}.personality-benefits span{padding:9px 11px}#personalityFrame{min-height:620px}}
+@media(prefers-reduced-motion:reduce){.daily-card,.category-card{transition:none}}
