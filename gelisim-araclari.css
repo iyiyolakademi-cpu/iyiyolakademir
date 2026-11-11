@@ -1,0 +1,113 @@
+/* İyi Yol Akademi · Kişisel araçlar */
+.toolkit{padding-top:48px;padding-bottom:78px;--tk-ink:#253d30;--tk-muted:#6e8072;--tk-border:#dfe7dc;--tk-soft:#f4f6f0}
+.toolkit *{box-sizing:border-box}
+.toolkit button,.toolkit input,.toolkit select,.toolkit textarea{font:inherit}
+.toolkit a{color:inherit}
+.toolkit button:focus-visible,.toolkit input:focus-visible,.toolkit select:focus-visible,.toolkit textarea:focus-visible{outline:3px solid #c5a46c;outline-offset:3px}
+.toolkit-intro{background:#f2f3ec;border:1px solid var(--tk-border);border-radius:25px;padding:42px 45px;display:flex;justify-content:space-between;align-items:center;gap:26px}
+.toolkit-kicker,.toolkit-kicker-sm{color:#9b8058;letter-spacing:.15em;font-size:10px;font-weight:850}
+.toolkit-intro h1{font-size:clamp(36px,4.5vw,59px);letter-spacing:-.055em;line-height:1.13;margin:12px 0 17px;font-weight:710}
+.toolkit-intro h1 em{font-family:Georgia,serif;font-weight:400;color:#ad8c58}
+.toolkit-intro p{margin:0;color:var(--tk-muted);font-size:15px;line-height:1.8;max-width:610px}
+.toolkit-intro-note{background:#fff;border:1px solid var(--tk-border);border-radius:18px;min-width:220px;padding:22px;display:grid;gap:8px}
+.toolkit-intro-note>span{font-size:26px;color:#a58b61}
+.toolkit-intro-note strong{font-size:15px}
+.toolkit-intro-note small{font-size:12px;color:var(--tk-muted);line-height:1.6}
+.toolkit-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding:21px 0 14px;border-bottom:1px solid var(--tk-border);scroll-margin-top:105px}
+.toolkit-tab{flex:0 0 auto;white-space:nowrap;border:0;border-radius:12px;background:transparent;color:#6d8070;font-size:13px;font-weight:750;padding:13px 17px;cursor:pointer}
+.toolkit-tab:hover{background:#ebf0e8}
+.toolkit-tab.is-active{background:#284534;color:#fff}
+.toolkit-panel{padding-top:26px}
+.toolkit-panel[hidden]{display:none!important}
+.toolkit-section-intro{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
+.toolkit-section-intro h2{font-size:clamp(27px,3vw,37px);letter-spacing:-.045em;line-height:1.2;margin:9px 0 8px}
+.toolkit-section-intro p{font-size:14px;color:var(--tk-muted);margin:0;line-height:1.7;max-width:680px}
+.toolkit-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px}
+.toolkit-card{border:1px solid var(--tk-border);border-radius:19px;background:#fff;padding:24px;min-width:0;box-shadow:0 9px 28px #25432e06}
+.toolkit-card h3{font-size:20px;letter-spacing:-.035em;line-height:1.35;margin:10px 0}
+.toolkit-card p{font-size:13px;color:var(--tk-muted);line-height:1.7;margin:5px 0 14px}
+.toolkit-card-header{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.toolkit-soft{background:#f6f7f2}
+.toolkit-form{display:grid;gap:16px}
+.toolkit-form .toolkit-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.toolkit-form label,.toolkit-label{display:grid;gap:7px;font-size:12px;font-weight:750;color:#4c6350}
+.toolkit-form input,.toolkit-form select,.toolkit-form textarea,.toolkit-inline-input{width:100%;min-width:0;border:1px solid #d6e1d7;border-radius:12px;background:#fdfefb;color:#253d2f;padding:12px 13px;font-size:14px}
+.toolkit-form textarea{line-height:1.65;resize:vertical;min-height:85px}
+.toolkit-form input:focus,.toolkit-form textarea:focus,.toolkit-form select:focus{border-color:#749d81}
+.toolkit-form fieldset{margin:0;padding:0;border:0}
+.toolkit-form legend{font-size:12px;font-weight:800;color:#4a6451;margin-bottom:11px}
+.toolkit-form .toolkit-checkbox-grid{display:flex;flex-wrap:wrap;gap:8px}
+.toolkit-checkbox{display:flex!important;align-items:center;flex-direction:row!important;gap:7px!important;font-size:12px!important;background:#f5f8f4;border:1px solid #e0e7dc;border-radius:9px;padding:10px 12px}
+.toolkit-checkbox input{width:auto!important;margin:0;accent-color:#3d714b}
+.toolkit-btn{background:#294a37;color:#fff;border:1px solid #294a37;border-radius:12px;padding:12px 18px;min-height:41px;font-size:13px!important;font-weight:760!important;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;cursor:pointer;line-height:1.3}
+.toolkit-btn:hover{background:#3b674a}
+.toolkit-btn.secondary{background:#fff;color:#355942;border-color:#d6e2d6}
+.toolkit-btn.secondary:hover{background:#eff5ed}
+.toolkit-btn.small{font-size:12px!important;padding:9px 12px;min-height:33px}
+.toolkit-btn:disabled{opacity:.5;cursor:not-allowed}
+.toolkit-danger{padding:9px 10px;background:none;border:0;color:#a95959;font-size:12px!important;font-weight:700!important;cursor:pointer}
+.toolkit-danger:hover{text-decoration:underline}
+.toolkit-action-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.toolkit-summaries{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:20px}
+.toolkit-summary{border-radius:15px;background:#fff;border:1px solid var(--tk-border);padding:18px;display:grid;gap:7px}
+.toolkit-summary span{font-size:12px;color:var(--tk-muted)}
+.toolkit-summary strong{font-size:29px;font-weight:750;letter-spacing:-.05em;color:#315540}
+.toolkit-summary small{font-size:11px;color:#859488}
+.toolkit-bar{height:9px;border-radius:20px;background:#e5eee3;overflow:hidden}
+.toolkit-bar>span{display:block;height:100%;border-radius:20px;background:#709b77}
+.toolkit-book-card{display:grid;gap:14px}
+.toolkit-book-head{display:flex;justify-content:space-between;align-items:start;gap:13px}
+.toolkit-book-head h3{margin:5px 0}
+.toolkit-book-head small{color:var(--tk-muted)}
+.toolkit-book-badge{font-size:10px;font-weight:800;letter-spacing:.04em;background:#ebf3eb;color:#346644;border-radius:99px;padding:7px 10px;display:inline-flex}
+.toolkit-book-badge.is-finished{background:#eaf4e7;color:#31623d}
+.toolkit-book-number{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#6c7e70;margin-bottom:6px}
+.toolkit-book-number strong{font-size:14px;color:#315441}
+.toolkit-book-log{background:#f6f8f3;border-radius:13px;padding:14px;display:flex;flex-wrap:wrap;align-items:end;gap:10px}
+.toolkit-book-log label{flex:1 1 120px}
+.toolkit-book-log .toolkit-inline-input{padding:10px}
+.toolkit-book-history{border-top:1px solid #eef1ec;padding-top:12px}
+.toolkit-book-history summary{cursor:pointer;color:#5c7961;font-weight:750;font-size:12px}
+.toolkit-book-history ul{padding-left:19px;font-size:12px;color:#728475;line-height:2}
+.toolkit-book-history li button{background:none;border:0;color:#a95d5d;font-size:11px;cursor:pointer;margin-left:8px}
+.toolkit-empty{padding:40px 22px;background:#fafbf7;border:1px dashed #d6e2d7;border-radius:17px;text-align:center;color:#657768}
+.toolkit-empty strong{font-size:17px;display:block;margin:10px 0}
+.toolkit-empty p{margin:0 auto;max-width:450px}
+.toolkit-empty-icon{font-size:30px;color:#b29971}
+.toolkit-letter{display:grid;gap:13px}
+.toolkit-letter h3{margin:0}
+.toolkit-letter-open{background:#f9f9f3;padding:19px;border:1px solid #e9e9df;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.8;color:#3d5145}
+.toolkit-letter-locked{display:flex;align-items:center;gap:13px;padding:14px;background:#f7f7f2;border-radius:13px;color:#728375;font-size:13px;line-height:1.6}
+.toolkit-letter-locked b{font-size:25px;color:#b79e73}
+.toolkit-letter-date{font-size:11px;color:#879488}
+.toolkit-countdown{font-size:12px;color:#66816c;margin:0}
+.toolkit-plan-table{display:grid;gap:9px}
+.toolkit-plan-day{padding:14px;border:1px solid #e6ece4;border-radius:13px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.toolkit-plan-day.is-done{background:#f2f7ee}
+.toolkit-plan-day>div:first-child{display:grid;gap:5px;min-width:0}
+.toolkit-plan-day small{color:#839184;font-size:11px}
+.toolkit-plan-day strong{font-size:13px;overflow-wrap:anywhere}
+.toolkit-plan-day .toolkit-action-row{flex:0 0 auto}
+.toolkit-study-date{font-size:13px;color:#78907b}
+.toolkit-study-status{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:750;margin:12px 0}
+.toolkit-reminder-row{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;padding:16px 0;border-bottom:1px solid #eef1eb}
+.toolkit-reminder-row h3{font-size:15px;margin:0 0 6px}
+.toolkit-reminder-row p{font-size:12px;margin:0;color:#7f8b7f}
+.toolkit-reminder-row .toolkit-action-row{justify-content:flex-end}
+.toolkit-note{padding:14px 16px;background:#f2f6ed;border:1px solid #e2ebdf;border-radius:12px;font-size:12px;line-height:1.7;color:#596f5f}
+.toolkit-note b{color:#385540}
+.toolkit-link{color:#396448!important;font-size:13px;font-weight:750;text-decoration:none}
+.toolkit-link:hover{text-decoration:underline}
+.toolkit-bottom{display:flex;justify-content:space-between;align-items:center;gap:23px;border-top:1px solid var(--tk-border);margin-top:44px;padding:25px 5px 0}
+.toolkit-bottom>div:first-child{max-width:650px}
+.toolkit-bottom strong{font-size:14px}
+.toolkit-bottom p{font-size:12px;line-height:1.7;color:var(--tk-muted);margin:5px 0 0}
+.toolkit-message{background:#eaf5e9;border:1px solid #c8dfca;border-radius:12px;padding:12px 15px;color:#2a6540;font-size:13px;margin:13px 0}
+.toolkit-message[hidden]{display:none!important}
+.toolkit-split{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:19px;align-items:start}
+.toolkit-details{border-top:1px solid #e9eee8;margin-top:12px;padding-top:12px;font-size:12px}
+.toolkit-details summary{cursor:pointer;color:#4e7158;font-weight:800}
+.toolkit-details p{font-size:12px}
+@media(max-width:950px){.toolkit-split,.toolkit-grid{grid-template-columns:1fr}.toolkit-intro-note{display:none}.toolkit-bottom{flex-direction:column;align-items:flex-start}.toolkit-summaries{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.toolkit{padding-top:25px}.toolkit-intro{padding:29px 23px}.toolkit-intro h1{font-size:36px}.toolkit-intro p{font-size:13px}.toolkit-panel{padding-top:19px}.toolkit-card{padding:19px}.toolkit-tabs{gap:2px;padding-top:13px}.toolkit-tab{padding:12px 13px;font-size:12px}.toolkit-form .toolkit-fields{grid-template-columns:1fr}.toolkit-summaries{gap:8px}.toolkit-summary{padding:15px 12px}.toolkit-summary strong{font-size:25px}.toolkit-section-intro{flex-direction:column;align-items:stretch}.toolkit-plan-day{align-items:flex-start;flex-direction:column}.toolkit-reminder-row{grid-template-columns:1fr}.toolkit-reminder-row .toolkit-action-row{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){.toolkit *{scroll-behavior:auto}}
