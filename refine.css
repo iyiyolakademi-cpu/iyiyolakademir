@@ -360,3 +360,81 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
  .page-hero{padding-block:35px!important}
 }
 @media(prefers-reduced-motion:reduce){.iya-shortcut,.hero-quick-link{transition:none!important}}
+
+/* LOGO + TEST INTEGRATION · 2026-11-11 */
+/* Transparent original brand: no dark square tile, repeated wordmark or border. */
+.iya-drawer-header{justify-content:center!important;min-height:144px!important;padding:16px 12px!important}
+.iya-drawer-brand{justify-content:center!important;min-width:0!important;width:100%!important}
+.iya-drawer-brand-words{display:none!important}
+.iya-drawer-brand img{
+ width:174px!important;height:127px!important;max-width:100%!important;
+ border-radius:0!important;padding:0!important;
+ background:transparent!important;object-fit:contain!important;
+}
+.brand.brand-full::after{display:none!important;content:none!important}
+.brand.brand-full{margin-right:auto!important}
+.brand.brand-full .brand-logo-full{
+ width:117px!important;height:64px!important;background:transparent!important;
+ border-radius:0!important;object-fit:contain!important;padding:0!important;
+}
+.iya-hero-brand{display:block!important;margin:0 0 8px!important}
+.iya-hero-brand>div{display:none!important}
+.iya-hero-brand img{
+ width:133px!important;height:103px!important;object-fit:contain!important;
+ background:transparent!important;border-radius:0!important;padding:0!important;
+}
+.footer-brand .footer-logo-full,.footer-brand-full .footer-logo-full{
+ width:126px!important;height:88px!important;object-fit:contain!important;
+ border-radius:0!important;background:transparent!important;padding:0!important;
+}
+.personality-page{background:#f7f7f5!important}
+.personality-intro{padding-top:45px!important;padding-bottom:24px!important}
+.personality-intro .section-kicker{color:#a17a42!important}
+.personality-intro h1{
+ margin:12px 0 11px!important;font-size:clamp(31px,3.9vw,49px)!important;
+ font-weight:760!important;letter-spacing:-.045em!important;color:#292e30!important;
+}
+.personality-intro h1 em{
+ font:inherit!important;font-style:normal!important;color:#ac8449!important;
+}
+.personality-intro p{color:#707779!important;max-width:710px!important;line-height:1.7!important;font-size:14px!important}
+.personality-benefits{margin-top:16px!important;gap:8px!important}
+.personality-benefits span{
+ padding:8px 12px!important;background:#fff!important;color:#656c6e!important;
+ border:1px solid #e2e4e1!important;border-radius:8px!important;
+ font-size:11px!important;font-weight:670!important;
+}
+.personality-stage{padding-bottom:55px!important}
+.personality-frame-shell{
+ border:0!important;border-radius:0!important;
+ background:#f7f7f5!important;box-shadow:none!important;overflow:hidden!important;
+}
+#personalityFrame{
+ width:100%!important;display:block!important;border:0!important;
+ background:#f7f7f5!important;min-height:350px!important;
+}
+.personality-disclaimer{
+ margin:12px 0 0!important;max-width:770px!important;
+ font-size:11px!important;line-height:1.7!important;color:#7d8586!important;
+}
+@media(max-width:1099px){
+ .site-header{background:#1b1e22!important;border-color:#323639!important}
+ .site-header .header-content{min-height:74px!important}
+ .brand.brand-full .brand-logo-full{width:105px!important;height:65px!important}
+ .iya-drawer-trigger,.iya-header-search{background:#303439!important;border-color:#44494b!important;color:#f6f5ef!important}
+ .iya-bars i{background:#f4f4f3!important}
+ .iya-drawer-header{min-height:139px!important}
+ .iya-drawer-brand img{width:168px!important;height:124px!important}
+}
+@media(max-width:650px){
+ .site-header .header-content{min-height:66px!important}
+ .brand.brand-full .brand-logo-full{width:90px!important;height:61px!important}
+ .iya-header-search{padding:8px 10px!important}
+ .iya-hero-brand img{width:103px!important;height:82px!important}
+ .personality-intro{padding-top:26px!important;padding-bottom:18px!important}
+ .personality-intro h1{font-size:32px!important}
+ .personality-benefits{gap:6px!important}
+ .personality-benefits span{padding:7px 9px!important}
+ .personality-stage{padding-bottom:40px!important}
+ .footer-brand .footer-logo-full{width:119px!important;height:88px!important}
+}
