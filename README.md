@@ -107,3 +107,19 @@ Tüm kaynak: https://github.com/iyiyolakademi-cpu/iyiyolakademir
 - Hesaplama araçları açık renkli liste ve tek sütun mobil görünüm ile tasarlandı. Orijinal hesaplama fonksiyonları korunur.
 - Günün sözü ve tavsiyesi ayrı sade beyaz içerik alanlarında gösterilir. Görev planlayıcının ekranı ve bilgi metinleri sadeleştirildi; görev verileri korunur.
 - Güncel önbellek sürümü `v=20261110-nav2` şeklindedir. GitHub Pages: `main` / `(root)`.
+
+
+## Kişisel Araçlar (Kasım 2026)
+
+gelisim-araclari.html sayfasında dört özellik birlikte çalışır:
+
+- Kitap Okuma Takipçisi: Kitap adı, yazarı, toplam ve okunan sayfalar; günlük sayfa kayıtları ve tamamlanma.
+- Gelecekteki Kendime Mektup: Başlık, mektup, gelecekteki açılma tarihi; tarihi gelince ekranda açma ve takvime ekleme.
+- Akıllı Çalışma Planlayıcısı: Ders, sınav tarihi, uygun günler, günlük süre ve başlangıç saati ile dengeli oturum dağıtımı; tamamlanma işaretleri ve takvim dışa aktarımı.
+- Hatırlatmalar: Tek seferlik, günlük, hafta içi, haftalık, aylık veya yıllık tekrarlar; site açıkken tarayıcı bildirimleri ve .ics takvim dışa aktarımı.
+
+tasks-simple.css, eski günlük görevlerin verisini koruyarak görev listesini görsel olarak sadeleştirir. growth.js içindeki hedef, alışkanlık, 7/21/30 günlük program, duygu günlüğü ve haftalık değerlendirmeler korunur.
+
+### Teknik sınırlar ve veri koruma
+
+Bu sürüm, kullanıcıya özel içerikleri tarayıcı localStorage alanında saklar. Farklı cihazlarla eşitleme yoktur. Mektuplar, günlükler ve JSON yedekleri şifrelenmiş değildir. Gelecek tarihli mektup kilidi yalnızca arayüzdedir. Sayfa kapalıyken site tek başına bildirim gönderemez: .ics dosyaları takvim uygulamasına içe aktarılmalı ve cihazda takvim alarm izinleri etkin olmalıdır. Tarayıcı bildirimleri yalnızca sayfa açıkken çalışır; haricî takvimle oluşturulan hatırlatmalar, takvim uygulamasının şartlarına bağlıdır.
