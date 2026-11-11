@@ -148,3 +148,13 @@
 .pt-entry p{color:#68756b;font-size:13px;margin:0;line-height:1.7;max-width:600px}
 .pt-entry a{white-space:nowrap}
 @media(max-width:700px){.pt-entry{flex-direction:column;align-items:flex-start;padding:19px}.pt-entry a{width:100%}}
+
+@media print{
+ body,html{background:white!important;color:#222!important}
+ .site-header,.footer,.iya-drawer,.iya-drawer-backdrop,.pt-worktop,.pt-report-actions,.pt-toast,.pt-smallprint{display:none!important}
+ .pt-page{padding:0!important;background:white!important}
+ .pt-workspace{max-width:100%!important;margin:0!important;padding:0!important}
+ .pt-report-card{border:0!important;box-shadow:none!important;padding:0!important}
+ .pt-report-section{break-inside:avoid;page-break-inside:avoid}
+ .pt-score-top{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
