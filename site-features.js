@@ -27,7 +27,7 @@ function nav(){
  const sections=[
   {label:"ANA SAYFA",items:[["index.html","Ana Sayfa"],["arama.html","İçerik Ara"]]},
   {label:"İÇERİKLER",items:[["blog.html","Blog Yazıları"],["tarifler.html","Yemek Tarifleri"],["testler.html","Kişilik Testleri"],["gunun-sozu.html","Günün Sözü ve Tavsiyesi"]]},
-  {label:"ARAÇLAR",items:[["yapilacaklar.html","Yapılacaklar Listesi"],["pomodoro.html","Pomodoro / Odaklanma"],["hesaplama.html","Pratik Hesaplamalar"]]},
+  {label:"KİŞİSEL GELİŞİM",items:[["yapilacaklar.html","Hedef ve Alışkanlık Merkezi"],["yapilacaklar.html#duygu","Duygu Günlüğü"],["yapilacaklar.html#programlar","7/21/30 Günlük Programlar"],["yapilacaklar.html#haftalik","Haftalık Değerlendirme"],["pomodoro.html","Pomodoro / Odaklanma"],["hesaplama.html","Pratik Hesaplamalar"]]},
   {label:"KİŞİSEL ALAN",items:[["kaydedilenler.html","Kaydedilenler"]]},
   {label:"BİLGİ",items:[["yayin-ilkeleri.html","Hakkımızda ve Yayın İlkeleri"],["gizlilik.html","Gizlilik"]]}
  ];
