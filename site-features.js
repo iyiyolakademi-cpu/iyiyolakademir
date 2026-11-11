@@ -154,22 +154,25 @@ async function initSearch(){
  const params=new URLSearchParams(location.search),initial=params.get("q")||"";
  input.value=initial.slice(0,100);
  let selected="all",entries=[];
- const sources=await Promise.allSettled([loadBlog(),fetchJson("recipes-data.json"),fetchJson("testler-index.json")]);
+ const sources=await Promise.allSettled([loadBlog(),fetchJson("recipes-data.json"),fetchJson("testler-index.json"),fetchJson("premium-testler-index.json")]);
  const blogs=sources[0].status==="fulfilled"?sources[0].value:[];
  const recipes=sources[1].status==="fulfilled"?sources[1].value:[];
  const tests=sources[2].status==="fulfilled"?sources[2].value:[];
+ const premiumTests=sources[3].status==="fulfilled"?sources[3].value:[];
  for(const post of blogs){if(!safeSlug(post.slug))continue;entries.push({kind:"blog",kindLabel:"BLOG YAZISI",category:post.blog_categories?.name||"Blog",title:post.title,excerpt:post.excerpt||"",detail:post.read_minutes?post.read_minutes+" dk okuma":"Yazı",href:"post.html?slug="+encodeURIComponent(post.slug)});}
  for(const recipe of recipes){if(!Number.isInteger(Number(recipe.id)))continue;entries.push({kind:"recipe",kindLabel:"YEMEK TARİFİ",category:recipe.category||"Tarif",title:recipe.name||"",excerpt:recipe.desc||"",searchExtras:(recipe.ingredients||[]).join(" "),detail:recipe.totalTime||"Adım adım tarif",href:"tarifler.html?id="+encodeURIComponent(recipe.id)});}
  for(const test of tests){if(!Number.isInteger(Number(test.id)))continue;entries.push({kind:"test",kindLabel:"KİŞİLİK TESTİ",category:test.categoryName||"Test",title:test.title||"",excerpt:"Soruları cevaplayarak kendini tanımaya yönelik bu testi keşfet.",detail:"Kişilik testi",href:"testler.html?test="+encodeURIComponent(test.id)});}
+ for(const test of premiumTests){if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(test.id||"")))continue;entries.push({kind:"test",kindLabel:"YENİ KEŞİF TESTİ",category:test.categoryName||"Test",title:test.title||"",excerpt:test.description||"",detail:(Number(test.questionCount)||12)+" soru",premium:true,href:"premium-testler.html?test="+encodeURIComponent(test.id)});}
  const success=sources.filter(s=>s.status==="fulfilled").length;
- if(status)status.textContent=success===3?"Bloglar, tarifler ve kişilik testleri arasında arama yapabilirsin.":success===0?"İçerikler yüklenemedi. Sayfayı yenileyip yeniden dene.":"Bazı içerik kaynakları şu anda yüklenemedi; erişilebilen içerikler gösteriliyor.";
+ if(status)status.textContent=success===4?"Bloglar, tarifler ve kişilik testleri arasında arama yapabilirsin.":success===0?"İçerikler yüklenemedi. Sayfayı yenileyip yeniden dene.":"Bazı içerik kaynakları şu anda yüklenemedi; erişilebilen içerikler gösteriliyor.";
  const buttons=$$("[data-iya-type]");
  const render=()=>{
    const term=q(input.value.trim()),matches=entries.filter(x=>(selected==="all"||x.kind===selected)&&(!term||q([x.title,x.excerpt,x.category,x.searchExtras].join(" ")).includes(term)));
    const display=!term&&selected==="all"?[
        ...matches.filter(x=>x.kind==="blog").slice(0,4),
        ...matches.filter(x=>x.kind==="recipe").slice(0,5),
-       ...matches.filter(x=>x.kind==="test").slice(0,5)
+       ...matches.filter(x=>x.kind==="test"&&!x.premium).slice(0,3),
+       ...matches.filter(x=>x.kind==="test"&&x.premium).slice(0,3)
      ]:matches.slice(0,100);
    results.replaceChildren();
    if(!display.length)results.append(node("p","iya-empty","Aramana uygun içerik bulunamadı. Başka bir kelime deneyebilirsin."));
