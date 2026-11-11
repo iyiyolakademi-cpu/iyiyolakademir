@@ -1,0 +1,142 @@
+[
+  {
+    "id": "big-five",
+    "title": "Beş Boyutlu Kişilik Keşfi",
+    "categoryName": "Kişilik",
+    "description": "Kişiliğinin beş geniş özelliğine dair kendi yanıtlarına dayalı bir keşif haritası.",
+    "questionCount": 20
+  },
+  {
+    "id": "types",
+    "title": "Dört Eksenli Kişilik Profili",
+    "categoryName": "Kişilik",
+    "description": "Sosyal enerji, bilgi, karar ve planlama tercihlerinin dengesi.",
+    "questionCount": 16
+  },
+  {
+    "id": "nine-patterns",
+    "title": "Dokuz Eğilimli Motivasyon Haritası",
+    "categoryName": "Kişilik",
+    "description": "Hayata yaklaşımındaki dokuz farklı eğilimi inceleyen özgün öz değerlendirme.",
+    "questionCount": 18
+  },
+  {
+    "id": "strengths",
+    "title": "Güçlü Yön Tercihleri",
+    "categoryName": "Kişilik",
+    "description": "İki olumlu yaklaşım arasında seçerek doğal tercihlerine bak.",
+    "questionCount": 12
+  },
+  {
+    "id": "career-interests",
+    "title": "Mesleki İlgi Haritası",
+    "categoryName": "Kariyer",
+    "description": "Altı ilgi alanını karşılaştıran, faaliyet odaklı bir kariyer keşfi.",
+    "questionCount": 18
+  },
+  {
+    "id": "work-style",
+    "title": "Çalışma Ortamın Nasıl Olmalı?",
+    "categoryName": "Kariyer",
+    "description": "Odaklanma, esneklik ve iş birliği ihtiyaçlarını tanı.",
+    "questionCount": 12
+  },
+  {
+    "id": "emotions",
+    "title": "Duygusal Farkındalık",
+    "categoryName": "İlişkiler",
+    "description": "Duygularını tanıma, ifade etme ve düzenleme eğilimlerini gözlemle.",
+    "questionCount": 12
+  },
+  {
+    "id": "attachment",
+    "title": "Yakın İlişkide Bağlanma Eğilimleri",
+    "categoryName": "İlişkiler",
+    "description": "Yakınlık, güven ve bağımsızlık tercihlerini keşfet.",
+    "questionCount": 12
+  },
+  {
+    "id": "relationship-fit",
+    "title": "İlişkilerde Önceliklerin",
+    "categoryName": "İlişkiler",
+    "description": "Bir ilişkide hangi olumlu yaklaşımın sana daha yakın olduğunu gör.",
+    "questionCount": 12
+  },
+  {
+    "id": "communication",
+    "title": "İletişim Tarzı",
+    "categoryName": "İlişkiler",
+    "description": "Farklı iletişim biçimleri arasındaki kişisel tercihlerini fark et.",
+    "questionCount": 12
+  },
+  {
+    "id": "leadership",
+    "title": "Liderlik Eğilimleri",
+    "categoryName": "Kariyer",
+    "description": "İnisiyatif, iş birliği ve planlı yürütme eğilimlerini tanı.",
+    "questionCount": 12
+  },
+  {
+    "id": "self-worth",
+    "title": "Öz Değer ve Öz Güven",
+    "categoryName": "Gelişim",
+    "description": "Kendinle kurduğun ilişkinin gündelik örüntülerini fark et.",
+    "questionCount": 12
+  },
+  {
+    "id": "stress",
+    "title": "Zorluklarla Başa Çıkma",
+    "categoryName": "Gelişim",
+    "description": "Stresli anlarda hangi baş etme alışkanlıklarını kullandığını fark et.",
+    "questionCount": 12
+  },
+  {
+    "id": "social",
+    "title": "Sosyal Etkileşim Tarzı",
+    "categoryName": "İlişkiler",
+    "description": "Yeni insanlarla tanışma, dinleme ve sınır koyma alışkanlıklarını tanı.",
+    "questionCount": 12
+  },
+  {
+    "id": "procrastination",
+    "title": "Erteleme Alışkanlığı",
+    "categoryName": "Gelişim",
+    "description": "Bir işi başlatma, sürdürme ve tamamlama alışkanlıklarını incele.",
+    "questionCount": 12
+  },
+  {
+    "id": "decisions",
+    "title": "Karar Verme Yaklaşımın",
+    "categoryName": "Gelişim",
+    "description": "Seçim yaparken öne çıkan dört farklı yaklaşımı karşılaştır.",
+    "questionCount": 12
+  },
+  {
+    "id": "study",
+    "title": "Çalışma ve Öğrenme Alışkanlıkları",
+    "categoryName": "Gelişim",
+    "description": "Çalışma rutini, geri çağırma ve takip alışkanlıklarını gözlemle.",
+    "questionCount": 12
+  },
+  {
+    "id": "motivation",
+    "title": "Motivasyon Kaynakların",
+    "categoryName": "Gelişim",
+    "description": "Başlama isteğinin hangi kaynaklardan beslendiğini keşfet.",
+    "questionCount": 12
+  },
+  {
+    "id": "logic",
+    "title": "Mantıksal Akıl Yürütme Alıştırması",
+    "categoryName": "Gelişim",
+    "description": "Sayı, sözcük ve örüntü sorularıyla mantıksal düşünme pratiği. IQ testi değildir.",
+    "questionCount": 10
+  },
+  {
+    "id": "self-awareness",
+    "title": "Kendini Tanıma Yolculuğu",
+    "categoryName": "Gelişim",
+    "description": "İhtiyaç, değer ve gelişim hedeflerini düşünmene yardımcı bir öz değerlendirme.",
+    "questionCount": 12
+  }
+]
