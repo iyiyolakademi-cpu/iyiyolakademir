@@ -60,7 +60,7 @@ function nav(){
   group.appendChild(node("h2","",section.label));
   for(const [href,label] of section.items){
    const link=node("a","iya-drawer-link",label);link.href=href;
-   if(current===href.split("#")[0]||(current==="post.html"&&href==="blog.html")){
+   if((current===href.split("#")[0]&&(!href.includes("#")||location.hash===href.slice(href.indexOf("#"))))||(current==="post.html"&&href==="blog.html")){
      link.classList.add("current");link.setAttribute("aria-current","page");
    }
    group.appendChild(link);
