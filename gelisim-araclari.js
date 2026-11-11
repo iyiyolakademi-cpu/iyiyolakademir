@@ -142,7 +142,7 @@ function icsFromEvents(events,name){
   lines.push("BEGIN:VEVENT","UID:"+icsEscape(e.id)+"@iyiyolakademi","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""),"DTSTART:"+icsDate(e.start),"DTEND:"+icsEnd(e.start,e.minutes||30),"SUMMARY:"+icsEscape(e.title),"DESCRIPTION:"+icsEscape("İyi Yol Akademi kişisel hatırlatma"));
   let rules={daily:"FREQ=DAILY",weekdays:"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR",weekly:"FREQ=WEEKLY",monthly:"FREQ=MONTHLY",yearly:"FREQ=YEARLY"};
   if(rules[e.repeat])lines.push("RRULE:"+rules[e.repeat]);
-  lines.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEscape(e.title),"TRIGGER:-PT5M","END:VALARM","END:VEVENT");
+  lines.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEscape(e.title),"TRIGGER:PT0S","END:VALARM","END:VEVENT");
  }
  lines.push("END:VCALENDAR");
  const encoder=new TextEncoder();
