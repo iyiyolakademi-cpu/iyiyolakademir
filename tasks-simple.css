@@ -1,0 +1,45 @@
+/* İyi Yol Akademi · sade günlük görev listesi. Mevcut görevlerin saklanma ve düzenleme mantığı korunur. */
+body[data-page="tasks"] #growthPanel-gorevler .task-intro{padding-top:24px;padding-bottom:24px}
+body[data-page="tasks"] #growthPanel-gorevler .task-intro .section-kicker{display:none}
+body[data-page="tasks"] #growthPanel-gorevler .task-intro h1{font-size:clamp(28px,3vw,37px);font-weight:720;letter-spacing:-.04em;margin:0 0 7px}
+body[data-page="tasks"] #growthPanel-gorevler .task-intro p{font-size:13px;line-height:1.6}
+body[data-page="tasks"] #growthPanel-gorevler .task-workspace{grid-template-columns:minmax(250px,290px) minmax(0,1fr);gap:15px;padding-bottom:54px}
+body[data-page="tasks"] #growthPanel-gorevler .task-panel{border-radius:17px;box-shadow:none}
+body[data-page="tasks"] #growthPanel-gorevler .task-week-panel{padding:20px}
+body[data-page="tasks"] #growthPanel-gorevler .task-progress-panel,
+body[data-page="tasks"] #growthPanel-gorevler .task-priority-legend,
+body[data-page="tasks"] #growthPanel-gorevler .task-icon-add,
+body[data-page="tasks"] #growthPanel-gorevler .task-filters,
+body[data-page="tasks"] #growthPanel-gorevler .task-inline-add,
+body[data-page="tasks"] #growthPanel-gorevler .task-text small,
+body[data-page="tasks"] #growthPanel-gorevler .task-small,
+body[data-page="tasks"] #taskDialog fieldset{display:none!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-month-row{margin:18px 0 13px}
+body[data-page="tasks"] #growthPanel-gorevler .task-month-row strong{font-size:12px}
+body[data-page="tasks"] #growthPanel-gorevler .task-week-grid{gap:3px}
+body[data-page="tasks"] #growthPanel-gorevler .task-day{border-radius:8px;min-height:59px;gap:4px}
+body[data-page="tasks"] #growthPanel-gorevler .task-day strong{font-size:14px}
+body[data-page="tasks"] #growthPanel-gorevler .task-day span{font-size:9px}
+body[data-page="tasks"] #growthPanel-gorevler .task-list-panel{min-height:320px;padding:21px 24px}
+body[data-page="tasks"] #growthPanel-gorevler .task-list-top h2{font-size:22px;margin:3px 0 4px}
+body[data-page="tasks"] #growthPanel-gorevler .task-item{padding:13px 0}
+body[data-page="tasks"] #growthPanel-gorevler .task-item:last-child{border-bottom:0}
+body[data-page="tasks"] #growthPanel-gorevler .task-check{height:23px;width:23px;min-width:23px;border-radius:7px}
+body[data-page="tasks"] #growthPanel-gorevler .task-text strong{font-size:13px}
+body[data-page="tasks"] #growthPanel-gorevler .task-empty{padding:32px 13px}
+body[data-page="tasks"] #growthPanel-gorevler .task-add-main{padding:12px 19px;font-size:12px}
+body[data-page="tasks"] #taskDialog .dialog-icon{display:none}
+body[data-page="tasks"] #taskDialog .task-dialog{max-width:470px}
+body[data-page="tasks"] #taskDialog .task-dialog h2{font-size:24px;margin:10px 0}
+body[data-page="tasks"] #taskDialog form>label{letter-spacing:0;font-size:12px}
+@media(max-width:740px){
+body[data-page="tasks"] #growthPanel-gorevler .task-workspace{grid-template-columns:1fr}
+body[data-page="tasks"] #growthPanel-gorevler .task-intro-row{align-items:flex-start}
+body[data-page="tasks"] #growthPanel-gorevler .task-week-panel{padding:17px}
+body[data-page="tasks"] #growthPanel-gorevler .task-list-panel{padding:19px}
+}
+@media(max-width:480px){
+body[data-page="tasks"] #growthPanel-gorevler .task-intro-row{flex-direction:column;gap:15px}
+body[data-page="tasks"] #growthPanel-gorevler .task-intro h1{font-size:28px}
+body[data-page="tasks"] #growthPanel-gorevler .task-add-main{align-self:flex-start}
+}
