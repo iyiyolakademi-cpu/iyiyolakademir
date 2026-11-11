@@ -145,7 +145,10 @@ function icsFromEvents(events,name){
   lines.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEscape(e.title),"TRIGGER:-PT5M","END:VALARM","END:VEVENT");
  }
  lines.push("END:VCALENDAR");
- download(name,lines.join("\r\n")+"\r\n","text/calendar;charset=utf-8");
+ const encoder=new TextEncoder();
+ const folded=[];
+ for(const line of lines){let segment="",bytes=0;for(const char of line){const len=encoder.encode(char).length;if(bytes+len>73){folded.push(segment);segment=" ";bytes=1}segment+=char;bytes+=len}folded.push(segment)}
+ download(name,folded.join("\r\n")+"\r\n","text/calendar;charset=utf-8");
  notice("Takvim dosyası hazır. Hatırlatmaların çalışması için dosyayı takvim uygulamana içe aktar.");
 }
 function eligibleReminder(r,now){
