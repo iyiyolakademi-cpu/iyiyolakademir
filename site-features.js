@@ -104,6 +104,25 @@ function nav(){
  });
  if(oldMenu)oldMenu.setAttribute("aria-hidden","true");
  document.documentElement.classList.add("iya-drawer-ready");
+ // Desktopta görünür, klavyeyle erişilebilir kalıcı menü; mobilde erişilebilir çekmece.
+ const layoutQuery=window.matchMedia("(min-width:1100px)");
+ function syncMenuLayout(){
+   if(layoutQuery.matches){
+     closeDrawer(false);
+     drawer.removeAttribute("inert");
+     drawer.setAttribute("aria-hidden","false");
+     overlay.hidden=true;
+     document.body.classList.remove("iya-no-scroll");
+     trigger.setAttribute("aria-expanded","false");
+   }else if(!isOpen()){
+     drawer.setAttribute("inert","");
+     drawer.setAttribute("aria-hidden","true");
+     overlay.hidden=true;
+   }
+ }
+ syncMenuLayout();
+ if(layoutQuery.addEventListener)layoutQuery.addEventListener("change",syncMenuLayout);
+ else if(layoutQuery.addListener)layoutQuery.addListener(syncMenuLayout);
 }
 async function fetchJson(url,options={}){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
