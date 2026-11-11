@@ -178,6 +178,7 @@ function dimensionsFor(t){
   t.questions.forEach((q,i)=>{
    if(q.dim!==d.key||current.answers[i]===null)return;
    let val=current.answers[i];
+   if(t.mode==="scale")val=max+1-val;
    if(q.reverse)val=max+1-val;
    values.push(val);
   });
