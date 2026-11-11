@@ -2,7 +2,7 @@
 <html lang="tr"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#f7f7f5">
 <title>Kişilik Testleri - İyi Yol Akademi</title>
 <meta name="robots" content="noindex">
 </head><body>
@@ -572,14 +572,185 @@ html,body{
   #kisilik-arsivi-app .test-title{font-size:1rem!important}
 }
 </style>
+<style>
+/* İYİ YOL AKADEMİ · ENTEGRE TEST ARAYÜZÜ · 2026-11-11 */
+html,body,body>div,body>main,body>section{background:#f7f7f5!important;color:#252b2f!important}
+#kisilik-arsivi-app{
+ --bg:#f7f7f5;--surface:#fff;--surface-2:#f5f6f4;--surface-3:#edecea;
+ --ink:#292e31;--ink-soft:#72797a;--line:#e2e5e3;
+ --amber:#b78b50;--amber-d:#866334;
+ width:100%!important;max-width:100%!important;min-height:0!important;
+ padding:0!important;background:#f7f7f5!important;color:#252b2f!important;
+ font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;
+}
+#kisilik-arsivi-app .wrap{
+ width:100%!important;max-width:1100px!important;
+ min-height:0!important;max-height:none!important;
+ margin:0 auto!important;padding:5px 2px 28px!important;
+ background:#f7f7f5!important;
+}
+#kisilik-arsivi-app .brand,#kisilik-arsivi-app .intro{display:none!important}
+#kisilik-arsivi-app .archive-actions{
+ display:flex!important;align-items:stretch!important;gap:12px!important;
+ margin:0 0 20px!important;
+}
+#kisilik-arsivi-app .archive-search-wrap{display:block!important;flex:1 1 auto!important}
+#kisilik-arsivi-app .archive-search{
+ height:49px!important;border:1px solid #dfe3e0!important;
+ background:#fff!important;color:#282d30!important;
+ border-radius:11px!important;font-size:14px!important;
+}
+#kisilik-arsivi-app .archive-search::placeholder{color:#92999a!important}
+#kisilik-arsivi-app .archive-search:focus{border-color:#b99765!important;box-shadow:0 0 0 3px #cba66b22!important}
+#kisilik-arsivi-app .archive-search-icon{color:#9a9fa0!important}
+#kisilik-arsivi-app .random-test-btn{
+ width:auto!important;flex:0 0 auto!important;height:49px!important;
+ border:1px solid #292d30!important;border-radius:11px!important;
+ padding:0 18px!important;background:#292d30!important;color:#fff!important;
+ font-size:13px!important;letter-spacing:0!important;font-weight:700!important;
+}
+#kisilik-arsivi-app .random-test-btn:hover{background:#383e42!important}
+#kisilik-arsivi-app .search-results.active{display:flex!important}
+#kisilik-arsivi-app .search-result{
+ background:#fff!important;border:1px solid #e2e5e3!important;border-radius:11px!important;
+}
+#kisilik-arsivi-app .search-result-title{font:700 15px/1.4 system-ui,sans-serif!important;color:#292d30!important}
+#kisilik-arsivi-app .search-result-meta{font:12px system-ui,sans-serif!important;color:#72797a!important}
+#kisilik-arsivi-app .empty-search{background:#fff!important;border-color:#e2e5e3!important;color:#72797a!important}
+#kisilik-arsivi-app .cat-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:14px!important;margin:0!important;
+}
+#kisilik-arsivi-app .cat-card{
+ min-height:152px!important;display:flex!important;flex-direction:column!important;
+ align-items:flex-start!important;justify-content:center!important;
+ padding:22px 24px!important;background:#fff!important;
+ border:1px solid #e2e5e3!important;border-radius:13px!important;
+ color:#282d30!important;box-shadow:none!important;
+ transition:border-color .17s,transform .17s!important;
+}
+#kisilik-arsivi-app .cat-card:hover{border-color:#bea06b!important;transform:translateY(-2px)}
+#kisilik-arsivi-app .cat-card:before{left:0!important;top:19px!important;bottom:19px!important;width:3px!important;border-radius:0 4px 4px 0!important}
+#kisilik-arsivi-app .cat-card:after{display:none!important}
+#kisilik-arsivi-app .cat-label{
+ font:750 10px/1.3 system-ui,sans-serif!important;letter-spacing:.09em!important;
+ margin:0 0 13px!important;
+}
+#kisilik-arsivi-app .cat-name{
+ color:#262b2f!important;font:760 24px/1.17 system-ui,sans-serif!important;
+ letter-spacing:-.045em!important;margin:0 0 8px!important;
+}
+#kisilik-arsivi-app .cat-desc{
+ font:400 13px/1.55 system-ui,sans-serif!important;
+ color:#767e80!important;max-width:38ch!important;margin:0!important;
+}
+#kisilik-arsivi-app .cat-count{
+ display:block!important;top:16px!important;right:16px!important;
+ background:#f5f5f2!important;border:1px solid #ebede9!important;
+ border-radius:6px!important;color:#737b7c!important;
+ font:700 10px system-ui,sans-serif!important;padding:5px 7px!important;
+}
+#kisilik-arsivi-app .backbar{margin:0 0 17px!important}
+#kisilik-arsivi-app .backbtn{
+ min-height:40px!important;border-radius:9px!important;
+ border:1px solid #e0e4e1!important;background:#fff!important;
+ color:#4a5254!important;padding:10px 13px!important;
+ font:650 12px system-ui,sans-serif!important;
+}
+#kisilik-arsivi-app .list-header{
+ color:#252b2f!important;font:750 clamp(23px,3.4vw,31px)/1.25 system-ui,sans-serif!important;
+ letter-spacing:-.035em!important;margin:0 0 20px!important;
+}
+#kisilik-arsivi-app .test-list{gap:9px!important}
+#kisilik-arsivi-app .test-card{
+ min-height:68px!important;border:1px solid #e2e5e3!important;border-radius:11px!important;
+ background:#fff!important;gap:13px!important;padding:15px 18px!important;
+ transition:border-color .16s!important;
+}
+#kisilik-arsivi-app .test-card:hover{border-color:#bfa16f!important}
+#kisilik-arsivi-app .test-no{font:700 12px system-ui,sans-serif!important}
+#kisilik-arsivi-app .test-title{color:#292e31!important;font:700 14px/1.35 system-ui,sans-serif!important}
+#kisilik-arsivi-app .test-arrow{background:#f4f4f1!important;color:#7f6b4e!important;width:32px!important;height:32px!important;flex-basis:32px!important}
+#kisilik-arsivi-app .quiz-card,#kisilik-arsivi-app .result-card{
+ background:#fff!important;color:#252b2e!important;border:1px solid #e0e4e0!important;
+ border-radius:14px!important;padding:28px!important;box-shadow:none!important;
+}
+#kisilik-arsivi-app .quiz-card:before,#kisilik-arsivi-app .result-card:before{height:3px!important}
+#kisilik-arsivi-app .quiz-meta{font:700 11px system-ui,sans-serif!important;color:#868e8f!important}
+#kisilik-arsivi-app .progress-track{background:#e9ece9!important;height:6px!important}
+#kisilik-arsivi-app .quiz-title{font:750 11px system-ui,sans-serif!important;letter-spacing:.05em!important}
+#kisilik-arsivi-app .question{color:#252b2f!important;font:720 clamp(20px,3vw,26px)/1.42 system-ui,sans-serif!important}
+#kisilik-arsivi-app .quiz-helper{color:#777f80!important;font:13px system-ui,sans-serif!important}
+#kisilik-arsivi-app .answers{gap:9px!important}
+#kisilik-arsivi-app .answers label{
+ min-height:53px!important;background:#fbfbfa!important;color:#394143!important;
+ border:1px solid #e3e6e3!important;border-radius:10px!important;
+ font:600 13px/1.4 system-ui,sans-serif!important;
+}
+#kisilik-arsivi-app .answers input:checked+label{
+ border-color:#b38b50!important;background:#f9f1e2!important;color:#36291b!important;
+ box-shadow:0 0 0 1px #c99d4d!important;
+}
+#kisilik-arsivi-app .answers input:focus-visible+label{
+ outline:3px solid #bd985d!important;outline-offset:2px!important;
+}
+#kisilik-arsivi-app .nav-row button{
+ border:1px solid #2b3033!important;background:#2b3033!important;
+ color:#fff!important;border-radius:9px!important;
+ font:750 13px system-ui,sans-serif!important;
+}
+#kisilik-arsivi-app .nav-row button.ghost{
+ border-color:#e1e4e1!important;background:#f7f8f6!important;color:#373e40!important;
+}
+#kisilik-arsivi-app .result-kicker{font:750 11px system-ui,sans-serif!important;color:#858c8e!important}
+#kisilik-arsivi-app .seal{background:#f8f6f1!important}
+#kisilik-arsivi-app .result-title{color:#282d30!important;font:750 23px/1.3 system-ui,sans-serif!important}
+#kisilik-arsivi-app .result-level{
+ background:#f5f3ee!important;color:#3c4142!important;border-color:#dfd2b7!important;
+}
+#kisilik-arsivi-app .result-text,#kisilik-arsivi-app .result-detail-text{color:#50595b!important;font:14px/1.7 system-ui,sans-serif!important}
+#kisilik-arsivi-app .result-detail{
+ background:#f9faf8!important;border:1px solid #e4e6e1!important;
+ border-left:3px solid var(--cat-color,var(--amber))!important;color:#424a4c!important;
+}
+#kisilik-arsivi-app .result-actions button{
+ border-radius:9px!important;border:1px solid #e0e4e0!important;
+ color:#343d3e!important;background:#fff!important;font:700 12px system-ui,sans-serif!important;
+}
+#kisilik-arsivi-app .result-actions button.primary{
+ border-color:#2b3033!important;background:#2b3033!important;color:#fff!important;
+}
+#kisilik-arsivi-app button:focus-visible,#kisilik-arsivi-app .cat-card:focus-visible,#kisilik-arsivi-app .test-card:focus-visible{
+ outline:3px solid #c99d4d!important;outline-offset:2px!important;
+}
+@media(max-width:680px){
+ #kisilik-arsivi-app .wrap{padding:2px 0 22px!important}
+ #kisilik-arsivi-app .cat-grid{grid-template-columns:1fr!important;gap:10px!important}
+ #kisilik-arsivi-app .cat-card{min-height:126px!important;padding:17px 19px!important}
+ #kisilik-arsivi-app .cat-name{font-size:21px!important}
+ #kisilik-arsivi-app .archive-actions{gap:9px!important}
+ #kisilik-arsivi-app .random-test-btn{height:45px!important;padding:0 12px!important;font-size:12px!important}
+ #kisilik-arsivi-app .archive-search{height:45px!important}
+ #kisilik-arsivi-app .test-card{min-height:61px!important;padding:13px!important}
+ #kisilik-arsivi-app .quiz-card,#kisilik-arsivi-app .result-card{padding:19px!important}
+}
+@media(max-width:380px){
+ #kisilik-arsivi-app .archive-actions{flex-wrap:wrap!important}
+ #kisilik-arsivi-app .random-test-btn{width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #kisilik-arsivi-app .screen.active{animation:none!important}
+ #kisilik-arsivi-app .cat-card{transition:none!important}
+}
+</style>
 <p>
 <script>
 const CATS=[
-{id:'karakter',name:'Karakter',color:'#c1793d',dcolor:'#7c4a20',desc:'Kişiliğinin izini sür.'},
-{id:'iliski',name:'İlişki',color:'#b34567',dcolor:'#732b41',desc:'Bağlarının haritasını çıkar.'},
-{id:'sosyal',name:'Sosyal',color:'#297f77',dcolor:'#1a534d',desc:'Çevrendeki yerini keşfet.'},
-{id:'kariyer',name:'Kariyer',color:'#3a5aa0',dcolor:'#233a6b',desc:'İş hayatındaki profilini gör.'},
-{id:'beyin',name:'Beyin',color:'#6d4a97',dcolor:'#452f63',desc:'Zihninin çalışma biçimini öğren.'}
+{id:'karakter',name:'Karakter',color:'#a67e4e',dcolor:'#755b39',desc:'Kişiliğinin izini sür.'},
+{id:'iliski',name:'İlişki',color:'#a47774',dcolor:'#775450',desc:'Bağlarının haritasını çıkar.'},
+{id:'sosyal',name:'Sosyal',color:'#6c8c80',dcolor:'#486358',desc:'Çevrendeki yerini keşfet.'},
+{id:'kariyer',name:'Kariyer',color:'#66859a',dcolor:'#465d6e',desc:'İş hayatındaki profilini gör.'},
+{id:'beyin',name:'Beyin',color:'#897aa4',dcolor:'#5c5473',desc:'Zihninin çalışma biçimini öğren.'}
 ];
 const ANSWERS=[{text:'Kesinlikle Evet',score:4},{text:'Çoğunlukla Evet',score:3},{text:'Bazen',score:2},{text:'Çoğunlukla Hayır',score:1},{text:'Kesinlikle Hayır',score:0}];
 function Q(cat,title,q,r,reverse=[]){return{cat,title,q,r,reverse}}
