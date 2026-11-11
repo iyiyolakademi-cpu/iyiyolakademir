@@ -5,6 +5,9 @@ const KEY="sb_publishable_C2NPcTXgB4-GNZGyvgfuMw__vJpIaSm";
 const BOOKMARK_KEY="iya_saved_articles_v1";
 const HISTORY_KEY="iya_reading_history_v1";
 const FAVORITES_KEY="iyi-yol-akademi-recipes-favorites-v1";
+// Özgün logoyu tüm sayfalarda aynı, çerçevesiz sürümle göster.
+document.querySelectorAll('img[src="brand-full.svg"]').forEach(img=>{img.src="brand-transparent.svg";});
+document.querySelectorAll('link[rel="icon"][href="brand-full.svg"]').forEach(icon=>{icon.href="brand-transparent.svg";});
 const $=(selector,parent=document)=>parent.querySelector(selector);
 const $$=(selector,parent=document)=>Array.from(parent.querySelectorAll(selector));
 const q=(txt)=>String(txt||"").toLocaleLowerCase("tr-TR");
@@ -43,7 +46,7 @@ function nav(){
  drawer.setAttribute("aria-hidden","true");drawer.setAttribute("inert","");
  const drawerHead=node("div","iya-drawer-header");
  const brand=node("div","iya-drawer-brand");
- const logo=node("img");logo.src="brand-full.svg";logo.alt="İyi Yol Akademi";
+ const logo=node("img");logo.src="brand-transparent.svg";logo.alt="İyi Yol Akademi";
  const brandWords=node("div","iya-drawer-brand-words");
  brandWords.append(node("strong","","İYİ YOL AKADEMİ"),node("small","","Öğren, keşfet, geliş"));
  brand.append(logo,brandWords);
