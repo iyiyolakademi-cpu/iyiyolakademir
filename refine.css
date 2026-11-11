@@ -438,3 +438,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
  .personality-stage{padding-bottom:40px!important}
  .footer-brand .footer-logo-full{width:119px!important;height:88px!important}
 }
+
+/* Koyu menüde açık renkli tarayıcı kaydırma çubuğunu yumuşat. */
+.iya-drawer-links{scrollbar-width:thin;scrollbar-color:#555c5f transparent}
+.iya-drawer-links::-webkit-scrollbar{width:7px}
+.iya-drawer-links::-webkit-scrollbar-track{background:transparent}
+.iya-drawer-links::-webkit-scrollbar-thumb{background:#555c5f;border-radius:20px}
