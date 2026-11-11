@@ -133,13 +133,13 @@ function draw(){
 function navigate(to,changeHash=true){if(!tabs.includes(to))return;current=to;if(changeHash&&location.hash!=="#"+to)history.replaceState(null,"","#"+to);draw();$(".toolkit-tabs").scrollIntoView({block:"start",behavior:"smooth"})}
 function icsEscape(s){return String(s||"").replace(/\\/g,"\\\\").replace(/\r?\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;")}
 function icsDate(s){return String(s).replace(/[-:]/g,"").slice(0,15)+"00"}
-function icsEnd(s){let d=new Date(s);d.setMinutes(d.getMinutes()+30);return icsDate(localDateTime(d))}
+function icsEnd(s,minutes=30){let d=new Date(s);d.setMinutes(d.getMinutes()+minutes);return icsDate(localDateTime(d))}
 function icsFromEvents(events,name){
  if(!events.length){notice("Aktarılacak kayıt bulunamadı.");return}
  let lines=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Iyi Yol Akademi//Gelisim//TR","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:İyi Yol Akademi Hatırlatmaları"];
  for(const e of events){
   if(!validDT(e.start))continue;
-  lines.push("BEGIN:VEVENT","UID:"+icsEscape(e.id)+"@iyiyolakademi","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""),"DTSTART:"+icsDate(e.start),"DTEND:"+icsEnd(e.start),"SUMMARY:"+icsEscape(e.title),"DESCRIPTION:"+icsEscape("İyi Yol Akademi kişisel hatırlatma"));
+  lines.push("BEGIN:VEVENT","UID:"+icsEscape(e.id)+"@iyiyolakademi","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""),"DTSTART:"+icsDate(e.start),"DTEND:"+icsEnd(e.start,e.minutes||30),"SUMMARY:"+icsEscape(e.title),"DESCRIPTION:"+icsEscape("İyi Yol Akademi kişisel hatırlatma"));
   let rules={daily:"FREQ=DAILY",weekdays:"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR",weekly:"FREQ=WEEKLY",monthly:"FREQ=MONTHLY",yearly:"FREQ=YEARLY"};
   if(rules[e.repeat])lines.push("RRULE:"+rules[e.repeat]);
   lines.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEscape(e.title),"TRIGGER:-PT5M","END:VALARM","END:VEVENT");
@@ -185,7 +185,7 @@ root.addEventListener("click",async event=>{
  if(action==="study-toggle"){const p=state.plan;if(!p)return;const e=p.entries.find(x=>x.id===targetId);if(!e)return;commit(()=>{e.done=!e.done},"Çalışma kaydın güncellendi.");return}
  if(action==="study-more"){showAllPlan=!showAllPlan;draw();return}
  if(action==="study-delete"){if(!confirm("Çalışma planını ve işaretlediğin dersleri silmek istiyor musun?"))return;commit(()=>{state.plan=null},"Çalışma planı silindi.");return}
- if(action==="study-calendar"){const p=state.plan;if(!p)return;icsFromEvents(p.entries.map(e=>({id:"study-"+e.id,title:"Ders çalış: "+e.subject+" ("+e.minutes+" dk)",start:e.date+"T"+p.time,repeat:"once"})),"calisma-planim.ics");return}
+ if(action==="study-calendar"){const p=state.plan;if(!p)return;const spent={};const events=p.entries.map(e=>{const begin=new Date(e.date+"T"+p.time);begin.setMinutes(begin.getMinutes()+(spent[e.date]||0));spent[e.date]=(spent[e.date]||0)+e.minutes;return {id:"study-"+e.id,title:"Ders çalış: "+e.subject+" ("+e.minutes+" dk)",start:localDateTime(begin),minutes:e.minutes,repeat:"once"}});icsFromEvents(events,"calisma-planim.ics");return}
  if(action==="reminder-delete"){if(!confirm("Bu hatırlatma silinsin mi? Takvim uygulamana eklediysen oradan ayrıca silmelisin."))return;commit(()=>{state.reminders=state.reminders.filter(x=>x.id!==targetId)},"Hatırlatma silindi. Daha önce aktardığın takvim kayıtları etkilenmez.");return}
  if(action==="reminder-toggle"){let r=state.reminders.find(x=>x.id===targetId);if(!r)return;commit(()=>{r.enabled=!r.enabled},"Hatırlatma durumu değişti. Takvime aktarılan kayıtlardan bağımsızdır.");return}
  if(action==="reminder-export"){icsFromEvents(state.reminders.filter(x=>x.enabled),"iyi-yol-hatirlatmalarim.ics");return}
