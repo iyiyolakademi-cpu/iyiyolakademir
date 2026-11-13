@@ -145,7 +145,7 @@ function makeResult(item){
  link.appendChild(node("h3","",item.title));
  if(item.excerpt)link.appendChild(node("p","",item.excerpt));
  const foot=node("div","iya-result-footer");
- foot.append(node("span","",item.detail||""),node("span","iya-result-go",item.kind==="test"?"Teste git →":item.kind==="recipe"?"Tarifi aç →":"Yazıyı oku →"));
+ foot.append(node("span","",item.detail||""),node("span","iya-result-go",item.kind==="test"?"Teste git →":item.kind==="recipe"?"Tarifi aç →":item.kind==="tool"?"Aracı aç →":"Yazıyı oku →"));
  link.appendChild(foot);article.appendChild(link);return article;
 }
 async function initSearch(){
@@ -163,8 +163,10 @@ async function initSearch(){
  for(const recipe of recipes){if(!Number.isInteger(Number(recipe.id)))continue;entries.push({kind:"recipe",kindLabel:"YEMEK TARİFİ",category:recipe.category||"Tarif",title:recipe.name||"",excerpt:recipe.desc||"",searchExtras:(recipe.ingredients||[]).join(" "),detail:recipe.totalTime||"Adım adım tarif",href:"tarifler.html?id="+encodeURIComponent(recipe.id)});}
  for(const test of tests){if(!Number.isInteger(Number(test.id)))continue;entries.push({kind:"test",kindLabel:"KİŞİLİK TESTİ",category:test.categoryName||"Test",title:test.title||"",excerpt:"Soruları cevaplayarak kendini tanımaya yönelik bu testi keşfet.",detail:"Kişilik testi",href:"testler.html?test="+encodeURIComponent(test.id)});}
  for(const test of premiumTests){if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(test.id||"")))continue;entries.push({kind:"test",kindLabel:"YENİ KEŞİF TESTİ",category:test.categoryName||"Test",title:test.title||"",excerpt:test.description||"",detail:(Number(test.questionCount)||12)+" soru",premium:true,href:"premium-testler.html?test="+encodeURIComponent(test.id)});}
+ const toolEntries=[["Günlük planlayıcı ve yapılacaklar","Görev ekle, öncelik belirle ve haftanı planla.","Günlük hedefler","yapilacaklar.html","görev plan program"],["Hedef ve alışkanlık merkezi","Alışkanlıklarını ve hedeflerini takip et.","Gelişim","yapilacaklar.html","hedef alışkanlık takip"],["Duygu günlüğü","Ruh hâlini ve günlük değerlendirmelerini kaydet.","Kişisel gelişim","yapilacaklar.html#duygu","duygu ruh hali günlük"],["7, 21 ve 30 günlük gelişim programları","Adım adım ilerleyen kişisel gelişim yolculuğu.","Programlar","yapilacaklar.html#programlar","okuma alışkanlık program"],["Kitap okuma takipçisi","Kitaplarını ve okuduğun sayfaları kaydet.","Okuma","gelisim-araclari.html#okuma","kitap okuma takip sayfa"],["Gelecekteki kendime mektup","Geleceğe saklamak için kendine mektup yaz.","Kişisel gelişim","gelisim-araclari.html#mektup","mektup gelecek"],["Akıllı çalışma planlayıcısı","Derslerini ve çalışma sürelerini planla.","Eğitim","gelisim-araclari.html#calisma","ders sınav çalışma"],["Hatırlatmalarım","Önemli tarihlerini planla ve takvime aktar.","Planlama","gelisim-araclari.html#hatirlatma","hatırlatma takvim tarih"],["Pomodoro odaklanma zamanlayıcısı","Odaklanma ve mola sürelerini takip et.","Verimlilik","pomodoro.html","odak çalışma pomodoro"],["Günün sözü ve tavsiyesi","Her gün yenilenen önerileri keşfet.","Motivasyon","gunun-sozu.html","tavsiye söz motivasyon"],["Komisyon hesaplama","Satış tutarı ve kesinti oranına göre hesapla.","Hesaplamalar","hesaplama.html","komisyon kesinti"],["İndirim ve yüzde hesaplama","İndirimli fiyatı ve kazancını öğren.","Hesaplamalar","hesaplama.html","indirim yüzde"],["İdeal uyku saati hesaplama","Yaklaşık yatış ve kalkış saatlerini keşfet.","Hesaplamalar","hesaplama.html","uyku yatış kalkış"],["Maaşa göre saatlik kazanç","Aylık maaşını saatlik kazanca çevir.","Hesaplamalar","hesaplama.html","maaş ücret kazanç"],["TYT–AYT net hesaplama","Doğru ve yanlış sayılarını nete çevir.","Hesaplamalar","hesaplama.html","tyt ayt sınav net"],["Tarih arası gün hesaplama","İki tarih arasındaki süreyi hesapla.","Hesaplamalar","hesaplama.html","tarih gün hafta"],["Vücut kitle indeksi hesaplama","Boy ve kilona göre yaklaşık VKİ hesapla.","Hesaplamalar","hesaplama.html","bmi vki beden"],["Günlük kalori ihtiyacı","Yaklaşık enerji ihtiyacını hesapla.","Hesaplamalar","hesaplama.html","kalori enerji beslenme"],["Günlük su tüketimi","Yaklaşık günlük su ihtiyacını hesapla.","Hesaplamalar","hesaplama.html","su bardak tüketim"],["Vücut yağ oranı hesaplama","Vücut ölçülerine göre tahmini yağ oranı.","Hesaplamalar","hesaplama.html","vücut yağ oran"],["Hisse kâr zarar hesaplama","Alış ve satış tutarlarından getiri hesapla.","Hesaplamalar","hesaplama.html","hisse yatırım kar zarar"]];
+ for(const [title,excerpt,category,href,searchExtras] of toolEntries)entries.push({kind:"tool",kindLabel:"GELİŞİM ARACI",title,excerpt,category,href,searchExtras,detail:"Ücretsiz araç"});
  const success=sources.filter(s=>s.status==="fulfilled").length;
- if(status)status.textContent=success===4?"Bloglar, tarifler ve kişilik testleri arasında arama yapabilirsin.":success===0?"İçerikler yüklenemedi. Sayfayı yenileyip yeniden dene.":"Bazı içerik kaynakları şu anda yüklenemedi; erişilebilen içerikler gösteriliyor.";
+ if(status)status.textContent=success===4?"Blog, tarif, test ve gelişim araçlarını arayabilirsin.":success===0?"Bazı içerikler yüklenemiyor; gelişim araçlarını yine arayabilirsin.":"Bazı içerik kaynakları şu anda yüklenemedi; erişilebilen içerikler gösteriliyor.";
  const buttons=$$("[data-iya-type]");
  const render=()=>{
    const term=q(input.value.trim()),matches=entries.filter(x=>(selected==="all"||x.kind===selected)&&(!term||q([x.title,x.excerpt,x.category,x.searchExtras].join(" ")).includes(term)));
@@ -172,7 +174,8 @@ async function initSearch(){
        ...matches.filter(x=>x.kind==="blog").slice(0,4),
        ...matches.filter(x=>x.kind==="recipe").slice(0,5),
        ...matches.filter(x=>x.kind==="test"&&!x.premium).slice(0,3),
-       ...matches.filter(x=>x.kind==="test"&&x.premium).slice(0,3)
+       ...matches.filter(x=>x.kind==="test"&&x.premium).slice(0,3),
+       ...matches.filter(x=>x.kind==="tool").slice(0,4)
      ]:matches.slice(0,100);
    results.replaceChildren();
    if(!display.length)results.append(node("p","iya-empty","Aramana uygun içerik bulunamadı. Başka bir kelime deneyebilirsin."));
