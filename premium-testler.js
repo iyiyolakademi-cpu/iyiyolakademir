@@ -29,10 +29,10 @@ function writeJson(storage,key,value){
 function draftKey(id){return STORAGE_PREFIX+id;}
 function saveDraft(){
  if(!current.test)return;
- writeJson(sessionStorage,draftKey(current.test.id),{index:current.index,answers:current.answers});
+ writeJson(localStorage,draftKey(current.test.id),{index:current.index,answers:current.answers});
 }
 function loadDraft(test){
- const saved=readJson(sessionStorage,draftKey(test.id),null);
+ const saved=readJson(localStorage,draftKey(test.id),null)||readJson(sessionStorage,draftKey(test.id),null);
  if(!saved||!Array.isArray(saved.answers)||saved.answers.length!==test.questions.length)return null;
  const max=test.mode==="logic"?4:test.mode==="scale"?7:5;
  if(saved.answers.some(x=>x!==null&&(!Number.isInteger(x)||x<1||x>max)))return null;
@@ -95,7 +95,7 @@ function openTest(id,opts={}){
  exam.hidden=false;report.hidden=true;
  if(!opts.fromHistory)updateLocation(id);
  renderQuestion();jumpTop();
- if(saved&&saved.answers.some(v=>v!==null))flash("Bu sekmedeki önceki yanıtların geri getirildi.");
+ if(saved&&saved.answers.some(v=>v!==null))flash("Yarım bıraktığın testin cevapları geri getirildi.");
 }
 const scaleLabels=["Kesinlikle katılıyorum","Katılıyorum","Biraz katılıyorum","Kararsızım","Biraz katılmıyorum","Katılmıyorum","Kesinlikle katılmıyorum"];
 const interestLabels=["Hiç sevmem","Sevmem","Kararsızım","Severim","Çok severim"];
@@ -138,7 +138,7 @@ function renderQuestion(){
   '<p class="pt-question">'+esc(title)+'</p><p class="pt-helper">'+esc(instruction)+'</p>'+
   answers+
   '<div class="pt-exam-nav"><button type="button" id="ptPrev" '+(i===0?"disabled":"")+'>← Önceki</button><button type="button" id="ptNext" class="pt-next" '+(answer===null?"disabled":"")+'>'+(i===total-1?"Sonuçlarımı gör →":"Sonraki soru →")+'</button></div>'+
-  '<div class="pt-question-note">Doğru ya da yanlış kişilik cevabı yoktur. Yanıtların yalnızca bu tarayıcı sekmesinde geçici olarak tutulur.</div></div>';
+  '<div class="pt-question-note">Doğru ya da yanlış kişilik cevabı yoktur. Yarım kalan testin bu cihazın tarayıcısında saklanır.</div></div>';
  exam.querySelectorAll(".pt-answer-choice").forEach(btn=>btn.addEventListener("click",()=>chooseAnswer(Number(btn.dataset.choice))));
  $("#ptPrev",exam).addEventListener("click",()=>navigate(-1));
  $("#ptNext",exam).addEventListener("click",()=>navigate(1));
@@ -212,7 +212,7 @@ function reportMarkup(t){
  const tips='<div class="pt-report-section"><h3>Bundan sonra ne yapabilirsin?</h3>'+t.tips.map((tip,i)=>
   '<p class="pt-tip"><b>'+String(i+1).padStart(2,"0")+'</b><span>'+esc(tip)+'</span></p>').join("")+'</div>';
  return '<div class="pt-report-card">'+intro+score+results+tips+
- '<div class="pt-report-actions"><button type="button" id="ptSaveResult">Bu cihazda kaydet</button><button type="button" id="ptPrint">PDF olarak yazdır</button><button type="button" id="ptRetry">Tekrar yap</button><button type="button" id="ptRemoveSave">Kaydı sil</button></div>'+
+ '<div class="pt-report-actions"><button type="button" id="ptSaveResult">Sonuç merkezime kaydet</button><a class="pt-btn pt-btn-light" href="test-sonuclari.html">Sonuçlarım ↗</a><button type="button" id="ptPrint">PDF olarak yazdır</button><button type="button" id="ptRetry">Tekrar yap</button><button type="button" id="ptRemoveSave">Kaydı sil</button></div>'+
  '<p class="pt-smallprint">Bilgilendirme: Bu testler İyi Yol Akademi tarafından hazırlanmış özgün öz değerlendirme ve alıştırmalardır. Klinik, mesleki tanı veya standartlaştırılmış psikometrik ölçüm yerine geçmez. Yanıtların otomatik olarak sunucuya gönderilmez; kaydetmeyi seçersen yalnızca kullandığın cihazın tarayıcısına kaydedilir. Paylaşılan cihazlarda kaydı silmeni öneririz.</p>'+
  '</div>';
 }
@@ -224,19 +224,27 @@ function renderReport(){
  $("#ptSaveResult",report).addEventListener("click",()=>{
   const all=savedResults();
   all[t.id]={id:t.id,title:t.title,answers:current.answers.slice(),savedAt:new Date().toISOString()};
-  if(writeJson(localStorage,SAVED_KEY,all))flash("Sonucun yalnızca bu cihazın tarayıcısına kaydedildi.");
+  if(writeJson(localStorage,SAVED_KEY,all)){
+    if(window.IYA_TEST_CENTER){
+      const dims=t.mode==="logic"?[]:dimensionsFor(t);
+      const right=t.mode==="logic"?t.questions.reduce((sum,q,i)=>sum+(current.answers[i]-1===q.correct?1:0),0):null;
+      window.IYA_TEST_CENTER.add({type:"premium",testId:t.id,title:t.title,category:categories[t.category]||"Keşif",score:right===null?null:Math.round(right*100/t.questions.length),scoreLabel:right===null?"Boyut raporu":right+"/"+t.questions.length+" doğru",level:"Kişisel keşif değerlendirmesi",description:t.description,dimensions:dims,advice:t.tips});
+    }
+    flash("Raporun sonuç merkezine kaydedildi.");
+    renderCards();
+   }
  });
  $("#ptRemoveSave",report).addEventListener("click",()=>{
   const all=savedResults();delete all[t.id];
-  if(writeJson(localStorage,SAVED_KEY,all))flash("Bu testin cihazdaki sonuç kaydı silindi.");
+  if(writeJson(localStorage,SAVED_KEY,all)){window.IYA_TEST_CENTER?.remove("premium",t.id);flash("Bu testin cihazdaki kayıtları silindi.");renderCards();}
  });
  $("#ptPrint",report).addEventListener("click",()=>window.print());
  $("#ptRetry",report).addEventListener("click",()=>{
   current.index=0;current.answers=Array(t.questions.length).fill(null);
-  try{sessionStorage.removeItem(draftKey(t.id));}catch(_){}
+  try{localStorage.removeItem(draftKey(t.id));sessionStorage.removeItem(draftKey(t.id));}catch(_){}
   report.hidden=true;exam.hidden=false;renderQuestion();jumpTop();
  });
- try{sessionStorage.removeItem(draftKey(t.id));}catch(_){}
+ try{localStorage.removeItem(draftKey(t.id));sessionStorage.removeItem(draftKey(t.id));}catch(_){}
  jumpTop();
 }
 $("#ptBack").addEventListener("click",()=>showCatalog());
