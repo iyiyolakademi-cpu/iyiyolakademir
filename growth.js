@@ -132,9 +132,19 @@ function overview(){
   const s=periodStats();
   let todayHabits=state.habits.filter(h=>dueHabit(h)||doneHabit(h));
   let active=state.programs.filter(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return t&&p.logs.length<t.days});
-  let oldCount=0;try{const items=JSON.parse(localStorage.getItem(OLD_TASK_KEY)||"[]");oldCount=Array.isArray(items)?items.filter(x=>x.day===TODAY&&!x.done).length:0}catch(_){}
+  let todayTasks=[],weeklyTasks=[];
+  try{
+    const items=JSON.parse(localStorage.getItem(OLD_TASK_KEY)||"[]");
+    if(Array.isArray(items)){todayTasks=items.filter(x=>x.day===TODAY);weeklyTasks=items.filter(x=>x.day>=addDays(TODAY,-6)&&x.day<=TODAY);}
+  }catch(_){}
+  const oldCount=todayTasks.filter(x=>!x.done).length;
+  const topTasks=todayTasks.filter(x=>!x.done).sort((a,b)=>({high:0,medium:1,low:2}[a.priority]??1)-({high:0,medium:1,low:2}[b.priority]??1)).slice(0,3);
+  const habitWeek=state.habits.reduce((n,h)=>n+Object.keys(h.logs).filter(d=>h.logs[d]&&d>=addDays(TODAY,-6)&&d<=TODAY).length,0);
+  const programWeek=state.programs.reduce((n,p)=>n+p.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).length,0);
   panels.ozet.innerHTML=sectionTitle("GÜNÜN ÖZETİ","Bugün kendin için bir adım","Küçük bir ilerleme bile kıymetli.")
   +'<div class="growth-stats"><div><span>Aktif hedefler</span><strong>'+state.goals.length+'</strong><small>'+s.goals+' hedef tamamlandı</small></div><div><span>Bugünkü alışkanlıklar</span><strong>'+s.habits+' / '+todayHabits.length+'</strong><small>İşaretlenen adımlar</small></div><div><span>Bu haftaki program adımı</span><strong>'+s.steps+'</strong><small>Ara vermek sorun değil</small></div><div><span>Bekleyen görevler</span><strong>'+oldCount+'</strong><small>Günlük planlayıcın</small></div></div>'
+  +'<div class="growth-pulse-row"><div><span>Son 7 günde</span><strong>'+weeklyTasks.filter(x=>x.done).length+'</strong><small>görev tamamlandı</small></div><div><span>Son 7 günde</span><strong>'+habitWeek+'</strong><small>alışkanlık işaretlendi</small></div><div><span>Son 7 günde</span><strong>'+programWeek+'</strong><small>program adımı tamamlandı</small></div></div>'
+  +'<article class="growth-card growth-today-focus"><div><span class="growth-overline">BUGÜNÜN ÖNCELİKLERİ</span><h3>Önce küçük bir adım</h3>'+(topTasks.length?'<ul>'+topTasks.map(x=>'<li>'+esc(x.title)+'</li>').join("")+'</ul>':'<p>Bugün için bekleyen görevin yok. İstersen yeni bir görev ekleyebilirsin.</p>')+'</div><button type="button" class="growth-secondary" data-tab="gorevler">Görevlerime git →</button></article>'
   +'<div class="growth-two-cols"><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">BUGÜNÜN ALIŞKANLIKLARI</span><h3>Günlük adımların</h3></div><button class="growth-link" data-tab="aliskanliklar" type="button">Tümünü gör →</button></div>'
   +(todayHabits.length?todayHabits.slice(0,6).map(h=>'<div class="growth-quick-row"><button type="button" data-action="habit-today" data-id="'+esc(h.id)+'" class="growth-tick '+(doneHabit(h)?"is-checked":"")+'" aria-label="'+esc(h.title)+' tamamla">'+(doneHabit(h)?"✓":"")+'</button><span>'+esc(h.title)+'</span></div>').join(""):empty("Henüz alışkanlık eklemedin","İlk küçük adımını belirleyerek başlayabilirsin."))
   +'</article><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">GELİŞİM YOLCULUĞU</span><h3>Devam eden programlar</h3></div><button class="growth-link" data-tab="programlar" type="button">Programlar →</button></div>'
@@ -244,6 +254,7 @@ restore.addEventListener("change",async e=>{
  const file=e.target.files?.[0];e.target.value="";if(!file)return;if(file.size>2000000){notify("Yedek dosyası 2 MB sınırını aşıyor.");return}
  try{const parsed=JSON.parse(await file.text());if(parsed.app!=="iyi-yol-akademi-growth"||!parsed.data||!Array.isArray(parsed.data.goals)||!Array.isArray(parsed.data.habits)){notify("Bu, geçerli bir İyi Yol Akademi gelişim yedeği değil.");return}if(!confirm("Mevcut gelişim kayıtlarının üzerine yedek içeriği yazılacak. Devam edilsin mi?"))return;transaction(()=>{state=clean(parsed.data)},"Gelişim yedeği geri yüklendi.")}catch(_){notify("Yedek okunamadı. Dosyayı kontrol et.")}
 });
+window.addEventListener('iya:tasks-updated',()=>overview());
 const settings=document.createElement("div");settings.className="growth-notification-tools";settings.innerHTML='<button class="growth-secondary small" type="button" data-action="notify">🔔 Site açıkken hatırlatmaları aç</button><small>Tarayıcı bildirimleri sayfa kapalıyken güvenilir biçimde çalışmaz. Saat belirlediğin hedef ve alışkanlıklar için geçerlidir.</small>';
 root.appendChild(settings);
 render();
