@@ -282,9 +282,18 @@ root.addEventListener("click",async e=>{
   if(a==="notify"){if(!("Notification" in window)){notify("Bu tarayıcı bildirimleri desteklemiyor.");return}if(Notification.permission==="denied"){notify("Tarayıcı ayarlarından bildirim izni vermen gerekiyor.");return}let status=await Notification.requestPermission();transaction(()=>{state.settings.notifications=status==="granted"},status==="granted"?"Hatırlatmalar bu sayfa açıkken çalışacak.":"Bildirim izni verilmedi.");return}
 });
 root.addEventListener("submit",e=>{
-  const form=e.target;if(!["growthGoalForm","growthHabitForm","growthMoodForm","growthReviewForm"].includes(form.id)&&form.dataset.form!=="habit-edit")return;
+  const form=e.target;if(!["growthGoalForm","growthHabitForm","growthMoodForm","growthReviewForm"].includes(form.id)&&form.dataset.form!=="habit-edit"&&form.dataset.form!=="goal-update")return;
   e.preventDefault();const f=new FormData(form);
   if(form.id==="growthGoalForm"){let title=capped(f.get("title"),120),target=Number(f.get("target")),period=f.get("period"),reminder=f.get("reminder")||"";if(!title||!Number.isInteger(target)||target<1||target>100000||!PERIODS[period])return notify("Hedef alanlarını kontrol et.");if(state.goals.length>=200)return notify("En fazla 200 hedef oluşturabilirsin.");transaction(()=>{state.goals.unshift({id:uuid(),title,target,period,unit:capped(f.get("unit"),30),reminder,counts:{}})},"Yeni hedef eklendi.");return}
+  if(form.dataset.form==="goal-update"){
+    const g=state.goals.find(x=>x.id===form.dataset.id);if(!g)return;
+    const title=capped(f.get("title"),120),target=Number(f.get("target")),current=Number(f.get("count"));
+    const unit=capped(f.get("unit"),30),reminder=f.get("reminder")||"";
+    if(!title||!Number.isInteger(target)||target<1||target>100000||!Number.isInteger(current)||current<0||current>999999||(reminder&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(reminder))){
+      notify("Hedef ve ilerleme alanlarını kontrol et.");return;
+    }
+    transaction(()=>{g.title=title;g.target=target;g.unit=unit;g.reminder=reminder;g.counts[key(g)]=current},"Hedef ve ilerleme güncellendi.");return;
+  }
   if(form.dataset.form==="habit-edit"){
     const h=state.habits.find(x=>x.id===form.dataset.id);
     if(!h)return;
