@@ -247,8 +247,17 @@ root.addEventListener("click",async e=>{
   if(a==="habit-delete"){if(!confirm("Alışkanlığı ve işaretlenmiş günleri silmek istiyor musun?"))return;transaction(()=>{state.habits=state.habits.filter(h=>h.id!==id)},"Alışkanlık silindi.");return}
   if(a==="habit-prev"){habitOffset-=14;render();return}
   if(a==="habit-next"){habitOffset=Math.min(0,habitOffset+14);render();return}
-  if(a==="program-start"){const t=TEMPLATES.find(t=>t.id===b.dataset.template);if(!t)return;transaction(()=>{state.programs.unshift({id:uuid(),templateId:t.id,started:TODAY,logs:[]});tab="programlar";history.replaceState(null,"","#programlar")},"Programın başladı. Her gün kendi hızında ilerleyebilirsin.");return}
+  if(a==="program-start"){const t=TEMPLATES.find(t=>t.id===b.dataset.template);if(!t)return;const active=state.programs.find(p=>p.templateId===t.id&&p.logs.length<t.days);if(active){navigate("programlar");notify("Bu program zaten devam ediyor. Kaldığın yerden ilerleyebilirsin.");return}transaction(()=>{state.programs.unshift({id:uuid(),templateId:t.id,started:TODAY,logs:[]});tab="programlar";history.replaceState(null,"","#programlar")},"Programın başladı. Her gün kendi hızında ilerleyebilirsin.");return}
   if(a==="program-complete"){let p=state.programs.find(x=>x.id===id);if(!p)return;let t=TEMPLATES.find(x=>x.id===p.templateId);if(p.logs.length>=t.days)return;if(p.logs.some(x=>x.date===TODAY)){notify("Bugünkü adımın kayıtlı. Yarın kaldığın yerden devam edebilirsin.");return}let pages=0;if(t.type==="pages"){const input=$('[data-pages="'+CSS.escape(id)+'"]',root);pages=Number(input?.value);if(!Number.isInteger(pages)||pages<1||pages>10000){notify("Okuduğun sayfa sayısını 1–10000 arasında gir.");input?.focus();return}}transaction(()=>{p.logs.push({date:TODAY,pages})},"Harika! Bir adım daha kaydettin.");return}
+  if(a==="program-export"){
+    const p=state.programs.find(x=>x.id===id);if(!p)return;
+    const t=TEMPLATES.find(x=>x.id===p.templateId);if(!t)return;
+    const lines=["İyi Yol Akademi – Kişisel gelişim programı ilerleme özeti",t.name,"Başlangıç: "+tr(p.started),"Tamamlanan adımlar: "+p.logs.length+" / "+t.days,"","KAYITLAR"];
+    p.logs.forEach((x,i)=>lines.push((i+1)+". adım · "+tr(x.date)+(t.type==="pages"?" · "+x.pages+" sayfa":"")));
+    lines.push("","Bu belge kişisel ilerleme özetidir; resmi sertifika veya uzman değerlendirmesi değildir.");
+    download("iyi-yol-akademi-"+t.id+"-ilerlemem.txt",lines.join("\n"),"text/plain;charset=utf-8");
+    notify("Program ilerleme özetin indirildi.");return;
+  }
   if(a==="program-undo"){let p=state.programs.find(x=>x.id===id);if(!p||!p.logs.length)return;transaction(()=>{p.logs.pop()},"Son adım geri alındı.");return}
   if(a==="program-delete"){if(!confirm("Bu programı ve bütün ilerleme kayıtlarını silmek istiyor musun?"))return;transaction(()=>{state.programs=state.programs.filter(p=>p.id!==id)},"Program kaldırıldı.");return}
   if(a==="mood-open"){moodDate=b.dataset.date;tab="duygu";render();$("#growthMoodDate")?.focus();return}
