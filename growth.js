@@ -307,6 +307,14 @@ root.addEventListener("submit",e=>{
   if(form.id==="growthReviewForm"){let x={week:reviewWeek,win:capped(f.get("win"),1000),learn:capped(f.get("learn"),1000),next:capped(f.get("next"),1000)};transaction(()=>{state.reviews=state.reviews.filter(r=>r.week!==reviewWeek);state.reviews.push(x)},"Haftalık değerlendirmen kaydedildi.");return}
 });
 root.addEventListener("change",e=>{if(e.target.id==="growthMoodDate"){moodDate=e.target.value;render()}});
+tabs.addEventListener("keydown",e=>{
+ const keys=["ArrowLeft","ArrowRight","Home","End"];
+ if(!keys.includes(e.key))return;
+ e.preventDefault();
+ const currentIndex=TABS.findIndex(item=>item[0]===tab);
+ const nextIndex=e.key==="Home"?0:e.key==="End"?TABS.length-1:e.key==="ArrowRight"?(currentIndex+1)%TABS.length:(currentIndex-1+TABS.length)%TABS.length;
+ navigate(TABS[nextIndex][0]);tabs.querySelector('[data-tab="'+TABS[nextIndex][0]+'"]')?.focus({preventScroll:true});
+});
 window.addEventListener("hashchange",()=>{const id=location.hash.slice(1);if(panels[id]){tab=id;render()}});
 const restore=document.createElement("input");restore.type="file";restore.accept=".json,application/json";restore.id="growthRestoreInput";restore.hidden=true;root.appendChild(restore);
 restore.addEventListener("change",async e=>{
