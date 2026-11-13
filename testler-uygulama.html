@@ -150,6 +150,7 @@ body>div,body>section,body>main{
 <div class="archive-search-wrap"><input type="search" class="archive-search" id="archive-search" placeholder="Test ara..." autocomplete="off" aria-label="Test ara"><span class="archive-search-icon" aria-hidden="true">⌕</span></div>
 <button type="button" class="random-test-btn" id="random-test-btn">🎲 Rastgele Test</button></div>
 <div class="search-results" id="search-results"></div>
+<div class="tp-inline"><span class="tp-inline-text">İlerlemelerin bu cihazda saklanır.</span><a href="test-sonuclari.html" target="_parent">Test sonuçlarım →</a></div>
 <div class="cat-grid" id="cat-grid"></div>
 </div>
 <div class="screen" id="screen-list">
@@ -181,7 +182,7 @@ body>div,body>section,body>main{
 <div class="result-level" id="result-level"></div>
 <div class="result-text" id="result-text"></div>
 <div class="result-details" id="result-details"></div>
-<div class="result-actions"><button class="secondary" id="repeat-test-btn">Testi Tekrarla</button><button id="other-tests-btn">Diğer Testler</button><button class="primary" id="archive-home-btn">Arşive Dön</button></div>
+<div class="result-actions"><button class="secondary" id="repeat-test-btn">Testi Tekrarla</button><button id="other-tests-btn">Diğer Testler</button><button class="primary" id="archive-home-btn">Arşive Dön</button><a href="test-sonuclari.html" target="_parent" class="tp-result-action">Sonuç merkezim →</a></div>
 </div>
 </div>
 </div>
@@ -744,6 +745,8 @@ html,body,body>div,body>main,body>section{background:#f7f7f5!important;color:#25
  #kisilik-arsivi-app .cat-card{transition:none!important}
 }
 </style>
+<link rel="stylesheet" href="tests-package.css?v=20261113-v2">
+<script src="tests-hub.js?v=20261113-v2"></script>
 <p>
 <script>
 const CATS=[
@@ -1059,6 +1062,18 @@ Q('beyin','Bilgi İşleme Tarzın Ne Kadar Sistematik?',[
 ];
 QUIZZES.forEach((q,i)=>q.no=i+1);
 const STORAGE_KEY='kisilikArsiviResultsV3';
+const TP_DRAFT='iya_free_test_draft_v1_';
+function draftKey(q){return TP_DRAFT+q.no}
+function getDraft(q){
+ try{const d=JSON.parse(localStorage.getItem(draftKey(q))||'null');
+  if(!d||!Array.isArray(d.answers)||d.answers.length!==q.q.length||!Number.isInteger(d.index)||d.index<0||d.index>=q.q.length||d.answers.some(x=>x!==null&&(!Number.isInteger(x)||x<0||x>4)))return null;return d;
+ }catch(_){return null;}
+}
+function setDraft(){
+ if(!activeQuiz)return;
+ try{localStorage.setItem(draftKey(activeQuiz),JSON.stringify({index:currentQuestion,answers:selected,date:Date.now()}));}catch(_){}
+}
+function clearDraft(q){try{localStorage.removeItem(draftKey(q));}catch(_){}}
 let currentCatId=null,activeQuiz=null,currentQuestion=0,selected=[];
 const $=id=>document.getElementById(id);
 function catOf(id){return CATS.find(c=>c.id===id)}
@@ -1075,9 +1090,13 @@ function renderHome(){
  $('brand-sub').textContent=`${QUIZZES.length} test · ${CATS.length} bölüm`;
  const grid=$('cat-grid');grid.innerHTML='';CATS.forEach(c=>{const list=quizzesOf(c.id),d=list.filter(isDone).length;const card=document.createElement('div');card.className='cat-card';card.tabIndex=0;card.style.setProperty('--cat-color',c.color);card.innerHTML=`<div class="cat-label">Bölüm</div><div class="cat-name">${c.name}</div><div class="cat-desc">${c.desc}</div>`;const open=()=>openCategory(c.id);card.onclick=open;card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};grid.appendChild(card)});
 }
-function openCategory(catId){currentCatId=catId;const c=catOf(catId);$('list-header').textContent=c.name+' Testleri';$('list-header').style.color=c.color;const list=$('test-list');list.innerHTML='';quizzesOf(catId).forEach((q,i)=>{const row=document.createElement('div');row.className='test-card';row.style.setProperty('--cat-color',c.color);row.style.borderLeft='6px solid '+c.color;row.innerHTML=`<span class="test-no">${String(i+1).padStart(2,'0')}</span><span class="test-title">${q.title}</span><span class="test-arrow">→</span>`;row.onclick=()=>startQuiz(q);list.appendChild(row)});switchScreen('screen-list')}
-function startQuiz(q){activeQuiz=q;currentCatId=q.cat;currentQuestion=0;selected=Array(q.q.length).fill(null);const c=catOf(q.cat),card=document.querySelector('#screen-quiz .quiz-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('progress-fill').style.background=c.color;$('quiz-title').textContent=q.title;$('quiz-title').style.color=c.color;$('quiz-catno').textContent=`${c.name.toUpperCase()} · TEST ${String(localQuizNo(q)).padStart(2,'0')} / ${quizzesOf(q.cat).length}`;loadQuestion();switchScreen('screen-quiz')}
-function loadQuestion(){const q=activeQuiz,total=q.q.length;$('quiz-qno').textContent=`Soru ${currentQuestion+1} / ${total}`;$('progress-fill').style.width=((currentQuestion+1)/total*100)+'%';$('question').textContent=q.q[currentQuestion];const box=$('answers');box.innerHTML='';const next=$('next-btn');next.disabled=true;ANSWERS.forEach((ans,i)=>{const input=document.createElement('input');input.type='radio';input.name='answer';input.id=`answer-${currentQuestion}-${i}`;input.value=ans.score;if(selected[currentQuestion]===ans.score){input.checked=true;next.disabled=false}input.onchange=()=>{selected[currentQuestion]=ans.score;next.disabled=false};const label=document.createElement('label');label.htmlFor=input.id;label.innerHTML=`<span class="answer-number">${i+1}</span>${ans.text}`;box.append(input,label)});$('prev-btn').disabled=currentQuestion===0;next.textContent=currentQuestion===total-1?'Sonucu Gör':'İleri'}
+function openCategory(catId){currentCatId=catId;const c=catOf(catId);$('list-header').textContent=c.name+' Testleri';$('list-header').style.color=c.color;const list=$('test-list');list.innerHTML='';quizzesOf(catId).forEach((q,i)=>{const row=document.createElement('div');row.className='test-card';row.style.setProperty('--cat-color',c.color);row.style.borderLeft='6px solid '+c.color;row.innerHTML=`<span class="test-no">${String(i+1).padStart(2,'0')}</span><span class="test-title">${q.title}</span><span class="test-arrow">→</span>`;
+const draft=getDraft(q);if(draft&&draft.answers.some(x=>x!==null)){
+ const indicator=document.createElement('small');indicator.className='tp-draft-indicator';indicator.textContent='Yarım kalan test · Devam et';row.querySelector('.test-title').append(indicator);
+}
+row.onclick=()=>startQuiz(q);list.appendChild(row)});switchScreen('screen-list')}
+function startQuiz(q){activeQuiz=q;currentCatId=q.cat;const saved=getDraft(q);currentQuestion=saved?saved.index:0;selected=saved?saved.answers.slice():Array(q.q.length).fill(null);const c=catOf(q.cat),card=document.querySelector('#screen-quiz .quiz-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('progress-fill').style.background=c.color;$('quiz-title').textContent=q.title;$('quiz-title').style.color=c.color;$('quiz-catno').textContent=`${c.name.toUpperCase()} · TEST ${String(localQuizNo(q)).padStart(2,'0')} / ${quizzesOf(q.cat).length}`;loadQuestion();switchScreen('screen-quiz')}
+function loadQuestion(){const q=activeQuiz,total=q.q.length;$('quiz-qno').textContent=`Soru ${currentQuestion+1} / ${total}`;$('progress-fill').style.width=((currentQuestion+1)/total*100)+'%';$('question').textContent=q.q[currentQuestion];const box=$('answers');box.innerHTML='';const next=$('next-btn');next.disabled=true;ANSWERS.forEach((ans,i)=>{const input=document.createElement('input');input.type='radio';input.name='answer';input.id=`answer-${currentQuestion}-${i}`;input.value=ans.score;if(selected[currentQuestion]===ans.score){input.checked=true;next.disabled=false}input.onchange=()=>{selected[currentQuestion]=ans.score;next.disabled=false;setDraft()};const label=document.createElement('label');label.htmlFor=input.id;label.innerHTML=`<span class="answer-number">${i+1}</span>${ans.text}`;box.append(input,label)});$('prev-btn').disabled=currentQuestion===0;next.textContent=currentQuestion===total-1?'Sonucu Gör':'İleri'}
 function scoredAnswer(q,index,raw){return q.reverse&&q.reverse.includes(index)?4-raw:raw}
 function resultExtras(q,p){
  const name=q.title.replace(/\?$/,'');
@@ -1110,8 +1129,10 @@ function resultExtras(q,p){
  }
  return{portrait,strength,watch,suggestion};
 }
-function showResult(){const q=activeQuiz,c=catOf(q.cat);let total=0;selected.forEach((s,i)=>total+=scoredAnswer(q,i,s));const max=q.q.length*4,percent=Math.round(total/max*100);let level,index;if(percent>=80){level='Çok Yüksek';index=0}else if(percent>=60){level='Yüksek';index=0}else if(percent>=40){level='Dengeli';index=1}else if(percent>=20){level='Düşük';index=2}else{level='Çok Düşük';index=2}const card=$('result-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('seal-score').textContent='%'+percent;$('result-title').textContent=q.title.replace(/\?$/,'')+' — Sonuç';$('result-level').textContent=level;const x=resultExtras(q,percent);$('result-text').textContent=q.r[index]+' '+x.portrait;$('result-details').innerHTML=`<div class="result-detail"><div class="result-detail-label">Sende nasıl görünüyor?</div><div class="result-detail-text">${x.strength}</div></div><div class="result-detail"><div class="result-detail-label">Denge noktası</div><div class="result-detail-text">${x.watch}</div></div><div class="result-detail"><div class="result-detail-label">Bunu hayatında nasıl kullanabilirsin?</div><div class="result-detail-text">${x.suggestion}</div></div>`;const data=store();data[q.no]={quizNo:q.no,title:q.title,cat:q.cat,percent,raw:total,max,level,date:Date.now()};saveStore(data);switchScreen('screen-result')}
-$('prev-btn').onclick=()=>{if(currentQuestion>0){currentQuestion--;loadQuestion()}};$('next-btn').onclick=()=>{if(selected[currentQuestion]===null)return;if(currentQuestion<activeQuiz.q.length-1){currentQuestion++;loadQuestion()}else showResult()};$('home-back-btn').onclick=goHome;$('list-back-btn').onclick=goList;$('archive-home-btn').onclick=goHome;$('other-tests-btn').onclick=goList;$('repeat-test-btn').onclick=()=>activeQuiz&&startQuiz(activeQuiz);
+function showResult(){const q=activeQuiz,c=catOf(q.cat);let total=0;selected.forEach((s,i)=>total+=scoredAnswer(q,i,s));const max=q.q.length*4,percent=Math.round(total/max*100);let level,index;if(percent>=80){level='Çok Yüksek';index=0}else if(percent>=60){level='Yüksek';index=0}else if(percent>=40){level='Dengeli';index=1}else if(percent>=20){level='Düşük';index=2}else{level='Çok Düşük';index=2}const card=$('result-card');card.style.setProperty('--cat-color',c.color);card.style.setProperty('--cat-d-color',c.dcolor);$('seal-score').textContent='%'+percent;$('result-title').textContent=q.title.replace(/\?$/,'')+' — Sonuç';$('result-level').textContent=level;const x=resultExtras(q,percent);$('result-text').textContent=q.r[index]+' '+x.portrait;$('result-details').innerHTML=`<div class="result-detail"><div class="result-detail-label">Sende nasıl görünüyor?</div><div class="result-detail-text">${x.strength}</div></div><div class="result-detail"><div class="result-detail-label">Denge noktası</div><div class="result-detail-text">${x.watch}</div></div><div class="result-detail"><div class="result-detail-label">Bunu hayatında nasıl kullanabilirsin?</div><div class="result-detail-text">${x.suggestion}</div></div>`;const data=store();data[q.no]={quizNo:q.no,title:q.title,cat:q.cat,percent,raw:total,max,level,date:Date.now()};saveStore(data);
+if(window.IYA_TEST_CENTER)window.IYA_TEST_CENTER.add({type:'free',testId:String(q.no),title:q.title,category:c.name,score:percent,scoreLabel:'Yanıt eğilimi',level,description:q.r[index],advice:[x.suggestion]});
+clearDraft(q);switchScreen('screen-result')}
+$('prev-btn').onclick=()=>{if(currentQuestion>0){currentQuestion--;setDraft();loadQuestion()}};$('next-btn').onclick=()=>{if(selected[currentQuestion]===null)return;if(currentQuestion<activeQuiz.q.length-1){currentQuestion++;setDraft();loadQuestion()}else showResult()};$('home-back-btn').onclick=goHome;$('list-back-btn').onclick=goList;$('archive-home-btn').onclick=goHome;$('other-tests-btn').onclick=goList;$('repeat-test-btn').onclick=()=>{if(activeQuiz){clearDraft(activeQuiz);startQuiz(activeQuiz)}};
 $('archive-search').addEventListener('input',e=>{const term=e.target.value.toLocaleLowerCase('tr-TR').trim(),box=$('search-results');if(term.length<2){box.classList.remove('active');box.innerHTML='';return}const m=QUIZZES.filter(q=>(q.title+' '+catOf(q.cat).name).toLocaleLowerCase('tr-TR').includes(term)).slice(0,15);box.classList.add('active');box.innerHTML='';if(!m.length){box.innerHTML='<div class="empty-search">Bu aramayla eşleşen test bulunamadı.</div>';return}m.forEach(q=>{const c=catOf(q.cat),row=document.createElement('div');row.className='search-result';row.innerHTML=`<div class="search-result-cat" style="background:${c.color}"></div><div class="search-result-info"><div class="search-result-title">${q.title}</div><div class="search-result-meta">${c.name} · Test ${String(localQuizNo(q)).padStart(2,'0')}</div></div><div>→</div>`;row.onclick=()=>{e.target.value='';box.classList.remove('active');startQuiz(q)};box.appendChild(row)})});
 $('random-test-btn').onclick=()=>{startQuiz(QUIZZES[Math.floor(Math.random()*QUIZZES.length)])};
 document.addEventListener('keydown',e=>{if(!$('screen-quiz').classList.contains('active'))return;const n=Number(e.key);if(n>=1&&n<=5){const input=document.querySelectorAll('#answers input')[n-1];if(input){input.checked=true;input.dispatchEvent(new Event('change',{bubbles:true}))}}});
