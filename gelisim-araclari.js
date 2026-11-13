@@ -212,8 +212,52 @@ function tick(){
 }
 root.addEventListener("click",async event=>{
  const tabButton=event.target.closest("[data-tab]");if(tabButton){navigate(tabButton.dataset.tab);return}
+ const lf=event.target.closest("[data-letter-filter]");
+ if(lf){letterFilter=lf.dataset.letterFilter;for(const btn of $(".p4-letter-filters [data-letter-filter]")){const active=btn.dataset.letterFilter===letterFilter;btn.classList.toggle("is-active",active);btn.setAttribute("aria-pressed",String(active));}applyLetterFilter();return;}
  const b=event.target.closest("[data-action]");if(!b)return;
  const action=b.dataset.action,targetId=b.dataset.id;
+ if(action==="book-quick"){
+   const book=state.books.find(x=>x.id===targetId),pages=Number(b.dataset.pages);
+   if(!book||!Number.isInteger(pages)||![5,10].includes(pages))return;
+   if(totalRead(book)+pages>book.pages)return notice("Bu işlem kalan sayfa sayısını aşıyor. Elle daha küçük bir değer girebilirsin.");
+   commit(()=>{book.logs.push({id:id(),date:TODAY,pages})},pages+" sayfa okuma kaydın eklendi.");return;
+ }
+ if(action==="book-export"){
+   if(!state.books.length)return notice("İndirilecek kitap kaydı yok.");
+   const csv=x=>'"'+String(x??"").replace(/"/g,'""')+'"';
+   const rows=[["Kitap","Yazar","Tarih","Sayfa","Kayıt türü"]];
+   for(const book of state.books){
+     if(book.initial>0)rows.push([book.title,book.author,book.created,book.initial,"Başlangıç"]);
+     for(const log of book.logs)rows.push([book.title,book.author,log.date,log.pages,"Okuma"]);
+   }
+   if(rows.length===1)for(const book of state.books)rows.push([book.title,book.author,book.created,0,"Kitap"]);
+   download("iyi-yol-akademi-okuma-gecmisim-"+TODAY+".csv","\uFEFF"+rows.map(x=>x.map(csv).join(",")).join("\r\n"),"text/csv;charset=utf-8");
+   notice("Okuma geçmişin CSV dosyasına indirildi.");return;
+ }
+ if(action==="letter-prompt"){
+   const prompt=letterPrompts[Number(b.dataset.prompt)],input=$("#p4LetterBody");
+   if(!prompt||!input)return;
+   input.setRangeText((input.value.trim()?"\n\n":"")+prompt+"\n",input.selectionStart,input.selectionEnd,"end");input.focus();return;
+ }
+ if(action==="letter-draft-save"){
+   const form=$("#toolkit-letter-form");if(!form)return;
+   const title=cleanText(form.elements.title.value,140),body=cleanText(form.elements.body.value,10000),openDate=form.elements.openDate.value;
+   if(!title&&!body)return notice("Önce mektubunun başlığını veya metnini yaz.");
+   if(!validDate(openDate)||openDate<=TODAY)return notice("Mektubuna gelecekte bir tarih seç.");
+   commit(()=>{state.letterDraft={title,body,openDate}},"Taslağın bu cihazda kaydedildi. Başka cihazlarla eşitlenmez.");return;
+ }
+ if(action==="letter-draft-clear"){
+   if(!state.letterDraft)return;
+   if(!confirm("Kayıtlı mektup taslağın silinsin mi?"))return;
+   commit(()=>{state.letterDraft=null},"Mektup taslağın silindi.");return;
+ }
+ if(action==="letter-export"){
+   const letter=state.letters.find(x=>x.id===targetId);
+   if(!letter||letter.openDate>TODAY||!opened.has(letter.id))return notice("Mektubu indirmeden önce açman gerekiyor.");
+   const content=["İyi Yol Akademi · Gelecekteki Kendime Mektup","Başlık: "+letter.title,"Yazılış tarihi: "+formatDay(letter.created),"Açılma tarihi: "+formatDay(letter.openDate),"",letter.body].join("\n");
+   download("iyi-yol-akademi-acilmis-mektup-"+TODAY+".txt",content,"text/plain;charset=utf-8");
+   notice("Açtığın mektup indirildi. Dosyayı özel tut.");return;
+ }
  if(action==="book-delete"){if(!confirm("Bu kitabı ve okuma geçmişini silmek istiyor musun?"))return;commit(()=>{state.books=state.books.filter(x=>x.id!==targetId)},"Kitap silindi.");return}
  if(action==="book-log-delete"){const book=state.books.find(x=>x.id===targetId);if(!book)return;if(!confirm("Bu okuma kaydı silinsin mi?"))return;commit(()=>{book.logs=book.logs.filter(x=>x.id!==b.dataset.log)},"Okuma kaydı kaldırıldı.");return}
  if(action==="letter-delete"){if(!confirm("Mektup ve içeriği kalıcı olarak silinsin mi?"))return;commit(()=>{state.letters=state.letters.filter(l=>l.id!==targetId);opened.delete(targetId)},"Mektup silindi.");return}
@@ -254,8 +298,20 @@ root.addEventListener("click",async event=>{
 });
 root.addEventListener("submit",event=>{
  const form=event.target,formId=form.id;const fd=new FormData(form);
- if(!["toolkit-book-form","toolkit-letter-form","toolkit-study-form","toolkit-reminder-form"].includes(formId)&&form.dataset.form!=="book-log")return;
+ if(!["toolkit-book-form","toolkit-letter-form","toolkit-study-form","toolkit-reminder-form"].includes(formId)&&!["book-log","book-edit","reading-goal"].includes(form.dataset.form))return;
  event.preventDefault();
+ if(form.dataset.form==="reading-goal"){
+   const target=Number(fd.get("target"));
+   if(!Number.isInteger(target)||target<1||target>10000)return notice("Haftalık hedef 1–10000 sayfa arasında olmalı.");
+   commit(()=>{state.readingGoal=target},"Haftalık okuma hedefin güncellendi.");return;
+ }
+ if(form.dataset.form==="book-edit"){
+   const book=state.books.find(x=>x.id===form.dataset.id);if(!book)return;
+   const title=cleanText(fd.get("title"),140),author=cleanText(fd.get("author"),100),pages=Number(fd.get("pages")),initial=Number(fd.get("initial"));
+   const logged=book.logs.reduce((n,x)=>n+x.pages,0);
+   if(!title||!Number.isInteger(pages)||pages<1||pages>100000||!Number.isInteger(initial)||initial<0||initial+logged>pages)return notice("Kitabın adı, toplam sayfa ve okunmuş sayfa bilgilerini kontrol et.");
+   commit(()=>{book.title=title;book.author=author;book.pages=pages;book.initial=initial},"Kitap bilgilerin güncellendi.");return;
+ }
  if(formId==="toolkit-book-form"){
   let title=cleanText(fd.get("title"),140),author=cleanText(fd.get("author"),100),pages=Number(fd.get("pages")),initial=Number(fd.get("initial"));
   if(!title||!Number.isInteger(pages)||pages<1||pages>100000||!Number.isInteger(initial)||initial<0||initial>pages)return notice("Kitap adı, toplam sayfa ve okunan sayfa bilgilerini kontrol et.");
@@ -272,7 +328,7 @@ root.addEventListener("submit",event=>{
   const title=cleanText(fd.get("title"),140),body=cleanText(fd.get("body"),10000),openDate=String(fd.get("openDate")||"");
   if(!title||!body||!validDate(openDate)||openDate<=TODAY)return notice("Mektubun başlığı, metni ve gelecekteki açılma tarihini kontrol et.");
   if(state.letters.length>=120)return notice("En fazla 120 mektup saklayabilirsin.");
-  commit(()=>{state.letters.unshift({id:id(),title,body,openDate,created:TODAY})},"Mektubun mühürlendi. İstersen takvimine hatırlatma ekleyebilirsin.");return;
+  commit(()=>{state.letters.unshift({id:id(),title,body,openDate,created:TODAY});state.letterDraft=null;},"Mektubun mühürlendi. İstersen takvimine hatırlatma ekleyebilirsin.");return;
  }
  if(formId==="toolkit-study-form"){
   const name=cleanText(fd.get("name"),120),examDate=String(fd.get("examDate")||""),minutes=Number(fd.get("minutes")),time=String(fd.get("time")||""),
@@ -297,6 +353,16 @@ $("#toolkit-restore-file").addEventListener("change",async event=>{
  const file=event.target.files?.[0];event.target.value="";if(!file)return;
  if(file.size>3000000)return notice("Yedek dosyası 3 MB sınırını aşıyor.");
  try{const imported=JSON.parse(await file.text());if(imported.app!=="iya-personal-tools"||!imported.data||!Array.isArray(imported.data.books)||!Array.isArray(imported.data.letters)||!Array.isArray(imported.data.reminders))return notice("Geçerli bir İyi Yol Akademi yedeği seç.");if(!confirm("Yeni yedek kitap, mektup, çalışma ve hatırlatma kayıtlarının üzerine yazılacak. Devam edilsin mi?"))return;commit(()=>{state=sanitize(imported.data);opened.clear()},"Yedeğin geri yüklendi.")}catch(_){notice("Yedek okunamadı. Dosyayı kontrol et.")}
+});
+root.addEventListener("input",e=>{
+ if(e.target.id!=="p4BookSearch")return;
+ bookSearch=e.target.value.trim().toLocaleLowerCase("tr-TR");
+ applyBookFilter();
+});
+root.addEventListener("change",e=>{
+ if(e.target.id!=="p4BookStatus")return;
+ bookStatus=e.target.value;
+ applyBookFilter();
 });
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(tabs.includes(h)){current=h;draw()}});
 draw();tick();setInterval(tick,20000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
