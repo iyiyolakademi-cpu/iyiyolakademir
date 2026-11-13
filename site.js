@@ -129,10 +129,12 @@
     const container = $('#blogPosts');
     const tabs = $('#categoryTabs');
     const search = $('#postSearch');
+    const sort = $('#phaseBlogSort');
     const resultsHeading = $('#resultsHeading');
     const count = $('#postCount');
     const params = new URLSearchParams(location.search);
     let selected = params.get('category') || 'all';
+    if (search && params.get('q')) search.value = params.get('q').slice(0,100);
     let posts = [];
     let categories = [];
 
@@ -162,13 +164,21 @@
         const textMatch = !keyword || normalize(`${post.title} ${post.excerpt} ${post.blog_categories?.name || ''}`).includes(keyword);
         return categoryMatch && textMatch;
       });
+      const sorted = [...filtered];
+      const mode = sort?.value || 'new';
+      if (mode === 'old') sorted.sort((a,b) => new Date(a.published_at) - new Date(b.published_at));
+      else if (mode === 'short') sorted.sort((a,b) => (Number(a.read_minutes)||999) - (Number(b.read_minutes)||999));
+      else if (mode === 'long') sorted.sort((a,b) => (Number(b.read_minutes)||0) - (Number(a.read_minutes)||0));
+      else if (mode === 'az') sorted.sort((a,b) => a.title.localeCompare(b.title,'tr'));
+      else sorted.sort((a,b) => new Date(b.published_at) - new Date(a.published_at));
       const chosenCategory = categories.find((category) => category.slug === selected);
       resultsHeading.textContent = chosenCategory ? chosenCategory.name : 'Tüm blog yazıları';
       count.textContent = `${filtered.length} yazı`;
-      if (filtered.length) renderList(container, filtered);
+      if (sorted.length) renderList(container, sorted);
       else showStatus(container, 'Aradığın ölçütlere uygun bir yazı bulunamadı. Başka bir arama deneyebilirsin.');
     }
     search?.addEventListener('input', filterPosts);
+    sort?.addEventListener('change', filterPosts);
     try {
       const [results, categoryList] = await Promise.all([
         postsQuery(100),
@@ -247,13 +257,21 @@
       meta.textContent = 'Bağlantı hatası';
     }
     const THEMES = ['light', 'sepia', 'dark'];
-    let theme = 'light'; let size = 17;
-    $('#decreaseFont')?.addEventListener('click', () => { size = Math.max(14, size - 1); reader.style.setProperty('--read-size', `${size}px`); });
-    $('#increaseFont')?.addEventListener('click', () => { size = Math.min(23, size + 1); reader.style.setProperty('--read-size', `${size}px`); });
+    const PREF_KEY = 'iya_reader_prefs_v1';
+    let preference = {};
+    try { preference = JSON.parse(localStorage.getItem(PREF_KEY)) || {}; } catch (_) {}
+    let theme = THEMES.includes(preference.theme) ? preference.theme : 'light';
+    let size = Math.max(14,Math.min(23,Number(preference.size)||17));
+    reader.dataset.theme = theme;
+    reader.style.setProperty('--read-size', `${size}px`);
+    const persist = () => { try { localStorage.setItem(PREF_KEY,JSON.stringify({theme,size})); } catch (_) {} };
+    $('#decreaseFont')?.addEventListener('click', () => { size = Math.max(14, size - 1); reader.style.setProperty('--read-size', `${size}px`); persist(); });
+    $('#increaseFont')?.addEventListener('click', () => { size = Math.min(23, size + 1); reader.style.setProperty('--read-size', `${size}px`); persist(); });
     $('#switchTheme')?.addEventListener('click', () => {
       theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
       reader.dataset.theme = theme;
       $('#switchTheme').setAttribute('aria-label', `Okuma teması: ${theme}`);
+      persist();
     });
   }
 
