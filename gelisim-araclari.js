@@ -65,7 +65,7 @@ const totalRead=b=>b.initial+b.logs.reduce((n,x)=>n+x.pages,0);
 const weeklyRead=()=>state.books.reduce((n,b)=>n+b.logs.filter(x=>x.date>=weekStart(TODAY)&&x.date<=TODAY).reduce((s,x)=>s+x.pages,0),0);
 
 const last7Read=()=>state.books.reduce((n,b)=>n+b.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).reduce((a,x)=>a+x.pages,0),0);
-const bookReadingDays=()=>new Set(state.books.flatMap(b=>b.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).map(x=>x.date))).size;
+const bookReadingDays=()=>new Set(state.books.flatMap(b=>b.logs.filter(x=>x.date>=weekStart(TODAY)&&x.date<=TODAY).map(x=>x.date))).size;
 const dueLetters=()=>state.letters.filter(l=>l.openDate<=TODAY).length;
 const letterPrompts=["Bugün hayatımda en önemli olan şey...","Gelecekteki ben, umarım şunu hatırlarsın...","Bugün verdiğim küçük karar...","Kendime teşekkür etmek istediğim şey..."];
 
@@ -73,7 +73,7 @@ function booksRender(){
  const finished=state.books.filter(b=>totalRead(b)>=b.pages).length,total=state.books.reduce((n,b)=>n+Math.min(b.pages,totalRead(b)),0);
  const target=state.readingGoal||50,weekly=weeklyRead(),weeklyPct=Math.min(100,Math.round(weekly/target*100));
  const reading=state.books.slice().sort((a,b)=>(Number(totalRead(a)>=a.pages)-Number(totalRead(b)>=b.pages))||b.created.localeCompare(a.created));
- const filter='<div class="p4-book-filter"><label>Kitaplarımda ara<input id="p4BookSearch" type="search" maxlength="140" autocomplete="off" placeholder="Kitap veya yazar ara…" value="'+safe(bookSearch)+'"></label><label>Durum<select id="p4BookStatus"><option value="all" '+(bookStatus==="all"?"selected":"")+'>Tüm kitaplar</option><option value="reading" '+(bookStatus==="reading"?"selected":"")+'>Okuduklarım</option><option value="completed" '+(bookStatus==="completed"?"selected":"")+'>Tamamlananlar</option></select></label></div><p id="p4BookCount" class="p4-result-count"></p>';
+ const filter='<div class="p4-book-filter"><label>Kitaplarımda ara<input id="p4BookSearch" type="search" maxlength="140" autocomplete="off" placeholder="Kitap veya yazar ara…" value="'+safe(bookSearch)+'"></label><label>Durum<select id="p4BookStatus"><option value="all" '+(bookStatus==="all"?"selected":"")+'>Tüm kitaplar</option><option value="reading" '+(bookStatus==="reading"?"selected":"")+'>Devam edenler</option><option value="completed" '+(bookStatus==="completed"?"selected":"")+'>Tamamlananlar</option></select></label></div><p id="p4BookCount" class="p4-result-count"></p>';
  $("#toolkit-okuma").innerHTML=panelTitle("DİJİTAL KİTAPLIĞIM","Kitap Okuma Takipçisi","Okuduğun sayfaları kaydet, haftalık hedefini belirle ve kitaplarının ilerlemesini takip et.")
  +'<div class="toolkit-summaries p4-book-stats"><div class="toolkit-summary"><span>Kitaplarım</span><strong>'+state.books.length+'</strong><small>'+finished+' kitap tamamlandı</small></div><div class="toolkit-summary"><span>Toplam ilerleme</span><strong>'+total+'</strong><small>Okunan sayfa</small></div><div class="toolkit-summary"><span>Bu hafta</span><strong>'+weekly+'</strong><small>'+bookReadingDays()+' farklı günde okudun</small></div></div>'
  +'<article class="toolkit-card p4-reading-goal"><div class="p4-goal-info"><span class="toolkit-kicker-sm">HAFTALIK OKUMA HEDEFİ</span><h3>'+weekly+' / '+target+' sayfa</h3><p>Bu haftaki hedefin %'+weeklyPct+' tamamlandı. Bir gün atlamak ilerlemeni silmez.</p>'+progress(weekly,target)+'</div><form data-form="reading-goal" class="p4-reading-goal-form"><label>Haftalık hedef<input name="target" type="number" min="1" max="10000" required value="'+target+'"></label><button class="toolkit-btn secondary small" type="submit">Güncelle</button></form></article>'
@@ -229,8 +229,8 @@ root.addEventListener("click",async event=>{
    for(const book of state.books){
      if(book.initial>0)rows.push([book.title,book.author,book.created,book.initial,"Başlangıç"]);
      for(const log of book.logs)rows.push([book.title,book.author,log.date,log.pages,"Okuma"]);
+     if(!book.initial&&!book.logs.length)rows.push([book.title,book.author,book.created,0,"Kitap"]);
    }
-   if(rows.length===1)for(const book of state.books)rows.push([book.title,book.author,book.created,0,"Kitap"]);
    download("iyi-yol-akademi-okuma-gecmisim-"+TODAY+".csv","\uFEFF"+rows.map(x=>x.map(csv).join(",")).join("\r\n"),"text/csv;charset=utf-8");
    notice("Okuma geçmişin CSV dosyasına indirildi.");return;
  }
@@ -241,7 +241,7 @@ root.addEventListener("click",async event=>{
  }
  if(action==="letter-draft-save"){
    const form=$("#toolkit-letter-form");if(!form)return;
-   const title=cleanText(form.elements.title.value,140),body=cleanText(form.elements.body.value,10000),openDate=form.elements.openDate.value;
+   const title=cleanText(form.elements.namedItem("title").value,140),body=cleanText(form.elements.namedItem("body").value,10000),openDate=form.elements.namedItem("openDate").value;
    if(!title&&!body)return notice("Önce mektubunun başlığını veya metnini yaz.");
    if(!validDate(openDate)||openDate<=TODAY)return notice("Mektubuna gelecekte bir tarih seç.");
    commit(()=>{state.letterDraft={title,body,openDate}},"Taslağın bu cihazda kaydedildi. Başka cihazlarla eşitlenmez.");return;
