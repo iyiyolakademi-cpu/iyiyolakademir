@@ -106,7 +106,9 @@ function render(){
   window.dispatchEvent(new CustomEvent('iya:tasks-updated',{detail:{todayItems:items.filter(t=>t.day===today).length}}));
 }
 const overlay=$('#taskDialog'),form=$('#taskForm'),title=$('#taskTitle'),date=$('#taskDate');
+let lastDialogFocus=null;
 function openModal(task){
+  lastDialogFocus=document.activeElement;
   editing=task?.id||null;form.reset();
   title.value=task?.title||'';date.value=task?.day||selected;
   form.querySelector('input[name="priority"][value="'+(task?.priority||'medium')+'"]').checked=true;
@@ -114,13 +116,22 @@ function openModal(task){
   $('#saveTaskBtn').textContent=task?'Değişiklikleri kaydet':'Görevi ekle ↗';
   $('#dialogError').textContent='';
   overlay.hidden=false;document.body.classList.add('modal-lock');
-  setTimeout(()=>title.focus(),50);
+  setTimeout(()=>{if(!overlay.hidden)title.focus()},50);
 }
-function closeModal(){overlay.hidden=true;document.body.classList.remove('modal-lock');editing=null;}
+function closeModal(){overlay.hidden=true;document.body.classList.remove('modal-lock');editing=null;lastDialogFocus?.focus?.();lastDialogFocus=null;}
 ['addTaskBtn','addTaskSecondary','addTaskBottom'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>openModal(null)));
 $('#closeDialog').addEventListener('click',closeModal);
 $('#cancelDialog').addEventListener('click',closeModal);
 overlay.addEventListener('mousedown',e=>{if(e.target===overlay)closeModal()});
+overlay.addEventListener('keydown',e=>{
+  if(e.key!=='Tab'||overlay.hidden)return;
+  const controls=[...overlay.querySelectorAll('button,input,select,textarea')].filter(x=>!x.disabled&&x.getClientRects().length>0);
+  if(!controls.length)return;
+  const first=controls[0],last=controls[controls.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
+
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)closeModal()});
 form.addEventListener('submit',e=>{
   e.preventDefault();const text=title.value.trim(),day=date.value,priority=form.querySelector('input[name="priority"]:checked')?.value;
