@@ -16,6 +16,27 @@ function add(r){
  const all=entries();if(all[0]&&all[0].type===row.type&&all[0].testId===row.testId&&all[0].score===row.score&&Date.now()-Date.parse(all[0].date)<12000)return true;
  return put(KEY,[row,...all].slice(0,350));
 }
+function restorePremiumSummary(id,old){
+ const lib=window.PT_LIBRARY;
+ const test=lib&&Array.isArray(lib.tests)?lib.tests.find(t=>t.id===id):null;
+ const answers=old&&Array.isArray(old.answers)?old.answers:null;
+ if(!test||!answers||answers.length!==test.questions.length)return null;
+ if(answers.some(v=>!Number.isInteger(v)))return null;
+ const basic={category:(Object.fromEntries(lib.categories||[])[test.category]||"Keşif"),description:test.description,advice:test.tips};
+ if(test.mode==="logic"){
+  const right=test.questions.reduce((n,q,i)=>n+(answers[i]-1===q.correct?1:0),0);
+  return {...basic,score:Math.round(right*100/test.questions.length),scoreLabel:right+"/"+test.questions.length+" doğru",dimensions:[]};
+ }
+ const max=test.mode==="interest"||test.mode==="duo"?5:7;
+ const dims=test.dims.map(d=>{
+  const values=[];
+  test.questions.forEach((q,i)=>{if(q.dim!==d.key)return;let v=answers[i];if(test.mode==="scale")v=max+1-v;if(q.reverse)v=max+1-v;values.push(v);});
+  const mean=values.length?values.reduce((a,b)=>a+b,0)/values.length:1;
+  const percent=Math.max(0,Math.min(100,Math.round((mean-1)*100/(max-1))));
+  return {label:d.label,percent,detail:percent>=58?d.high:percent<=42?d.low:"Yanıtların bu alanda dengeli bir dağılım gösteriyor."};
+ });
+ return {...basic,score:null,scoreLabel:"Boyut raporu",dimensions:dims};
+}
 function list(){
  const all=entries(),existing=new Set(all.map(x=>x.type+":"+x.testId));
  const free=get(FREE,{});
@@ -26,7 +47,8 @@ function list(){
  const premium=get(PREMIUM,{});
  if(premium&&typeof premium==="object"&&!Array.isArray(premium))for(const [id,v] of Object.entries(premium)){
   if(!valid(id)||!v||existing.has("premium:"+id))continue;
-  all.push({legacy:true,type:"premium",testId:id,uid:"old-premium-"+id,title:clip(v.title,170),category:"Keşif",score:null,scoreLabel:"Kayıtlı rapor",date:v.savedAt||new Date().toISOString(),dimensions:[],advice:[]});
+  const restored=restorePremiumSummary(id,v)||{};
+  all.push({legacy:true,type:"premium",testId:id,uid:"old-premium-"+id,title:clip(v.title,170),category:restored.category||"Keşif",score:restored.score??null,scoreLabel:restored.scoreLabel||"Kayıtlı rapor",date:v.savedAt||new Date().toISOString(),dimensions:restored.dimensions||[],advice:restored.advice||[],description:restored.description||""});
  }
  return all.sort((a,b)=>(Date.parse(b.date)||0)-(Date.parse(a.date)||0));
 }
