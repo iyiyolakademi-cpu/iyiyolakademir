@@ -212,7 +212,7 @@ function moods(){
   +'<label>Bugün aklında ne var?<textarea name="note" id="growthMoodNote" maxlength="1500" rows="4" placeholder="İçinden geçenleri burada yazabilirsin.">'+esc(previous?.note||"")+'</textarea></label><label>Bugünün iyi gelen şeyleri<textarea name="good" maxlength="600" rows="3" placeholder="Küçük de olsa iyi gelen şeyleri yaz.">'+esc(previous?.good||"")+'</textarea></label><button class="growth-primary" type="submit">'+(previous?"Kaydı güncelle":"Günlüğü kaydet")+'</button>'+(previous?'<button class="growth-text-danger" type="button" data-action="mood-delete" data-date="'+moodDate+'">Bu kaydı sil</button>':'')+'</form><p class="growth-privacy">🔒 Günlüğün bu cihazın tarayıcısında saklanır, şifreli değildir. Ortak cihazlarda dikkat et. Bu bölüm tıbbi değerlendirme veya terapi hizmeti değildir.</p></article>'
   +'<article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">DUYGU GEÇMİŞİ</span><h3>Geçmişe dönüp bak</h3></div><button type="button" class="growth-secondary small" data-action="mood-export" '+(!sorted.length?"disabled":"")+'>Kayıtlarımı indir</button></div>'
   +'<label class="growth-mood-search-label">Kayıtlarımda ara<input type="search" class="growth-mood-search" id="growthMoodSearch" maxlength="120" placeholder="Not veya tarih ara…" autocomplete="off"></label><div id="growthMoodHistory" class="growth-mood-history-list">'
-  +(sorted.length?sorted.slice(0,200).map(m=>'<button class="growth-mood-history" data-action="mood-open" data-date="'+m.date+'" type="button" data-query="'+esc((m.date+" "+m.note+" "+m.good+" "+MOODS[m.score-1].label).toLocaleLowerCase("tr-TR"))+'"><span>'+MOODS[m.score-1].emoji+'</span><span><strong>'+esc(tr(m.date))+'</strong><small>'+MOODS[m.score-1].label+' · Enerji '+m.energy+'/5</small></span><span>→</span></button>').join(""):empty("Henüz günlük kaydın yok","İlk kaydını oluşturduğunda burada görünür."))+'</div><p id="growthMoodNoMatches" class="growth-footnote" hidden>Aramana uygun günlük kaydı bulunamadı.</p></article></div>';
+  +(sorted.length?sorted.slice(0,200).map(m=>'<button class="growth-mood-history" data-action="mood-open" data-date="'+m.date+'" type="button"><span>'+MOODS[m.score-1].emoji+'</span><span><strong>'+esc(tr(m.date))+'</strong><small>'+MOODS[m.score-1].label+' · Enerji '+m.energy+'/5</small></span><span>→</span></button>').join(""):empty("Henüz günlük kaydın yok","İlk kaydını oluşturduğunda burada görünür."))+'</div><p id="growthMoodNoMatches" class="growth-footnote" hidden>Aramana uygun günlük kaydı bulunamadı.</p></article></div>';
 }
 function reviews(){
   const prev=state.reviews.find(r=>r.week===reviewWeek);
@@ -335,7 +335,7 @@ root.addEventListener("input",e=>{
  if(e.target.id!=="growthMoodSearch")return;
  const q=e.target.value.trim().toLocaleLowerCase("tr-TR"),all=$(".growth-mood-history",root);
  let shown=0;
- for(const item of all){const visible=item.dataset.query.includes(q);item.hidden=!visible;if(visible)shown++;}
+ for(const item of all){const record=state.moods.find(m=>m.date===item.dataset.date);const searchable=record?(record.date+" "+record.note+" "+record.good+" "+MOODS[record.score-1].label).toLocaleLowerCase("tr-TR"):"";const visible=searchable.includes(q);item.hidden=!visible;if(visible)shown++;}
  const status=$("#growthMoodNoMatches",root);if(status)status.hidden=shown>0||!q;
 });
 
