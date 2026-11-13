@@ -79,8 +79,8 @@ function renderCards(){
  cards.innerHTML=matched.map(t=>'<article class="pt-card">'+
   '<div class="pt-card-head"><span class="pt-card-symbol" aria-hidden="true">'+esc(t.icon)+'</span><span class="pt-card-label">'+esc(categories[t.category]||"Keşif")+'</span></div>'+
   '<h3>'+esc(t.title)+'</h3><p>'+esc(t.description)+'</p>'+
-  '<div class="pt-card-footer"><span class="pt-card-meta">'+t.questions.length+' soru · '+Math.max(3,Math.round(t.questions.length/5))+' dk'+(hasSaved(t.id)?" · ✓ Kaydedildi":"")+'</span>'+
-  '<button type="button" data-open="'+esc(t.id)+'" aria-label="'+esc(t.title)+' testini aç">Teste başla ↗</button></div></article>').join("")||
+  '<div class="pt-card-footer"><span class="pt-card-meta">'+t.questions.length+' soru · '+Math.max(3,Math.round(t.questions.length/5))+' dk'+(hasSaved(t.id)?" · ✓ Kaydedildi":"")+(loadDraft(t)?.answers.some(v=>v!==null)?" · Yarım kalan test":"")+'</span>'+
+  '<button type="button" data-open="'+esc(t.id)+'" aria-label="'+esc(t.title)+' testini aç">'+(loadDraft(t)?.answers.some(v=>v!==null)?"Devam et →":"Teste başla ↗")+'</button></div></article>').join("")||
   '<div class="pt-empty">Aramana uygun bir test bulunamadı. Farklı bir kelime veya kategori dene.</div>';
  cards.querySelectorAll("button[data-open]").forEach(btn=>btn.addEventListener("click",()=>openTest(btn.dataset.open)));
 }
