@@ -56,6 +56,16 @@ body[data-page="tasks"] #taskDialog .priority-box{min-height:74px;padding:10px 5
 .phase3-task-tools select{max-width:160px}
 .phase3-task-tools input:focus-visible,.phase3-task-tools select:focus-visible{outline:3px solid #a2bd9e;outline-offset:2px}
 body[data-page="tasks"] #growthPanel-gorevler .task-filters button{font-size:12px}
+/* Hedefler: dönem görünümü ve açılır düzenleme alanı */
+.growth-goal-periods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:16px}
+.growth-goal-periods span{display:flex;align-items:baseline;gap:11px;border:1px solid #e0e9dd;background:#f7faf5;border-radius:12px;padding:16px;color:#6f8173;font-size:12px;font-weight:700}
+.growth-goal-periods strong{color:#326147;font-size:24px;letter-spacing:-.05em}
+.growth-goal-editor{margin-top:16px;border-top:1px solid #e4eae1;padding-top:13px}
+.growth-goal-editor summary{cursor:pointer;color:#376247;font-size:12px;font-weight:760}
+.growth-goal-editor form{padding-top:16px}
+.growth-goal .growth-actions{flex-wrap:wrap}
+.growth-goal .growth-success{margin-top:14px}
+@media(max-width:680px){.growth-goal-periods{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-goal-periods span{padding:13px}}
 /* Alışkanlık kartları ve hazır adımlar */
 .growth-preset-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
 .growth-preset-head p{margin:0;font-size:12px;color:#778478}
