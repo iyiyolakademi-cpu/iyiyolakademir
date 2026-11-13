@@ -12,6 +12,7 @@ function plusDays(day,amount){const d=fromDay(day);d.setDate(d.getDate()+amount)
 function trDate(day,options){return fromDay(day).toLocaleDateString('tr-TR',options)}
 const today=localDay(new Date());
 let selected=today, filter='all', editing=null, items=[], search='', sort='priority';
+function clearSearch(){search='';const input=$('#taskSearch');if(input)input.value='';}
 try {
   const parsed=JSON.parse(localStorage.getItem(KEY)||'[]');
   if(Array.isArray(parsed)) items=parsed.filter(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(t.day)&&PRIORITY[t.priority]).slice(0,3000);
@@ -32,7 +33,7 @@ function renderWeek(){
   $('#weekTitle').textContent=trDate(start,{month:'long',year:'numeric'})+(fromDay(start).getMonth()!==fromDay(end).getMonth()?' — '+trDate(end,{month:'short'}):'');
   for(let i=0;i<7;i++){
     const day=plusDays(start,i),d=fromDay(day);
-    const b=button('', 'task-day',()=>{selected=day;filter='all';render()});
+    const b=button('', 'task-day',()=>{selected=day;filter='all';clearSearch();render()});
     b.setAttribute('aria-label',trDate(day,{weekday:'long',day:'numeric',month:'long'})); b.setAttribute('aria-pressed',String(day===selected));
     b.classList.toggle('is-selected',day===selected);b.classList.toggle('is-today',day===today);
     const text=document.createElement('span');text.textContent=shortNames[d.getDay()];
@@ -75,6 +76,7 @@ function renderList(){
     });
   const list=$('#taskList');list.replaceChildren();
   if(!matching.length){
+    if(search){showEmpty(list,'Bu kelimeyle eşleşen günlük görev yok.','Aramana uygun görev bulunamadı');return;}
     showEmpty(list,filter==='done'?'Tamamladığın görevler burada görünecek.':filter==='open'?'Yapılacak yeni bir görev bulunmuyor.':'Bugünün ilk görevini ekle ve planını oluşturmaya başla.',filter==='done'?'Henüz tamamlanan yok':filter==='open'?'Her şey tamam!':'Günün seni bekliyor');
     return;
   }
@@ -129,9 +131,9 @@ form.addEventListener('submit',e=>{
   if(!save()){items=JSON.parse(before);return}
   selected=day;filter='all';closeModal();render();
 });
-$('#prevWeek').addEventListener('click',()=>{selected=plusDays(selected,-7);filter='all';render()});
-$('#nextWeek').addEventListener('click',()=>{selected=plusDays(selected,7);filter='all';render()});
-$('#todayBtn').addEventListener('click',()=>{selected=today;filter='all';render()});
+$('#prevWeek').addEventListener('click',()=>{selected=plusDays(selected,-7);filter='all';clearSearch();render()});
+$('#nextWeek').addEventListener('click',()=>{selected=plusDays(selected,7);filter='all';clearSearch();render()});
+$('#todayBtn').addEventListener('click',()=>{selected=today;filter='all';clearSearch();render()});
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;renderList()}));
 $('#taskSearch')?.addEventListener('input',e=>{search=e.target.value.trim().toLocaleLowerCase('tr-TR');renderList()});
 $('#taskSort')?.addEventListener('change',e=>{sort=e.target.value;renderList()});
