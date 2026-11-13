@@ -197,11 +197,22 @@ function programs(){
  }).join("")+'</div>':empty("Henüz aktif programın yok","Yukarıdaki programlardan birini seçerek ilk adımı at."));
 }
 function moods(){
-  const previous=state.moods.find(m=>m.date===moodDate);
-  const score=previous?.score||3, energy=previous?.energy||3;
-  panels.duygu.innerHTML=sectionTitle("KENDİNE KULAK VER","Duygu Günlüğü","Hislerini yargılamadan kaydet. Bugünkü yazını daha sonra düzenleyebilirsin.")
-  +'<div class="growth-two-cols growth-mood-layout"><article class="growth-card"><form id="growthMoodForm" class="growth-form"><label>Tarih<input type="date" id="growthMoodDate" name="date" max="'+TODAY+'" value="'+moodDate+'"></label><fieldset><legend>O gün nasıl hissediyordun?</legend><div class="growth-mood-options">'+MOODS.map(m=>'<label class="growth-mood-option"><input type="radio" name="score" value="'+m.score+'" '+(score===m.score?"checked":"")+'><span><b>'+m.emoji+'</b><small>'+m.label+'</small></span></label>').join("")+'</div></fieldset><label>Enerji seviyen (1–5)<select name="energy">'+[1,2,3,4,5].map(n=>'<option value="'+n+'" '+(energy===n?"selected":"")+'>'+n+' / 5</option>').join("")+'</select></label><label>Bugün aklında ne var?<textarea name="note" maxlength="1500" rows="4" placeholder="İçinden geçenleri burada yazabilirsin.">'+esc(previous?.note||"")+'</textarea></label><label>Günümün üç iyi şeyi <small>(önerdiğim ek özellik)</small><textarea name="good" maxlength="600" rows="3" placeholder="Küçük de olsa iyi gelen üç şeyi yaz.">'+esc(previous?.good||"")+'</textarea></label><button class="growth-primary" type="submit">'+(previous?"Kaydı güncelle":"Günlüğü kaydet")+'</button>'+(previous?'<button class="growth-text-danger" type="button" data-action="mood-delete" data-date="'+moodDate+'">Bu kaydı sil</button>':'')+'</form><p class="growth-privacy">🔒 Günlüğün bu cihazın tarayıcısında saklanır. Ortak cihaz kullanıyorsan dikkat et. Bu bir tıbbi değerlendirme veya terapi hizmeti değildir.</p></article>'
-  +'<article class="growth-card"><span class="growth-overline">DUYGU GEÇMİŞİ</span><h3>Geçmişe dönüp bak</h3>'+(state.moods.length?state.moods.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30).map(m=>'<button class="growth-mood-history" data-action="mood-open" data-date="'+m.date+'" type="button"><span>'+MOODS[m.score-1].emoji+'</span><span><strong>'+esc(tr(m.date))+'</strong><small>'+MOODS[m.score-1].label+' · Enerji '+m.energy+'/5</small></span><span>→</span></button>').join(""):empty("Henüz günlük kaydın yok","İlk kaydını oluşturduğunda burada görünür."))+'</article></div>';
+  const previous=state.moods.find(m=>m.date===moodDate),score=previous?.score||3,energy=previous?.energy||3;
+  const sorted=state.moods.slice().sort((a,b)=>b.date.localeCompare(a.date));
+  const last14=Array.from({length:14},(_,i)=>addDays(TODAY,i-13));
+  const recent=sorted.filter(m=>m.date>=addDays(TODAY,-13)&&m.date<=TODAY);
+  const recorded=new Map(sorted.map(m=>[m.date,m]));
+  const dates=last14.map(d=>{const item=recorded.get(d),isToday=d===TODAY;return '<button type="button" class="growth-mood-day '+(item?"has-entry ":"")+(moodDate===d?"is-selected ":"")+'" data-action="mood-open" data-date="'+d+'" aria-label="'+esc(tr(d)+(item?" · "+MOODS[item.score-1].label:" · Kayıt yok"))+'" aria-pressed="'+String(d===moodDate)+'"><small>'+esc(date(d).toLocaleDateString("tr-TR",{weekday:"short"}))+'</small><strong>'+Number(d.slice(-2))+'</strong><span>'+(item?MOODS[item.score-1].emoji:isToday?"＋":"·")+'</span></button>'}).join("");
+  const writingPrompts=["Bugün bana ne iyi geldi?","Bugün hangi duyguya alan açmak istiyorum?","Bugün kendimle ilgili ne fark ettim?"];
+  panels.duygu.innerHTML=sectionTitle("KENDİNE KULAK VER","Duygu Günlüğü","Duygularını yargılamadan kaydet. Günlüğün burada yalnızca senin için.")
+  +'<div class="growth-mood-dashboard"><div><span>Son 14 gün</span><strong>'+recent.length+' / 14</strong><small>Kaydettiğin gün sayısı</small></div><div><span>Toplam kayıt</span><strong>'+state.moods.length+'</strong><small>Kişisel günlük geçmişin</small></div><div><span>Son kayıt</span><strong class="growth-last-mood">'+(sorted.length?MOODS[sorted[0].score-1].emoji:"—")+'</strong><small>'+(sorted.length?esc(tr(sorted[0].date)):"Henüz kayıt yok")+'</small></div></div>'
+  +'<article class="growth-card growth-mood-timeline"><div class="growth-card-heading"><div><span class="growth-overline">14 GÜNLÜK GÖRÜNÜM</span><h3>Günlere dönüp bak</h3></div></div><div class="growth-mood-calendar">'+dates+'</div><p class="growth-footnote">Boş günler olumsuz bir durum anlamına gelmez. İstediğin gün için kayıt oluşturabilirsin.</p></article>'
+  +'<div class="growth-two-cols growth-mood-layout"><article class="growth-card"><form id="growthMoodForm" class="growth-form"><label>Tarih<input type="date" id="growthMoodDate" name="date" max="'+TODAY+'" value="'+moodDate+'"></label><fieldset><legend>O gün nasıl hissediyordun?</legend><div class="growth-mood-options">'+MOODS.map(m=>'<label class="growth-mood-option"><input type="radio" name="score" value="'+m.score+'" '+(score===m.score?"checked":"")+'><span><b>'+m.emoji+'</b><small>'+m.label+'</small></span></label>').join("")+'</div></fieldset><label>Enerji seviyen (1–5)<select name="energy">'+[1,2,3,4,5].map(n=>'<option value="'+n+'" '+(energy===n?"selected":"")+'>'+n+' / 5</option>').join("")+'</select></label>'
+  +'<div class="growth-mood-prompts"><span class="growth-overline">YAZMAK İÇİN KÜÇÜK BİR BAŞLANGIÇ</span><div>'+writingPrompts.map((p,i)=>'<button type="button" class="growth-mood-prompt" data-action="mood-prompt" data-prompt="'+i+'">'+esc(p)+'</button>').join("")+'</div></div>'
+  +'<label>Bugün aklında ne var?<textarea name="note" id="growthMoodNote" maxlength="1500" rows="4" placeholder="İçinden geçenleri burada yazabilirsin.">'+esc(previous?.note||"")+'</textarea></label><label>Bugünün iyi gelen şeyleri<textarea name="good" maxlength="600" rows="3" placeholder="Küçük de olsa iyi gelen şeyleri yaz.">'+esc(previous?.good||"")+'</textarea></label><button class="growth-primary" type="submit">'+(previous?"Kaydı güncelle":"Günlüğü kaydet")+'</button>'+(previous?'<button class="growth-text-danger" type="button" data-action="mood-delete" data-date="'+moodDate+'">Bu kaydı sil</button>':'')+'</form><p class="growth-privacy">🔒 Günlüğün bu cihazın tarayıcısında saklanır, şifreli değildir. Ortak cihazlarda dikkat et. Bu bölüm tıbbi değerlendirme veya terapi hizmeti değildir.</p></article>'
+  +'<article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">DUYGU GEÇMİŞİ</span><h3>Geçmişe dönüp bak</h3></div><button type="button" class="growth-secondary small" data-action="mood-export" '+(!sorted.length?"disabled":"")+'>Kayıtlarımı indir</button></div>'
+  +'<label class="growth-mood-search-label">Kayıtlarımda ara<input type="search" class="growth-mood-search" id="growthMoodSearch" maxlength="120" placeholder="Not veya tarih ara…" autocomplete="off"></label><div id="growthMoodHistory" class="growth-mood-history-list">'
+  +(sorted.length?sorted.slice(0,200).map(m=>'<button class="growth-mood-history" data-action="mood-open" data-date="'+m.date+'" type="button" data-query="'+esc((m.date+" "+m.note+" "+m.good+" "+MOODS[m.score-1].label).toLocaleLowerCase("tr-TR"))+'"><span>'+MOODS[m.score-1].emoji+'</span><span><strong>'+esc(tr(m.date))+'</strong><small>'+MOODS[m.score-1].label+' · Enerji '+m.energy+'/5</small></span><span>→</span></button>').join(""):empty("Henüz günlük kaydın yok","İlk kaydını oluşturduğunda burada görünür."))+'</div><p id="growthMoodNoMatches" class="growth-footnote" hidden>Aramana uygun günlük kaydı bulunamadı.</p></article></div>';
 }
 function reviews(){
   const prev=state.reviews.find(r=>r.week===reviewWeek);
@@ -267,6 +278,19 @@ root.addEventListener("click",async e=>{
   }
   if(a==="program-undo"){let p=state.programs.find(x=>x.id===id);if(!p||!p.logs.length)return;transaction(()=>{p.logs.pop()},"Son adım geri alındı.");return}
   if(a==="program-delete"){if(!confirm("Bu programı ve bütün ilerleme kayıtlarını silmek istiyor musun?"))return;transaction(()=>{state.programs=state.programs.filter(p=>p.id!==id)},"Program kaldırıldı.");return}
+  if(a==="mood-prompt"){
+    const options=["Bugün bana ne iyi geldi?","Bugün hangi duyguya alan açmak istiyorum?","Bugün kendimle ilgili ne fark ettim?"];
+    const prompt=options[Number(b.dataset.prompt)],input=$("#growthMoodNote");
+    if(!prompt||!input)return;
+    const start=input.selectionStart,end=input.selectionEnd;
+    input.setRangeText((input.value.trim()?"\n\n":"")+prompt+"\n",start,end,"end");input.focus();return;
+  }
+  if(a==="mood-export"){
+    if(!state.moods.length){notify("İndirilecek günlük kaydı yok.");return}
+    const data={app:"iyi-yol-akademi-mood",version:1,exportedAt:new Date().toISOString(),entries:state.moods};
+    download("iyi-yol-akademi-duygu-gunlugum-"+TODAY+".json",JSON.stringify(data,null,2));
+    notify("Günlük yedeği indirildi. Kişisel notlarını içerir; güvenli sakla.");return;
+  }
   if(a==="mood-open"){moodDate=b.dataset.date;tab="duygu";render();$("#growthMoodDate")?.focus();return}
   if(a==="mood-delete"){if(!confirm("Bu duygu günlüğü kaydını kalıcı olarak silmek istiyor musun?"))return;transaction(()=>{state.moods=state.moods.filter(m=>m.date!==b.dataset.date)},"Günlük kaydı silindi.");return}
   if(a==="review-prev"){reviewWeek=addDays(reviewWeek,-7);render();return}
@@ -307,6 +331,14 @@ root.addEventListener("submit",e=>{
   if(form.id==="growthReviewForm"){let x={week:reviewWeek,win:capped(f.get("win"),1000),learn:capped(f.get("learn"),1000),next:capped(f.get("next"),1000)};transaction(()=>{state.reviews=state.reviews.filter(r=>r.week!==reviewWeek);state.reviews.push(x)},"Haftalık değerlendirmen kaydedildi.");return}
 });
 root.addEventListener("change",e=>{if(e.target.id==="growthMoodDate"){moodDate=e.target.value;render()}});
+root.addEventListener("input",e=>{
+ if(e.target.id!=="growthMoodSearch")return;
+ const q=e.target.value.trim().toLocaleLowerCase("tr-TR"),all=$(".growth-mood-history",root);
+ let shown=0;
+ for(const item of all){const visible=item.dataset.query.includes(q);item.hidden=!visible;if(visible)shown++;}
+ const status=$("#growthMoodNoMatches",root);if(status)status.hidden=shown>0||!q;
+});
+
 tabs.addEventListener("keydown",e=>{
  const keys=["ArrowLeft","ArrowRight","Home","End"];
  if(!keys.includes(e.key))return;
