@@ -28,7 +28,7 @@ function nav(){
   {label:"ANA SAYFA",items:[["index.html","Ana Sayfa"],["arama.html","İçerik Ara"]]},
   {label:"İÇERİKLER",items:[["blog.html","Blog Yazıları"],["tarifler.html","Yemek Tarifleri"],["testler.html","Kişilik Testleri"],["premium-testler.html","Premium Test Merkezi"],["gunun-sozu.html","Günün Sözü ve Tavsiyesi"]]},
   {label:"KİŞİSEL GELİŞİM",items:[["yapilacaklar.html","Hedef ve Alışkanlık Merkezi"],["yapilacaklar.html#duygu","Duygu Günlüğü"],["yapilacaklar.html#programlar","7/21/30 Günlük Programlar"],["yapilacaklar.html#haftalik","Haftalık Değerlendirme"],["gelisim-araclari.html#okuma","Kitap Okuma Takipçisi"],["gelisim-araclari.html#mektup","Geleceğe Mektup"],["gelisim-araclari.html#calisma","Akıllı Çalışma Planı"],["gelisim-araclari.html#hatirlatma","Hatırlatmalarım"],["pomodoro.html","Pomodoro / Odaklanma"],["hesaplama.html","Pratik Hesaplamalar"]]},
-  {label:"KİŞİSEL ALAN",items:[["kaydedilenler.html","Kaydedilenler"]]},
+  {label:"KİŞİSEL ALAN",items:[["kaydedilenler.html","Kaydedilenler"],["test-sonuclari.html","Test Sonuçlarım"]]},
   {label:"BİLGİ",items:[["yayin-ilkeleri.html","Hakkımızda ve Yayın İlkeleri"],["gizlilik.html","Gizlilik"]]}
  ];
  const trigger=node("button","iya-drawer-trigger");
