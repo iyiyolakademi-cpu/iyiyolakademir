@@ -1,0 +1,121 @@
+/* İyi Yol Akademi | Paket 03: Günlük plan, hedefler, alışkanlıklar ve gelişim programları */
+body[data-page="tasks"]{background:#fafbf8;color:#263c30}
+body[data-page="tasks"] .growth-root{padding-top:34px}
+body[data-page="tasks"] .growth-hero{min-height:0;padding:38px 42px;border-radius:22px;background:#f0f4ed;border-color:#e0e9df}
+body[data-page="tasks"] .growth-hero h1{font-size:clamp(32px,4.2vw,53px)}
+body[data-page="tasks"] .growth-hero-side{box-shadow:none;border-color:#dce7dd}
+body[data-page="tasks"] .growth-tabs{gap:7px;scrollbar-width:thin;position:relative}
+body[data-page="tasks"] .growth-tab{border:1px solid transparent;border-radius:11px;min-height:44px;padding:12px 16px;transition:background .16s}
+body[data-page="tasks"] .growth-tab.is-active{background:#2c5741;color:#fff;border-color:#2c5741}
+body[data-page="tasks"] .growth-tab:focus-visible{outline:3px solid #8fae94;outline-offset:2px}
+body[data-page="tasks"] .growth-card{border:1px solid #e1e9df;border-radius:18px;box-shadow:0 8px 20px #254b3410}
+body[data-page="tasks"] .growth-stats>div{border-radius:15px;border-color:#e2e9e0}
+body[data-page="tasks"] .growth-primary{background:#2a5d42;border-color:#2a5d42}
+body[data-page="tasks"] .growth-secondary{background:#fff;border-color:#d9e6db}
+body[data-page="tasks"] .growth-pulse-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 20px}
+body[data-page="tasks"] .growth-pulse-row>div{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #e2eadf;border-radius:15px;padding:20px}
+body[data-page="tasks"] .growth-pulse-row span{font-size:11px;color:#758578;font-weight:700}
+body[data-page="tasks"] .growth-pulse-row strong{font-size:28px;line-height:1.2;letter-spacing:-.045em;color:#2a5340}
+body[data-page="tasks"] .growth-pulse-row small{font-size:12px;color:#64786b}
+body[data-page="tasks"] .growth-today-focus{margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;background:#f1f6ef}
+body[data-page="tasks"] .growth-today-focus h3{font-size:20px;margin:9px 0}
+body[data-page="tasks"] .growth-today-focus ul{margin:9px 0 0;padding-left:20px;font-size:13px;line-height:1.9}
+body[data-page="tasks"] .growth-today-focus p{font-size:13px;color:#6c7a71;line-height:1.6}
+body[data-page="tasks"] .growth-today-focus .growth-secondary{flex-shrink:0}
+/* Günlük görevler: hızlı ekleme ve küçük ama erişilebilir kontroller */
+body[data-page="tasks"] #growthPanel-gorevler .task-workspace{grid-template-columns:minmax(250px,292px) minmax(0,1fr);gap:16px}
+body[data-page="tasks"] #growthPanel-gorevler .task-sidebar{gap:13px}
+body[data-page="tasks"] #growthPanel-gorevler .task-progress-panel{display:block!important;padding:18px!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-progress-panel .task-small{display:block!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-priority-legend{display:flex!important;font-size:11px}
+body[data-page="tasks"] #growthPanel-gorevler .task-text small{display:block!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-filters{display:flex!important;width:100%;margin:15px 0 13px}
+body[data-page="tasks"] #growthPanel-gorevler .task-list-panel{border-radius:18px;padding:22px}
+body[data-page="tasks"] #growthPanel-gorevler .task-week-panel{border-radius:18px}
+body[data-page="tasks"] #growthPanel-gorevler .task-day{min-height:64px;padding:8px 2px!important;gap:3px;border-radius:10px}
+body[data-page="tasks"] #growthPanel-gorevler .task-day-count{font-style:normal;font-size:9px;line-height:1.2;min-width:21px;width:auto;min-height:14px;padding:2px 3px;position:static;border-radius:5px;background:#e7efe6;color:#31563a}
+body[data-page="tasks"] #growthPanel-gorevler .task-day.is-selected .task-day-count{background:#e8f1e6;color:#28543c}
+body[data-page="tasks"] #growthPanel-gorevler .task-item{padding:15px 0;gap:10px;flex-wrap:wrap}
+body[data-page="tasks"] #growthPanel-gorevler .task-check{width:27px!important;min-width:27px!important;height:27px!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-text strong{font-size:14px!important}
+body[data-page="tasks"] #growthPanel-gorevler .task-actions{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+body[data-page="tasks"] #growthPanel-gorevler .task-actions .task-carry{min-height:35px;width:auto;white-space:nowrap;padding:8px 10px;background:#edf5ed;color:#36624b;border:1px solid #d8e7d9;border-radius:8px;font-size:11px;font-weight:760}
+body[data-page="tasks"] #growthPanel-gorevler .task-actions .task-carry:hover{background:#e1efe1}
+body[data-page="tasks"] #growthPanel-gorevler .task-actions button:focus-visible{outline:3px solid #aac4ab;outline-offset:2px}
+body[data-page="tasks"] #taskDialog fieldset{display:block!important;margin-top:8px}
+body[data-page="tasks"] #taskDialog .task-radio-row{gap:7px}
+body[data-page="tasks"] #taskDialog .priority-box{min-height:74px;padding:10px 5px}
+.phase3-task-quick{display:flex;align-items:stretch;gap:8px;border:1px solid #dae6d9;border-radius:14px;background:#f7faf6;padding:7px;margin:20px 0 10px}
+.phase3-task-quick input{min-width:0;flex:1;min-height:43px;border:0;background:transparent;color:#213c2e;outline:none;padding:8px 10px;font:inherit;font-size:14px}
+.phase3-task-quick:focus-within{border-color:#6ca077;box-shadow:0 0 0 3px #a6c6ae35}
+.phase3-task-quick button{min-height:43px;border:0;border-radius:9px;background:#285a3f;color:white;padding:10px 18px;font-size:13px;font-weight:750;white-space:nowrap}
+.phase3-task-quick button:hover{background:#1f4934}
+.phase3-task-tools{display:flex;align-items:center;gap:9px;margin:10px 0 4px}
+.phase3-task-tools input,.phase3-task-tools select{min-height:40px;border:1px solid #e0e8df;border-radius:10px;background:#fff;padding:9px 12px;color:#365b42;font:inherit;font-size:12px}
+.phase3-task-tools input{min-width:0;flex:1}
+.phase3-task-tools select{max-width:160px}
+.phase3-task-tools input:focus-visible,.phase3-task-tools select:focus-visible{outline:3px solid #a2bd9e;outline-offset:2px}
+body[data-page="tasks"] #growthPanel-gorevler .task-filters button{font-size:12px}
+/* Alışkanlık kartları ve hazır adımlar */
+.growth-preset-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
+.growth-preset-head p{margin:0;font-size:12px;color:#778478}
+.growth-habit-presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:21px}
+.growth-habit-presets .growth-preset-button{background:#f4f8f3;border:1px solid #dce9dc;color:#355e43;min-height:41px;padding:10px 14px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:720}
+.growth-habit-presets .growth-preset-button:hover{background:#e8f1e7;border-color:#a5c2ab}
+.growth-habit-create .growth-details{border-top:1px solid #e3ebe2;padding-top:13px}
+.growth-habit .growth-card-heading p{font-size:12px;line-height:1.6;color:#63806d}
+.growth-habit-editor{margin-top:16px;padding:12px 15px;border-radius:12px;background:#f7faf6;border:1px solid #e1ebe0}
+.growth-habit-editor summary{cursor:pointer;font-size:12px;font-weight:740;color:#41654a}
+.growth-habit-editor .growth-edit-form{padding-top:16px}
+.growth-habit-editor .growth-edit-form input,.growth-habit-editor .growth-edit-form select{background:#fff}
+.growth-habit .growth-day{border-radius:9px}
+.growth-habit .growth-day.is-done{background:#dcebdd;color:#286041}
+.growth-habit .growth-day:focus-visible{outline:2px solid #689272;outline-offset:2px}
+/* 7/21/30 günlük rehberli programlar */
+body[data-page="tasks"] .growth-template{display:flex;align-items:start;flex-direction:column}
+body[data-page="tasks"] .growth-template p{flex:1}
+.growth-program-tiles{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;margin:19px 0 17px}
+.growth-program-tiles span{display:flex;align-items:center;justify-content:center;height:34px;border:1px solid #e1e8df;border-radius:8px;background:#f8faf7;color:#829186;font-size:11px;font-weight:700}
+.growth-program-tiles span.is-done{background:#2f694c;border-color:#2f694c;color:white}
+.growth-program-tiles span.is-next{background:#e7f0e5;border-color:#96b79c;color:#356448}
+.growth-step-kicker{font-size:10px;letter-spacing:.12em;color:#638b69;font-weight:850}
+.growth-program-next{background:#f5f9f3;border-radius:13px;padding:18px!important;border:1px solid #e1ebe1}
+.growth-program-next p{color:#405c45;font-size:14px;line-height:1.7}
+.growth-program-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:18px;border-top:1px solid #e1e8df;padding-top:14px}
+.growth-program-footer span{font-size:11px;color:#7d8980}
+.growth-program-history summary{color:#3e634b;font-weight:700}
+.growth-program-templates .growth-template{border-radius:16px}
+@media(max-width:900px){
+ body[data-page="tasks"] #growthPanel-gorevler .task-workspace{grid-template-columns:1fr}
+ body[data-page="tasks"] .growth-hero{padding:28px}
+ .growth-program-tiles{grid-template-columns:repeat(7,minmax(0,1fr))}
+}
+@media(max-width:680px){
+ body[data-page="tasks"] .growth-root{padding-top:17px}
+ body[data-page="tasks"] .growth-hero{padding:25px 19px}
+ body[data-page="tasks"] .growth-tabs{padding-top:17px}
+ body[data-page="tasks"] .growth-tab{padding:11px 13px;font-size:12px}
+ body[data-page="tasks"] .growth-pulse-row{gap:8px}
+ body[data-page="tasks"] .growth-pulse-row>div{padding:13px 10px}
+ body[data-page="tasks"] .growth-pulse-row strong{font-size:25px}
+ body[data-page="tasks"] .growth-pulse-row small{font-size:11px}
+ body[data-page="tasks"] .growth-today-focus{flex-direction:column;align-items:start}
+ body[data-page="tasks"] .growth-today-focus .growth-secondary{width:100%}
+ body[data-page="tasks"] #growthPanel-gorevler .task-list-panel{padding:19px}
+ body[data-page="tasks"] #growthPanel-gorevler .task-actions{flex-basis:auto}
+ .growth-program-tiles{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+}
+@media(max-width:420px){
+ .phase3-task-quick button{padding-inline:12px}
+ .phase3-task-quick input{font-size:13px}
+ .phase3-task-tools{flex-wrap:wrap}
+ .phase3-task-tools input,.phase3-task-tools select{width:100%;max-width:none}
+ body[data-page="tasks"] .growth-pulse-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+ body[data-page="tasks"] .growth-pulse-row>div{padding:12px 8px}
+ .growth-program-tiles span{height:30px}
+ body[data-page="tasks"] #growthPanel-gorevler .task-day{min-height:62px}
+ body[data-page="tasks"] #growthPanel-gorevler .task-actions .task-carry{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+ body[data-page="tasks"] .growth-tab,.growth-habit-presets .growth-preset-button{transition:none!important}
+}
