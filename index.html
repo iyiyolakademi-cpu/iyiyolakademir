@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="site-features.css?v=20261111-logo-tests">
 <script src="site-features.js?v=20261112-premium-tests" defer></script>
 <link rel="stylesheet" href="refine.css?v=20261111-logo-tests">
+<link rel="stylesheet" href="phase-one.css?v=20261113-p1">
+<script src="phase-one.js?v=20261113-p1" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Ana içeriğe geç</a>
@@ -45,7 +47,8 @@
     </div>
     <h1 id="homeTitle">Her gün kendine <em>iyi bir adım.</em></h1>
     <p>Bir yazı oku, kendini keşfet veya gününü planla. Kendine ayırdığın küçük bir zaman bile değerli.</p>
-    <div class="hero-actions">
+    <form class="phase-home-search" action="arama.html" method="get" role="search"><label><span class="sr-only">İyi Yol Akademi içinde ara</span><input type="search" name="q" maxlength="100" placeholder="Blog, test, tarif veya gelişim aracı ara…" autocomplete="off"></label><button type="submit">Ara →</button></form>
+<div class="hero-actions">
       <a class="btn btn-primary" href="blog.html">Yazıları keşfet <span aria-hidden="true">→</span></a>
       <a class="btn btn-outline" href="pomodoro.html">Odaklanmaya başla</a>
     </div>
@@ -66,6 +69,13 @@
     </div>
   </aside>
 </section>
+<section class="phase-dashboard container" aria-labelledby="phaseDashboardTitle">
+ <div class="phase-section-head"><div><span class="phase-eyebrow">KENDİNE AYIRDIĞIN ALAN</span><h2 id="phaseDashboardTitle">Kaldığın yerden devam et</h2></div><span class="phase-date" id="phaseTodayDate"></span></div>
+ <div class="phase-dashboard-grid">
+ <a id="phaseContinueLink" class="phase-panel phase-panel-primary" href="blog.html"><span class="phase-panel-label">SON OKUMAN</span><div><h3 id="phaseContinueTitle">İlk yazını keşfet</h3><p id="phaseContinueDesc">Kendine ayırdığın küçük bir okumayla başla.</p></div><div class="phase-mini-progress" aria-hidden="true"><span id="phaseContinueBar" style="width:0"></span></div><span class="phase-action">Okumaya devam et →</span></a>
+ <a class="phase-panel" href="kaydedilenler.html"><span class="phase-panel-label">KÜTÜPHANEM</span><strong class="phase-big" id="phaseSavedCount">0</strong><div><h3>Kaydettiklerin</h3><p>Beğendiğin içerikler bir arada.</p></div><span class="phase-action">Kütüphaneyi aç →</span></a>
+ <a class="phase-panel" href="yapilacaklar.html"><span class="phase-panel-label">GÜNLÜK GELİŞİM</span><strong class="phase-big" id="phaseHistoryCount">0</strong><div><h3>Okuma geçmişin</h3><p>Hedef ve alışkanlıklarına zaman ayır.</p></div><span class="phase-action">Günümü planla →</span></a>
+ </div></section>
 <section class="section home-categories container" id="bolumler" aria-labelledby="sectionsTitle">
   <div class="iy-simple-heading"><h2 id="sectionsTitle">İhtiyacın olan her şey burada</h2><p>Bir bölüm seç, hemen başla.</p></div>
   <div class="iya-shortcuts">
