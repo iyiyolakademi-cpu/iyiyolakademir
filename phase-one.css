@@ -49,6 +49,7 @@ body[data-page="blog"] .blog-controls{align-items:end;gap:14px}
 body[data-page="search"] .iy-page-intro,body[data-page="saved"] .iy-page-intro{padding-bottom:30px}
 body[data-page="search"] .iy-search-shell{padding:25px;border-radius:21px;box-shadow:0 14px 40px #20372908}
 .phase-search-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px}
+.phase-search-tools[hidden]{display:none!important}
 .phase-search-tools strong{font-size:12px;color:#607066}
 .phase-search-chips{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
 .phase-chip{padding:8px 12px;border:1px solid #dfe7dc;background:#fff;color:#345443;border-radius:999px;font-size:12px;cursor:pointer}
