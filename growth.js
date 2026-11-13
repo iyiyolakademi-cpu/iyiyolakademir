@@ -76,7 +76,7 @@ function clean(data){
 }
 let state;
 try{state=clean(JSON.parse(localStorage.getItem(KEY)||"null"))}catch(_){state=blank()}
-let tab=["ozet","gorevler","hedefler","aliskanliklar","programlar","duygu","haftalik"].includes(location.hash.slice(1))?location.hash.slice(1):"ozet";
+let tab=["ozet","gorevler","hedefler","aliskanliklar","programlar","duygu","haftalik"].includes(location.hash.slice(1))?location.hash.slice(1):"gorevler";
 let moodDate=TODAY, reviewWeek=weekStart(TODAY), habitOffset=0;
 let currentMessage="";
 const root=document.createElement("div");root.id="growthRoot";root.className="growth-root container";
@@ -88,10 +88,10 @@ legacy.id="growthPanel-gorevler";legacy.className="growth-panel";legacy.hidden=t
 legacy.append(taskIntro,taskWorkspace);
 main.prepend(root);
 main.append(legacy);
-const TABS=[["ozet","Genel Bakış"],["gorevler","Günlük Görevler"],["hedefler","Hedeflerim"],["aliskanliklar","Alışkanlıklar"],["programlar","Gelişim Programları"],["duygu","Duygu Günlüğü"],["haftalik","Haftalık Değerlendirme"]];
+const TABS=[["gorevler","Görevler"],["ozet","Özet"],["hedefler","Hedefler"],["aliskanliklar","Alışkanlıklar"],["programlar","Programlar"],["duygu","Duygu Günlüğü"],["haftalik","Haftalık"]];
 const panels={};
 const shell=document.createElement("div");
-shell.innerHTML='<div class="growth-hero"><div><div class="growth-eyebrow">İYİ YOL AKADEMİ / KİŞİSEL GELİŞİM</div><h1>Hedef ve Alışkanlık <em>Merkezi</em></h1><p>Hedeflerini düzenle, alışkanlıklarını sürdür, duygularını anla. Küçük adımların burada birikiyor.</p></div><div class="growth-hero-side"><span class="growth-hero-icon">✳</span><strong>Kendi hızında ilerle.</strong><small>Bir gün ara vermek ilerlemeni silmez.</small></div></div><div class="growth-tabs" role="tablist" aria-label="Gelişim merkezi bölümleri"></div><div id="growthFlash" class="growth-flash" role="status" aria-live="polite"></div><div id="growthPanels"></div>';
+shell.innerHTML='<div class="growth-hero"><div><div class="growth-eyebrow">İYİ YOL AKADEMİ / KİŞİSEL GELİŞİM</div><h1>Kişisel Alanım</h1><p>Görevlerini, hedeflerini ve günlük kayıtlarını kolayca takip et.</p></div><div class="growth-hero-side"><span class="growth-hero-icon">✳</span><strong>Kendi hızında ilerle.</strong><small>Bir gün ara vermek ilerlemeni silmez.</small></div></div><div class="growth-tabs" role="tablist" aria-label="Gelişim merkezi bölümleri"></div><div id="growthFlash" class="growth-flash" role="status" aria-live="polite"></div><div id="growthPanels"></div>';
 root.append(...Array.from(shell.children));
 const tabs=$(".growth-tabs",root), target=$("#growthPanels",root);
 TABS.forEach(([id,label])=>{
@@ -130,29 +130,20 @@ const bar=(now,total)=>'<div class="growth-bar" aria-label="İlerleme: '+Math.mi
 const empty=(title,detail)=>'<div class="growth-empty"><span aria-hidden="true">✳</span><h3>'+esc(title)+'</h3><p>'+esc(detail)+'</p></div>';
 const sectionTitle=(tag,title,desc)=>'<div class="growth-section-title"><div><span class="growth-overline">'+esc(tag)+'</span><h2>'+esc(title)+'</h2><p>'+esc(desc)+'</p></div></div>';
 function overview(){
-  const s=periodStats();
-  let todayHabits=state.habits.filter(h=>dueHabit(h)||habitCompleted(h));
-  let active=state.programs.filter(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return t&&p.logs.length<t.days});
-  let todayTasks=[],weeklyTasks=[];
-  try{
-    const items=JSON.parse(localStorage.getItem(OLD_TASK_KEY)||"[]");
-    if(Array.isArray(items)){todayTasks=items.filter(x=>x.day===TODAY);weeklyTasks=items.filter(x=>x.day>=addDays(TODAY,-6)&&x.day<=TODAY);}
-  }catch(_){}
-  const oldCount=todayTasks.filter(x=>!x.done).length;
-  const topTasks=todayTasks.filter(x=>!x.done).sort((a,b)=>({high:0,medium:1,low:2}[a.priority]??1)-({high:0,medium:1,low:2}[b.priority]??1)).slice(0,3);
-  const habitWeek=state.habits.reduce((n,h)=>n+Object.keys(h.logs).filter(d=>h.logs[d]&&d>=addDays(TODAY,-6)&&d<=TODAY).length,0);
-  const programWeek=state.programs.reduce((n,p)=>n+p.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).length,0);
-  panels.ozet.innerHTML=sectionTitle("GÜNÜN ÖZETİ","Bugün kendin için bir adım","Küçük bir ilerleme bile kıymetli.")
-  +'<div class="growth-stats"><div><span>Aktif hedefler</span><strong>'+state.goals.length+'</strong><small>'+s.goals+' hedef tamamlandı</small></div><div><span>Bugünkü alışkanlıklar</span><strong>'+s.habits+' / '+todayHabits.length+'</strong><small>İşaretlenen adımlar</small></div><div><span>Bu haftaki program adımı</span><strong>'+s.steps+'</strong><small>Ara vermek sorun değil</small></div><div><span>Bekleyen görevler</span><strong>'+oldCount+'</strong><small>Günlük planlayıcın</small></div></div>'
-  +'<div class="growth-pulse-row"><div><span>Son 7 günde</span><strong>'+weeklyTasks.filter(x=>x.done).length+'</strong><small>görev tamamlandı</small></div><div><span>Son 7 günde</span><strong>'+habitWeek+'</strong><small>alışkanlık işaretlendi</small></div><div><span>Son 7 günde</span><strong>'+programWeek+'</strong><small>program adımı tamamlandı</small></div></div>'
-  +'<article class="growth-card growth-today-focus"><div><span class="growth-overline">BUGÜNÜN ÖNCELİKLERİ</span><h3>Önce küçük bir adım</h3>'+(topTasks.length?'<ul>'+topTasks.map(x=>'<li>'+esc(x.title)+'</li>').join("")+'</ul>':'<p>Bugün için bekleyen görevin yok. İstersen yeni bir görev ekleyebilirsin.</p>')+'</div><button type="button" class="growth-secondary" data-tab="gorevler">Görevlerime git →</button></article>'
-  +'<div class="growth-two-cols"><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">BUGÜNÜN ALIŞKANLIKLARI</span><h3>Günlük adımların</h3></div><button class="growth-link" data-tab="aliskanliklar" type="button">Tümünü gör →</button></div>'
-  +(todayHabits.length?todayHabits.slice(0,6).map(h=>'<div class="growth-quick-row"><button type="button" data-action="habit-today" data-id="'+esc(h.id)+'" class="growth-tick '+(habitCompleted(h)?"is-checked":"")+'" aria-label="'+esc(h.title)+' tamamla">'+(habitCompleted(h)?"✓":"")+'</button><span>'+esc(h.title)+'</span></div>').join(""):empty("Henüz alışkanlık eklemedin","İlk küçük adımını belirleyerek başlayabilirsin."))
-  +'</article><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">GELİŞİM YOLCULUĞU</span><h3>Devam eden programlar</h3></div><button class="growth-link" data-tab="programlar" type="button">Programlar →</button></div>'
-  +(active.length?active.slice(0,3).map(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return '<div class="growth-progress-row"><strong>'+esc(t.name)+'</strong><small>'+p.logs.length+' / '+t.days+' gün</small>'+bar(p.logs.length,t.days)+'</div>'}).join(""):empty("Bir program seç","7, 21 veya 30 günlük bir yolculuğa katıl."))
-  +'</article></div>'
-  +'<div class="growth-two-cols"><article class="growth-card growth-gentle"><span class="growth-overline">DUYGU GÜNLÜĞÜ</span><h3>Bugün nasıl hissediyorsun?</h3><p>'+(s.mood?"Bugünkü kaydın: "+MOODS[s.mood.score-1].emoji+" "+MOODS[s.mood.score-1].label:"Bir iki dakikanı kendine ayır. Hislerini yazmak zorunda değilsin; bir duygu seçmek de yeterli.")+'</p><button class="growth-primary" data-tab="duygu" type="button">'+(s.mood?"Bugünkü kaydı düzenle":"Duygumu kaydet")+' →</button></article><article class="growth-card"><span class="growth-overline">BU HAFTANIN KISA ÖZETİ</span><h3>Haftanı değerlendir</h3><p>Bu hafta ne iyi gitti? Gelecek hafta için tek bir öncelik belirle.</p><button class="growth-secondary" data-tab="haftalik" type="button">Haftalık değerlendirme →</button></article></div>'
-  +'<article class="growth-card growth-tools"><div><h3>Verilerinin kontrolü sende</h3><p>Kayıtların bu tarayıcıda saklanır, başka bir cihazla otomatik eşitlenmez. Yedek alabilir veya geri yükleyebilirsin. Hedefler, alışkanlıklar, programlar, günlük görevler ve duygu günlüğü tek dosyada yedeklenir. Dosyayı güvenli sakla.</p></div><div class="growth-actions"><button class="growth-secondary" type="button" data-action="backup">Yedek indir</button><button class="growth-secondary" type="button" data-action="restore">Yedek yükle</button><button class="growth-text-danger" type="button" data-action="reset">Gelişim verilerini sil</button></div></article>';
+ const todayHabits=state.habits.filter(h=>dueHabit(h)||habitCompleted(h));
+ const active=state.programs.filter(p=>{const t=TEMPLATES.find(x=>x.id===p.templateId);return t&&p.logs.length<t.days;});
+ let remaining=0;try{const stored=JSON.parse(localStorage.getItem(OLD_TASK_KEY)||"[]");if(Array.isArray(stored))remaining=stored.filter(t=>t.day===TODAY&&!t.done).length;}catch(_){}
+ const mood=state.moods.find(m=>m.date===TODAY);
+ panels.ozet.innerHTML=sectionTitle("BUGÜN","Kısa bir bakış","Sadece bugünkü adımların.")
+ +'<div class="simple-overview-grid">'
+ +'<button class="growth-card simple-overview-link" data-tab="gorevler" type="button"><strong>'+remaining+'</strong><span>Bekleyen görev</span><small>Görevlere git →</small></button>'
+ +'<button class="growth-card simple-overview-link" data-tab="hedefler" type="button"><strong>'+state.goals.length+'</strong><span>Hedefim</span><small>Hedefleri aç →</small></button>'
+ +'<button class="growth-card simple-overview-link" data-tab="duygu" type="button"><strong>'+(mood?MOODS[mood.score-1].emoji:"＋")+'</strong><span>Duygu günlüğü</span><small>'+(mood?"Kaydı düzenle →":"Bugünü kaydet →")+'</small></button>'
+ +'</div>'
+ +'<section class="growth-card simple-overview-main"><div class="growth-card-heading"><h3>Bugünkü alışkanlıklar</h3><button class="growth-link" data-tab="aliskanliklar" type="button">Tümünü gör →</button></div>'
+ +(todayHabits.length?todayHabits.slice(0,7).map(h=>'<div class="growth-quick-row"><button type="button" data-action="habit-today" data-id="'+esc(h.id)+'" class="growth-tick '+(habitCompleted(h)?"is-checked":"")+'" aria-label="'+esc(h.title)+' işaretle" aria-pressed="'+habitCompleted(h)+'">'+(habitCompleted(h)?"✓":"")+'</button><span>'+esc(h.title)+'</span></div>').join(""):empty("Henüz alışkanlığın yok","Alışkanlıklar bölümünden bir tane ekleyebilirsin."))+'</section>'
+ +(active.length?'<section class="growth-card simple-overview-main"><div class="growth-card-heading"><h3>Devam eden programlar</h3><button class="growth-link" data-tab="programlar" type="button">Aç →</button></div>'+active.slice(0,3).map(p=>{const t=TEMPLATES.find(x=>x.id===p.templateId);return '<div class="growth-progress-row"><strong>'+esc(t.name)+'</strong><small>'+p.logs.length+' / '+t.days+' gün</small>'+bar(p.logs.length,t.days)+'</div>'}).join("")+'</section>':'')
+ +'<details class="growth-card simple-more"><summary>Yedekleme ve diğer seçenekler</summary><div class="growth-actions"><button class="growth-secondary small" type="button" data-action="backup">Yedeği indir</button><button class="growth-secondary small" type="button" data-action="restore">Yedek yükle</button><button class="growth-text-danger small" type="button" data-action="reset">Gelişim kayıtlarını sil</button></div><p>Verilerin yalnızca bu tarayıcıda tutulur; yedek dosyalarını güvenli sakla.</p></details>';
 }
 function goals(){
  const categories=Object.entries(PERIODS).map(([id,label])=>'<span><strong>'+state.goals.filter(g=>g.period===id).length+'</strong>'+esc(label)+'</span>').join("");
