@@ -295,7 +295,27 @@ window.addEventListener("hashchange",()=>{const id=location.hash.slice(1);if(pan
 const restore=document.createElement("input");restore.type="file";restore.accept=".json,application/json";restore.id="growthRestoreInput";restore.hidden=true;root.appendChild(restore);
 restore.addEventListener("change",async e=>{
  const file=e.target.files?.[0];e.target.value="";if(!file)return;if(file.size>2000000){notify("Yedek dosyası 2 MB sınırını aşıyor.");return}
- try{const parsed=JSON.parse(await file.text());if(parsed.app!=="iyi-yol-akademi-growth"||!parsed.data||!Array.isArray(parsed.data.goals)||!Array.isArray(parsed.data.habits)){notify("Bu, geçerli bir İyi Yol Akademi gelişim yedeği değil.");return}if(!confirm("Mevcut gelişim kayıtlarının üzerine yedek içeriği yazılacak. Devam edilsin mi?"))return;transaction(()=>{state=clean(parsed.data)},"Gelişim yedeği geri yüklendi.")}catch(_){notify("Yedek okunamadı. Dosyayı kontrol et.")}
+ try{
+   const parsed=JSON.parse(await file.text());
+   if(parsed.app!=="iyi-yol-akademi-growth"||!parsed.data||!Array.isArray(parsed.data.goals)||!Array.isArray(parsed.data.habits)){notify("Bu, geçerli bir İyi Yol Akademi gelişim yedeği değil.");return}
+   if(parsed.tasks!==undefined&&!Array.isArray(parsed.tasks)){notify("Yedekteki günlük görevler geçersiz.");return}
+   const safeTasks=Array.isArray(parsed.tasks)?parsed.tasks.filter(t=>t&&typeof t.id==="string"&&typeof t.title==="string"&&t.title.length<=160&&/^\\d{4}-\\d{2}-\\d{2}$/.test(t.day)&&["high","medium","low"].includes(t.priority)).slice(0,3000).map(t=>({id:t.id,title:t.title,day:t.day,priority:t.priority,done:t.done===true})):null;
+   const msg=safeTasks?"Gelişim ve günlük görev kayıtların yedekteki bilgilerle değiştirilecek.":"Gelişim kayıtların değiştirilecek; günlük görevlerin korunacak.";
+   if(!confirm(msg+" Devam edilsin mi?"))return;
+   const previousGrowth=localStorage.getItem(KEY),previousTasks=localStorage.getItem(OLD_TASK_KEY);
+   try{
+     const imported=clean(parsed.data);
+     localStorage.setItem(KEY,JSON.stringify(imported));
+     if(safeTasks)localStorage.setItem(OLD_TASK_KEY,JSON.stringify(safeTasks));
+     state=imported;location.reload();
+   }catch(_){
+     try{
+       if(previousGrowth===null)localStorage.removeItem(KEY);else localStorage.setItem(KEY,previousGrowth);
+       if(previousTasks===null)localStorage.removeItem(OLD_TASK_KEY);else localStorage.setItem(OLD_TASK_KEY,previousTasks);
+     }catch(_){}
+     notify("Yedek geri yüklenemedi; tarayıcı depolamasını kontrol et.");
+   }
+ }catch(_){notify("Yedek okunamadı. Dosyayı kontrol et.")}
 });
 window.addEventListener('iya:tasks-updated',()=>overview());
 const settings=document.createElement("div");settings.className="growth-notification-tools";settings.innerHTML='<button class="growth-secondary small" type="button" data-action="notify">🔔 Site açıkken hatırlatmaları aç</button><small>Tarayıcı bildirimleri sayfa kapalıyken güvenilir biçimde çalışmaz. Saat belirlediğin hedef ve alışkanlıklar için geçerlidir.</small>';
