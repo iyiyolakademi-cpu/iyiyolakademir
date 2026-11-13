@@ -112,7 +112,7 @@ function initReader(){
  let ready=false,timer=0;
  const getPct=()=>{
   const top=article.getBoundingClientRect().top+scrollY;
-  const distance=Math.max(1,article.offsetHeight-innerHeight*0.7);
+  const distance=Math.max(1,article.offsetHeight-innerHeight+100);
   return Math.round(Math.max(0,Math.min(100,(scrollY-top+100)/distance*100)));
  };
  const writeProgress=()=>{
@@ -137,7 +137,7 @@ function initReader(){
    box.hidden=false;
    resume.addEventListener('click',()=>{
     const top=article.getBoundingClientRect().top+scrollY;
-    const distance=Math.max(1,article.offsetHeight-innerHeight*.7);
+    const distance=Math.max(1,article.offsetHeight-innerHeight+100);
     scrollTo({top:top+distance*pct/100,behavior:'smooth'});
     box.hidden=true;
    });
