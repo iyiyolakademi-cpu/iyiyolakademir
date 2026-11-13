@@ -227,6 +227,13 @@ root.addEventListener("click",async e=>{
   if(a==="goal-set"){let g=state.goals.find(x=>x.id===id);if(!g)return;let value=prompt("Bu dönem için tamamladığın toplam "+(g.unit||"adım")+" miktarı:",count(g));if(value===null)return;let n=Number(value);if(!Number.isInteger(n)||n<0||n>999999){notify("0 ile 999999 arasında tam sayı gir.");return}transaction(()=>{g.counts[key(g)]=n},"İlerlemen güncellendi.");return}
   if(a==="goal-delete"){if(!confirm("Bu hedefi ve ilerleme kayıtlarını silmek istiyor musun?"))return;transaction(()=>{state.goals=state.goals.filter(g=>g.id!==id)},"Hedef silindi.");return}
   if(a==="goal-edit"){let g=state.goals.find(x=>x.id===id);if(!g)return;let title=prompt("Hedefin yeni adı:",g.title);if(title===null)return;title=capped(title,120);if(!title)return;let target=prompt("Yeni hedef miktarı:",g.target);if(target===null)return;let n=Number(target);if(!Number.isInteger(n)||n<1||n>100000){notify("Hedef miktarı 1–100000 arasında tam sayı olmalı.");return}let unit=prompt("Ölçü birimi:",g.unit);if(unit===null)return;let reminder=prompt("Hatırlatma saati (SS:DD; istemiyorsan boş):",g.reminder||"");if(reminder===null)return;if(reminder&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(reminder)){notify("Saati 09:30 biçiminde yaz.");return}transaction(()=>{g.title=title;g.target=n;g.unit=capped(unit,30);g.reminder=reminder},"Hedef güncellendi.");return}
+  if(a==="habit-preset"){
+    const preset=HABIT_PRESETS[Number(b.dataset.preset)];
+    if(!preset)return;
+    if(state.habits.some(h=>h.title.toLocaleLowerCase("tr-TR")===preset[0].toLocaleLowerCase("tr-TR"))){notify("Bu alışkanlığı daha önce ekledin.");return}
+    if(state.habits.length>=100){notify("En fazla 100 alışkanlık oluşturabilirsin.");return}
+    transaction(()=>{state.habits.unshift({id:uuid(),title:preset[0],frequency:preset[1],logs:{},reminder:""});tab="aliskanliklar"},"Alışkanlık eklendi. Bugün işaretleyerek başlayabilirsin.");return;
+  }
   if(a==="habit-today"||a==="habit-date"){let at=a==="habit-today"?TODAY:b.dataset.date;let h=state.habits.find(x=>x.id===id);if(!h||at>TODAY)return;transaction(()=>{if(h.logs[at])delete h.logs[at];else h.logs[at]=true},"Alışkanlık takvimi güncellendi.");return}
   if(a==="habit-delete"){if(!confirm("Alışkanlığı ve işaretlenmiş günleri silmek istiyor musun?"))return;transaction(()=>{state.habits=state.habits.filter(h=>h.id!==id)},"Alışkanlık silindi.");return}
   if(a==="habit-prev"){habitOffset-=14;render();return}
@@ -246,9 +253,16 @@ root.addEventListener("click",async e=>{
   if(a==="notify"){if(!("Notification" in window)){notify("Bu tarayıcı bildirimleri desteklemiyor.");return}if(Notification.permission==="denied"){notify("Tarayıcı ayarlarından bildirim izni vermen gerekiyor.");return}let status=await Notification.requestPermission();transaction(()=>{state.settings.notifications=status==="granted"},status==="granted"?"Hatırlatmalar bu sayfa açıkken çalışacak.":"Bildirim izni verilmedi.");return}
 });
 root.addEventListener("submit",e=>{
-  const form=e.target;if(!["growthGoalForm","growthHabitForm","growthMoodForm","growthReviewForm"].includes(form.id))return;
+  const form=e.target;if(!["growthGoalForm","growthHabitForm","growthMoodForm","growthReviewForm"].includes(form.id)&&form.dataset.form!=="habit-edit")return;
   e.preventDefault();const f=new FormData(form);
   if(form.id==="growthGoalForm"){let title=capped(f.get("title"),120),target=Number(f.get("target")),period=f.get("period"),reminder=f.get("reminder")||"";if(!title||!Number.isInteger(target)||target<1||target>100000||!PERIODS[period])return notify("Hedef alanlarını kontrol et.");if(state.goals.length>=200)return notify("En fazla 200 hedef oluşturabilirsin.");transaction(()=>{state.goals.unshift({id:uuid(),title,target,period,unit:capped(f.get("unit"),30),reminder,counts:{}})},"Yeni hedef eklendi.");return}
+  if(form.dataset.form==="habit-edit"){
+    const h=state.habits.find(x=>x.id===form.dataset.id);
+    if(!h)return;
+    const title=capped(f.get("title"),120),frequency=f.get("frequency"),reminder=f.get("reminder")||"";
+    if(!title||!["daily","weekdays","weekly"].includes(frequency)||(reminder&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(reminder))){notify("Alışkanlık bilgilerini kontrol et.");return}
+    transaction(()=>{h.title=title;h.frequency=frequency;h.reminder=reminder},"Alışkanlık güncellendi.");return;
+  }
   if(form.id==="growthHabitForm"){let title=capped(f.get("title"),120),frequency=f.get("frequency");if(!title||!["daily","weekdays","weekly"].includes(frequency))return notify("Alışkanlık bilgilerini kontrol et.");if(state.habits.length>=100)return notify("En fazla 100 alışkanlık oluşturabilirsin.");transaction(()=>{state.habits.unshift({id:uuid(),title,frequency,reminder:f.get("reminder")||"",logs:{}})},"Alışkanlığın eklendi.");return}
   if(form.id==="growthMoodForm"){let dateValue=f.get("date"),score=Number(f.get("score")),energy=Number(f.get("energy"));if(!/^\d{4}-\d{2}-\d{2}$/.test(dateValue)||dateValue>TODAY||score<1||score>5||energy<1||energy>5)return notify("Tarih ve duygu değerlerini kontrol et.");moodDate=dateValue;transaction(()=>{state.moods=state.moods.filter(m=>m.date!==dateValue);state.moods.push({date:dateValue,score,energy,note:capped(f.get("note"),1500),good:capped(f.get("good"),600)})},"Duygu günlüğün kaydedildi.");return}
   if(form.id==="growthReviewForm"){let x={week:reviewWeek,win:capped(f.get("win"),1000),learn:capped(f.get("learn"),1000),next:capped(f.get("next"),1000)};transaction(()=>{state.reviews=state.reviews.filter(r=>r.week!==reviewWeek);state.reviews.push(x)},"Haftalık değerlendirmen kaydedildi.");return}
