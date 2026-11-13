@@ -115,12 +115,13 @@ function key(g,at=TODAY){
 }
 const count=g=>number(g.counts[key(g)]||0);
 const doneHabit=(h,at=TODAY)=>!!h.logs[at];
+const habitCompleted=(h,at=TODAY)=>h.frequency==="weekly"?Object.keys(h.logs).some(d=>h.logs[d]&&weekStart(d)===weekStart(at)):doneHabit(h,at);
 function freqText(f){return {daily:"Her gün",weekdays:"Hafta içi",weekly:"Haftada bir"}[f]||"Her gün"}
 function dueHabit(h,at=TODAY){if(h.frequency==="weekdays"){let n=date(at).getDay();return n!==0&&n!==6}if(h.frequency==="weekly"){let w=weekStart(at);return !Object.keys(h.logs).some(d=>h.logs[d]&&weekStart(d)===w)}return true}
 function weekCount(h){const start=weekStart(TODAY);return Object.keys(h.logs).filter(d=>h.logs[d]&&d>=start&&d<=TODAY).length}
 function periodStats(){
   let goals=state.goals.filter(g=>count(g)>=g.target).length;
-  let habits=state.habits.filter(h=>doneHabit(h)).length;
+  let habits=state.habits.filter(h=>habitCompleted(h)).length;
   let steps=state.programs.reduce((n,p)=>n+p.logs.filter(x=>x.date>=weekStart(TODAY)&&x.date<=TODAY).length,0);
   let mood=state.moods.find(m=>m.date===TODAY);
   return {goals,habits,steps,mood};
@@ -130,7 +131,7 @@ const empty=(title,detail)=>'<div class="growth-empty"><span aria-hidden="true">
 const sectionTitle=(tag,title,desc)=>'<div class="growth-section-title"><div><span class="growth-overline">'+esc(tag)+'</span><h2>'+esc(title)+'</h2><p>'+esc(desc)+'</p></div></div>';
 function overview(){
   const s=periodStats();
-  let todayHabits=state.habits.filter(h=>dueHabit(h)||doneHabit(h));
+  let todayHabits=state.habits.filter(h=>dueHabit(h)||habitCompleted(h));
   let active=state.programs.filter(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return t&&p.logs.length<t.days});
   let todayTasks=[],weeklyTasks=[];
   try{
@@ -146,7 +147,7 @@ function overview(){
   +'<div class="growth-pulse-row"><div><span>Son 7 günde</span><strong>'+weeklyTasks.filter(x=>x.done).length+'</strong><small>görev tamamlandı</small></div><div><span>Son 7 günde</span><strong>'+habitWeek+'</strong><small>alışkanlık işaretlendi</small></div><div><span>Son 7 günde</span><strong>'+programWeek+'</strong><small>program adımı tamamlandı</small></div></div>'
   +'<article class="growth-card growth-today-focus"><div><span class="growth-overline">BUGÜNÜN ÖNCELİKLERİ</span><h3>Önce küçük bir adım</h3>'+(topTasks.length?'<ul>'+topTasks.map(x=>'<li>'+esc(x.title)+'</li>').join("")+'</ul>':'<p>Bugün için bekleyen görevin yok. İstersen yeni bir görev ekleyebilirsin.</p>')+'</div><button type="button" class="growth-secondary" data-tab="gorevler">Görevlerime git →</button></article>'
   +'<div class="growth-two-cols"><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">BUGÜNÜN ALIŞKANLIKLARI</span><h3>Günlük adımların</h3></div><button class="growth-link" data-tab="aliskanliklar" type="button">Tümünü gör →</button></div>'
-  +(todayHabits.length?todayHabits.slice(0,6).map(h=>'<div class="growth-quick-row"><button type="button" data-action="habit-today" data-id="'+esc(h.id)+'" class="growth-tick '+(doneHabit(h)?"is-checked":"")+'" aria-label="'+esc(h.title)+' tamamla">'+(doneHabit(h)?"✓":"")+'</button><span>'+esc(h.title)+'</span></div>').join(""):empty("Henüz alışkanlık eklemedin","İlk küçük adımını belirleyerek başlayabilirsin."))
+  +(todayHabits.length?todayHabits.slice(0,6).map(h=>'<div class="growth-quick-row"><button type="button" data-action="habit-today" data-id="'+esc(h.id)+'" class="growth-tick '+(habitCompleted(h)?"is-checked":"")+'" aria-label="'+esc(h.title)+' tamamla">'+(habitCompleted(h)?"✓":"")+'</button><span>'+esc(h.title)+'</span></div>').join(""):empty("Henüz alışkanlık eklemedin","İlk küçük adımını belirleyerek başlayabilirsin."))
   +'</article><article class="growth-card"><div class="growth-card-heading"><div><span class="growth-overline">GELİŞİM YOLCULUĞU</span><h3>Devam eden programlar</h3></div><button class="growth-link" data-tab="programlar" type="button">Programlar →</button></div>'
   +(active.length?active.slice(0,3).map(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return '<div class="growth-progress-row"><strong>'+esc(t.name)+'</strong><small>'+p.logs.length+' / '+t.days+' gün</small>'+bar(p.logs.length,t.days)+'</div>'}).join(""):empty("Bir program seç","7, 21 veya 30 günlük bir yolculuğa katıl."))
   +'</article></div>'
@@ -249,7 +250,7 @@ root.addEventListener("click",async e=>{
     if(state.habits.length>=100){notify("En fazla 100 alışkanlık oluşturabilirsin.");return}
     transaction(()=>{state.habits.unshift({id:uuid(),title:preset[0],frequency:preset[1],logs:{},reminder:""});tab="aliskanliklar"},"Alışkanlık eklendi. Bugün işaretleyerek başlayabilirsin.");return;
   }
-  if(a==="habit-today"||a==="habit-date"){let at=a==="habit-today"?TODAY:b.dataset.date;let h=state.habits.find(x=>x.id===id);if(!h||at>TODAY)return;transaction(()=>{if(h.logs[at])delete h.logs[at];else h.logs[at]=true},"Alışkanlık takvimi güncellendi.");return}
+  if(a==="habit-today"||a==="habit-date"){let at=a==="habit-today"?TODAY:b.dataset.date;let h=state.habits.find(x=>x.id===id);if(!h||at>TODAY)return;transaction(()=>{if(a==="habit-today"&&h.frequency==="weekly"){const dates=Object.keys(h.logs).filter(d=>h.logs[d]&&weekStart(d)===weekStart(TODAY));if(dates.length)dates.forEach(d=>delete h.logs[d]);else h.logs[TODAY]=true;}else if(h.logs[at])delete h.logs[at];else h.logs[at]=true},"Alışkanlık takvimi güncellendi.");return}
   if(a==="habit-delete"){if(!confirm("Alışkanlığı ve işaretlenmiş günleri silmek istiyor musun?"))return;transaction(()=>{state.habits=state.habits.filter(h=>h.id!==id)},"Alışkanlık silindi.");return}
   if(a==="habit-prev"){habitOffset-=14;render();return}
   if(a==="habit-next"){habitOffset=Math.min(0,habitOffset+14);render();return}
