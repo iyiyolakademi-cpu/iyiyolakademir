@@ -23,6 +23,45 @@ const TEMPLATES=[
   {id:"rutin21",name:"21 Günlük İyi Alışkanlık",days:21,type:"check",desc:"Kendin için seçtiğin küçük alışkanlığa her gün devam et.",action:"Bugünkü küçük adımımı gerçekleştirdim."},
   {id:"okuma30",name:"30 Günde Okuma Alışkanlığı",days:30,type:"pages",desc:"Okuduğun sayfaları kaydet. Ara verdiğinde kaldığın yerden sürdür.",action:"Bugün kaç sayfa okudun?"}
 ];
+
+const HABIT_PRESETS=[["10 dakika kitap oku","daily"],["15 dakika yürüyüş yap","daily"],["5 dakika nefes egzersizi","daily"],["Günümü 3 maddeyle planla","weekdays"],["Haftalık değerlendirme yap","weekly"]];
+function habitSummary(h){
+ const days=Array.from({length:7},(_,i)=>addDays(TODAY,i-6)),marked=days.filter(d=>h.logs[d]).length;
+ if(h.frequency==="weekly")return {label:"Son 7 gün "+marked+" kayıt",streak:"Haftalık alışkanlık"};
+ let count=0,at=h.logs[TODAY]?TODAY:addDays(TODAY,-1);
+ for(let n=0;n<365;n++,at=addDays(at,-1)){
+  const weekday=date(at).getDay();
+  if(h.frequency==="weekdays"&&(weekday===0||weekday===6))continue;
+  if(!h.logs[at])break;
+  count++;
+ }
+ const due=days.filter(d=>h.frequency!=="weekdays"||![0,6].includes(date(d).getDay())).length;
+ return {label:"Son 7 gün "+marked+" / "+due,streak:count?count+" planlı gün üst üste":"Bugün yeniden başlayabilirsin"};
+}
+const PROGRAM_GUIDES={
+ farkindalik7:[
+ "Kendine iyi gelen üç küçük şeyi yaz.","Bugün 5 dakika boyunca dikkatini nefesine ver.",
+ "Seni mutlu eden bir anı hatırla.","Bugün kendin için küçük bir mola ayır.",
+ "Zor bir düşünceni yargılamadan yaz.","İyi geldiğini bildiğin bir davranışı tekrar et.","Bu haftanın en anlamlı kazanımını not al."
+ ],
+ rutin21:[
+ "Küçük alışkanlığını bugün yap ve ne zaman yaptığını not al.","Alışkanlığı kolaylaştıran bir ortam oluştur.",
+ "Başlamanı zorlaştıran tek bir engeli azalt.","Alışkanlığını günlük bir rutine bağla.","İlk dört günün nasıl geçtiğini düşün.","Gerekirse hedefini küçült, ama sürdür.","İlk haftanı değerlendir: işe yarayan ne?",
+ "Bugün sadece başlamaya odaklan.","Alışkanlık için sabit bir saat dene.","Kendine nazik bir hatırlatma yaz.","İlerlemeni bir cümleyle özetle.","Alışkanlığı daha keyifli kılacak bir değişiklik yap.","Bugünkü küçük çabanı fark et.","İkinci haftayı değerlendir.",
+ "Bugün de küçük adımına devam et.","Bir zor günü nasıl kolaylaştırabileceğini düşün.","Yeni bir engel varsa onu azalt.","Hangi saatlerde daha rahat yaptığını gözlemle.","Kendine iyi gelen kısmını not al.","Bugünkü adımını tamamla ve kendini kutla.","Üç haftalık deneyiminden öğrendiklerini yaz."
+ ]
+};
+function programGuide(t,completed){
+ if(t.id==="okuma30"){
+  const n=completed+1;
+  if(n<=7)return "Bugün rahat bir yerde birkaç sayfa oku. Okuduğun sayfayı kaydet.";
+  if(n<=14)return "Okumaya başlamak için kısa bir zaman aralığı ayır.";
+  if(n<=21)return "Okuduklarından aklında kalan bir fikri not al.";
+  return "Okuma düzenini sürdür; bu alışkanlığı gelecek aya nasıl taşıyacağını düşün.";
+ }
+ return (PROGRAM_GUIDES[t.id]||[])[completed]||t.action;
+}
+
 const blank=()=>({goals:[],habits:[],programs:[],moods:[],reviews:[],settings:{notifications:false}});
 function clean(data){
   let out=blank();
