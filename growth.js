@@ -151,7 +151,7 @@ function overview(){
   +(active.length?active.slice(0,3).map(p=>{let t=TEMPLATES.find(x=>x.id===p.templateId);return '<div class="growth-progress-row"><strong>'+esc(t.name)+'</strong><small>'+p.logs.length+' / '+t.days+' gün</small>'+bar(p.logs.length,t.days)+'</div>'}).join(""):empty("Bir program seç","7, 21 veya 30 günlük bir yolculuğa katıl."))
   +'</article></div>'
   +'<div class="growth-two-cols"><article class="growth-card growth-gentle"><span class="growth-overline">DUYGU GÜNLÜĞÜ</span><h3>Bugün nasıl hissediyorsun?</h3><p>'+(s.mood?"Bugünkü kaydın: "+MOODS[s.mood.score-1].emoji+" "+MOODS[s.mood.score-1].label:"Bir iki dakikanı kendine ayır. Hislerini yazmak zorunda değilsin; bir duygu seçmek de yeterli.")+'</p><button class="growth-primary" data-tab="duygu" type="button">'+(s.mood?"Bugünkü kaydı düzenle":"Duygumu kaydet")+' →</button></article><article class="growth-card"><span class="growth-overline">BU HAFTANIN KISA ÖZETİ</span><h3>Haftanı değerlendir</h3><p>Bu hafta ne iyi gitti? Gelecek hafta için tek bir öncelik belirle.</p><button class="growth-secondary" data-tab="haftalik" type="button">Haftalık değerlendirme →</button></article></div>'
-  +'<article class="growth-card growth-tools"><div><h3>Verilerinin kontrolü sende</h3><p>Kayıtların bu tarayıcıda saklanır, başka bir cihazla otomatik eşitlenmez. Yedek alabilir veya geri yükleyebilirsin. Duygu günlüğün dahil tüm gelişim bilgilerin yedeğe girer; dosyayı güvenli sakla.</p></div><div class="growth-actions"><button class="growth-secondary" type="button" data-action="backup">Yedek indir</button><button class="growth-secondary" type="button" data-action="restore">Yedek yükle</button><button class="growth-text-danger" type="button" data-action="reset">Gelişim verilerini sil</button></div></article>';
+  +'<article class="growth-card growth-tools"><div><h3>Verilerinin kontrolü sende</h3><p>Kayıtların bu tarayıcıda saklanır, başka bir cihazla otomatik eşitlenmez. Yedek alabilir veya geri yükleyebilirsin. Hedefler, alışkanlıklar, programlar, günlük görevler ve duygu günlüğü tek dosyada yedeklenir. Dosyayı güvenli sakla.</p></div><div class="growth-actions"><button class="growth-secondary" type="button" data-action="backup">Yedek indir</button><button class="growth-secondary" type="button" data-action="restore">Yedek yükle</button><button class="growth-text-danger" type="button" data-action="reset">Gelişim verilerini sil</button></div></article>';
 }
 function goals(){
   panels.hedefler.innerHTML=sectionTitle("GÜNLÜK · HAFTALIK · AYLIK · YILLIK","Hedeflerim","Her hedefin ilerlemesi kendi döneminde tutulur; yeni dönemde sıfırdan başlar, geçmiş kayıtlar korunur.")
@@ -265,7 +265,12 @@ root.addEventListener("click",async e=>{
   if(a==="review-prev"){reviewWeek=addDays(reviewWeek,-7);render();return}
   if(a==="review-next"){reviewWeek=addDays(reviewWeek,7);render();return}
   if(a==="review-open"){reviewWeek=b.dataset.date;tab="haftalik";render();return}
-  if(a==="backup"){download("iyi-yol-akademi-gelisim-yedegi-"+TODAY+".json",JSON.stringify({app:"iyi-yol-akademi-growth",version:1,exportedAt:new Date().toISOString(),data:state},null,2));notify("Yedek indirildi. Duygu günlüğün de dosyanın içinde; güvenli sakla.");return}
+  if(a==="backup"){
+ let savedTasks=[];try{const arr=JSON.parse(localStorage.getItem(OLD_TASK_KEY)||"[]");if(Array.isArray(arr))savedTasks=arr.slice(0,3000)}catch(_){}
+ const packet={app:"iyi-yol-akademi-growth",version:2,exportedAt:new Date().toISOString(),data:state,tasks:savedTasks};
+ download("iyi-yol-akademi-gelisim-ve-gorevler-"+TODAY+".json",JSON.stringify(packet,null,2));
+ notify("Görevler ve gelişim kayıtlarının yedeği indirildi. Dosyayı güvenli sakla.");return;
+}
   if(a==="restore"){$("#growthRestoreInput").click();return}
   if(a==="reset"){if(!confirm("Hedef, alışkanlık, program, duygu günlüğü ve değerlendirme kayıtlarının tamamı bu tarayıcıdan silinecek. Günlük görev listen korunacak. Emin misin?"))return;transaction(()=>{state=blank()},"Gelişim merkezi kayıtları silindi.");return}
   if(a==="notify"){if(!("Notification" in window)){notify("Bu tarayıcı bildirimleri desteklemiyor.");return}if(Notification.permission==="denied"){notify("Tarayıcı ayarlarından bildirim izni vermen gerekiyor.");return}let status=await Notification.requestPermission();transaction(()=>{state.settings.notifications=status==="granted"},status==="granted"?"Hatırlatmalar bu sayfa açıkken çalışacak.":"Bildirim izni verilmedi.");return}
