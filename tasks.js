@@ -11,7 +11,7 @@ function fromDay(day){const [y,m,d]=day.split('-').map(Number);return new Date(y
 function plusDays(day,amount){const d=fromDay(day);d.setDate(d.getDate()+amount);return localDay(d)}
 function trDate(day,options){return fromDay(day).toLocaleDateString('tr-TR',options)}
 const today=localDay(new Date());
-let selected=today, filter='all', editing=null, items=[];
+let selected=today, filter='all', editing=null, items=[], search='', sort='priority';
 try {
   const parsed=JSON.parse(localStorage.getItem(KEY)||'[]');
   if(Array.isArray(parsed)) items=parsed.filter(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(t.day)&&PRIORITY[t.priority]).slice(0,3000);
@@ -38,7 +38,12 @@ function renderWeek(){
     const text=document.createElement('span');text.textContent=shortNames[d.getDay()];
     const num=document.createElement('strong');num.textContent=String(d.getDate());
     b.append(text,num);
-    if(items.some(t=>t.day===day)){const mark=document.createElement('b');mark.setAttribute('aria-hidden','true');b.appendChild(mark)}
+    const entries=items.filter(t=>t.day===day);
+    if(entries.length){
+      const mark=document.createElement('b');mark.className='task-day-count';mark.textContent=entries.filter(t=>t.done).length+'/'+entries.length;
+      mark.setAttribute('aria-hidden','true');b.appendChild(mark);
+      b.setAttribute('aria-label',b.getAttribute('aria-label')+', '+entries.filter(t=>t.done).length+' / '+entries.length+' görev tamamlandı');
+    }
     week.appendChild(b);
   }
 }
@@ -60,7 +65,14 @@ function renderList(){
   $('#progressFill').style.width=percent+'%';
   $('#progressMessage').textContent=todayItems.length?(done===todayItems.length?'Tebrikler, bugünkü tüm görevleri tamamladın!':done?'Güzel gidiyorsun, devam et.':'Bir görevle başla, gerisi gelecektir.'):'Bir görev ekleyerek başla.';
   document.querySelectorAll('[data-filter]').forEach(b=>{const active=b.dataset.filter===filter;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active))});
-  const matching=todayItems.filter(t=>filter==='all'||(filter==='done'?!!t.done:!t.done));
+  const matching=todayItems
+    .filter(t=>(filter==='all'||(filter==='done'?!!t.done:!t.done))&&(!search||t.title.toLocaleLowerCase('tr-TR').includes(search)))
+    .sort((a,b)=>{
+      if(sort==='az')return a.title.localeCompare(b.title,'tr-TR');
+      if(sort==='newest')return items.indexOf(b)-items.indexOf(a);
+      if(Boolean(a.done)!==Boolean(b.done))return Number(a.done)-Number(b.done);
+      return ({high:0,medium:1,low:2}[a.priority]-{high:0,medium:1,low:2}[b.priority])||items.indexOf(a)-items.indexOf(b);
+    });
   const list=$('#taskList');list.replaceChildren();
   if(!matching.length){
     showEmpty(list,filter==='done'?'Tamamladığın görevler burada görünecek.':filter==='open'?'Yapılacak yeni bir görev bulunmuyor.':'Bugünün ilk görevini ekle ve planını oluşturmaya başla.',filter==='done'?'Henüz tamamlanan yok':filter==='open'?'Her şey tamam!':'Günün seni bekliyor');
@@ -77,10 +89,20 @@ function renderList(){
     const actions=document.createElement('div');actions.className='task-actions';
     const edit=button('✎','',()=>openModal(task));edit.setAttribute('aria-label','Görevi düzenle: '+task.title);
     const remove=button('×','delete',()=>{if(!confirm('Bu görevi silmek istiyor musun?'))return;const previous=items;items=items.filter(x=>x.id!==task.id);if(!save())items=previous;render()});remove.setAttribute('aria-label','Görevi sil: '+task.title);
+    if(!task.done){
+      const carry=button('Yarına taşı','task-carry',()=>{
+        const original=task.day;task.day=plusDays(task.day,1);
+        if(!save())task.day=original;
+        render();
+      });carry.setAttribute('aria-label','Görevi ertesi güne taşı: '+task.title);actions.append(carry);
+    }
     actions.append(edit,remove);row.append(check,content,actions);list.appendChild(row);
   }
 }
-function render(){renderWeek();renderList()}
+function render(){
+  renderWeek();renderList();
+  window.dispatchEvent(new CustomEvent('iya:tasks-updated',{detail:{todayItems:items.filter(t=>t.day===today).length}}));
+}
 const overlay=$('#taskDialog'),form=$('#taskForm'),title=$('#taskTitle'),date=$('#taskDate');
 function openModal(task){
   editing=task?.id||null;form.reset();
@@ -111,5 +133,18 @@ $('#prevWeek').addEventListener('click',()=>{selected=plusDays(selected,-7);filt
 $('#nextWeek').addEventListener('click',()=>{selected=plusDays(selected,7);filter='all';render()});
 $('#todayBtn').addEventListener('click',()=>{selected=today;filter='all';render()});
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;renderList()}));
+$('#taskSearch')?.addEventListener('input',e=>{search=e.target.value.trim().toLocaleLowerCase('tr-TR');renderList()});
+$('#taskSort')?.addEventListener('change',e=>{sort=e.target.value;renderList()});
+$('#taskQuickForm')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  const input=$('#taskQuickInput'),title=input?.value.trim();
+  if(!title)return input?.focus();
+  if(title.length>160){alert('Görev adı 160 karakterden kısa olmalı.');return}
+  if(items.length>=3000){alert('En fazla 3000 görev kaydedebilirsin.');return}
+  items.push({id:typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():'task-'+Date.now()+'-'+Math.random().toString(36).slice(2),title,day:selected,priority:'medium',done:false});
+  if(!save()){items.pop();return}
+  input.value='';search='';if($('#taskSearch'))$('#taskSearch').value='';
+  filter='all';render();input.focus();
+});
 render();
 })();
