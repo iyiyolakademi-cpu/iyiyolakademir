@@ -200,6 +200,16 @@ body[data-page="tasks"] .growth-program .growth-program-next p{font-size:13px!im
 body[data-page="tasks"] .growth-program-tiles span{height:31px!important;font-size:10px}
 body[data-page="tasks"] .growth-program .simple-program-more{margin-top:14px!important}
 body[data-page="tasks"] .growth-program .growth-program-footer{margin-top:10px}
+/* Weekly review stays a single short writing form */
+body[data-page="tasks"] .simple-weekly-form{max-width:730px!important;margin-bottom:12px!important}
+body[data-page="tasks"] .simple-weekly-form .growth-form{gap:13px!important}
+body[data-page="tasks"] .simple-weekly-form .growth-form textarea{min-height:86px!important}
+body[data-page="tasks"] .simple-weekly-history{max-width:730px!important}
+body[data-page="tasks"] .simple-weekly-stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px!important}
+body[data-page="tasks"] .simple-weekly-stats span{border:1px solid var(--simple-border);border-radius:8px;background:#f4f8f3;padding:9px 11px;font-size:12px;color:#5b7460}
+body[data-page="tasks"] .simple-weekly-history h3{font-size:14px!important;margin:15px 0 10px!important}
+body[data-page="tasks"] .growth-review-nav{gap:10px!important;flex-wrap:wrap!important;margin:12px 0 15px!important}
+body[data-page="tasks"] .growth-review-nav strong{font-size:12px!important;color:#597063!important}
 /* Mood journal: one short form */
 body[data-page="tasks"] .simple-mood-form{max-width:730px;margin-bottom:12px!important}
 body[data-page="tasks"] .simple-mood-form form{gap:16px!important}
