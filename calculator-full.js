@@ -1360,3 +1360,10 @@ function paStock(){
 
 paExamFields();
 
+
+/* İyi Yol Akademi | doğrudan hesaplama aracı */
+(function(){
+  var tool=new URLSearchParams(window.location.search).get("tool");
+  var allowed=["komisyon","indirim","uyku","maas","tytayt","tarih","bmi","kalori","su","yag","hisse"];
+  if(tool&&allowed.indexOf(tool)!==-1&&typeof paOpen==="function")paOpen(tool);
+})();
