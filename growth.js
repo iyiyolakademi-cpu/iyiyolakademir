@@ -299,7 +299,7 @@ restore.addEventListener("change",async e=>{
    const parsed=JSON.parse(await file.text());
    if(parsed.app!=="iyi-yol-akademi-growth"||!parsed.data||!Array.isArray(parsed.data.goals)||!Array.isArray(parsed.data.habits)){notify("Bu, geçerli bir İyi Yol Akademi gelişim yedeği değil.");return}
    if(parsed.tasks!==undefined&&!Array.isArray(parsed.tasks)){notify("Yedekteki günlük görevler geçersiz.");return}
-   const safeTasks=Array.isArray(parsed.tasks)?parsed.tasks.filter(t=>t&&typeof t.id==="string"&&typeof t.title==="string"&&t.title.length<=160&&/^\\d{4}-\\d{2}-\\d{2}$/.test(t.day)&&["high","medium","low"].includes(t.priority)).slice(0,3000).map(t=>({id:t.id,title:t.title,day:t.day,priority:t.priority,done:t.done===true})):null;
+   const safeTasks=Array.isArray(parsed.tasks)?parsed.tasks.filter(t=>t&&typeof t.id==="string"&&typeof t.title==="string"&&t.title.length<=160&&/^\d{4}-\d{2}-\d{2}$/.test(t.day)&&["high","medium","low"].includes(t.priority)).slice(0,3000).map(t=>({id:t.id,title:t.title,day:t.day,priority:t.priority,done:t.done===true})):null;
    const msg=safeTasks?"Gelişim ve günlük görev kayıtların yedekteki bilgilerle değiştirilecek.":"Gelişim kayıtların değiştirilecek; günlük görevlerin korunacak.";
    if(!confirm(msg+" Devam edilsin mi?"))return;
    const previousGrowth=localStorage.getItem(KEY),previousTasks=localStorage.getItem(OLD_TASK_KEY);
