@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="site.css?v=20261111-logo-tests"><link rel="stylesheet" href="site-features.css?v=20261111-logo-tests">
 <script src="site.js?v=20261111-logo-tests" defer></script><script src="site-features.js?v=20261111-logo-tests" defer></script>
 <link rel="stylesheet" href="refine.css?v=20261111-logo-tests">
+<link rel="stylesheet" href="phase-one.css?v=20261113-p1">
+<script src="phase-one.js?v=20261113-p1" defer></script>
 </head><body data-page="saved"><a class="skip-link" href="#main">Ana içeriğe geç</a>
 <header class="site-header"><div class="container header-content">
 <a class="brand brand-full" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><img class="brand-logo-full" src="brand-transparent.svg" alt="İyi Yol Akademi"></a>
@@ -25,6 +27,12 @@
 <main id="main">
 <section class="container iy-page-intro"><span class="iy-eyebrow">İYİ YOL AKADEMİ / KÜTÜPHANEM</span><h1>Kaydedilenler</h1><p>Beğendiğin blog yazılarını, favori tariflerini ve son açtığın yazıları burada görebilirsin. Bunlar yalnızca bu tarayıcıda saklanır.</p></section>
 <section class="container iy-section">
+<div class="phase-library-toolbar" role="group" aria-label="Kütüphane araçları">
+ <div class="phase-field"><label for="phaseLibrarySearch">Kayıtlarında ara</label><input id="phaseLibrarySearch" type="search" placeholder="Kaydedilen içerik ara…" autocomplete="off"></div>
+ <div class="phase-field"><label for="phaseLibraryCollection">Blog koleksiyonu</label><select id="phaseLibraryCollection"><option>Tümü</option><option>Genel</option><option>Okunacaklar</option><option>Favoriler</option><option>Araştırma</option></select></div>
+ <button type="button" class="phase-utility" id="phaseExport">Yedeği indir</button>
+ <label class="phase-utility phase-import">Yedek yükle<input id="phaseImport" type="file" accept="application/json,.json" aria-label="Kütüphane yedeği yükle"></label>
+ </div>
 <div class="iy-saved-grid">
 <section class="iy-saved-section"><h2>Kaydettiğin blog yazıları</h2><div id="iyaSavedArticles"><p class="iya-empty">Blog yazıları yükleniyor…</p></div></section>
 <section class="iy-saved-section"><h2>Favori yemek tariflerin</h2><div id="iyaSavedRecipes"><p class="iya-empty">Yemek tarifleri yükleniyor…</p></div></section>
