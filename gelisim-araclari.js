@@ -95,17 +95,35 @@ function applyBookFilter(){
  const emptyEl=$("#p4NoBookMatch");if(emptyEl)emptyEl.hidden=count>0||cards.length===0;
 }
 function lettersRender(){
- const sorted=state.letters.slice().sort((a,b)=>a.openDate.localeCompare(b.openDate));
- $("#toolkit-mektup").innerHTML=panelTitle("GELECEKTEKİ KENDİME","Geleceğe Mektup","Bugünkü düşüncelerini ve umutlarını yaz. Seçtiğin tarih gelene kadar mektubun bu ekranda kapalı kalır.")
- +'<div class="toolkit-split"><div class="toolkit-card toolkit-soft"><h3>Kendine bir mektup yaz</h3><p>Ne hissettiğini, neleri başarmak istediğini veya gelecekte hatırlamak istediğin bir anı yazabilirsin.</p><form class="toolkit-form" id="toolkit-letter-form"><label>Mektubun başlığı<input name="title" maxlength="140" required placeholder="Bir yıl sonraki kendime"></label><label>Açılacağı tarih<input name="openDate" type="date" min="'+addDays(TODAY,1)+'" value="'+addDays(TODAY,30)+'" required></label><label>Mektubun<textarea name="body" rows="9" maxlength="10000" required placeholder="Merhaba gelecekteki ben..."></textarea></label><button type="submit" class="toolkit-btn">Mektubumu mühürle</button></form><p class="toolkit-note">Mektuplar yalnızca bu tarayıcıda tutulur. E-posta ile gönderilmez ve teknik olarak şifreli değildir. Tarayıcı verilerini silersen kaybolabilir; istersen aşağıdan yedek al.</p></div>'
- +'<div><div class="toolkit-card-header"><h3>Mektuplarım</h3><span class="toolkit-book-badge">'+state.letters.length+' mektup</span></div>'
- +(sorted.length?'<div class="toolkit-grid" style="grid-template-columns:1fr">'+sorted.map(l=>{const due=l.openDate<=TODAY,shown=opened.has(l.id)&&due;
- return '<article class="toolkit-card toolkit-letter"><div class="toolkit-card-header"><div><span class="toolkit-kicker-sm">'+(due?"AÇILMAYA HAZIR":"MÜHÜRLÜ MEKTUP")+'</span><h3>'+safe(l.title)+'</h3><span class="toolkit-letter-date">'+safe(formatDay(l.openDate))+' tarihinde açılacak</span></div><span aria-hidden="true">'+(due?"✉":"🔒")+'</span></div>'
- +(shown?'<div class="toolkit-letter-open">'+safe(l.body)+'</div>':due?'<p class="toolkit-countdown">Mektubunun zamanı geldi. Hazırsan açabilirsin.</p>':'<div class="toolkit-letter-locked"><b>✉</b><span>Mektubun saklanıyor. Açılacağı günü bekliyor.</span></div>')
- +'<div class="toolkit-action-row">'+(due?button("letter-open",shown?"Mektubu gizle":"Mektubu aç",'data-id="'+safe(l.id)+'"'):'')
- +button("letter-calendar","Takvime ekle",'data-id="'+safe(l.id)+'"')+
- '<button type="button" class="toolkit-danger" data-action="letter-delete" data-id="'+safe(l.id)+'">Sil</button></div></article>'}).join("")+'</div>':empty("Henüz mektubun yok","Gelecekteki kendine küçük bir not bırak."))
- +'</div></div>';
+ const letters=state.letters.slice().sort((a,b)=>a.openDate.localeCompare(b.openDate));
+ const draft=state.letterDraft||{title:"",body:"",openDate:addDays(TODAY,30)};
+ const safeDate=validDate(draft.openDate)&&draft.openDate>TODAY?draft.openDate:addDays(TODAY,30);
+ const due=dueLetters();
+ const choices='<div class="p4-letter-prompts"><span class="toolkit-kicker-sm">BAŞLAMAK İÇİN BİR FİKİR</span><div>'+letterPrompts.map((p,i)=>'<button type="button" data-action="letter-prompt" data-prompt="'+i+'">'+safe(p)+'</button>').join("")+'</div></div>';
+ $("#toolkit-mektup").innerHTML=panelTitle("GELECEKTEKİ KENDİME","Geleceğe Mektup","Bugünün düşüncelerini gelecekteki kendine bırak. Seçtiğin tarih gelince mektubunu aç.")
+ +'<div class="p4-letter-stats"><div><span>Toplam mektup</span><strong>'+letters.length+'</strong></div><div><span>Geleceğe saklanan</span><strong>'+Math.max(0,letters.length-due)+'</strong></div><div><span>Açılmaya hazır</span><strong>'+due+'</strong></div></div>'
+ +'<div class="toolkit-split"><div class="toolkit-card toolkit-soft"><h3>Kendine bir mektup yaz</h3><p>Bugünün duygularını, düşüncelerini veya hatırlamak istediklerini yazabilirsin.</p>'+choices
+ +'<form class="toolkit-form" id="toolkit-letter-form"><label>Mektubun başlığı<input name="title" maxlength="140" required placeholder="Bir yıl sonraki kendime" value="'+safe(draft.title)+'"></label><label>Açılacağı tarih<input name="openDate" type="date" min="'+addDays(TODAY,1)+'" value="'+safeDate+'" required></label><label>Mektubun<textarea name="body" id="p4LetterBody" rows="10" maxlength="10000" required placeholder="Merhaba gelecekteki ben...">'+safe(draft.body)+'</textarea></label><button type="submit" class="toolkit-btn">Mektubumu mühürle</button></form>'
+ +'<div class="p4-letter-draft-actions"><button type="button" class="toolkit-btn secondary small" data-action="letter-draft-save">Taslağı kaydet</button><button type="button" class="toolkit-btn secondary small" data-action="letter-draft-clear" '+(!state.letterDraft?"disabled":"")+'>Taslağı sil</button></div>'
+ +(state.letterDraft?'<p class="p4-draft-note">Kayıtlı bir taslağın var. İstediğin zaman tamamlayıp mektubunu mühürleyebilirsin.</p>':'')
+ +'<p class="toolkit-note">Kayıtlar ve taslaklar bu cihazın tarayıcısında şifrelenmeden tutulur; e-posta gönderilmez. Tarayıcı verilerini silersen kaybolabilir. Yedek dosyası mühürlü mektupların içeriğini de taşır; özel tut.</p></div>'
+ +'<div><div class="toolkit-card-header"><h3>Mektuplarım</h3><span class="toolkit-book-badge">'+letters.length+' mektup</span></div>'
+ +'<div class="p4-letter-filters" role="group" aria-label="Mektupları filtrele"><button type="button" class="'+(letterFilter==="all"?"is-active":"")+'" data-letter-filter="all" aria-pressed="'+(letterFilter==="all")+'">Tümü</button><button type="button" class="'+(letterFilter==="locked"?"is-active":"")+'" data-letter-filter="locked" aria-pressed="'+(letterFilter==="locked")+'">Bekleyen</button><button type="button" class="'+(letterFilter==="ready"?"is-active":"")+'" data-letter-filter="ready" aria-pressed="'+(letterFilter==="ready")+'">Açılmaya hazır</button></div>'
+ +(letters.length?'<div class="toolkit-grid p4-letter-list">'+letters.map(l=>{
+  const ready=l.openDate<=TODAY,shown=opened.has(l.id)&&ready;
+  const remaining=ready?0:Math.max(1,Math.round((fromDay(l.openDate)-fromDay(TODAY))/86400000));
+  return '<article class="toolkit-card toolkit-letter p4-letter-card" data-status="'+(ready?"ready":"locked")+'"><div class="toolkit-card-header"><div><span class="toolkit-kicker-sm">'+(ready?"AÇILMAYA HAZIR":"MÜHÜRLÜ MEKTUP")+'</span><h3>'+safe(l.title)+'</h3><span class="toolkit-letter-date">'+safe(formatDay(l.openDate))+'</span></div><span class="p4-letter-icon" aria-hidden="true">'+(ready?"✉":"◷")+'</span></div>'
+  +(ready?'<div class="p4-letter-countdown is-ready"><strong>Bugün açabilirsin.</strong><p>Bu mektup için belirlediğin tarih geldi.</p></div>':'<div class="p4-letter-countdown"><strong>'+remaining+' gün kaldı</strong><p>Açılma tarihine kadar mektubun bu ekranda kapalı kalır.</p></div>')
+  +(shown?'<div class="toolkit-letter-open p4-letter-open">'+safe(l.body)+'</div>':!ready?'<div class="toolkit-letter-locked"><b>✉</b><span>Mektubun seni bekliyor.</span></div>':'')
+  +'<div class="toolkit-action-row">'+(ready?button("letter-open",shown?"Mektubu gizle":"Mektubu aç",'data-id="'+safe(l.id)+'"'):'')+(shown?button("letter-export","Mektubu indir",'data-id="'+safe(l.id)+'"',"secondary small"):'')
+  +button("letter-calendar","Takvime ekle",'data-id="'+safe(l.id)+'"',"secondary small")+'<button type="button" class="toolkit-danger" data-action="letter-delete" data-id="'+safe(l.id)+'">Sil</button></div></article>';
+ }).join("")+'</div>':empty("Henüz mektubun yok","Gelecekteki kendine küçük bir not bırak."))+'<p class="toolkit-note" id="p4LetterNoMatches" hidden>Bu filtreye uygun mektup bulunamadı.</p></div></div>';
+ applyLetterFilter();
+}
+function applyLetterFilter(){
+ const cards=$$(".p4-letter-card",$("#toolkit-mektup"));let visible=0;
+ for(const card of cards){const show=letterFilter==="all"||card.dataset.status===letterFilter;card.hidden=!show;if(show)visible++;}
+ const emptyEl=$("#p4LetterNoMatches");if(emptyEl)emptyEl.hidden=visible>0||!cards.length;
 }
 function generateStudy(data){
  const entries=[];let index=0;
