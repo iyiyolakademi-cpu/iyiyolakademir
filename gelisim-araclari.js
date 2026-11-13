@@ -22,9 +22,11 @@ const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(String(s||""))&&!isNaN(fromDay(s).
 const validDT=s=>/^\d{4}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):[0-5]\d$/.test(String(s||""))&&validDate(s.slice(0,10));
 const TODAY=localDay(),REPEATS={once:"Bir kez",daily:"Her gün",weekdays:"Hafta içi",weekly:"Her hafta",monthly:"Her ay",yearly:"Her yıl"};
 const weekdays=[["1","Pzt"],["2","Sal"],["3","Çar"],["4","Per"],["5","Cum"],["6","Cmt"],["0","Paz"]];
-const blank=()=>({books:[],letters:[],plan:null,reminders:[]});
+const blank=()=>({books:[],letters:[],plan:null,reminders:[],readingGoal:50,letterDraft:null});
 function sanitize(input){
  let out=blank();if(!input||typeof input!=="object"||Array.isArray(input))return out;
+ out.readingGoal=int(input.readingGoal||50,1,10000);
+ if(input.letterDraft&&typeof input.letterDraft==="object"){const d=input.letterDraft;out.letterDraft={title:cleanText(d.title,140),body:cleanText(d.body,10000),openDate:validDate(d.openDate)?d.openDate:addDays(TODAY,30)};}
  if(Array.isArray(input.books))out.books=input.books.slice(0,150).filter(b=>b&&typeof b.title==="string").map(b=>({
   id:cleanText(b.id,80)||id(),title:cleanText(b.title,140),author:cleanText(b.author,100),pages:int(b.pages,1,100000),initial:int(b.initial,0,100000),created:validDate(b.created)?b.created:TODAY,
   logs:Array.isArray(b.logs)?b.logs.slice(-1500).filter(x=>x&&validDate(x.date)).map(x=>({id:cleanText(x.id,80)||id(),date:x.date,pages:int(x.pages,1,10000)})):[]
@@ -45,7 +47,7 @@ try{state=sanitize(JSON.parse(localStorage.getItem(KEY)||"null"))}catch(_){state
 const root=$("#toolkit");if(!root)return;
 const tabs=["okuma","mektup","calisma","hatirlatma"];
 let current=tabs.includes(location.hash.slice(1))?location.hash.slice(1):"okuma";
-let opened=new Set(),showAllPlan=false;
+let opened=new Set(),showAllPlan=false,bookSearch="",bookStatus="all",letterFilter="all";
 const notice=(message)=>{const x=$("#toolkit-message");x.textContent=message;x.hidden=false;clearTimeout(notice.timer);notice.timer=setTimeout(()=>{x.textContent="";x.hidden=true},4600)};
 function commit(change,message){
  const backup=JSON.stringify(state);
@@ -61,6 +63,12 @@ const button=(action,title,extra="",classes="secondary small")=>'<button type="b
 const download=(name,content,type)=>{let obj=new Blob([content],{type:type||"application/json;charset=utf-8"});let url=URL.createObjectURL(obj);const a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2500)};
 const totalRead=b=>b.initial+b.logs.reduce((n,x)=>n+x.pages,0);
 const weeklyRead=()=>state.books.reduce((n,b)=>n+b.logs.filter(x=>x.date>=weekStart(TODAY)&&x.date<=TODAY).reduce((s,x)=>s+x.pages,0),0);
+
+const last7Read=()=>state.books.reduce((n,b)=>n+b.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).reduce((a,x)=>a+x.pages,0),0);
+const bookReadingDays=()=>new Set(state.books.flatMap(b=>b.logs.filter(x=>x.date>=addDays(TODAY,-6)&&x.date<=TODAY).map(x=>x.date))).size;
+const dueLetters=()=>state.letters.filter(l=>l.openDate<=TODAY).length;
+const letterPrompts=["Bugün hayatımda en önemli olan şey...","Gelecekteki ben, umarım şunu hatırlarsın...","Bugün verdiğim küçük karar...","Kendime teşekkür etmek istediğim şey..."];
+
 function booksRender(){
  const finished=state.books.filter(b=>totalRead(b)>=b.pages).length;
  const total=state.books.reduce((n,b)=>n+Math.min(b.pages,totalRead(b)),0);
