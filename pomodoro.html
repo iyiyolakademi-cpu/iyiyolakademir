@@ -1,79 +1,168 @@
-<!doctype html><html lang="tr"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fdfcf9">
-<meta name="description" content="İyi Yol Akademi Pomodoro zamanlayıcı ile odaklanma ve mola sürelerini yönet. 15, 25 veya 50 dakikalık çalışma ve günlük ilerleme takibi.">
+<meta name="description" content="İyi Yol Akademi Pomodoro zamanlayıcı. Büyük ve sade ekranla odaklan, molalarını yönet.">
 <title>Pomodoro | İyi Yol Akademi</title>
 <link rel="canonical" href="https://iyiyolakademi-cpu.github.io/iyiyolakademir/pomodoro.html">
 <link rel="icon" type="image/svg+xml" href="brand-transparent.svg">
 <link rel="stylesheet" href="site.css?v=20261111-logo-tests">
 <link rel="stylesheet" href="site-features.css?v=20261111-logo-tests">
-<link rel="stylesheet" href="pomodoro.css?v=20261111-logo-tests">
 <link rel="stylesheet" href="refine.css?v=20261111-logo-tests">
+<link id="edEditorialCSS" rel="stylesheet" href="editorial-system.css?v=20261118-v4">
 <script src="site.js?v=20261111-logo-tests" defer></script>
 <script src="site-features.js?v=20261118-editorial2" defer></script>
-<script src="pomodoro.js?v=20261111-logo-tests" defer></script>
-<link id="edEditorialCSS" rel="stylesheet" href="editorial-system.css?v=20261118-v4">
-</head><body data-page="pomodoro">
+<style>
+.pomo-page{padding-top:34px;padding-bottom:56px}
+.pomo-intro{padding:14px 0 24px}
+.pomo-intro .section-kicker{margin-bottom:10px}
+.pomo-intro h1{font-family:var(--ed-display,Georgia,serif);font-size:clamp(34px,4vw,54px);line-height:1.12;margin:0 0 10px}
+.pomo-intro p{color:#737b73;font-size:14px;line-height:1.8;margin:0;max-width:620px}
+#pomo-root{position:relative;width:100%;height:min(66vh,650px);min-height:430px;background:#000;display:block;margin:0;overflow:hidden;border:1px solid #171717}
+.pomo-hint{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:13px;color:#818980;font-size:11px;line-height:1.6}
+.pomo-hint strong{color:#354c3b;font-weight:700}
+@media(max-width:580px){.pomo-page{padding-top:18px;padding-bottom:36px}#pomo-root{height:62vh;min-height:390px}.pomo-hint{display:block}.pomo-hint span{display:block;margin-top:4px}}
+</style>
+</head>
+<body data-page="pomodoro">
 <a class="skip-link" href="#main">İçeriğe geç</a>
 <header class="site-header"><div class="ed-wrap ed-primary"><a class="ed-wordmark" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><b>iyi<span>yol.</span></b><small>AKADEMİ</small></a><nav class="ed-nav" aria-label="Ana menü"><a href="index.html">Ana Sayfa</a><a href="blog.html">Yazılar</a><a href="testler.html">Testler</a><a href="premium-testler.html">Keşif Testleri</a><a href="yapilacaklar.html">Gelişim</a><a href="gelisim-araclari.html">Araçlar</a><a href="tarifler.html">Yaşam</a></nav><a class="ed-search" href="arama.html">Ara</a></div></header>
-<main id="main" class="container pom-page">
-<section class="pom-intro">
+<main id="main" class="container pomo-page">
+<section class="pomo-intro">
 <div class="section-kicker">ODAKLANMA MERKEZİ</div>
-<h1>Pomodoro Zamanlayıcı</h1>
-<p>Tek bir işe odaklan, sonra kısa bir mola ver. Gününü daha düzenli tamamla.</p>
+<h1>Şimdi tek bir şeye odaklan.</h1>
+<p>Zamanı sadeleştir. Dikkatini işine ver, zamanı geldiğinde molanı yap.</p>
 </section>
-<div class="pom-layout">
-<section class="pom-card" aria-label="Pomodoro zamanlayıcı">
-<div class="pom-modes" role="group" aria-label="Çalışma veya mola">
-<button type="button" class="active" id="pomModeWork">Odaklanma</button>
-<button type="button" id="pomModeShort">Kısa mola</button>
-<button type="button" id="pomModeLong">Uzun mola</button>
-</div>
-<div class="pom-dial" id="pomProgress">
-<div class="pom-dial-inner">
-<span id="pomStatus">Odaklanma</span>
-<div id="pomClock" class="pom-clock" role="timer" aria-label="25 dakika">25:00</div>
-<small>dakika : saniye</small>
-</div>
-</div>
-<p class="pom-message" id="pomMessage">Tek bir işe odaklan. Zamanlayıcı senin için takip ediyor.</p>
-<div class="pom-actions">
-<button id="pomStart" type="button" class="pom-primary" aria-keyshortcuts="Space">Başlat</button>
-<button id="pomReset" type="button" class="pom-secondary" aria-keyshortcuts="R">Sıfırla</button>
-<button id="pomSkip" type="button" class="pom-secondary" aria-keyshortcuts="N">Geç</button>
-</div>
-<div class="pom-feedback" id="pomFeedback" role="status" aria-live="polite"></div><p class="pom-shortcuts">Klavye kısayolları: <kbd>Space</kbd> Başlat / duraklat <kbd>R</kbd> Sıfırla <kbd>N</kbd> Sonraki aşama</p>
-</section>
-<aside class="pom-aside" aria-label="Odaklanma ayarları">
-<div class="pom-panel">
-<h2>Çalışma süresi</h2>
-<p>İhtiyacına uygun çalışma ve mola düzenini seç.</p>
-<div class="pom-presets" role="group" aria-label="Süre seç">
-<button type="button" data-pom-preset="15"><strong>15 dk</strong><small>5 dk mola</small></button>
-<button type="button" class="active" data-pom-preset="25"><strong>25 dk</strong><small>5 dk mola</small></button>
-<button type="button" data-pom-preset="50"><strong>50 dk</strong><small>10 dk mola</small></button>
-</div>
-</div>
-<div class="pom-panel">
-<h2>Bugünkü ilerleme</h2>
-<div class="pom-stats">
-<div><strong id="pomTodaySessions">0</strong><span>Tamamlanan tur</span></div>
-<div><strong id="pomTodayMinutes">0 dk</strong><span>Odaklanma süresi</span></div>
-</div>
-<div class="pom-round">4 turda bir uzun mola <strong id="pomRound">0/4</strong></div>
-</div>
-<p class="pom-note">Çalışma süren ve günlük tur sayın bu tarayıcıda kaydedilir. Sekme arka plandayken de geçen süre hesaba katılır.</p>
-</aside>
-</div>
+<div id="pomo-root" aria-label="Pomodoro zamanlayıcı"></div>
+<div class="pomo-hint"><strong>Bir dokunuş: başlat / duraklat</strong><span>Ayarlar için ekrana üç kez dokun. Kısayollar: Space · R · B · S</span></div>
 </main>
-<footer class="footer"><div class="container footer-inner">
-<a href="index.html" class="footer-brand footer-brand-full" aria-label="İyi Yol Akademi ana sayfa"><img class="footer-logo-full" src="brand-transparent.svg" alt="İyi Yol Akademi"></a>
-<nav class="footer-links" aria-label="Alt menü">
-<a href="blog.html">Blog Yazıları</a><a href="tarifler.html">Yemek Tarifleri</a><a href="testler.html">Kişilik Testleri</a><a href="yapilacaklar.html">Yapılacaklar</a><a href="hesaplama.html">Hesaplama Araçları</a>
-<a href="arama.html">İçerik Ara</a>
-<a href="kaydedilenler.html">Kaydedilenler</a>
-<a href="yayin-ilkeleri.html">Yayın İlkeleri</a>
-<a href="gizlilik.html">Gizlilik</a>
-</nav><small>© <span data-year></span> İyi Yol Akademi.</small>
-</div></footer>
-</body></html>
+<footer class="footer ed-footer"></footer>
+<script>
+(function(){
+"use strict";
+var host=document.getElementById("pomo-root");
+if(!host||host.shadowRoot)return;
+if(!document.getElementById("pomo-font")){
+ var link=document.createElement("link");link.id="pomo-font";link.rel="stylesheet";
+ link.href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap";document.head.appendChild(link);
+}
+host.style.cssText="position:relative;width:100%;height:min(66vh,650px);min-height:430px;background:#000;display:block;overflow:hidden";
+var root=host.attachShadow({mode:"open"});
+root.innerHTML=`
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:host{all:initial}
+.wrap{position:absolute;inset:0;background:#000;display:grid;place-items:center;overflow:hidden;font-family:"Oswald","Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:500;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.stage{display:flex;flex-direction:column;align-items:center;gap:2vh;width:100%}
+.clock{display:flex;align-items:center;gap:clamp(12px,4vw,60px);cursor:pointer;max-width:100%;padding:0 12px}
+.pair{display:flex;gap:clamp(4px,1.2vw,16px);transition:opacity .25s}
+.d{position:relative;color:#f2f2f2;font-size:var(--fs,min(36vw,72vh));line-height:1;width:.5em;text-align:center;font-variant-numeric:tabular-nums}
+.d:after{content:"";position:absolute;left:-6%;right:-6%;top:50%;height:3px;background:#000;transform:translateY(-1.5px)}
+.clock.paused .pair{opacity:.52}
+.clock.rest .d{color:#9ad1b0}
+.note{color:#777;font:400 clamp(13px,2.4vh,23px) system-ui,sans-serif;letter-spacing:.025em;max-width:90%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note:empty{display:none}
+.gear{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;border:1px solid #333;background:#111;color:#bbb;display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s}
+.gear.on{opacity:1;pointer-events:auto}
+.gear svg{width:21px;height:21px}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.72);display:none;place-items:center;padding:12px;font-family:system-ui,sans-serif}
+.overlay.on{display:grid}
+.panel{position:relative;width:min(340px,100%);max-height:100%;overflow:auto;background:#111;border:1px solid #2a2a2a;border-radius:15px;padding:22px 20px 18px;color:#ddd;font-weight:400;user-select:text}
+.panel h2{font:600 16px/1 system-ui,sans-serif;margin-bottom:16px;color:#eee}
+.close{position:absolute;top:9px;right:9px;width:34px;height:34px;border:0;border-radius:50%;background:#1d1d1d;color:#ccc;font-size:20px;cursor:pointer}
+.btns{display:flex;gap:10px;margin-bottom:16px}
+.btns button{flex:1;padding:11px 8px;border-radius:9px;border:1px solid #333;background:#1d1d1d;color:#eee;font:500 14px system-ui,sans-serif;cursor:pointer}
+.btns button.main{background:#f2f2f2;color:#000;border-color:#f2f2f2}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;font-size:13px;color:#ddd}
+.row input{width:82px;background:#000;color:#fff;border:1px solid #333;border-radius:7px;padding:9px;font:16px system-ui,sans-serif;text-align:center}
+.row.note-row{flex-direction:column;align-items:stretch}
+.row.note-row input{width:100%;text-align:left}
+button:focus-visible,input:focus-visible{outline:2px solid #999;outline-offset:2px}
+@media(max-width:580px){.clock{gap:clamp(8px,3vw,20px)}.d{font-size:var(--fs,min(34vw,60vh))}.gear{right:9px;bottom:9px}}
+</style>
+<div class="wrap">
+ <div class="stage">
+  <div class="clock paused" id="clock" role="button" tabindex="0" aria-label="Zamanlayıcıyı başlat veya duraklat">
+   <div class="pair" id="mm"><span class="d">2</span><span class="d">5</span></div>
+   <div class="pair" id="ss"><span class="d">0</span><span class="d">0</span></div>
+  </div>
+  <div class="note" id="note"></div>
+ </div>
+ <button class="gear" id="gear" aria-label="Ayarlar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+ <div class="overlay" id="overlay"><div class="panel" role="dialog" aria-label="Pomodoro ayarları">
+  <button class="close" id="close" aria-label="Kapat">&times;</button><h2>Ayarlar</h2>
+  <div class="btns"><button class="main" id="toggleBtn">Başlat</button><button id="resetBtn">Sıfırla</button></div>
+  <label class="row">Odak süresi (dk)<input id="fIn" type="number" min="1" max="120" inputmode="numeric"></label>
+  <label class="row">Mola süresi (dk)<input id="rIn" type="number" min="1" max="60" inputmode="numeric"></label>
+  <label class="row note-row">Görev notu<input id="nIn" type="text" maxlength="60" placeholder="Şu an ne yapıyorum?"></label>
+ </div></div>
+</div>`;
+var $=function(id){return root.getElementById(id)};
+var KEY="pomodoro-ayar";
+var cfg={focus:25,rest:5,note:""};
+try{var saved=JSON.parse(localStorage.getItem(KEY)||"{}");Object.keys(cfg).forEach(function(k){if(saved[k]!==undefined)cfg[k]=saved[k]})}catch(e){}
+function clamp(v,min,max,fallback){v=parseInt(v,10);return isNaN(v)?fallback:Math.min(max,Math.max(min,v))}
+cfg.focus=clamp(cfg.focus,1,120,25);cfg.rest=clamp(cfg.rest,1,60,5);
+var mode="focus",left=cfg.focus*60,running=false,endAt=0,timer=null;
+var clock=$("clock"),gear=$("gear"),overlay=$("overlay"),noteEl=$("note");
+var mm=root.querySelectorAll("#mm .d"),ss=root.querySelectorAll("#ss .d");
+function render(){
+ var m=String(Math.floor(left/60)).padStart(2,"0"),s=String(left%60).padStart(2,"0");
+ mm[0].textContent=m[0];mm[1].textContent=m[1];ss[0].textContent=s[0];ss[1].textContent=s[1];
+ clock.classList.toggle("paused",!running);clock.classList.toggle("rest",mode==="rest");
+ clock.setAttribute("aria-label",(mode==="focus"?"Odaklanma: ":"Mola: ")+m+":"+s);
+ noteEl.textContent=cfg.note;$("toggleBtn").textContent=running?"Durdur":"Başlat";
+}
+function beep(){
+ try{var C=window.AudioContext||window.webkitAudioContext,c=new C();
+ [0,.3,.6].forEach(function(t){var o=c.createOscillator(),g=c.createGain();o.frequency.value=880;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.2,c.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+t+.25);o.start(c.currentTime+t);o.stop(c.currentTime+t+.26)})}catch(e){}
+}
+function stop(){running=false;clearInterval(timer);render()}
+function setMode(m){mode=m;left=(m==="focus"?cfg.focus:cfg.rest)*60;stop()}
+function start(){
+ if(running)return;running=true;endAt=Date.now()+left*1000;
+ timer=setInterval(function(){left=Math.max(0,Math.round((endAt-Date.now())/1000));if(left===0){beep();setMode(mode==="focus"?"rest":"focus");return}render()},250);render();
+}
+function toggle(){running?stop():start()}
+var taps=0,tapTimer=null,gearTimer=null;
+function handleTap(){taps++;clearTimeout(tapTimer);tapTimer=setTimeout(function(){if(taps===1)toggle();else if(taps>=3)showGear();taps=0},420)}
+clock.addEventListener("click",handleTap);
+clock.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();toggle()}});
+function showGear(){gear.classList.add("on");clearTimeout(gearTimer);gearTimer=setTimeout(function(){gear.classList.remove("on")},20000)}
+gear.addEventListener("click",function(){$("fIn").value=cfg.focus;$("rIn").value=cfg.rest;$("nIn").value=cfg.note;overlay.classList.add("on");clearTimeout(gearTimer);gear.classList.remove("on")});
+function closePanel(){overlay.classList.remove("on")}
+$("close").addEventListener("click",closePanel);
+overlay.addEventListener("click",function(e){if(e.target===overlay)closePanel()});
+$("toggleBtn").addEventListener("click",toggle);
+$("resetBtn").addEventListener("click",function(){setMode(mode)});
+function applyCfg(){
+ var nf=clamp($("fIn").value,1,120,cfg.focus),nr=clamp($("rIn").value,1,60,cfg.rest),changed=nf!==cfg.focus||nr!==cfg.rest;
+ cfg.focus=nf;cfg.rest=nr;cfg.note=$("nIn").value.trim().slice(0,60);
+ try{localStorage.setItem(KEY,JSON.stringify(cfg))}catch(e){}
+ if(changed&&!running)left=(mode==="focus"?cfg.focus:cfg.rest)*60;render();
+}
+["fIn","rIn","nIn"].forEach(function(id){$(id).addEventListener("input",applyCfg)});
+document.addEventListener("keydown",function(e){
+ var target=e.composedPath?e.composedPath()[0]:e.target;
+ if(target&&target.tagName==="INPUT"){if(e.key==="Escape")closePanel();return}
+ var k=e.key.toLowerCase();
+ if(e.code==="Space"){e.preventDefault();toggle()}
+ else if(k==="r")setMode(mode)
+ else if(k==="b")setMode(mode==="focus"?"rest":"focus")
+ else if(k==="s")showGear()
+ else if(e.key==="Escape")closePanel();
+});
+function fit(){
+ var w=host.clientWidth||window.innerWidth,h=host.clientHeight||window.innerHeight,land=w>h;
+ var fs=Math.min(w*(land?.3:.36),h*(land?.66:.72));
+ root.querySelector(".wrap").style.setProperty("--fs",Math.max(58,fs)+"px");
+}
+fit();window.addEventListener("resize",fit);
+if(window.ResizeObserver)new ResizeObserver(fit).observe(host);
+render();
+})();
+</script>
+</body>
+</html>
