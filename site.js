@@ -64,7 +64,7 @@
       visual.className = 'post-visual post-visual-photo';
       const image = document.createElement('img');
       image.src = post.cover_url;
-      image.alt = '';
+      image.alt = post.title || 'İyi Yol Akademi yazısı';
       image.loading = 'lazy';
       image.decoding = 'async';
       visual.appendChild(image);
@@ -113,15 +113,261 @@
     container.replaceChildren(...posts.map(makePostCard));
   }
 
+
+  function getIsoWeekInfo(date = new Date()) {
+    const localDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const isoDate = new Date(Date.UTC(localDate.getFullYear(), localDate.getMonth(), localDate.getDate()));
+    const dayNumber = isoDate.getUTCDay() || 7;
+    isoDate.setUTCDate(isoDate.getUTCDate() + 4 - dayNumber);
+    const isoYear = isoDate.getUTCFullYear();
+    const yearStart = new Date(Date.UTC(isoYear, 0, 1));
+    const week = Math.ceil((((isoDate - yearStart) / 86400000) + 1) / 7);
+    const weekStart = new Date(localDate);
+    weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7));
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+    const startLabel = weekStart.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' });
+    const endLabel = weekEnd.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+    return { key: `${isoYear}-W${String(week).padStart(2, '0')}`, start: weekStart, label: `${startLabel} – ${endLabel}` };
+  }
+
+  function hashEditorialWeek(value) {
+    let hash = 2166136261;
+    for (let i = 0; i < value.length; i += 1) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function chooseWeeklyEditorialPost(posts, weekInfo) {
+    if (!posts.length) return null;
+    const beforeThisWeek = posts.filter((post) => {
+      const published = Date.parse(post.published_at || '');
+      return Number.isFinite(published) && published < weekInfo.start.getTime();
+    });
+    const base = beforeThisWeek.length ? beforeThisWeek : posts;
+    const withCover = base.filter((post) => /^https:\/\//i.test(post.cover_url || ''));
+    const candidates = (withCover.length ? withCover : base)
+      .slice()
+      .sort((a, b) => String(a.slug).localeCompare(String(b.slug), 'tr'));
+    return candidates[hashEditorialWeek(weekInfo.key) % candidates.length] || null;
+  }
+
+  function makeEditorialNote(post) {
+    const category = post.blog_categories?.name;
+    if (category) return `Bu hafta ${category.toLocaleLowerCase('tr-TR')} üzerine düşünmek ve konuya yeni bir pencereden bakmak isteyenler için seçtik.`;
+    return 'Bu hafta yeni bir bakış açısı kazanmak ve kendine biraz zaman ayırmak isteyenler için seçtik.';
+  }
+
+  function renderEditorChoice(container, post, weekInfo) {
+    if (!container) return;
+    container.replaceChildren();
+    const link = 'post.html?slug=' + encodeURIComponent(post.slug);
+    const card = document.createElement('div');
+    card.className = 'ed-editor-choice-card';
+
+    const media = document.createElement('a');
+    media.className = 'ed-editor-choice-media';
+    media.href = link;
+    media.setAttribute('aria-label', post.title);
+    if (/^https:\/\//i.test(post.cover_url || '')) {
+      const image = document.createElement('img');
+      image.src = post.cover_url;
+      image.alt = post.title || 'Editörün seçimi';
+      image.loading = 'eager';
+      image.fetchPriority = 'high';
+      image.decoding = 'async';
+      media.appendChild(image);
+    } else {
+      const fallback = document.createElement('span');
+      fallback.className = 'ed-editor-choice-fallback';
+      fallback.textContent = 'iyi yol.';
+      media.appendChild(fallback);
+    }
+    const stamp = document.createElement('span');
+    stamp.className = 'ed-editor-choice-stamp';
+    stamp.textContent = 'BU HAFTANIN SEÇİMİ';
+    media.appendChild(stamp);
+
+    const content = document.createElement('div');
+    content.className = 'ed-editor-choice-content';
+    const labels = document.createElement('div');
+    labels.className = 'ed-editor-choice-labels';
+    const category = document.createElement('span');
+    category.textContent = post.blog_categories?.name || 'İYİ YOL AKADEMİ';
+    const edition = document.createElement('span');
+    edition.textContent = 'EDİTÖRÜN SEÇİMİ';
+    labels.append(category, edition);
+
+    const title = document.createElement('h2');
+    const titleLink = document.createElement('a');
+    titleLink.href = link;
+    titleLink.textContent = post.title;
+    title.appendChild(titleLink);
+
+    const note = document.createElement('div');
+    note.className = 'ed-editor-note';
+    const noteLabel = document.createElement('span');
+    noteLabel.textContent = 'EDİTÖRÜN NOTU';
+    const noteText = document.createElement('p');
+    noteText.textContent = makeEditorialNote(post);
+    note.append(noteLabel, noteText);
+
+    const excerpt = document.createElement('p');
+    excerpt.className = 'ed-editor-choice-excerpt';
+    excerpt.textContent = post.excerpt || '';
+
+    const meta = document.createElement('div');
+    meta.className = 'ed-editor-choice-meta';
+    const details = document.createElement('span');
+    details.textContent = [post.author || '', post.read_minutes ? `${post.read_minutes} dk okuma` : '', displayDate(post.published_at)].filter(Boolean).join(' · ');
+    const read = document.createElement('a');
+    read.href = link;
+    read.className = 'ed-editor-choice-read';
+    read.textContent = 'Yazıyı oku ↗';
+    meta.append(details, read);
+
+    content.append(labels, title, note);
+    if (excerpt.textContent) content.appendChild(excerpt);
+    content.appendChild(meta);
+    card.append(media, content);
+    container.appendChild(card);
+    const weekLabel = $('#editorChoiceWeek');
+    if (weekLabel) weekLabel.textContent = weekInfo.label;
+  }
+
+  function renderFeaturedStories(container, posts) {
+    if (!container) return;
+    container.replaceChildren();
+    if (!posts.length) {
+      showStatus(container, 'Öne çıkan başka bir yazı bulunmuyor.');
+      return;
+    }
+    posts.slice(0, 3).forEach((post, index) => {
+      const href = 'post.html?slug=' + encodeURIComponent(post.slug);
+      const item = document.createElement('article');
+      item.className = 'ed-highlight-item';
+      const imageLink = document.createElement('a');
+      imageLink.className = 'ed-highlight-image';
+      imageLink.href = href;
+      imageLink.setAttribute('aria-label', post.title);
+      if (/^https:\/\//i.test(post.cover_url || '')) {
+        const image = document.createElement('img');
+        image.src = post.cover_url;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        imageLink.appendChild(image);
+      } else {
+        imageLink.classList.add('ed-highlight-no-image');
+        imageLink.textContent = 'İYİ YOL';
+      }
+      const copy = document.createElement('div');
+      copy.className = 'ed-highlight-copy';
+      const label = document.createElement('span');
+      label.className = 'ed-highlight-category';
+      label.textContent = post.blog_categories?.name || 'BLOG';
+      const heading = document.createElement('h3');
+      const titleLink = document.createElement('a');
+      titleLink.href = href;
+      titleLink.textContent = post.title;
+      heading.appendChild(titleLink);
+      const meta = document.createElement('span');
+      meta.className = 'ed-highlight-meta';
+      meta.textContent = [post.read_minutes ? `${post.read_minutes} dk okuma` : '', displayDate(post.published_at)].filter(Boolean).join(' · ');
+      copy.append(label, heading, meta);
+      const number = document.createElement('span');
+      number.className = 'ed-highlight-number';
+      number.textContent = String(index + 1).padStart(2, '0');
+      item.append(number, imageLink, copy);
+      container.appendChild(item);
+    });
+  }
+
+  function renderEditorialCategories(container, categories, posts) {
+    if (!container) return;
+    container.replaceChildren();
+    let available = categories;
+    if (!available.length) {
+      const seen = new Set();
+      available = posts.reduce((items, post) => {
+        const category = post.blog_categories;
+        if (category?.slug && !seen.has(category.slug)) {
+          seen.add(category.slug);
+          items.push({ slug: category.slug, name: category.name || 'Diğer', description: '' });
+        }
+        return items;
+      }, []);
+    }
+    let rendered = 0;
+    available.forEach((category) => {
+      const matching = posts.filter((post) => post.blog_categories?.slug === category.slug);
+      if (!matching.length) return;
+      const section = document.createElement('section');
+      section.className = 'ed-editorial-category';
+      const heading = document.createElement('div');
+      heading.className = 'ed-editorial-category-heading';
+      const kicker = document.createElement('span');
+      kicker.className = 'ed-kicker';
+      kicker.textContent = 'KATEGORİ';
+      const title = document.createElement('h3');
+      title.textContent = category.name;
+      const description = document.createElement('p');
+      description.textContent = category.description || `${category.name} alanındaki yazılar ve yeni bakış açıları.`;
+      const all = document.createElement('a');
+      all.className = 'ed-text-link';
+      all.href = 'blog.html?category=' + encodeURIComponent(category.slug);
+      all.textContent = 'Tüm yazılar ↗';
+      heading.append(kicker, title, description, all);
+      const grid = document.createElement('div');
+      grid.className = 'ed-category-posts';
+      renderList(grid, matching.slice(0, 3));
+      section.append(heading, grid);
+      container.appendChild(section);
+      rendered += 1;
+    });
+    const outer = $('#editorialCategories');
+    if (outer) outer.hidden = rendered === 0;
+  }
+
   async function initHome() {
-    const container = $('#latestPosts');
+    const latestContainer = $('#latestPosts');
+    const choiceContainer = $('#editorChoice');
+    const highlightsContainer = $('#featuredStories');
+    const categoryContainer = $('#categoryStreams');
     try {
-      const posts = await postsQuery(6);
-      if (posts.length) renderList(container, posts);
-      else showStatus(container, 'Şu anda yayında olan bir yazı bulunmuyor.');
+      const [posts, categories] = await Promise.all([
+        postsQuery(48),
+        getData('blog_categories', { select: 'slug,name,description,display_order', order: 'display_order.asc' }).catch(() => [])
+      ]);
+      if (!posts.length) {
+        showStatus(choiceContainer, 'Şu anda yayında olan bir yazı bulunmuyor.');
+        showStatus(highlightsContainer, 'Yeni yazılar yayımlandığında burada öne çıkacak.');
+        showStatus(latestContainer, 'Şu anda yayında olan bir yazı bulunmuyor.');
+        const outer = $('#editorialCategories');
+        if (outer) outer.hidden = true;
+        return;
+      }
+
+      const weekInfo = getIsoWeekInfo();
+      const weeklyPick = chooseWeeklyEditorialPost(posts, weekInfo);
+      if (weeklyPick) renderEditorChoice(choiceContainer, weeklyPick, weekInfo);
+
+      const highlights = posts.filter((post) => post.slug !== weeklyPick?.slug).slice(0, 3);
+      renderFeaturedStories(highlightsContainer, highlights);
+
+      if (latestContainer) {
+        renderList(latestContainer, posts.slice(0, 6));
+      }
+      renderEditorialCategories(categoryContainer, categories, posts);
     } catch (error) {
-      console.error('Blog fetch error', error);
-      showStatus(container, 'Yazılar şu anda görüntülenemiyor. Lütfen sayfayı yenileyerek tekrar deneyin.', 'error-state');
+      console.error('Homepage editorial content error', error);
+      showStatus(choiceContainer, 'Editoryal seçki şu anda görüntülenemiyor. Lütfen biraz sonra tekrar deneyin.', 'error-state');
+      showStatus(highlightsContainer, 'Öne çıkan yazılar şu anda görüntülenemiyor.', 'error-state');
+      showStatus(latestContainer, 'Yazılar şu anda görüntülenemiyor. Lütfen sayfayı yenileyerek tekrar deneyin.', 'error-state');
+      const outer = $('#editorialCategories');
+      if (outer) outer.hidden = true;
     }
   }
 
