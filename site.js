@@ -116,7 +116,7 @@
   async function initHome() {
     const container = $('#latestPosts');
     try {
-      const posts = await postsQuery(3);
+      const posts = await postsQuery(6);
       if (posts.length) renderList(container, posts);
       else showStatus(container, 'Henüz yayınlanmış yazı bulunmuyor. Çok yakında yeni içerikler burada olacak.');
     } catch (error) {
