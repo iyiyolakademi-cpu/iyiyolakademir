@@ -55,21 +55,52 @@
     return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
+  const EDITORIAL_PHOTOS = {
+  "reading": "https://images.pexels.com/photos/7584973/pexels-photo-7584973.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "writing": "https://images.pexels.com/photos/5951365/pexels-photo-5951365.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  "journal": "https://images.pexels.com/photos/37129604/pexels-photo-37129604.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  "work": "https://images.pexels.com/photos/8549941/pexels-photo-8549941.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  "habits": "https://images.pexels.com/photos/8055485/pexels-photo-8055485.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  "nature": "https://images.pexels.com/photos/15385804/pexels-photo-15385804.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  "food": "https://images.pexels.com/photos/12673812/pexels-photo-12673812.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  "magazine": "https://images.pexels.com/photos/4107128/pexels-photo-4107128.jpeg?auto=compress&cs=tinysrgb&w=1000"
+};
+
+  function fallbackPostImage(post) {
+    const details = normalize([
+      post?.title, post?.excerpt,
+      post?.blog_categories?.name, post?.blog_categories?.slug
+    ].filter(Boolean).join(' '));
+    if (/(tarif|yemek|mutfak|beslen|kahvalti|kahvaltı|pişir|pisir)/.test(details)) return EDITORIAL_PHOTOS.food;
+    if (/(doğa|doga|orman|yürüyüş|yuruyus|alışkan|aliskan|hedef|planlama|kişisel gelişim|kisisel gelisim)/.test(details)) return EDITORIAL_PHOTOS.nature;
+    if (/(kariyer|iş hayat|is hayat|çalışma|calisma|üretken|uretk|ofis|meslek)/.test(details)) return EDITORIAL_PHOTOS.work;
+    if (/(odak|pomodoro|verim|zaman yönet|zaman yonet)/.test(details)) return EDITORIAL_PHOTOS.writing;
+    if (/(psikoloji|duygu|zihin|mutluluk|kaygı|kaygi|özgüven|ozguven|stres|ilişki|iliski)/.test(details)) return EDITORIAL_PHOTOS.journal;
+    if (/(kitap|okuma|edebiyat|roman|yazı|yazi|blog)/.test(details)) return EDITORIAL_PHOTOS.magazine;
+    const key = String(post?.slug || post?.title || 'iyi-yol');
+    let hash = 0;
+    for (let i = 0; i < key.length; i += 1) hash = ((hash << 5) - hash + key.charCodeAt(i)) | 0;
+    const options = [EDITORIAL_PHOTOS.reading, EDITORIAL_PHOTOS.journal, EDITORIAL_PHOTOS.habits, EDITORIAL_PHOTOS.writing];
+    return options[Math.abs(hash) % options.length];
+  }
+
+  function postImage(post) {
+    return /^https:\/\//i.test(post?.cover_url || '') ? post.cover_url : fallbackPostImage(post);
+  }
+
   function makePostCard(post) {
     const card = document.createElement('article');
     card.className = 'post-card';
     const href = 'post.html?slug=' + encodeURIComponent(post.slug);
-    if (post.cover_url && /^https:\/\//i.test(post.cover_url)) {
-      const visual = document.createElement('div');
-      visual.className = 'post-visual post-visual-photo';
-      const image = document.createElement('img');
-      image.src = post.cover_url;
-      image.alt = post.title || 'İyi Yol Akademi yazısı';
-      image.loading = 'lazy';
-      image.decoding = 'async';
-      visual.appendChild(image);
-      card.appendChild(visual);
-    }
+    const visual = document.createElement('div');
+    visual.className = 'post-visual post-visual-photo';
+    const image = document.createElement('img');
+    image.src = postImage(post);
+    image.alt = post.title || 'İyi Yol Akademi yazısı';
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    visual.appendChild(image);
+    card.appendChild(visual);
     const content = document.createElement('div');
     content.className = 'post-content';
     const labels = document.createElement('div');
@@ -171,20 +202,13 @@
     media.className = 'ed-editor-choice-media';
     media.href = link;
     media.setAttribute('aria-label', post.title);
-    if (/^https:\/\//i.test(post.cover_url || '')) {
-      const image = document.createElement('img');
-      image.src = post.cover_url;
-      image.alt = post.title || 'Editörün seçimi';
-      image.loading = 'eager';
-      image.fetchPriority = 'high';
-      image.decoding = 'async';
-      media.appendChild(image);
-    } else {
-      const fallback = document.createElement('span');
-      fallback.className = 'ed-editor-choice-fallback';
-      fallback.textContent = 'iyi yol.';
-      media.appendChild(fallback);
-    }
+    const image = document.createElement('img');
+    image.src = postImage(post);
+    image.alt = post.title || 'Editörün seçimi';
+    image.loading = 'eager';
+    image.fetchPriority = 'high';
+    image.decoding = 'async';
+    media.appendChild(image);
     const stamp = document.createElement('span');
     stamp.className = 'ed-editor-choice-stamp';
     stamp.textContent = 'BU HAFTANIN SEÇİMİ';
@@ -252,17 +276,12 @@
       imageLink.className = 'ed-highlight-image';
       imageLink.href = href;
       imageLink.setAttribute('aria-label', post.title);
-      if (/^https:\/\//i.test(post.cover_url || '')) {
-        const image = document.createElement('img');
-        image.src = post.cover_url;
-        image.alt = '';
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        imageLink.appendChild(image);
-      } else {
-        imageLink.classList.add('ed-highlight-no-image');
-        imageLink.textContent = 'İYİ YOL';
-      }
+      const image = document.createElement('img');
+      image.src = postImage(post);
+      image.alt = post.title || 'İyi Yol Akademi yazısı';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      imageLink.appendChild(image);
       const copy = document.createElement('div');
       copy.className = 'ed-highlight-copy';
       const label = document.createElement('span');
