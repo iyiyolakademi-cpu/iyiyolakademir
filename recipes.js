@@ -118,7 +118,7 @@ function renderDetail(){
   }
   extras.appendChild(main);
  }
- if(r.tips){const tips=el('div','recipe-extra-card');appendText(tips,'h4','','Şefin notu');appendText(tips,'p','',typeof r.tips==='string'?r.tips:Array.isArray(r.tips)?r.tips.join(' '):'');extras.append(tips);}
+ if(r.tips){const tips=el('div','recipe-extra-card');appendText(tips,'h4','','Püf noktası');appendText(tips,'p','',typeof r.tips==='string'?r.tips:Array.isArray(r.tips)?r.tips.join(' '):'');extras.append(tips);}
  const fav=$('#detailFavorite');fav.textContent=favorites.has(Number(r.id))?'♥ Favorilerden çıkar':'♡ Favorilere ekle';
  $('#recipeListView').hidden=true;$('#recipeDetailView').hidden=false;
  window.scrollTo({top:0,behavior:'instant'});
@@ -151,9 +151,9 @@ function renderCook(){
 }
 function openCook(){
  if(!state.selected||!state.selected.steps?.length)return;
- state.step=0;renderCook();$('#cookOverlay').hidden=false;document.body.style.overflow='hidden';
+ state.step=0;renderCook();$('#cookOverlay').hidden=false;document.body.style.overflow='hidden';$('#closeCook').focus();
 }
-function closeCook(){$('#cookOverlay').hidden=true;document.body.style.overflow='';}
+function closeCook(){$('#cookOverlay').hidden=true;document.body.style.overflow='';$('#startCookMode').focus();}
 async function init(){
  $('#recipeSearch').addEventListener('input',e=>{state.query=e.target.value;state.limit=24;applyFilters()});
  $('#recipeDifficultyFilter').addEventListener('change',e=>{state.difficulty=e.target.value;state.limit=24;applyFilters()});
@@ -171,7 +171,7 @@ async function init(){
  $('#cookPrev').addEventListener('click',()=>{state.step=Math.max(0,state.step-1);renderCook()});
  $('#cookNext').addEventListener('click',()=>{if(state.step===state.selected.steps.length-1)closeCook();else {state.step++;renderCook()}});
  $('#cookOverlay').addEventListener('click',e=>{if(e.target.id==='cookOverlay')closeCook()});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#cookOverlay').hidden)closeCook()});
+ document.addEventListener('keydown',e=>{if($('#cookOverlay').hidden)return;if(e.key==='Escape'){closeCook();return;}if(e.target.closest('input,textarea,select,button,a,[contenteditable="true"]'))return;if(e.key==='ArrowRight')$('#cookNext').click();if(e.key==='ArrowLeft')$('#cookPrev').click();});
  window.addEventListener('popstate',()=>{
   const id=new URLSearchParams(location.search).get('id');if(id&&state.recipes.some(r=>String(r.id)===id))openRecipe(id,true);else {$('#recipeDetailView').hidden=true;$('#recipeListView').hidden=false;state.selected=null;}
  });

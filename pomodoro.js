@@ -111,6 +111,15 @@ $("#pomModeWork").addEventListener("click",()=>chooseMode("work"));
 $("#pomModeShort").addEventListener("click",()=>chooseMode("short"));
 $("#pomModeLong").addEventListener("click",()=>chooseMode("long"));
 document.querySelectorAll("[data-pom-preset]").forEach(button=>button.addEventListener("click",()=>preset(button.dataset.pomPreset)));
+document.addEventListener("keydown",e=>{
+ const target=e.target;
+ if(target&&target.closest&&target.closest('input,textarea,select,button,a,[contenteditable="true"]'))return;
+ if(e.altKey||e.ctrlKey||e.metaKey)return;
+ const key=e.key.toLowerCase();
+ if(e.code==="Space"){e.preventDefault();$("#pomStart").click();}
+ else if(key==="r")$("#pomReset").click();
+ else if(key==="n")$("#pomSkip").click();
+});
 document.addEventListener("visibilitychange",tick);
 window.addEventListener("pageshow",tick);
 setInterval(tick,250);

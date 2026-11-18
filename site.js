@@ -118,7 +118,7 @@
     try {
       const posts = await postsQuery(6);
       if (posts.length) renderList(container, posts);
-      else showStatus(container, 'Henüz yayınlanmış yazı bulunmuyor. Çok yakında yeni içerikler burada olacak.');
+      else showStatus(container, 'Şu anda yayında olan bir yazı bulunmuyor.');
     } catch (error) {
       console.error('Blog fetch error', error);
       showStatus(container, 'Yazılar şu anda görüntülenemiyor. Lütfen sayfayı yenileyerek tekrar deneyin.', 'error-state');
