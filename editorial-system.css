@@ -1,0 +1,110 @@
+/* IYI YOL AKADEMI — Editorial System 2026 / Aposto-inspired, original */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--ed-ink:#151918;--ed-sub:#565d58;--ed-line:#e2e5df;--ed-paper:#fff;--ed-soft:#f6f7f3;--ed-green:#264f3e;--ed-accent:#a9c2ad;--ed-display:'Playfair Display',Georgia,serif;--ed-sans:'DM Sans',Arial,sans-serif}
+html{scroll-padding-top:124px!important;scroll-behavior:smooth}
+html,body{max-width:100%!important;overflow-x:clip}
+body{background:var(--ed-paper)!important;color:var(--ed-ink)!important;font-family:var(--ed-sans)!important;font-size:15px;line-height:1.55;margin:0!important;padding:0!important}
+body::before,body::after{max-width:100%}
+body>main{min-height:55vh}
+body .container{width:min(1216px,calc(100% - 64px))!important;max-width:1216px!important;margin-inline:auto!important}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:var(--ed-sans)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #578b6c!important;outline-offset:3px}
+.site-header{position:sticky!important;top:0!important;z-index:900!important;background:#fff!important;border:0!important;border-bottom:1px solid var(--ed-line)!important;box-shadow:none!important;backdrop-filter:none!important;margin:0!important;padding:0!important;min-height:0!important}
+.ed-topline{background:#f7f8f5;border-bottom:1px solid #ededeb}
+.ed-topline .ed-wrap{height:30px;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#687069;font-size:10px;font-weight:700;letter-spacing:.055em}
+.ed-wrap{width:min(1216px,calc(100% - 64px));margin:0 auto}
+.ed-topline strong{color:#2a6045}
+.ed-primary{min-height:76px;display:flex;align-items:center;gap:34px;justify-content:space-between}
+.ed-wordmark{display:flex;flex-direction:column;flex:none;white-space:nowrap;line-height:1;letter-spacing:-.04em;color:#161a18!important;font-family:'Manrope',Arial,sans-serif;font-size:25px;font-weight:800!important;text-decoration:none!important}
+.ed-wordmark b{display:inline-block;font-weight:800}
+.ed-wordmark b span{color:#387958}
+.ed-wordmark small{font:700 8px/1.8 var(--ed-sans);letter-spacing:.46em;margin-top:2px;color:#6b776d}
+.ed-nav{display:flex;align-items:center;justify-content:center;gap:clamp(13px,2vw,30px);margin-left:auto;flex-wrap:nowrap}
+.ed-nav a{font-size:12px;font-weight:750;color:#323632!important;letter-spacing:.002em;text-decoration:none!important;white-space:nowrap;transition:color .18s}
+.ed-nav a:hover,.ed-nav a[aria-current=page]{color:#23734a!important}
+.ed-actions{display:flex;align-items:center;gap:12px;flex:none}
+.ed-search{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:750;color:#202820;border:1px solid var(--ed-line);padding:10px 13px;background:#fff}
+.ed-search:hover{border-color:#9eb39e}
+.ed-search svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.ed-premium{background:#1a2920!important;color:#fff!important;font-size:12px;font-weight:800;padding:12px 17px}
+.ed-premium:hover{background:#345f49!important}
+.ed-mobile-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #e0e6df;background:#fff;cursor:pointer;color:#203126;padding:0;font-size:22px}
+.ed-topicbar{border-top:1px solid var(--ed-line);background:#fff}
+.ed-topics{display:flex;align-items:center;gap:28px;white-space:nowrap;overflow-x:auto;scrollbar-width:none;min-height:39px}
+.ed-topics::-webkit-scrollbar{display:none}
+.ed-topics a{font-size:11px;font-weight:750;color:#717a71!important;letter-spacing:.01em}
+.ed-topics a:hover,.ed-topics a[aria-current=page]{color:#193f2c!important}
+.ed-topicmark{color:#2e5c40!important;font-weight:800!important;font-size:10px!important;letter-spacing:.1em!important}
+.ed-mobile-menu{display:none;background:#fff;border-top:1px solid var(--ed-line);padding:10px 24px 20px}
+.ed-mobile-menu[hidden]{display:none!important}
+.ed-mobile-menu a{display:block;padding:11px 0;border-bottom:1px solid #eff1ec;font-size:14px;font-weight:700}
+.ed-mobile-menu a:last-child{border-bottom:0}
+.site-header .header-content,.site-header .main-nav,.site-header .mobile-menu-toggle,.site-header .brand-logo-full{display:none!important}
+.iya-drawer,.iya-drawer-backdrop,.iya-drawer-trigger,.iya-header-search{display:none!important}
+html.iya-drawer-ready body{padding-left:0!important}
+main h1,main h2,main h3{letter-spacing:-.035em}
+main h1{font-family:var(--ed-display)!important;font-weight:600!important;color:var(--ed-ink)!important;line-height:1.13!important}
+main h2{color:var(--ed-ink)}
+main h1 em,main h2 em{font-style:italic;color:#2f5f46}
+.section-kicker,.pt-eyebrow,.toolkit-kicker,.iy-eyebrow,.eyebrow,.phase-eyebrow,.pt-kicker{font-family:var(--ed-sans)!important;letter-spacing:.1em!important;color:#2f7950!important;font-size:10px!important;font-weight:800!important}
+.page-hero,.recipes-hero,.personality-intro,.pom-intro,.task-intro,.daily-content .iy-daily-header,.iy-page-intro,.toolkit-intro{background:#fff!important;border-color:var(--ed-line)!important;box-shadow:none!important}
+.page-hero{padding:60px 0 37px!important;border-bottom:1px solid var(--ed-line)}
+.page-hero h1,.recipes-hero h1,.personality-intro h1,.pom-intro h1,.task-intro h1,.iy-page-intro h1,.calc-full-intro h1,.toolkit-intro h1,.iy-daily-header h1{font-family:var(--ed-display)!important;font-size:clamp(35px,4.3vw,64px)!important;font-weight:600!important;line-height:1.15!important;letter-spacing:-.04em!important}
+.page-hero p,.recipes-hero p,.personality-intro p,.pom-intro p,.task-intro p,.iy-page-intro p,.calc-full-intro p,.toolkit-intro p,.iy-daily-header p{color:#6c756e!important;font-size:14px!important;max-width:650px;line-height:1.85!important}
+.page-hero .eyebrow-line{background:#247a4b}
+.section,.blog-area,.recipes-content,.pom-page,.calc-full-main{padding-top:40px;padding-bottom:60px}
+main .post-card,main .recipe-card,main .pt-card,main .iy-daily-card,main .pom-card,main .pom-side-card,main .task-panel,main .toolkit-panel,main .phase-panel,main .post-summary,main .iy-search-shell{box-shadow:none!important;border-color:var(--ed-line)!important}
+main .post-card{background:#fff!important;border-radius:3px!important}
+main .post-visual{border-radius:3px!important;overflow:hidden}
+main .post-content h3{font-family:var(--ed-display)!important;font-weight:600!important;letter-spacing:-.027em!important;line-height:1.28}
+main .post-content p{line-height:1.73!important}
+main .posts-grid{gap:24px}
+main .posts-grid .post-card{border:0!important;border-top:1px solid var(--ed-line)!important;padding-top:16px!important}
+main .post-visual img{object-fit:cover}
+main .filter-btn,main .iy-filter,main .category-tabs button{border-radius:3px!important;box-shadow:none!important;font-size:12px!important}
+main .filter-btn.active,main .iy-filter.selected{background:#1e4934!important;color:#fff!important;border-color:#1e4934!important}
+main .btn,main .pt-btn,main .view-all{box-shadow:none!important;border-radius:3px!important}
+main .btn-primary,main .pt-btn-dark{background:#234832!important;color:#fff!important}
+main .btn-primary:hover,main .pt-btn-dark:hover{background:#335f45!important}
+main .btn-outline,main .pt-btn-light{background:#fff!important;border:1px solid #d9dfd8!important;color:#243e2d!important}
+main .pom-card{border-radius:8px!important;background:#fff!important}
+main .pom-side-card{background:#fff!important;border-radius:8px!important}
+main .pom-intro{padding-top:42px!important;padding-bottom:12px!important}
+main .pom-clock{font-family:'Manrope',var(--ed-sans)!important;font-weight:800!important}
+main .pom-dial{border-color:#e6ede6!important}
+main .pom-dial-inner{background:#fff!important}
+main .pom-modes{background:#f4f6f3!important}
+main .pom-modes button.active{background:#fff!important;color:#19543a!important;box-shadow:0 1px 7px #ddd!important}
+main .pom-primary{background:#214b35!important}
+main .pom-intro + .pom-layout{margin-top:24px}
+main .task-sidebar{background:transparent!important}
+main .task-panel,main .task-workspace,main .task-board{background:#fff!important}
+main .toolkit,.pt-page,.personality-page,.recipes-hero{background:#fff!important}
+main .pt-hero,.pt-entry{background:#f7f8f5!important;border-radius:4px!important;box-shadow:none!important}
+main .reader{box-shadow:none!important;border:1px solid #e7e9e4!important;background:#fff!important;border-radius:3px!important}
+main .article-body{font-family:Georgia,serif!important;line-height:1.95!important}
+main .article-body h1,main .article-body h2,main .article-body h3{font-family:var(--ed-display)!important}
+main .post-topline{margin-top:26px}
+main .daily-card,.iy-daily-card{background:#f8f9f6!important;border-radius:3px!important}
+main .recipes-hero-art{background:#f0f3ef!important;box-shadow:none!important}
+main .recipes-plate{filter:saturate(.75)}
+main .calc-full-main{background:#fff!important}
+main .pa-screen,main #pa-app{box-shadow:none!important}
+main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!important}
+.ed-footer{background:#f7f8f4!important;border-top:1px solid var(--ed-line)!important;color:#343b33!important;margin-top:45px!important}
+.ed-footer .ed-footer-main{width:min(1216px,calc(100% - 64px));margin:0 auto;padding:54px 0 35px;display:grid;grid-template-columns:1.4fr repeat(3,minmax(130px,1fr));gap:44px}
+.ed-footer-brand{color:#1a251d;font:800 21px/1.2 'Manrope',sans-serif;letter-spacing:-.055em}
+.ed-footer-brand span{color:#28704b}
+.ed-footer-brand small{display:block;letter-spacing:.25em;font:700 9px/1.5 var(--ed-sans);margin-top:5px}
+.ed-footer p{font-size:12px;color:#758075;line-height:1.85;max-width:250px;margin-top:19px}
+.ed-footer h3{font-size:11px;color:#526151;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin:3px 0 20px}
+.ed-footer-links{display:flex;flex-direction:column;gap:12px}
+.ed-footer-links a{font-size:12px;color:#606962!important;text-decoration:none}
+.ed-footer-links a:hover{color:#226746!important}
+.ed-footer-bottom{border-top:1px solid var(--ed-line);padding:17px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;width:min(1216px,calc(100% - 64px));margin:0 auto;color:#8c948b;font-size:11px}
+.ed-footer-bottom a{color:#58675a!important}
+@media(max-width:1060px){.ed-nav{gap:13px}.ed-nav a{font-size:11px}.ed-primary{gap:16px}.ed-premium{padding:11px 12px}.ed-wrap,.ed-footer .ed-footer-main,.ed-footer-bottom{width:min(100% - 42px,1216px)}body .container{width:calc(100% - 42px)!important}}
+@media(max-width:850px){.ed-nav{display:none}.ed-mobile-toggle{display:flex}.ed-primary{min-height:67px}.ed-wordmark{font-size:22px}.ed-mobile-menu:not([hidden]){display:block}.ed-topicbar{overflow:hidden}.ed-topics{gap:22px}.ed-footer .ed-footer-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}}
+@media(max-width:580px){.ed-topline .ed-wrap{justify-content:center}.ed-topline .ed-topright{display:none}.ed-wrap,.ed-footer .ed-footer-main,.ed-footer-bottom{width:calc(100% - 34px)}body .container{width:calc(100% - 34px)!important}.ed-primary{min-height:63px}.ed-wordmark{font-size:19px}.ed-wordmark small{font-size:7px}.ed-actions{gap:8px}.ed-search{padding:9px}.ed-search span{display:none}.ed-premium{font-size:11px;padding:11px}.ed-topics{gap:20px}.ed-topics a{font-size:10px}.ed-footer .ed-footer-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;padding-top:37px}.ed-footer .ed-footer-brand-wrap{grid-column:1/-1}.ed-footer-bottom{display:block;line-height:2}.page-hero{padding:42px 0 24px!important}.page-hero h1,.recipes-hero h1,.personality-intro h1,.pom-intro h1,.task-intro h1,.iy-page-intro h1,.calc-full-intro h1,.toolkit-intro h1,.iy-daily-header h1{font-size:clamp(34px,9vw,48px)!important}main .section,main .blog-area{padding-top:26px}main .post-content h3{font-size:23px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important}}
