@@ -1,9 +1,9 @@
 /* İyi Yol Akademi — GitHub Pages + Supabase (yalnızca herkese açık okuma erişimi). */
 (() => {
   'use strict';
-  const API_URL = 'https://jcnokkpduzdgymwvxuoh.supabase.co/rest/v1';
+  const API_URL = 'https://byqfkrjiwefdnhnvjrbq.supabase.co/rest/v1';
   // Supabase publishable anahtarı genel istemci kullanımı içindir; secret/service-role anahtarı değildir.
-  const PUBLIC_KEY = 'sb_publishable_C2NPcTXgB4-GNZGyvgfuMw__vJpIaSm';
+  const PUBLIC_KEY = 'sb_publishable_NmrNx9632u62947Hol3DTw_n89-DYP_';
   const page = document.body.dataset.page;
 
   const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
