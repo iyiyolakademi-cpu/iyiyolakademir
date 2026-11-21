@@ -1,7 +1,7 @@
 (function iyiYolFeatures(){
 "use strict";
-const API="https://jcnokkpduzdgymwvxuoh.supabase.co/rest/v1";
-const KEY="sb_publishable_C2NPcTXgB4-GNZGyvgfuMw__vJpIaSm";
+const API="https://byqfkrjiwefdnhnvjrbq.supabase.co/rest/v1";
+const KEY="sb_publishable_NmrNx9632u62947Hol3DTw_n89-DYP_";
 const BOOKMARK_KEY="iya_saved_articles_v1";
 const HISTORY_KEY="iya_reading_history_v1";
 const FAVORITES_KEY="iyi-yol-akademi-recipes-favorites-v1";
