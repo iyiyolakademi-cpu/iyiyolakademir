@@ -1,0 +1,29 @@
+/* Iyi Yol Akademi | White Edition - sitewide visual theme */
+:root{color-scheme:light;--ed-ink:#181818;--ed-sub:#626262;--ed-line:#e8e8e8;--ed-paper:#fff;--ed-soft:#fff;--ed-accent:#181818;--iya-forest:#181818;--iya-green:#181818;--iya-cream:#fff;--iya-line:#e8e8e8;--iya-text:#181818}
+html,body,main,.ed-home,.ed-page,.iya-shell,.iya-platform,.iya-auth-layout,.iya-platform-card,.iya-choice,.iya-steps div,.ed-feature-card,.ed-category,.ed-article-card,.ed-section,.ed-masthead,.ed-editorial-stage,.ed-sections,.ed-finale,.ed-mainwrap,.panel,.card,.side,.hero,.stat,.item,.top,header,footer,nav,section{background-color:#fff}
+body{color:#202020}
+a{color:#202020}
+a:hover{color:#000}
+button,.btn,.button,.ed-action,.iya-cta-primary{background:#202020;color:#fff;border-color:#202020}
+button.secondary,.btn.alt,.iya-cta-secondary{background:#fff;color:#202020;border:1px solid #d8d8d8}
+button:hover,.btn:hover,.button:hover{filter:brightness(.88)}
+input,textarea,select{background:#fff;color:#202020;border-color:#d7d7d7}
+input:focus,textarea:focus,select:focus{outline:2px solid #aaa;outline-offset:1px}
+::selection{background:#eaeaea;color:#171717}
+.ed-header,.ed-topbar,.ed-nav,.ed-footer,.ed-footer-main,.ed-footer-bottom,.ed-mobile-menu,.ed-secondary-nav,.ed-discovery-bar,.ed-announcement,.iya-platform,.iya-platform-card,.iya-choice,.iya-choice-content,.iya-steps div,.iya-faq,.iya-faq details,.iya-profile-dropdown,.iya-profile-menu,.iya-auth-layout,.iya-form,.iya-result,.ed-newsletter,.ed-search,.ed-search-overlay,.ed-search-panel{background:#fff!important;color:#202020!important;border-color:#e6e6e6!important}
+.ed-header a,.ed-nav a,.ed-footer a,.ed-secondary-nav a,.ed-discovery-bar a,.ed-announcement a,.iya-profile-dropdown a,.iya-platform-card h3,.iya-platform-card-body span,.iya-platform-kicker,.iya-platform-intro h2,.iya-faq h2,.iya-faq summary,.ed-masthead h1,.ed-section h2,.ed-logo,.brand{color:#202020!important}
+.ed-header button,.ed-nav button,.ed-topbar button,.iya-profile-menu summary{color:#202020!important}
+.ed-header .ed-primary-action,.ed-header .ed-action,.ed-masthead-primary{background:#202020!important;color:white!important}
+.ed-header .ed-primary-action a,.ed-masthead-primary a{color:white!important}
+.iya-avatar,.badge,.tag,.notice,.alert,.stat,.empty,.iya-profile-logout,.side button.active,.side button:hover,.profile-progress,.iya-choice-grid,.iya-platform,.iya-platform-card-body,.ed-category-label,.ed-pill,.ed-tag{background:#f5f5f5!important;color:#303030!important}
+.profile-progress span{background:#555!important}
+.iya-cover,.iya-auth-photo,.iya-publish-banner,.cover{background-color:#f7f7f7!important;background-image:none!important;color:#202020!important;border:1px solid #e5e5e5!important}
+.iya-cover:before,.iya-auth-photo:before,.iya-publish-banner:before,.cover:after{display:none!important}
+.iya-cover h1,.iya-cover p,.iya-cover small,.iya-auth-photo h2,.iya-auth-photo p,.iya-publish-banner h2,.iya-publish-banner p{color:#202020!important;text-shadow:none!important}
+.iya-publish-banner .iya-cta-primary{background:#202020!important;color:white!important}
+.iya-publish-banner .iya-cta-secondary{background:white!important;color:#202020!important;border:1px solid #ccc!important}
+.iya-platform-card,.iya-choice,.card,.panel,.side,.hero,.stat{box-shadow:0 5px 24px #00000008!important;border-color:#e9e9e9!important}
+.muted,.meta,.hint,.section-note,.ed-subtitle,.iya-platform-intro p,.iya-platform-card-body p{color:#686868!important}
+.ed-logo-mark,.ed-logo-icon,.ed-brand-symbol{filter:grayscale(1)}
+img{color:#222}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
