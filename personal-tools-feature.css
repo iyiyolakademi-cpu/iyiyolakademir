@@ -1,0 +1,38 @@
+/* Personal tools is a focused feature, not a second homepage */
+body[data-page="personal-tools"]{background:#fff!important;color:#1b1b1b!important;--simple-bg:#fff;--simple-white:#fff;--simple-ink:#202020;--simple-muted:#777;--simple-border:#e6e6e6;--simple-accent:#202020;--simple-soft:#fafafa}
+body[data-page="personal-tools"] #main{background:#fff!important}
+body[data-page="personal-tools"] .toolkit{width:min(1120px,calc(100% - 34px))!important;max-width:1120px!important;margin:0 auto!important;padding:34px 0 65px!important;--tk-ink:#202020;--tk-muted:#777;--tk-border:#e6e6e6;--tk-soft:#fafafa}
+body[data-page="personal-tools"] .toolkit-intro{display:grid!important;grid-template-columns:1.15fr .85fr!important;align-items:center!important;gap:32px!important;background:#fff!important;border:0!important;border-bottom:1px solid #eaeaea!important;border-radius:0!important;padding:16px 0 34px!important;box-shadow:none!important}
+body[data-page="personal-tools"] .toolkit-feature-copy{min-width:0}
+body[data-page="personal-tools"] .toolkit-kicker{color:#666!important;font:800 10px system-ui,sans-serif!important;letter-spacing:.16em!important}
+body[data-page="personal-tools"] .toolkit-intro h1{font:600 clamp(33px,4.2vw,55px)/1.13 Georgia,serif!important;letter-spacing:-.045em!important;margin:15px 0 17px!important;color:#1b1b1b!important}
+body[data-page="personal-tools"] .toolkit-intro h1 em{font:inherit!important;font-style:normal!important;color:#1b1b1b!important;text-decoration:underline;text-decoration-color:#ddd;text-decoration-thickness:4px;text-underline-offset:6px}
+body[data-page="personal-tools"] .toolkit-intro p{font:400 14px/1.85 system-ui,sans-serif!important;color:#666!important;max-width:530px}
+.toolkit-feature-photo{height:265px;position:relative;overflow:hidden;border-radius:12px;background:#eee}
+.toolkit-feature-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:none!important}
+.toolkit-feature-photo span{position:absolute;bottom:15px;left:15px;padding:10px 14px;background:#fffffff0;border-radius:7px;color:#202020;font:800 10px system-ui,sans-serif;letter-spacing:.1em}
+.toolkit-feature-shortcuts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.toolkit-feature-shortcuts a{padding:10px 15px;background:#202020;color:#fff!important;border-radius:7px;text-decoration:none;font:750 12px system-ui,sans-serif}
+.toolkit-feature-shortcuts a+a{background:#fff;color:#202020!important;border:1px solid #dedede}
+.toolkit-feature-title{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:31px 0 17px}
+.toolkit-feature-title h2{font:600 clamp(24px,3vw,33px)/1.2 Georgia,serif;letter-spacing:-.035em;color:#1d1d1d;margin:8px 0 0}
+.toolkit-feature-title>span{color:#888;font:650 12px system-ui,sans-serif}
+body[data-page="personal-tools"] .p4-diary-link{margin-top:22px!important;background:#fafafa!important;border:1px solid #e9e9e9!important;border-radius:11px!important;color:#222!important}
+body[data-page="personal-tools"] .p4-diary-link a{background:#202020!important;color:#fff!important;border:1px solid #202020!important}
+body[data-page="personal-tools"] .toolkit-tabs{margin:0 0 10px!important;padding:0 0 13px!important;gap:9px!important}
+body[data-page="personal-tools"] .toolkit-tab{background:#fff!important;border:1px solid #dedede!important;color:#444!important;border-radius:9px!important;font:750 13px system-ui,sans-serif!important;min-height:46px!important;padding:11px 19px!important}
+body[data-page="personal-tools"] .toolkit-tab.is-active{background:#202020!important;border-color:#202020!important;color:#fff!important}
+body[data-page="personal-tools"] .toolkit-panel{padding-top:12px!important}
+body[data-page="personal-tools"] .toolkit-section-intro h2{color:#222!important;font-family:Georgia,serif!important;font-weight:600!important}
+body[data-page="personal-tools"] .toolkit-card,body[data-page="personal-tools"] .toolkit-summary,body[data-page="personal-tools"] .toolkit-bottom{background:#fff!important;color:#222!important;border:1px solid #e8e8e8!important;box-shadow:0 6px 22px #00000005!important}
+body[data-page="personal-tools"] .toolkit-soft,body[data-page="personal-tools"] .toolkit-checkbox,body[data-page="personal-tools"] .toolkit-book-item,body[data-page="personal-tools"] .toolkit-reminder-row{background:#fafafa!important;color:#222!important;border-color:#e6e6e6!important}
+body[data-page="personal-tools"] .toolkit-btn,body[data-page="personal-tools"] button:not(.toolkit-tab):not(.secondary){background:#202020!important;border-color:#202020!important;color:#fff!important}
+body[data-page="personal-tools"] .toolkit-btn.secondary,body[data-page="personal-tools"] button.secondary{background:#fff!important;color:#202020!important;border:1px solid #dedede!important}
+body[data-page="personal-tools"] input,body[data-page="personal-tools"] textarea,body[data-page="personal-tools"] select{background:#fff!important;color:#202020!important;border-color:#d8d8d8!important}
+body[data-page="personal-tools"] input[type=checkbox]{accent-color:#202020!important}
+body[data-page="personal-tools"] .toolkit-label,body[data-page="personal-tools"] .toolkit-form label,body[data-page="personal-tools"] .toolkit-form legend{color:#333!important}
+body[data-page="personal-tools"] .toolkit-bottom{border-radius:12px!important;padding:23px!important}
+body[data-page="personal-tools"] .iya-header-actions a{border-color:#222!important;color:#222!important}
+body[data-page="personal-tools"] .iya-header-actions a:nth-child(2){background:#222!important;color:#fff!important}
+@media(max-width:760px){body[data-page="personal-tools"] .toolkit-intro{grid-template-columns:1fr!important;gap:20px!important}.toolkit-feature-photo{height:230px}body[data-page="personal-tools"] .toolkit{padding-top:20px!important}}
+@media(max-width:500px){body[data-page="personal-tools"] .toolkit{width:calc(100% - 24px)!important}body[data-page="personal-tools"] .toolkit-intro h1{font-size:34px!important}.toolkit-feature-photo{height:185px}.toolkit-feature-title{align-items:start;flex-direction:column}.toolkit-feature-shortcuts a{flex:1;text-align:center}}
