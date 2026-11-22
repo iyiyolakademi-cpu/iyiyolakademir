@@ -12,7 +12,7 @@ if(id&&/^[0-9a-f-]{36}$/i.test(id)){
  $('article').innerHTML='<a href="topluluk-yazilari.html">← Tüm yazılar</a><h2>'+esc(data.title)+'</h2><p class="meta">'+esc(data.category)+' · '+new Date(data.published_at).toLocaleDateString('tr-TR')+' · '+Number(data.views)+' geçerli okuma</p><div>'+esc(data.body)+'</div>';
  // Her giriş yapmış okuyucu için yazı başına günde en fazla bir okuma.
  const {data:{user}}=await db.auth.getUser();
- if(user&&user.id!==data.author_id)await db.rpc('iya_record_read',{p_article:id});
+ if(user){await db.from('iya_reading_progress').upsert({user_id:user.id,article_id:id,last_read_at:new Date().toISOString()},{onConflict:'user_id,article_id'});if(user.id!==data.author_id)await db.rpc('iya_record_read',{p_article:id});}
  }
 }else{
  const {data,error}=await db.from('iya_submissions').select('id,title,excerpt,category,published_at,views').eq('status','published').order('published_at',{ascending:false}).limit(50);
