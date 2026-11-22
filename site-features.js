@@ -65,7 +65,8 @@ async function initProfileAuth(header){
    if(user){
      const display=(user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Üye").trim().slice(0,35);
      summary.replaceChildren(node("span","iya-avatar",display.charAt(0).toLocaleUpperCase("tr-TR")),document.createTextNode(" "+display+" ▾"));
-     add("Profilim ve Panelim","yazar-paneli.html");\n     add("Yazar / Yayın Paneli","yazar-paneli.html");
+     add("Profilim ve Panelim","yazar-paneli.html");
+     add("Yazar / Yayın Paneli","yazar-paneli.html");
      add("Günlük Planım","yapilacaklar.html");
      add("Gelişim Araçlarım","gelisim-araclari.html");
      add("Kaydedilenler","kaydedilenler.html");
@@ -84,7 +85,8 @@ async function initProfileAuth(header){
      summary.replaceChildren(node("span","iya-avatar","♙"),document.createTextNode(" Profil ▾"));
      add("Giriş Yap","hesabim.html#login");
      add("Ücretsiz Üye Ol","hesabim.html#signup");
-     add("Eğitimleri Keşfet","egitimler.html");\n     add("Yazar olmak istiyorum","yazar-paneli.html");
+     add("Eğitimleri Keşfet","egitimler.html");
+     add("Yazar olmak istiyorum","yazar-paneli.html");
    }
    if(mobile){
      mobile.querySelectorAll("[data-auth-mobile]").forEach(el=>el.remove());
