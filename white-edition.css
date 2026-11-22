@@ -72,3 +72,10 @@ body,html{background:#fff!important}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #777!important;outline-offset:3px}
 @media(max-width:850px){.iya-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iya-feature-head{align-items:start;flex-direction:column}}
 @media(max-width:600px){.iya-feature-grid{grid-template-columns:1fr}.iya-feature-spotlight{padding:38px 0}.iya-feature-tile img{height:190px}.iya-newsbar{gap:8px}.iya-newsbar span{border:0;padding:0}}
+
+/* Restore photography as monochrome, never green */
+.iya-cover{background-image:linear-gradient(90deg,#fffffff0,#ffffffb8),url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1600')!important;background-size:cover!important;background-position:center!important}
+.iya-auth-photo{background-image:linear-gradient(0deg,#fffffff0,#ffffff88),url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1200')!important;background-size:cover!important;background-position:center!important}
+.iya-publish-banner{background-image:linear-gradient(90deg,#fffffff2,#ffffffad),url('https://images.pexels.com/photos/261763/pexels-photo-261763.jpeg?auto=compress&cs=tinysrgb&w=1600')!important;background-size:cover!important;background-position:center!important}
+.cover{background-image:linear-gradient(90deg,#ffffff80,#ffffff22),url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1600')!important;background-size:cover!important;background-position:center!important}
+.iya-cover,.iya-auth-photo,.iya-publish-banner,.cover{background-blend-mode:normal,luminosity!important}
