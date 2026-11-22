@@ -128,3 +128,19 @@ main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!impo
 .pom-shortcuts{margin:14px 0 0!important;color:#778177;font-size:11px!important;line-height:1.8}
 .pom-shortcuts kbd{display:inline-block;margin:0 3px 0 7px;padding:2px 6px;border:1px solid #dce3da;border-radius:3px;background:#f7f8f5;color:#36483a;font:700 10px var(--ed-sans)}
 @media(max-width:580px){.pt-hero{padding:38px 0 30px!important}.pt-hero-stats{gap:22px!important;flex-wrap:wrap}.pom-shortcuts{font-size:10px!important}}
+
+
+/* Tek satırlı gezinme, hızlı erişim ve profil menüsü */
+.ed-actions{display:flex;align-items:center;gap:10px}
+.iya-quick-link{font:700 12px var(--ed-sans);color:#254734!important;text-decoration:none;white-space:nowrap;padding:10px 3px}
+.iya-quick-link:hover{text-decoration:underline}
+.iya-profile-menu{position:relative;flex-shrink:0;font-family:var(--ed-sans);z-index:1002}
+.iya-profile-menu summary{display:flex;align-items:center;gap:8px;list-style:none;cursor:pointer;background:#234832;color:white;padding:12px 15px;border-radius:6px;font-size:13px;font-weight:800;white-space:nowrap}
+.iya-profile-menu summary::-webkit-details-marker{display:none}
+.iya-profile-menu summary:focus-visible{outline:3px solid #e2b853;outline-offset:3px}
+.iya-profile-dropdown{position:absolute;right:0;top:calc(100% + 9px);width:230px;max-height:min(70vh,500px);overflow-y:auto;background:#fff;border:1px solid #dfe6de;box-shadow:0 18px 45px #142c1b25;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:2px}
+.iya-profile-dropdown a{display:block;padding:12px 13px;color:#233c2c!important;font-size:13px;font-weight:650;text-decoration:none;border-radius:6px}
+.iya-profile-dropdown a:hover,.iya-profile-dropdown a:focus-visible{background:#edf4ed}
+@media(max-width:1150px){.iya-quick-link{display:none}.ed-nav{gap:12px}}
+@media(max-width:850px){.iya-profile-menu summary{padding:10px 12px}.iya-profile-dropdown{right:0}.ed-actions{margin-left:auto}}
+@media(max-width:480px){.ed-search{display:none!important}.iya-profile-menu summary{font-size:12px;padding:10px}.ed-primary{gap:8px}}
