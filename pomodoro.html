@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fdfcf9">
+<meta name="theme-color" content="#000000">
 <meta name="description" content="İyi Yol Akademi Pomodoro zamanlayıcı. Büyük ve sade ekranla odaklan, molalarını yönet.">
 <title>Pomodoro | İyi Yol Akademi</title>
 <link rel="canonical" href="https://iyiyolakademi-cpu.github.io/iyiyolakademir/pomodoro.html">
@@ -25,8 +25,20 @@
 .pomo-hint strong{color:#354c3b;font-weight:700}
 @media(max-width:580px){.pomo-page{padding-top:18px;padding-bottom:36px}#pomo-root{height:62vh;min-height:390px}.pomo-hint{display:block}.pomo-hint span{display:block;margin-top:4px}}
 </style>
-</head>
-<body data-page="pomodoro">
+<style id="pomo-fullscreen-styles">
+html,body{margin:0!important;width:100%;height:100%;overflow:hidden!important;background:#000!important}
+body[data-page="pomodoro"]>.site-header,body[data-page="pomodoro"]>.footer,body[data-page="pomodoro"]>.skip-link{display:none!important}
+body[data-page="pomodoro"] #main.pomo-page{position:fixed!important;inset:0!important;z-index:1!important;width:100%!important;max-width:none!important;height:100dvh!important;min-height:100vh!important;margin:0!important;padding:0!important;background:#000!important;overflow:hidden!important}
+body[data-page="pomodoro"] .pomo-intro{display:none!important}
+body[data-page="pomodoro"] #pomo-root{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;border:0!important;border-radius:0!important;margin:0!important;background:#000!important}
+body[data-page="pomodoro"] .pomo-hint{position:absolute;left:50%;bottom:max(15px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:4;width:min(90vw,670px);margin:0!important;padding:7px 13px;border-radius:20px;background:#171717ad;color:#bdbdbd!important;text-align:center;font-size:11px;justify-content:center;pointer-events:none}
+body[data-page="pomodoro"] .pomo-hint strong{color:#fff!important}
+.pomo-exit{position:fixed;top:max(15px,env(safe-area-inset-top));left:18px;z-index:1001;display:inline-flex;align-items:center;gap:9px;padding:10px 15px;background:#171717d9;border:1px solid #444;border-radius:10px;color:#fff!important;text-decoration:none;font:700 12px system-ui,sans-serif;backdrop-filter:blur(8px)}
+.pomo-exit:hover{background:#303030}
+.pomo-fullscreen-button{position:fixed;top:max(15px,env(safe-area-inset-top));right:18px;z-index:1001;padding:10px 15px;background:#171717d9;border:1px solid #444;border-radius:10px;color:#fff!important;font:700 12px system-ui,sans-serif;cursor:pointer}
+@media(max-width:600px){body[data-page="pomodoro"] .pomo-hint{font-size:10px;display:flex;flex-direction:column;gap:0;bottom:max(10px,env(safe-area-inset-bottom))}.pomo-exit,.pomo-fullscreen-button{font-size:11px;padding:9px 11px}}
+</style></head>
+<body data-page="pomodoro"><a class="pomo-exit" href="gelisim-araclari.html">← Araçlara dön</a><button class="pomo-fullscreen-button" type="button" id="pomoFullscreen" aria-label="Tarayıcı tam ekran modunu değiştir">⛶ Tam ekran</button>
 <a class="skip-link" href="#main">İçeriğe geç</a>
 <header class="site-header"><div class="ed-wrap ed-primary"><a class="ed-wordmark" href="index.html" aria-label="İyi Yol Akademi ana sayfa"><b>iyi<span>yol.</span></b><small>AKADEMİ</small></a><nav class="ed-nav" aria-label="Ana menü"><a href="index.html">Ana Sayfa</a><a href="blog.html">Yazılar</a><a href="testler.html">Testler</a><a href="premium-testler.html">Keşif Testleri</a><a href="yapilacaklar.html">Gelişim</a><a href="gelisim-araclari.html">Araçlar</a><a href="tarifler.html">Yaşam</a></nav><div class="iya-header-actions" style="display:flex!important;align-items:center!important;gap:9px!important;margin-left:auto!important;flex-shrink:0!important;position:relative!important;z-index:1000!important"><a href="hesabim.html#login" style="display:inline-flex!important;padding:12px 16px!important;border:1px solid #d5e0d6!important;border-radius:8px!important;background:white!important;color:#234832!important;font-weight:750!important;text-decoration:none!important;white-space:nowrap!important">Giriş Yap</a><a href="hesabim.html#signup" style="display:inline-flex!important;padding:12px 16px!important;border:1px solid #234832!important;border-radius:8px!important;background:#234832!important;color:white!important;font-weight:750!important;text-decoration:none!important;white-space:nowrap!important">Kayıt Ol</a></div><a class="ed-search" href="arama.html">Ara</a></div></header>
 <main id="main" class="container pomo-page">
@@ -48,7 +60,7 @@ if(!document.getElementById("pomo-font")){
  var link=document.createElement("link");link.id="pomo-font";link.rel="stylesheet";
  link.href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap";document.head.appendChild(link);
 }
-host.style.cssText="position:relative;width:100%;height:min(66vh,650px);min-height:430px;background:#000;display:block;overflow:hidden";
+host.style.cssText="position:relative;width:100%;height:100%;min-height:0;background:#000;display:block;overflow:hidden";
 var root=host.attachShadow({mode:"open"});
 root.innerHTML=`
 <style>
@@ -61,7 +73,7 @@ root.innerHTML=`
 .d{position:relative;color:#f2f2f2;font-size:var(--fs,min(36vw,72vh));line-height:1;width:.5em;text-align:center;font-variant-numeric:tabular-nums}
 .d:after{content:"";position:absolute;left:-6%;right:-6%;top:50%;height:3px;background:#000;transform:translateY(-1.5px)}
 .clock.paused .pair{opacity:.52}
-.clock.rest .d{color:#9ad1b0}
+.clock.rest .d{color:#f2f2f2}
 .note{color:#777;font:400 clamp(13px,2.4vh,23px) system-ui,sans-serif;letter-spacing:.025em;max-width:90%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .note:empty{display:none}
 .gear{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;border:1px solid #333;background:#111;color:#bbb;display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -164,5 +176,7 @@ if(window.ResizeObserver)new ResizeObserver(fit).observe(host);
 render();
 })();
 </script>
-</body>
+<script>
+(function(){var button=document.getElementById('pomoFullscreen');if(!button)return;button.addEventListener('click',async function(){try{if(document.fullscreenElement){await document.exitFullscreen()}else{await document.documentElement.requestFullscreen()}}catch(e){button.textContent='Tarayıcı tam ekranı kullanılamıyor'}});document.addEventListener('fullscreenchange',function(){button.textContent=document.fullscreenElement?'⤢ Küçült':'⛶ Tam ekran'})})();
+</script></body>
 </html>
