@@ -144,3 +144,8 @@ main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!impo
 @media(max-width:1150px){.iya-quick-link{display:none}.ed-nav{gap:12px}}
 @media(max-width:850px){.iya-profile-menu summary{padding:10px 12px}.iya-profile-dropdown{right:0}.ed-actions{margin-left:auto}}
 @media(max-width:480px){.ed-search{display:none!important}.iya-profile-menu summary{font-size:12px;padding:10px}.ed-primary{gap:8px}}
+
+.iya-profile-menu .iya-avatar{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;background:#e4efe5;color:#245039;font-size:13px;font-weight:800}
+.iya-profile-logout{width:100%;border:0;background:#f8eded;color:#8d302e;text-align:left;padding:12px 13px;border-radius:6px;font:700 13px var(--ed-sans);cursor:pointer}
+.iya-profile-logout:hover{background:#f4dfdf}
+.iya-profile-menu summary{max-width:180px;overflow:hidden;text-overflow:ellipsis}
