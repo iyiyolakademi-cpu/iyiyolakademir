@@ -1,0 +1,72 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Yazar ve Yönetim Paneli | İyi Yol Akademi</title><meta name="description" content="İyi Yol Akademi yazar başvurusu, yazı yönetimi ve editör paneli."><style>
+:root{font-family:system-ui,sans-serif;color:#1c3427;background:#f5f7f3}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #dce6da;padding:20px max(18px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}header a{color:#24533a;text-decoration:none}header strong{font-size:24px}main{max-width:1120px;margin:auto;padding:38px 18px 90px}h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.04em;margin:10px 0}h2{font-size:21px}p{line-height:1.7;color:#627469}.panel{background:white;border:1px solid #dde7dc;border-radius:16px;padding:24px;margin:20px 0;box-shadow:0 7px 25px #193a2210}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.stat{background:#eef5ed;border-radius:12px;padding:18px}.stat strong{display:block;font-size:27px;margin-top:8px}label{display:block;font-weight:650;margin:16px 0 6px}input,textarea,select{width:100%;font:inherit;padding:12px;border:1px solid #c8d6c8;border-radius:9px;background:white}textarea{min-height:150px;resize:vertical}button,.button{border:0;border-radius:9px;padding:12px 16px;background:#24533a;color:#fff;font:700 14px system-ui;cursor:pointer;text-decoration:none;display:inline-block;margin:6px 7px 6px 0}button.secondary{background:#e8f0e8;color:#24533a}button:disabled{opacity:.55;cursor:wait}.item{padding:17px 0;border-bottom:1px solid #e3eae1}.item:last-child{border:0}.item strong{display:block}.meta{font-size:12px;color:#64766a}.tag{display:inline-block;border-radius:20px;background:#edf3e9;padding:5px 10px;font-size:12px;font-weight:700}.notice{padding:12px 16px;background:#eff5ec;border-radius:9px;margin:14px 0}a{color:#216445}#status{min-height:24px} .editor textarea{min-height:260px}@media(max-width:600px){header{padding:15px}main{padding:24px 14px}.panel{padding:18px}}</style></head><body><header><a href="index.html"><strong>iyiyol.</strong> AKADEMİ</a><a href="index.html">← Ana sayfa</a></header><main><small>İYİ YOL AKADEMİ / ÜYELİK VE YAYINCILIK</small><h1 id="heading">Akademi paneli</h1><p id="status" role="status">Hesabın kontrol ediliyor…</p>
+<section id="guest" class="panel hidden"><h2>Önce giriş yap</h2><p>Okuyucu veya yazar olarak devam etmek için hesabına giriş yap.</p><a class="button" href="hesabim.html#login">Giriş yap</a><a class="button" href="hesabim.html#signup">Üye ol</a></section>
+<section id="onboard" class="panel hidden"><h2>İyi Yol Akademi'ye hoş geldin</h2><p>Nasıl katılmak istersin?</p><button id="reader">Okuyucu olarak devam et</button><button id="writer">Yazar olmak istiyorum</button><p>Yazar başvuruları yönetici onayından geçer.</p></section>
+<section id="readerPanel" class="panel hidden"><h2>Okuyucu panelim</h2><p>Yazıları keşfet, kaydet ve gelişimini takip et.</p><a class="button" href="blog.html">Yazıları oku</a><button id="applyWriter" class="secondary">Yazar olmak için başvur</button><p id="applicationStatus"></p></section>
+<section id="writerPanel" class="hidden"><div class="grid"><div class="stat">Yayımlanan yazı<strong id="publishedCount">0</strong></div><div class="stat">Geçerli okuma<strong id="viewCount">0</strong></div><div class="stat">Puan<strong id="pointCount">0</strong></div></div><div class="panel"><h2>Yazılarım</h2><div id="myArticles"></div></div><div class="panel editor"><h2>Yazı oluştur / düzenle</h2><p>Yazını taslak olarak kaydet veya editör incelemesine gönder.</p><form id="articleForm"><input id="articleId" type="hidden"><label for="title">Başlık</label><input id="title" maxlength="180" minlength="8" required><label for="category">Kategori</label><select id="category"><option>Kişisel Gelişim</option><option>Psikoloji</option><option>Felsefe</option><option>Edebiyat</option><option>Eğitim</option><option>Yaşam</option></select><label for="excerpt">Kısa açıklama</label><textarea id="excerpt" maxlength="500" style="min-height:90px"></textarea><label for="body">Yazı</label><textarea id="body" minlength="100" maxlength="100000" required placeholder="En az 100 karakter…"></textarea><button type="button" id="saveDraft">Taslak kaydet</button><button type="submit">Editör incelemesine gönder</button><button type="button" id="clearForm" class="secondary">Yeni yazı</button></form></div></section>
+<section id="adminPanel" class="hidden"><div class="panel"><h2>Yönetici / Editör paneli</h2><p>Yazar başvurularını ve yayın bekleyen yazıları buradan inceleyebilirsin.</p><div class="grid"><div class="stat">Bekleyen yazar<strong id="pendingAuthors">0</strong></div><div class="stat">İncelenecek yazı<strong id="pendingArticles">0</strong></div></div></div><div class="panel"><h2>Yazar başvuruları</h2><div id="applications"></div></div><div class="panel"><h2>Editör incelemesi</h2><div id="reviews"></div></div><div class="panel"><h2>Puan ve gelir modeli</h2><p>Şimdilik geçerli okuma başına 1 puan kaydedilir. Puanlar para değildir. Ödeme oranı, sahte okuma kontrolleri, vergi ve ödeme koşulları belirlenmeden gerçek kazanç veya ödeme bakiyesi oluşturulmaz.</p></div></section>
+</main><script type="module">
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.57.0';
+const db=createClient('https://byqfkrjiwefdnhnvjrbq.supabase.co','sb_publishable_NmrNx9632u62947Hol3DTw_n89-DYP_');
+const $=id=>document.getElementById(id),show=id=>$(id).classList.remove('hidden'),hide=id=>$(id).classList.add('hidden');
+let user,member,staff;
+const msg=t=>$('status').textContent=t;
+const safe=t=>String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function init(){
+ const {data:{user:u},error}=await db.auth.getUser();if(error||!u){show('guest');msg('Giriş yaparak devam et.');return}user=u;
+ const [m,s]=await Promise.all([db.from('iya_members').select('*').eq('user_id',u.id).maybeSingle(),db.from('iya_staff').select('role').eq('user_id',u.id).maybeSingle()]);
+ if(m.error||s.error){msg('Panel verileri yüklenemedi: '+(m.error?.message||s.error?.message));return}
+ member=m.data;staff=s.data;
+ $('heading').textContent='Merhaba, '+(member?.display_name||u.email?.split('@')[0]||'üyemiz');
+ if(!member){show('onboard');msg('Üyelik türünü seçerek devam et.');return}
+ if(member.writer_status==='approved'){show('writerPanel');await loadMine()}
+ else{show('readerPanel');$('applicationStatus').textContent=member.writer_status==='pending'?'Yazar başvurun inceleme bekliyor.':member.writer_status==='rejected'?'Yazar başvurun reddedildi. Tekrar başvurabilirsin.':'Okuyucu hesabın aktif.';$('applyWriter').disabled=member.writer_status==='pending'}
+ if(staff){show('adminPanel');await loadAdmin()}
+ msg('Panel hazır.');
+}
+async function createMember(type){
+ const {error}=await db.from('iya_members').insert({user_id:user.id,display_name:user.email?.split('@')[0]||'',member_type:'reader',writer_status:'none'});
+ if(error){msg(error.message);return}
+ if(type==='writer'){const {error:e}=await db.rpc('iya_apply_writer');if(e){msg(e.message);return}}
+ location.reload();
+}
+$('reader').onclick=()=>createMember('reader');$('writer').onclick=()=>createMember('writer');
+$('applyWriter').onclick=async()=>{const {error}=await db.rpc('iya_apply_writer');if(error)msg(error.message);else location.reload()};
+async function loadMine(){
+ const {data,error}=await db.from('iya_submissions').select('id,title,excerpt,body,category,status,editorial_note,views,points,published_at,created_at').eq('author_id',user.id).order('created_at',{ascending:false});
+ if(error){msg(error.message);return}
+ $('publishedCount').textContent=data.filter(x=>x.status==='published').length;
+ $('viewCount').textContent=data.reduce((n,x)=>n+Number(x.views||0),0);
+ $('pointCount').textContent=data.reduce((n,x)=>n+Number(x.points||0),0);
+ $('myArticles').replaceChildren();
+ if(!data.length)$('myArticles').textContent='Henüz yazın bulunmuyor.';
+ for(const a of data){const box=document.createElement('div');box.className='item';box.innerHTML='<strong>'+safe(a.title)+'</strong><span class="tag">'+safe(a.status)+'</span> <span class="meta">'+Number(a.views)+' okuma · '+Number(a.points)+' puan</span><p>'+safe(a.editorial_note||'')+'</p>';
+ if(['draft','changes_requested'].includes(a.status)){const b=document.createElement('button');b.textContent='Düzenle';b.onclick=()=>{for(const k of ['title','category','excerpt','body'])$(k).value=a[k]||'';$('articleId').value=a.id;$('title').focus()};box.append(b)}$('myArticles').append(box)}
+}
+$('clearForm').onclick=()=>{$('articleForm').reset();$('articleId').value=''};
+async function saveArticle(status){
+ const id=$('articleId').value;const payload={title:$('title').value.trim(),category:$('category').value,excerpt:$('excerpt').value.trim(),body:$('body').value.trim(),status};
+ if(payload.title.length<8||payload.body.length<100){msg('Başlık en az 8, yazı en az 100 karakter olmalı.');return}
+ const query=id?db.from('iya_submissions').update(payload).eq('id',id).eq('author_id',user.id):db.from('iya_submissions').insert({...payload,status:'draft',author_id:user.id}).select('id').single();
+ let {data,error}=await query;
+ if(!error&&!id&&status==='review'){const result=await db.from('iya_submissions').update({status:'review'}).eq('id',data.id);error=result.error}
+ if(error){msg(error.message);return}
+ msg(status==='review'?'Yazın editör incelemesine gönderildi.':'Taslağın kaydedildi.');
+ $('clearForm').click();await loadMine();
+}
+$('saveDraft').onclick=()=>saveArticle('draft');$('articleForm').onsubmit=e=>{e.preventDefault();saveArticle('review')};
+async function loadAdmin(){
+ const [members,articles]=await Promise.all([db.from('iya_members').select('user_id,display_name,bio,writer_status').eq('writer_status','pending'),db.from('iya_submissions').select('id,title,body,excerpt,category,author_id,created_at,status').eq('status','review').order('created_at',{ascending:true})]);
+ if(members.error||articles.error){msg(members.error?.message||articles.error?.message);return}
+ $('pendingAuthors').textContent=members.data.length;$('pendingArticles').textContent=articles.data.length;
+ $('applications').replaceChildren();$('reviews').replaceChildren();
+ if(!members.data.length)$('applications').textContent='Bekleyen başvuru yok.';
+ for(const m of members.data){const box=document.createElement('div');box.className='item';box.innerHTML='<strong>'+safe(m.display_name||m.user_id)+'</strong><p>'+safe(m.bio)+'</p>';
+ for(const [label,value] of [['Onayla','approved'],['Reddet','rejected']]){const b=document.createElement('button');b.textContent=label;b.className=value==='rejected'?'secondary':'';b.onclick=async()=>{if(!confirm(label+' işlemini onaylıyor musun?'))return;const {error}=await db.from('iya_members').update({writer_status:value}).eq('user_id',m.user_id);if(error)msg(error.message);else loadAdmin()};box.append(b)}$('applications').append(box)}
+ if(!articles.data.length)$('reviews').textContent='İnceleme bekleyen yazı yok.';
+ for(const a of articles.data){const box=document.createElement('div');box.className='item';box.innerHTML='<strong>'+safe(a.title)+'</strong><span class="meta">'+safe(a.category)+' · '+safe(a.author_id)+'</span><p>'+safe(a.excerpt)+'</p><details><summary>Yazının tamamını oku</summary><p style="white-space:pre-wrap">'+safe(a.body)+'</p></details>';
+ const note=document.createElement('textarea');note.placeholder='Editör notu / düzeltme isteği';note.style.minHeight='70px';box.append(note);
+ for(const [label,value] of [['Yayımla','published'],['Düzeltme iste','changes_requested'],['Reddet','rejected']]){const b=document.createElement('button');b.textContent=label;b.className=value==='published'?'':'secondary';b.onclick=async()=>{if(!confirm(label+' işlemini onaylıyor musun?'))return;const update={status:value,editorial_note:note.value.trim()};if(value==='published')update.published_at=new Date().toISOString();const {error}=await db.from('iya_submissions').update(update).eq('id',a.id);if(error)msg(error.message);else loadAdmin()};box.append(b)}$('reviews').append(box)}
+}
+init().catch(e=>msg('Beklenmeyen hata: '+e.message));
+</script></body></html>
