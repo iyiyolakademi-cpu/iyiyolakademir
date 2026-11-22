@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /yonetim.html
+Disallow: /blog-yonetim.html
+Disallow: /yazar-paneli.html
+Disallow: /hesabim.html
+Disallow: /profilim.html
+Disallow: /kaydedilenler.html
+Disallow: /arama.html
 
 Sitemap: https://iyiyolakademi-cpu.github.io/iyiyolakademir/sitemap.xml
