@@ -1,3 +1,4 @@
+@import url('white-edition.css?v=20261122white1');
 /* IYI YOL AKADEMI — Editorial System 2026 / Aposto-inspired, original */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
 :root{--ed-ink:#151918;--ed-sub:#565d58;--ed-line:#e2e5df;--ed-paper:#fff;--ed-soft:#f6f7f3;--ed-green:#264f3e;--ed-accent:#a9c2ad;--ed-display:'Playfair Display',Georgia,serif;--ed-sans:'DM Sans',Arial,sans-serif}
@@ -149,5 +150,3 @@ main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!impo
 .iya-profile-logout{width:100%;border:0;background:#f8eded;color:#8d302e;text-align:left;padding:12px 13px;border-radius:6px;font:700 13px var(--ed-sans);cursor:pointer}
 .iya-profile-logout:hover{background:#f4dfdf}
 .iya-profile-menu summary{max-width:180px;overflow:hidden;text-overflow:ellipsis}
-
-@import url('white-edition.css?v=20261122white1');
