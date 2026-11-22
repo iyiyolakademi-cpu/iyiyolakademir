@@ -65,7 +65,7 @@ async function initProfileAuth(header){
    if(user){
      const display=(user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Üye").trim().slice(0,35);
      summary.replaceChildren(node("span","iya-avatar",display.charAt(0).toLocaleUpperCase("tr-TR")),document.createTextNode(" "+display+" ▾"));
-     add("Profilim ve Panelim","yazar-paneli.html");
+     add("Profilim","profilim.html");
      add("Yazar / Yayın Paneli","yazar-paneli.html");
      add("Günlük Planım","yapilacaklar.html");
      add("Gelişim Araçlarım","gelisim-araclari.html");
@@ -91,7 +91,7 @@ async function initProfileAuth(header){
    if(mobile){
      mobile.querySelectorAll("[data-auth-mobile]").forEach(el=>el.remove());
      const a=node("a","",user?"Profilim":"Giriş Yap / Üye Ol");
-     a.dataset.authMobile="true";a.href=user?"yazar-paneli.html":"hesabim.html#login";
+     a.dataset.authMobile="true";a.href=user?"profilim.html":"hesabim.html#login";
      mobile.prepend(a);
    }
  };
