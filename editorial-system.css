@@ -149,3 +149,5 @@ main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!impo
 .iya-profile-logout{width:100%;border:0;background:#f8eded;color:#8d302e;text-align:left;padding:12px 13px;border-radius:6px;font:700 13px var(--ed-sans);cursor:pointer}
 .iya-profile-logout:hover{background:#f4dfdf}
 .iya-profile-menu summary{max-width:180px;overflow:hidden;text-overflow:ellipsis}
+
+@import url('white-edition.css?v=20261122white1');
