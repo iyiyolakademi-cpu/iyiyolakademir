@@ -24,7 +24,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid #aaa;outline-offset:1p
 .iya-publish-banner .iya-cta-secondary{background:white!important;color:#202020!important;border:1px solid #ccc!important}
 .iya-platform-card,.iya-choice,.card,.panel,.side,.hero,.stat{box-shadow:0 5px 24px #00000008!important;border-color:#e9e9e9!important}
 .muted,.meta,.hint,.section-note,.ed-subtitle,.iya-platform-intro p,.iya-platform-card-body p{color:#686868!important}
-.ed-logo-mark,.ed-logo-icon,.ed-brand-symbol{filter:grayscale(1)}
+
 img{color:#222}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 
@@ -36,8 +36,8 @@ body,html{background:#fff!important}
 .ed-home .ed-masthead h1 em{font-style:normal;text-decoration:underline;text-decoration-color:#ddd;text-decoration-thickness:5px;text-underline-offset:8px}
 .ed-home .ed-aside-green,.ed-home .ed-aside-block,.ed-home .ed-news-layout,.ed-home .ed-sections,.ed-home .ed-category,.ed-home .ed-editorial-stage,.ed-home .ed-editorial-categories,.ed-home .ed-highlights,.ed-home .ed-editor-choice,.ed-home .ed-feature-card,.ed-home .ed-finale,.ed-topline{background:#fff!important;color:#202020!important}
 .ed-home .ed-category,.ed-home .ed-feature-card{border-color:#e5e5e5!important}
-.ed-home .ed-category img,.ed-home .ed-feature-card img,.ed-home .ed-masthead-gallery img{filter:grayscale(1);transition:filter .25s ease,transform .25s ease}
-.ed-home .ed-category:hover img,.ed-home .ed-feature-card:hover img,.ed-home .ed-masthead-gallery a:hover img{filter:grayscale(.5)}
+
+
 .ed-home .ed-masthead-gallery,.ed-home .ed-photo-caption{background-color:#fff}
 .ed-photo-caption{background:linear-gradient(transparent,#111a)!important}
 .ed-photo-caption small,.ed-photo-caption strong{color:#fff!important}
@@ -66,8 +66,8 @@ body,html{background:#fff!important}
 .iya-feature-tile h3{font:600 24px/1.22 Georgia,serif;letter-spacing:-.02em;margin:12px 0}
 .iya-feature-tile p{font:400 13px/1.7 system-ui;color:#666;min-height:44px}
 .iya-feature-tile span{font:800 12px system-ui;color:#202020}
-.iya-platform-card img,.iya-choice img{filter:grayscale(1)}
-.iya-platform-card:hover img,.iya-choice:hover img{filter:grayscale(.4)}
+
+
 .iya-profile-dropdown a:hover{background:#f3f3f3!important}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #777!important;outline-offset:3px}
 @media(max-width:850px){.iya-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iya-feature-head{align-items:start;flex-direction:column}}
@@ -79,3 +79,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #77
 .iya-publish-banner{background-image:linear-gradient(90deg,#fffffff2,#ffffffad),url('https://images.pexels.com/photos/261763/pexels-photo-261763.jpeg?auto=compress&cs=tinysrgb&w=1600')!important;background-size:cover!important;background-position:center!important}
 .cover{background-image:linear-gradient(90deg,#ffffff80,#ffffff22),url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1600')!important;background-size:cover!important;background-position:center!important}
 .iya-cover,.iya-auth-photo,.iya-publish-banner,.cover{background-blend-mode:normal,luminosity!important}
+
+/* Photos remain naturally colorful; only interface surfaces are monochrome. */
+.ed-home img,.iya-feature-tile img,.iya-platform-card img,.iya-choice img,.iya-cover img,.iya-auth-photo img,.cover img,.avatar img{filter:none!important;mix-blend-mode:normal!important}
+.iya-cover,.iya-auth-photo,.iya-publish-banner,.cover{background-blend-mode:normal!important}
