@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/blog.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/tarifler.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/testler.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/yapilacaklar.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/hesaplama.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/gizlilik.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/yayin-ilkeleri.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/pomodoro.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/gelisim-araclari.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/premium-testler.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/arama.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/kaydedilenler.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/blog.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/egitimler.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/testler.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/premium-testler.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/filmler.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/tarifler.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/pomodoro.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/gelisim-araclari.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/yapilacaklar.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/hesaplama.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/topluluk-yazilari.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/gizlilik.html</loc></url>
+  <url><loc>https://iyiyolakademi-cpu.github.io/iyiyolakademir/yayin-ilkeleri.html</loc></url>
 </urlset>
