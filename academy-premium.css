@@ -1,0 +1,41 @@
+/* Iyi Yol Akademi - premium editorial polish */
+:root{--iya-forest:#183c2a;--iya-green:#245b3f;--iya-cream:#f7f8f3;--iya-line:#e2e9df;--iya-text:#21382a}
+html{scroll-behavior:smooth}
+::selection{background:#d8e8d6;color:#143925}
+.ed-masthead,.ed-editorial-stage,.ed-sections,.ed-finale{scroll-margin-top:110px}
+.ed-masthead h1{letter-spacing:-.055em}
+.ed-masthead-primary,.ed-action,.iya-cta-primary{transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.ed-masthead-primary:hover,.ed-action:hover,.iya-cta-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px #183c2a25}
+.ed-masthead-photo img,.ed-category img,.ed-feature-card img{transition:transform .45s ease}
+.ed-masthead-photo:hover img,.ed-category:hover img,.ed-feature-card:hover img{transform:scale(1.035)}
+.iya-platform{background:#f6f8f3;border-top:1px solid var(--iya-line);border-bottom:1px solid var(--iya-line);padding:75px 0}
+.iya-platform-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:26px}
+.iya-platform-intro h2,.iya-publish-banner h2{font:700 clamp(30px,4vw,50px)/1.15 Georgia,serif;letter-spacing:-.035em;margin:10px 0;color:#1c3527}
+.iya-platform-intro p{max-width:510px;color:#657369;line-height:1.8;margin:0}
+.iya-platform-kicker{font:800 11px system-ui;letter-spacing:.18em;color:#426b4c}
+.iya-platform-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}
+.iya-platform-card{background:#fff;border:1px solid #e1e8df;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;box-shadow:0 8px 22px #1a3e220a;transition:transform .2s,box-shadow .2s}
+.iya-platform-card:hover{transform:translateY(-5px);box-shadow:0 18px 35px #1a3e2218}
+.iya-platform-card img{width:100%;height:210px;object-fit:cover;display:block}
+.iya-platform-card-body{padding:24px;display:flex;flex:1;flex-direction:column;gap:9px}
+.iya-platform-card-body small{font-weight:800;letter-spacing:.12em;color:#51735b}
+.iya-platform-card-body h3{font:700 24px/1.25 Georgia,serif;margin:0;color:#1d3c2a}
+.iya-platform-card-body p{color:#68766c;line-height:1.7;margin:0 0 10px}
+.iya-platform-card-body span:last-child{margin-top:auto;font-weight:800;color:#245b3f}
+.iya-publish-banner{position:relative;isolation:isolate;overflow:hidden;border-radius:22px;margin:72px auto;background:#173725 url('https://images.pexels.com/photos/261763/pexels-photo-261763.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover;padding:70px clamp(25px,5vw,75px);color:white}
+.iya-publish-banner:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#102c1fee,#102c1fd5 58%,#102c1f55)}
+.iya-publish-banner h2{color:white;max-width:680px}
+.iya-publish-banner p{max-width:590px;line-height:1.8;color:#e4eee6}
+.iya-publish-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.iya-publish-actions a{display:inline-block;padding:14px 20px;border-radius:8px;font-weight:800;text-decoration:none}
+.iya-cta-primary{background:white;color:#183c2a}
+.iya-cta-secondary{border:1px solid #ffffff90;color:white}
+.iya-faq{margin:40px auto 80px}
+.iya-faq h2{font:700 32px Georgia,serif;margin:0 0 24px}
+.iya-faq details{border-bottom:1px solid #dfe7dd;padding:17px 0}
+.iya-faq summary{cursor:pointer;font-weight:750;color:#203e2b;list-style-position:outside}
+.iya-faq details p{max-width:800px;color:#68766c;line-height:1.8}
+.iya-footer-trust{font-size:12px;color:#6a786d}
+@media(max-width:900px){.iya-platform-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iya-platform-intro{display:block}.iya-platform-intro p{margin-top:15px}}
+@media(max-width:600px){.iya-platform{padding:48px 0}.iya-platform-grid{grid-template-columns:1fr}.iya-platform-card img{height:190px}.iya-publish-banner{margin:38px auto;padding:45px 24px}.iya-faq{margin-bottom:45px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
