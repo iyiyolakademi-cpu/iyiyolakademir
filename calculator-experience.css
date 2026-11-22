@@ -1,0 +1,68 @@
+/* İyi Yol Akademi - Hesaplama Araçları / Editorial White */
+body[data-page=calculator]{background:#fff;color:#1c1c1c}
+.calc-full-main{width:min(1220px,calc(100% - 48px));max-width:1220px;margin:0 auto;padding:0 0 85px}
+.calc-hero{display:grid;grid-template-columns:1.04fr .96fr;gap:54px;align-items:center;padding:68px 0 62px;border-bottom:1px solid #e7e7e7}
+.calc-eyebrow{font:800 10px/1.5 system-ui,sans-serif;letter-spacing:.18em;color:#737373}
+.calc-hero h1{font:600 clamp(42px,5vw,73px)/1.08 Georgia,serif;letter-spacing:-.055em;margin:20px 0 22px;max-width:620px;color:#171717}
+.calc-hero h1 em{font-style:normal;text-decoration:underline;text-decoration-color:#dedede;text-decoration-thickness:5px;text-underline-offset:7px}
+.calc-hero p{font:400 15px/1.9 system-ui,sans-serif;color:#666;max-width:500px}
+.calc-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:29px}
+.calc-hero-primary{display:inline-flex;gap:22px;align-items:center;padding:15px 22px;border-radius:8px;background:#1a1a1a;color:#fff!important;font:750 13px system-ui,sans-serif;text-decoration:none}
+.calc-hero-actions>span{font:650 12px system-ui,sans-serif;color:#666}
+.calc-hero-photo{position:relative;height:390px;overflow:hidden;border-radius:12px;background:#eee}
+.calc-hero-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:none!important}
+.calc-hero-caption{position:absolute;bottom:16px;left:16px;right:16px;background:#ffffffeb;backdrop-filter:blur(10px);border-radius:9px;padding:16px 19px}
+.calc-hero-caption small{display:block;color:#777;font:800 10px system-ui,sans-serif;letter-spacing:.13em}
+.calc-hero-caption strong{display:block;margin-top:5px;font:600 21px Georgia,serif;color:#1d1d1d}
+.calc-section-heading{margin:57px 0 27px}
+.calc-section-heading h2{font:600 clamp(29px,3vw,41px)/1.2 Georgia,serif;letter-spacing:-.04em;margin:8px 0 9px;color:#171717}
+.calc-section-heading p{font:400 14px/1.7 system-ui,sans-serif;color:#737373;margin:0}
+#pa-app,#pa-app .pa-screen,#pa-app #pa-screen-menu,#pa-app .pa-menu,#pa-app .pa-page{background:#fff!important;color:#191919!important;min-height:0!important}
+#pa-app{border-radius:0!important;overflow:visible!important}
+#pa-app .pa-menu{padding:0 0 22px}
+#pa-app .pa-search-wrap{padding:0;margin:0 0 17px}
+#pa-app .pa-search-wrap>label{display:block;margin-bottom:9px;color:#343434;font:750 13px system-ui,sans-serif}
+.calc-search-field{display:flex;align-items:center;gap:9px;padding:0 18px;border:1px solid #dedede;background:#fafafa;border-radius:11px;transition:border-color .2s}
+.calc-search-field:focus-within{border-color:#666}
+.calc-search-field>span{font-size:26px;color:#777}
+#pa-app #pa-search{height:54px;padding:0;outline:0;border:0!important;box-shadow:none!important;border-radius:0;background:transparent!important;color:#222!important;font:450 15px system-ui,sans-serif}
+#pa-app #pa-search::placeholder{color:#999}
+.calc-filters{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 33px}
+#pa-app .calc-filter{background:#fff!important;color:#3c3c3c!important;border:1px solid #dedede!important;border-radius:99px;padding:11px 17px;font:750 12px system-ui,sans-serif;cursor:pointer;transition:background .2s}
+#pa-app .calc-filter.is-active,#pa-app .calc-filter:hover{background:#1b1b1b!important;color:#fff!important;border-color:#1b1b1b!important}
+.calc-filter span{opacity:.65;margin-left:4px}
+.calc-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid #e7e7e7}
+.calc-menu-heading strong{font:650 24px Georgia,serif;color:#202020}
+.calc-menu-heading span{font:600 12px system-ui,sans-serif;color:#888}
+#pa-menu-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+#pa-app .pa-menu-item{display:flex;flex-direction:column;align-items:flex-start;position:relative;min-height:192px;padding:23px!important;margin:0!important;border:1px solid #e8e8e8!important;border-radius:13px;background:#fff!important;color:#1a1a1a!important;box-shadow:0 5px 22px #00000006;transition:transform .2s,box-shadow .2s,border-color .2s;text-align:left}
+#pa-app .pa-menu-item:hover{transform:translateY(-3px);border-color:#c8c8c8!important;box-shadow:0 14px 32px #0000000c}
+#pa-app .pa-menu-item:focus-visible{outline:3px solid #999;outline-offset:3px}
+#pa-app .pa-icon-area{width:auto;min-width:0;margin:0 0 19px}
+#pa-app .pa-icon{height:48px;width:48px;border-radius:12px;background:#f3f3f3!important;font-size:24px;filter:none!important}
+#pa-app .pa-menu-text{padding:0;color:#1b1b1b!important;font:700 18px/1.4 system-ui,sans-serif;max-width:calc(100% - 12px)}
+#pa-app .pa-menu-arrow{position:absolute;right:21px;bottom:18px;color:#555!important;font-size:25px}
+#pa-app .pa-new{display:none!important}
+#pa-app .pa-menu-item::after{content:attr(data-description);display:block;margin-top:9px;padding-right:16px;color:#777;font:400 12px/1.55 system-ui,sans-serif}
+#pa-app #pa-empty{grid-column:1/-1;background:#fafafa;color:#666!important;border:1px dashed #ddd;border-radius:10px;padding:30px}
+#pa-app .pa-page{padding:0 0 50px!important}
+#pa-app .pa-inner{max-width:780px}
+#pa-app .pa-back-row{margin:10px 0 22px}
+#pa-app .pa-back{color:#444!important;background:#fff!important;border:1px solid #e2e2e2!important;border-radius:8px;padding:10px 16px;font:700 13px system-ui,sans-serif}
+#pa-app .pa-card{border:1px solid #e6e6e6!important;background:#fff!important;box-shadow:0 15px 50px #00000009!important;border-radius:17px!important;padding:40px!important}
+#pa-app .pa-card-title{font:650 clamp(28px,3vw,37px)/1.2 Georgia,serif!important;letter-spacing:-.03em;color:#1a1a1a!important;text-align:left!important;margin-bottom:12px!important}
+#pa-app .pa-card-desc{font:400 14px/1.75 system-ui,sans-serif!important;color:#777!important;text-align:left!important;max-width:none!important;margin-bottom:30px!important}
+#pa-app .pa-label{font:750 13px system-ui,sans-serif!important;color:#333!important;margin-bottom:8px}
+#pa-app .pa-input,#pa-app select{background:#fafafa!important;color:#222!important;border:1px solid #d9d9d9!important;border-radius:9px!important;min-height:49px}
+#pa-app .pa-input:focus,#pa-app select:focus{border-color:#777!important;outline:2px solid #e3e3e3!important}
+#pa-app .pa-button{background:#1b1b1b!important;color:#fff!important;border:1px solid #1b1b1b!important;border-radius:9px!important;min-height:51px;font-weight:750}
+#pa-app .pa-result{background:#fafafa!important;color:#222!important;border:1px solid #e6e6e6!important;border-radius:12px!important}
+#pa-app .pa-result-main,#pa-app .pa-result-right,#pa-app .pa-result-left{color:#222!important}
+#pa-app .pa-result-line{border-color:#e5e5e5!important}
+.calc-help{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:32px 36px;background:#fafafa;border:1px solid #eee;border-radius:13px;margin-top:45px}
+.calc-help h2{font:650 26px Georgia,serif;margin:9px 0;color:#222}
+.calc-help p{font:400 13px/1.7 system-ui,sans-serif;color:#777;max-width:700px;margin:0}
+.calc-help a{color:#222;font:750 13px system-ui,sans-serif;white-space:nowrap;text-decoration:underline}
+@media(max-width:960px){.calc-hero{gap:28px}.calc-hero-photo{height:330px}#pa-menu-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.calc-full-main{width:calc(100% - 28px)!important}.calc-hero{grid-template-columns:1fr;padding:37px 0}.calc-hero-photo{height:260px}.calc-hero h1{font-size:43px}.calc-section-heading{margin-top:38px}#pa-app .pa-card{padding:23px!important}.calc-help{flex-direction:column;align-items:flex-start;padding:25px}}
+@media(max-width:480px){#pa-menu-list{grid-template-columns:1fr;gap:12px}#pa-app .pa-menu-item{min-height:142px;padding:17px!important}#pa-app .pa-icon-area{margin-bottom:12px}#pa-app .pa-menu-text{font-size:16px}.calc-menu-heading strong{font-size:20px}.calc-hero-photo{height:220px}.calc-filters{gap:7px}#pa-app .calc-filter{padding:9px 12px;font-size:11px}#pa-app .pa-row{flex-wrap:wrap}#pa-app .pa-row .pa-field{min-width:140px}}
