@@ -150,3 +150,9 @@ main input:focus,main select:focus,main textarea:focus{border-color:#5c906f!impo
 .iya-profile-logout{width:100%;border:0;background:#f8eded;color:#8d302e;text-align:left;padding:12px 13px;border-radius:6px;font:700 13px var(--ed-sans);cursor:pointer}
 .iya-profile-logout:hover{background:#f4dfdf}
 .iya-profile-menu summary{max-width:180px;overflow:hidden;text-overflow:ellipsis}
+
+/* Brand 2026: new supplied gold-and-white logo. Text-only mastheads become brand image. */
+.site-header .ed-wordmark{display:block!important;width:126px!important;height:63px!important;min-width:126px!important;background:#090a0d url("brand-transparent.svg?v=20261122brand2") center/contain no-repeat!important;border-radius:6px!important;font-size:0!important;line-height:0!important;overflow:hidden!important;flex:none!important}
+.site-header .ed-wordmark b,.site-header .ed-wordmark small,.site-header .ed-wordmark span{visibility:hidden!important}
+.footer-logo-full{filter:none!important}
+@media(max-width:650px){.site-header .ed-wordmark{width:102px!important;min-width:102px!important;height:54px!important}}
