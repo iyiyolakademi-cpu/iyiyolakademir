@@ -14,3 +14,6 @@
 #details h3{font-size:14px;margin:22px 0 5px;color:#17191c}
 #details #movie-summary,#details #movie-mood{font-size:14px;color:#505660;margin:6px 0}
 @media(max-width:600px){.movies{grid-template-columns:1fr;gap:9px}.movie{min-height:0}.movie .info{padding:16px}.movie .info strong{font-size:16px}}
+
+/* IYA individual visual identity */
+main .hero{background:#171717;color:white;padding:45px 32px;border-radius:4px;margin-top:12px}.hero p,.hero .eyebrow{color:#ccc!important}.movies{gap:0!important;border-top:1px solid #ccc}.movie{border:0!important;border-bottom:1px solid #ccc!important;border-radius:0!important;min-height:110px!important}.movie:hover{background:#f1f1ef!important}.categories button{border-radius:4px!important}.tools input{border-radius:4px!important}@media(max-width:550px){main .hero{padding:30px 18px}.movies{grid-template-columns:1fr!important}}

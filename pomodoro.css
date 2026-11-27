@@ -62,3 +62,6 @@
 }
 @media(max-width:350px){.pom-clock{font-size:43px}.pom-dial{width:min(234px,75vw)}.pom-modes button{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.pom-dial{transition:none}}
+
+/* IYA individual visual identity */
+.pom-page .pom-intro h1{color:#171717!important}.pom-page .pom-intro p{color:#666!important}.pom-card{background:#171717!important;color:#fff!important;border:0!important;border-radius:8px!important;padding:clamp(18px,4vw,48px)!important}.pom-dial{background:conic-gradient(#fff var(--pom-percent),#414141 0)!important}.pom-dial-inner{background:#171717!important}.pom-clock{color:white!important;font-size:clamp(54px,9vw,88px)!important;font-weight:500!important}.pom-dial-inner>span,.pom-dial-inner small,.pom-message,.pom-feedback{color:#ccc!important}.pom-modes{background:#303030!important}.pom-modes button{color:#ccc!important}.pom-modes button.active,.pom-primary{background:#fff!important;color:#171717!important}.pom-secondary{background:transparent!important;color:#fff!important;border-color:#777!important}.pom-panel{border-radius:8px!important;border-color:#ddd!important}.pom-presets button.active,.pom-stats>div{background:#eee!important;color:#171717!important}.pom-stats strong,.pom-stats span,.pom-presets button small{color:#333!important}

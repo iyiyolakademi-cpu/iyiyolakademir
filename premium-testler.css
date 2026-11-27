@@ -158,3 +158,6 @@
  .pt-report-section{break-inside:avoid;page-break-inside:avoid}
  .pt-score-top{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* IYA individual visual identity */
+.pt-page{--pt-ink:#171717;--pt-gold:#555;--pt-border:#ddd;--pt-muted:#666;--pt-paper:#f7f7f5;--pt-soft:#eee;background:#f7f7f5}.pt-hero h1 em,.pt-eyebrow,.pt-kicker{color:#444!important}.pt-hero-preview{transform:none!important;background:#171717!important;border-radius:6px!important;box-shadow:none!important}.pt-preview-head,.pt-preview-index{color:#ddd!important}.pt-preview-progress i,.pt-preview-circles span:nth-child(4){background:#fff!important;border-color:#fff!important}.pt-preview-circles span{border-color:#aaa!important}.pt-btn{border-radius:5px!important}.pt-btn-dark{background:#171717!important}.pt-eyebrow-dot{background:#171717!important}

@@ -93,3 +93,6 @@
  .cook-step-text{font-size:16px;line-height:1.7;padding:18px}
 }
 @media(max-width:360px){.recipes-sort-controls{grid-template-columns:1fr}}
+
+/* IYA individual visual identity */
+.recipes-hero{background:#f4f1eb!important;border-bottom:1px solid #ddd}.recipes-hero h1 em{color:#171717!important}.recipes-hero-art{background:#e7e2d8!important;border-radius:4px!important}.recipes-hero-tags span,.recipe-category-button,.recipes-input-wrap,.recipe-random,.recipe-fav-toggle,.recipe-more,.recipe-save{border-radius:4px!important}.recipe-random,.recipe-category-button.is-active{background:#171717!important;color:#fff!important;border-color:#171717!important}.recipe-category-button:not(.is-active){color:#333!important}.recipes-summary strong{font-size:32px}.recipes-sort-controls select{border-radius:4px!important}
